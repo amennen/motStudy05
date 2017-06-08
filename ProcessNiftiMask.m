@@ -37,7 +37,7 @@ PAScan = 4;
 functionalScan = 5;
 
 % set up this subject's paths
-projectName = 'motStudy04';
+projectName = 'motStudy05';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjNum) '/']; %this is where she sets the save directory!
 process_dir = [save_dir 'reg' '/'];
@@ -57,7 +57,7 @@ if ~exist(process_dir)
 end
 cd(process_dir)
 
-%% Process t1-weighted MPRAGE
+%% Process t1-weighted MPRAGE and check brain extraction!
 highresFN = 'highres';
 highresFN_RE = 'highres_re';
 highresfiles_genstr = sprintf('%s001_0000%s_0*',dicom_dir,num2str(highresScan,'%2.2i')); %general string for ALL mprage files**
@@ -66,7 +66,10 @@ unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,h
 unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --2niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
 unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R',fslpath,highresFN_RE,highresFN_RE)) 
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
+unix(sprintf('%sfslview %s.nii.gz',fslpath,highresFN_RE))
+unix(sprintf('%sfslview %s_brain.nii.gz', fslpath,highresFN_RE))
 
+%% Register standard to nifti
 % Register to standard=
 unix(sprintf('%sflirt -in %s_brain.nii.gz -ref $FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz -out highres2standard -omat highres2standard.mat -cost corratio -dof 12 -searchrx -30 30 -searchry -30 30 -searchrz -30 30 -interp trilinear',fslpath,highresFN_RE));
 unix(sprintf('%sfnirt --iout=highres2standard_head --in=%s.nii.gz --aff=highres2standard.mat --cout=highres2standard_warp --iout=highres2standard --jout=highres2highres_jac --config=T1_2_MNI152_2mm --ref=$FSLDIR/data/standard/MNI152_T1_2mm.nii.gz --refmask=$FSLDIR/data/standard/MNI152_T1_2mm_brain_mask_dil --warpres=10,10,10', fslpath,highresFN_RE));
@@ -74,78 +77,6 @@ unix(sprintf('%sapplywarp -i %s_brain.nii.gz -r $FSLDIR/data/standard/MNI152_T1_
 %compute inverse transform (standard to highres)
 unix(sprintf('%sconvert_xfm -inverse -omat standard2highres.mat highres2standard.mat', fslpath));
 unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highresFN_RE));
-
-%% Process each spin echo file
-onlyFirstTR = 1;
-if onlyFirstTR % only use first TR for each spin echo to save time
-    APname = 'SE_AP1';
-    AP_re = [APname '_re'];
-    AP_genstr = sprintf('%s001_0000%s_0000{01..48}.dcm',dicom_dir,num2str(APScan,'%2.2i'));
-    unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,AP_genstr,APname));
-    unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,APname,AP_re));
-    unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,AP_re,AP_re))
-    
-    % now do the same thing with PA
-    PAname = 'SE_PAB';
-    PA_re = [PAname '_re'];
-    PA_genstr = sprintf('%s001_0000%s_0000{01..48}.dcm',dicom_dir,num2str(PAScan,'%2.2i'));
-    unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,PA_genstr,PAname));
-    unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,PAname,PA_re));
-    unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,PA_re,PA_re))
-    
-    % use topup to calculate differences
-    % now combine them into a single image
-    time1 = GetSecs;
-    fieldmapfn = 'all_SE';
-    unix(sprintf('%sfslmerge -t %s.nii.gz %s.nii.gz %s.nii.gz', fslpath,fieldmapfn,AP_re,PA_re))
-    
-    % now run topup!
-    textfile = 'acqparamsONE.txt';
-    cnffile = 'b02b0.cnf';
-    unix(sprintf('%stopup --imain=%s.nii.gz --datain=%s%s --config=%s%s --out=topup_output --iout=topup_iout --fout=topup_fout --logout=topup_logout',fslpath,fieldmapfn,multipath,textfile,multipath,cnffile))
-    
-    % create magnitude image from topup
-    unix(sprintf('%sfslmaths topup_iout -Tmean magnitude',fslpath))
-    % create brain-extracted magnitude image
-    unix(sprintf('%sbet magnitude magnitude_brain -R',fslpath)) % check that this is okay afterwards!!!!
-    unix(sprintf('%sfslmaths topup_fout.nii.gz -mul 6.28 fieldmap_rads',fslpath))
-    time2 = GetSecs;
-    topuptime = time2-time1;
-else
-    APname = 'SE_AP3';
-    AP_re = [APname '_re'];
-    AP_genstr = sprintf('%s001_00000%s_0*',dicom_dir,num2str(APScan));
-    unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,AP_genstr,APname));
-    unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,APname,AP_re));
-    unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,AP_re,AP_re))
-    
-    % now do the same thing with PA
-    PAname = 'SE_PA3';
-    PA_re = [PAname '_re'];
-    PA_genstr = sprintf('%s001_00000%s_0*',dicom_dir,num2str(PAScan));
-    unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,PA_genstr,PAname));
-    unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,PAname,PA_re));
-    unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,PA_re,PA_re))
-    
-    % use topup to calculate differences
-    % now combine them into a single image
-    time1 = GetSecs;
-    fieldmapfn = 'all_SE';
-    unix(sprintf('%sfslmerge -t %s.nii.gz %s.nii.gz %s.nii.gz', fslpath,fieldmapfn,AP_re,PA_re))
-    
-    % now run topup!
-    textfile = 'acqparams.txt';
-    cnffile = 'b02b0.cnf';
-    unix(sprintf('%stopup --imain=%s.nii.gz --datain=%s%s --config=%s%s --out=topup_output --iout=topup_iout --fout=topup_fout --logout=topup_logout',fslpath,fieldmapfn,multipath,textfile,multipath,cnffile))
-    
-    % create magnitude image from topup
-    unix(sprintf('%sfslmaths topup_iout -Tmean magnitude3',fslpath))
-    % create brain-extracted magnitude image
-    unix(sprintf('%sbet magnitude3 magnitude3_brain -r 100',fslpath)) % check that this is okay afterwards!!!!
-    unix(sprintf('%sfslmaths topup_fout.nii.gz -mul 6.28 fieldmap_rads3',fslpath))
-    time2 = GetSecs;
-    topuptime = time2-time1;
-end
 %% Process example epi file
 fileN = 8; % we can choose 10 later
 functionalFN = 'exfunc';
@@ -157,16 +88,9 @@ unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.
 
 % now register to highres!
 t1 = GetSecs;
-exfunc2highres_mat='example_func2highresTESTSE1';
-highres2exfunc_mat='highres2example_funcTESTSE1';
+exfunc2highres_mat='example_func2highres';
+highres2exfunc_mat='highres2example_func';
 unix(sprintf('%sepi_reg --epi=%s --t1=%s --t1brain=%s_brain --out=%s',fslpath,functionalFN_RE,highresFN_RE,highresFN_RE,exfunc2highres_mat))
-%exfunc2highres_mat='example_func2highres';
-%highres2exfunc_mat='highres2example_func';
-unix(sprintf('%sepi_reg --epi=%s --t1=%s --t1brain=%s_brain --out=%sNOFIELDMAP',fslpath,functionalFN_RE,highresFN_RE,highresFN_RE,exfunc2highres_mat))
-
-%unix(sprintf('%sepi_reg --epi=%s.nii.gz --t1=%s.nii.gz --t1brain=%s_brain.nii.gz --out=%s3 --fmap=fieldmap_rads3 --fmapmag=magnitude3 --fmapmagbrain=magnitude3_brain --echospacing=0.00035 --pedir=y',fslpath,functionalFN_RE,highresFN_RE,highresFN_RE,exfunc2highres_mat))
-unix(sprintf('%sepi_reg --epi=%s.nii.gz --t1=%s.nii.gz --t1brain=%s_brain.nii.gz --out=%s --fmap=fieldmap_rads --fmapmag=magnitude --fmapmagbrain=magnitude_brain --echospacing=0.00035 --pedir=y',fslpath,functionalFN_RE,highresFN_RE,highresFN_RE,exfunc2highres_mat))
-
 timefunc2highres = GetSecs-t1;
 unix(sprintf('%sconvert_xfm -inverse -omat %s.mat %s.mat',fslpath,highres2exfunc_mat,exfunc2highres_mat));
 
@@ -182,6 +106,10 @@ end
 % brain extract functional scan to make sure we stay inside the brain of
 % the subject!
 unix(sprintf('%sbet %s.nii.gz %s_brain -R',fslpath,functionalFN_RE,functionalFN_RE)); % check that this is okay!
+%CHECK OKAY
+unix(sprintf('%sfslview %s_brain.nii.gz', fslpath,functionalFN_RE))
+
+%%
 % now unzip and convert to load into matlab
 %unzip, if necessary
 if exist(sprintf('%s.nii.gz',functionalFN_RE),'file')
@@ -211,24 +139,3 @@ end
 % now save mask
 save(fullfile(process_dir, [roi_name '_mask']),'mask_brain')
 sprintf('done')
-% % test that it's the same thing just not rotated as before
-% oldm = load('/Data1/code/motStudy03/data/3/reg/retrieval_anat_mask_orig.mat')
-% oldm = oldm.mask_brain;
-% figure;
-% imagesc(oldm(:,:,10))
-% MaskRot = zeros(size(mask_brain));
-% for i = 1:size(mask_brain,3)
-%     MaskRot(:,:,i) = rot90(mask_brain(:,:,i)); %rotates entire slice by 90 degrees
-% end
-% sum(find(MaskRot==oldm))
-%% Now test with other data
-scanNum = 11;
-thisTR = 40;
-[patterns.fileAvail filename] = GetSpecificFMRIFile(dicom_dir,scanNum,thisTR);
-% now convert to nifti
-niftiname = sprintf('nifti%3.3i', thisTR);
-unix(sprintf('%sdicom2bxh %s%s %s.bxh',bxhpath,dicom_dir,filename,niftiname));
-unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,niftiname,niftiname));
-unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,niftiname,niftiname))
-% now mcflirt!
-unix(sprintf('%smcflirt -in %s.nii.gz -reffile exfunc_re',fslpath,niftiname))

@@ -14,7 +14,7 @@ LOC = 19;
 MOT = [19 21:23]; %(can change the way the files are named in the future)
 RECALL = [20 24];
 MOT_PREP = 5;
-TR = 1;
+TR = 2;
 remove = 20/TR; %to account for 20 s in the beginning where nothing happens
 if SESSION == LOC
     crossval = 1;

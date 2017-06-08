@@ -9,11 +9,7 @@ runNum = 1; %what number subject they are today
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
-% if prev
-%     allScanNums = [7:2:19];
-% else
-%     allScanNums = [7 11:2:21];
-% end
+
 NUM_TASK_RUNS = 3;
 % orientation session
 SETUP = 1; % stimulus assignment 1
@@ -49,11 +45,11 @@ DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 %last input is scan number
 
-% 1: SCOUT
-% 2: MPRAGE
-% 3: AP Scan
-% 4: PA Scan
-% 5: Example functional
+% 1-4: SCOUT
+% 5: MPRAGE
+% 6: Example functional
+% 8-9: FIELDMAP (can I uncheck the motion correction here?)
+
 % 6: LOCALIZER
 % 7: RECALL 1
 % 8: MOT 1
@@ -64,11 +60,11 @@ ASSOCIATES = DESCRIPTION + 1; %27
 %% RUN MP_RAGE FIRST
 %% RUN VARIOUS BEHAVIORAL TASKS
 %first MOT_PRACTICE and RECALL PRACTICE
-mot_realtime04MB(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
+mot_realtime05(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
 %then start RSVP task5
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 5; % here run process Nifti but look at outputs--make sure magnitude bet is okay and functional bet!
-mot_realtime04MB(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
+mot_realtime05(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 % run the AP scan, PA scan, and functional scan here!! then just quit
 % qhenever they finish
 %% SCAN_PREP FILE PROCESS
@@ -81,12 +77,12 @@ mot_realtime04MB(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 % run after functional scans! as soon as it finishes!
 % (could maybe have two windows to process anatomical and other functional
 % ones but eh)
-mot_realtime04MB(SUBJECT,RSVP2,[],0,scanNow) %will continue until TOCRITERION3
+mot_realtime045(SUBJECT,RSVP2,[],0,scanNow) %will continue until TOCRITERION3
 %look for mask and test it
 
 %% LOCALIZER DISPLAY
 scanNum = 6;
-mot_realtime04MB(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
+mot_realtime05(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
 
 %% LOCALIZER FILE PROCESS
 % number of TR's total: 1376 (should be 688 originally)
@@ -98,12 +94,12 @@ LocalizerNiftiFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MO
 %% RECALL 1
 % number of TR's total: 474
 scanNum = 7;
-mot_realtime04MB(SUBJECT,RECALL1,[],scanNum,scanNow);
+mot_realtime05(SUBJECT,RECALL1,[],scanNum,scanNow);
 
 %% MOT RUN 1 DISPLAY
 % number of TR's total 452 (should be 226 originally)
 scanNum = 8; %new would be 15
-mot_realtime04MB(SUBJECT,MOT{1},[],scanNum,scanNow);
+mot_realtime05(SUBJECT,MOT{1},[],scanNum,scanNow);
 %% MOT RUN 1 FILE PROCESS
 scanNum = 8;%normally 15;
 blockNum = 1;
@@ -112,7 +108,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},block
 
 %% MOT RUN 2 DISPLAY
 scanNum = 9;
-mot_realtime04MB(SUBJECT,MOT{2},[],scanNum,scanNow);
+mot_realtime05(SUBJECT,MOT{2},[],scanNum,scanNow);
 %% MOT RUN 2 FILE PROCESS
 scanNum = 9;
 featureSelect = 1;
@@ -121,7 +117,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},block
 
 %% MOT RUN 3 DISPLAY
 scanNum = 10;
-mot_realtime04MB(SUBJECT,MOT{3},[],scanNum,scanNow);
+mot_realtime05(SUBJECT,MOT{3},[],scanNum,scanNow);
 %% MOT RUN 3 FILE PROCESS
 scanNum = 10;
 featureSelect = 1;
@@ -129,7 +125,7 @@ blockNum = 3;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 %% RECALL 2
 scanNum = 11;
-mot_realtime04MB(SUBJECT,RECALL2,[],scanNum,scanNow);
+mot_realtime05(SUBJECT,RECALL2,[],scanNum,scanNow);
 %% ANALYZE RECALL DATA
 % do for recall 1 and recall 2
 makeFile = 1;

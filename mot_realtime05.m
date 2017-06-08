@@ -1,4 +1,4 @@
-% syntax: mot_realtime04MB(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+% syntax: mot_realtime05(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
 %
 % This is an implementation of a MOT memory experiment designed to
 % reactivate memory, adapted from a study by Ken Norman and J. Poppenk. I
@@ -12,7 +12,7 @@
 
 %%
 
-function mot_realtime04MB(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+function mot_realtime05(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
 
 %SUBJECT: Subject number
 %SESSION: task that they're going to do (listed below)
@@ -145,7 +145,7 @@ documents_path = WORKING_DIR;
 %     documents_path = ['/Data1/code/motStudy01/'];
 % end
 data_dir = fullfile(documents_path, 'BehavioralData');
-dicom_dir = fullfile('/Data1/code/motStudy04/', 'data', SUBJ_NAME); %where all the dicom information is FOR THAT SUBJECT
+dicom_dir = fullfile('/Data1/code/motStudy05/', 'data', SUBJ_NAME); %where all the dicom information is FOR THAT SUBJECT
 if SESSION >= MOT{1}
     runNum = SESSION - MOT{1} + 1;
     classOutputDir = fullfile(dicom_dir,['motRun' num2str(runNum)], 'classOutput/');
@@ -153,7 +153,7 @@ end
 if ~exist(data_dir,'dir'), mkdir(data_dir); end
 ppt_dir = [data_dir filesep SUBJ_NAME filesep];
 if ~exist(ppt_dir,'dir'), mkdir(ppt_dir); end
-base_path = [fileparts(which('mot_realtime04MB.m')) filesep];
+base_path = [fileparts(which('mot_realtime05.m')) filesep];
 MATLAB_SAVE_FILE = [ppt_dir MATLAB_SAVE_FILE];
 LOG_NAME = [ppt_dir LOG_NAME];
 
@@ -170,12 +170,11 @@ stim.num_learn = 8;
 stim.num_localizer = 16;
 stim.num_total = stim.num_learn + stim.num_realtime + stim.num_omit + stim.num_localizer; 
 stim.runSpeed = SPEED;
-stim.TRlength = 1*SPEED; %this is the speed
+stim.TRlength = 2*SPEED; %this is the speed
 stim.fontSize = 24;
 NUM_MOTLURES = 0; %changed here from 5 6/23
 NUM_RECALL_LURES = stim.num_realtime + stim.num_omit;
 lureCounter = 1000;
-look = 0;
 % input mapping
 if ~fmri
     THUMB = 'z';
@@ -190,7 +189,6 @@ else
     MIDDLEFINGER='3';
     RINGFINGER='4';
     PINKYFINGER='5';
-    look = 1; % look for audio device
     %     if strcmp(TRIGGER,'5'); should already be set to =
     %         TRIGGER = '=';
     %     end
@@ -288,7 +286,7 @@ LEARN = 6;
 LOC = 7;
 
 % stimulus filepaths
-MATLAB_STIM_FILE = [ppt_dir 'mot_realtime04_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
+MATLAB_STIM_FILE = [ppt_dir 'mot_realtime05_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
 %CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_ONLYTARGETS.txt']; %changed for subject 15 just to be sure that the words for practice aren't going to be assigned to more people!
 TRAININGCUELIST = [base_path 'stimuli/text/trainingCues.txt'];
 MOTCUELIST = [base_path 'stimuli/text/motCues.txt'];
@@ -474,13 +472,13 @@ switch SESSION
         stimmap = makeMap(preparedCues);
         
         % clean up
-        system(['cp ' base_path 'mot_realtime04MB.m ' ppt_dir 'mot_realtime04MB_executed.m']);
+        system(['cp ' base_path 'mot_realtime05.m ' ppt_dir 'mot_realtime05_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','stimmap', 'trainWords', 'trainPics');
         
         if previousYC
-            mot_realtime04MB(SUBJECT,FAMILIARIZE2,SET_SPEED,scanNum,scanNow);
+            mot_realtime05(SUBJECT,FAMILIARIZE2,SET_SPEED,scanNum,scanNow);
         else
-            mot_realtime04MB(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         end
         
         
@@ -618,7 +616,7 @@ switch SESSION
         % return
         sca
         if SESSION ~= STIM_REFRESH
-            mot_realtime04MB(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow); %don't continue if just refreshing on laptop
+            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow); %don't continue if just refreshing on laptop
         end
         %% 2. LEARN TO CRITERION
     case {TOCRITERION1, TOCRITERION2, TOCRITERION2_REP, TOCRITERION3}
@@ -932,7 +930,7 @@ switch SESSION
         %return
         %normally would go to session 4 but instead we want to go to
         if SESSION ~= TOCRITERION3
-            mot_realtime04MB(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         end
         
         %% 3. PRE/POST MEMORY TEST
@@ -1683,7 +1681,7 @@ switch SESSION
 %             promptTRs = 3:2:9;
 %         else
         stim.trialDur = 30*SPEED; %chaning length from 20 to 30 s or 15 TRs
-        promptTRs = 6:6:25; %which TR's to make the prompt active- %TO BE CHANGED-used to be 3:3:13; with 15 2 s TRs--now will have 30 TR's
+        promptTRs = 3:3:13; %which TR's to make the prompt active- %TO BE CHANGED-used to be 3:3:13; with 15 2 s TRs--now will have 30 TR's
   %      end
         stim.inter_prompt_interval = 4*SPEED;
         stim.maxspeed = 30;
@@ -1706,7 +1704,7 @@ switch SESSION
         
         %rt parameters 
         OptimalForget = 0.15;
-        maxIncrement = 0.625; %will also have to check this
+        maxIncrement = 1.25; %will also have to check this
         Kp = 5;
         Ki = .0; %changed after RT worksop from 0.01
         Kd = .5;
@@ -2203,7 +2201,7 @@ switch SESSION
                             prompt_counter = prompt_counter + 1;
                             train.onset(prompt_counter) = GetSecs;
                             check(prompt_counter) = 1;
-                        elseif ismember(TRcounter-2,promptTRs) && check(prompt_counter)
+                        elseif ismember(TRcounter-1,promptTRs) && check(prompt_counter)
                             [train.acc(prompt_counter), train.resp{prompt_counter}, ~, train.rt(prompt_counter), ~, train.resp_str{prompt_counter}] = ...
                                 multiChoice(queueCheck, embedded_keys, embedded_scale, embedded_cresp, GetSecs, DEVICE, [],sum(keys.map(3:5,:)),subj_map);
                             
@@ -2248,7 +2246,7 @@ switch SESSION
                 % but we don't want this to look for the same file more
                 % than once or go through the same loop
                 if realtime
-                    if TRcounter >=6
+                    if TRcounter >=4
                         thisTR = allMotionTRs(TRcounter,n); %this is the TR we're actually on KEEP THIS WAY--starts on 4, ends on 10
                         fileTR = thisTR - 1; 
                         if scanNum
@@ -2265,7 +2263,7 @@ switch SESSION
                                 startI = 5;
                                 fileNumber = str2double(filename(startI:(length(filename)-4)));
                                 % let's see if we've loaded this before
-                                if ~ismember(fileNumber,rtData.foundFn) && ismember(fileNumber,allMotionTRs(5:end,n)) % so only accept it if it's one of the TR's for that trial
+                                if ~ismember(fileNumber,rtData.foundFn) && ismember(fileNumber,allMotionTRs(3:end,n)) % so only accept it if it's one of the TR's for that trial
                                     % now add this to the found file
                                     rtData.foundFn(end+1) = fileNumber;
 
@@ -2522,7 +2520,7 @@ switch SESSION
             %displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, subjectiveEK,CONGRATS);
             if SESSION < MOT_LOCALIZER
-                mot_realtime04MB(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+                mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
             end
         end
         sca;
@@ -2711,7 +2709,7 @@ switch SESSION
             sca
         else
             endSession(fruitHarvestEK, CONGRATS);
-            mot_realtime04MB(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         end
         
         %% SCAN PREP
@@ -2735,7 +2733,7 @@ switch SESSION
         end
        % runStart = timing.trig.wait;
         config.wait = 180; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
-        config.TR = 1;
+        config.TR = 2;
         timing.plannedOnsets.offEx = runStart + config.wait;
         DrawFormattedText(mainWindow,'Done!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         timespec = timing.plannedOnsets.offEx-SLACK;

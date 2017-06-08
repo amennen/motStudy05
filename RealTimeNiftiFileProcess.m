@@ -45,7 +45,7 @@ function [patterns, t] = RealTimeNiftiFileProcess(subjectNum,featureSelect,prev,
 
 
 %% initialize path prefix for different replyDrive
-projectName = 'motStudy04'; %CHANGE BACK!!
+projectName = 'motStudy05'; %CHANGE BACK!!
 biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
 bxhpath='/opt/BXH/1.11.1/bin/';
 fslpath='/opt/fsl/5.0.9/bin/';
@@ -156,7 +156,7 @@ GetSecs;
 %% preprocessing parameters
 FWHM = 5;
 cutoff = 160;
-TR = 1; % changed here back!
+TR = 2; % changed here back!
 shiftTR = 4/TR; % this will now be 4 TR's (was 2 TRs for a 2 s TR)
 %% Block Sequence
 

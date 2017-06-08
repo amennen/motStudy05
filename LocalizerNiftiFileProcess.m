@@ -13,7 +13,7 @@ if ~exist('readmr','file')
     addpath([biac_dir '/mr/']);
     addpath([biac_dir '/general/'])
 end
-projectName = 'motStudy04';
+projectName = 'motStudy05';
 multipath = '/Data1/code/multibandutils/';
 addpath(genpath(multipath));
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
@@ -60,10 +60,10 @@ GetSecs;
 %% preprocessing parameters
 FWHM = 5;
 cutoff = 160;
-TR = 1;
+TR = 2;
 
 %% block sequence
-nTRsTotal = 1376;
+nTRsTotal = 688;
 remove = 20/TR; % because it's 20 seconds we want to take off 
 nTRs = nTRsTotal - remove; 
 patterns.fileAvail = zeros(1,nTRs);
@@ -185,7 +185,7 @@ printlog(dataFile,'beginning model cross-validation...\n');
 
 %parameters
 penalty = 100;
-keepTR = 30; %%changed it on 1/20 for subjects 6 on!
+keepTR = 30/TR; %%changed it on 1/20 for subjects 6 on!
 shiftTR = 4/TR;
 startXVAL = tic;
 
@@ -286,7 +286,7 @@ printlog(dataFile,'beginning model training...\n');
 %parameters
 penalty = 100;
 shiftTR = 4/TR;
-keepTR = 30; %changed on 1/20 for subject 6 onwards to train the localizer task on all 15 TR's instead of just the first one
+keepTR = 30/TR; %changed on 1/20 for subject 6 onwards to train the localizer task on all 15 TR's instead of just the first one
 trainStart = tic;
 
 %first get session information

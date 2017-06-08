@@ -46,7 +46,7 @@ function [patterns, t] = RecallNiftiFileProcess(subjectNum,runNum,scanNum,SESSIO
 
 %% initialize path prefix for different replyDrive
 
-projectName = 'motStudy04';
+projectName = 'motStudy05';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
 bxhpath='/opt/BXH/1.11.1/bin/';
@@ -116,9 +116,9 @@ GetSecs;
 %% preprocessing parameters
 FWHM = 5;
 cutoff = 160;
-TR = 1; % changed here back!
+TR = 2; % changed here back!
 shiftTR = 4/TR; % this will now be 4 TR's (was 2 TRs for a 2 s TR)
-rtData = 2;
+rtData = 1;
 %% Block Sequence
 
 patterns.nTRs = size(patterns.regressor.twoCond,2); %already has first 10 removed
