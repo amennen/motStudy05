@@ -1,0 +1,10 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	38.3  	4   	HAMMER    	target  	1.952	NR  	0   	NR      	non-target
+2   	80.3  	6   	PIN       	target  	1.951	NR  	0   	NR      	non-target
+3   	122.3 	8   	ISLAND    	target  	1.951	NR  	0   	NR      	target  
+4   	164.3 	8   	ISLAND (repeat 1)	target  	1.951	NR  	0   	NR      	target  
+5   	206.3 	4   	HAMMER (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
+6   	1594.1	4   	HAMMER (repeat 2)	target  	1.951	NR  	0   	NR      	non-target
+7   	1636.1	2   	PEBBLE    	target  	1.951	NR  	0   	NR      	non-target
+8   	1678.1	7   	BELL      	target  	1.951	NR  	0   	NR      	non-target
+9   	1720.1	7   	BELL (repeat 1)	target  	1.951	NR  	0   	NR      	target  

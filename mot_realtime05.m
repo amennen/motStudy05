@@ -1812,7 +1812,7 @@ switch SESSION
             %             while timeout
             try
                 %will need to add this file to the folder to get it to work
-                fileCandidates = dir([ppt_dir 'mot_realtime04_' num2str(SUBJECT) '_' num2str(MOT_PREP)  '*.mat']);
+                fileCandidates = dir([ppt_dir 'mot_realtime05_' num2str(SUBJECT) '_' num2str(MOT_PREP)  '*.mat']);
                 dates = [fileCandidates.datenum];
                 names = {fileCandidates.name};
                 [~,newest] = max(dates);
@@ -1953,7 +1953,7 @@ switch SESSION
             stim.instruct_nextMOT = ['You will now continue with the same multitasking task.' final_instruct_continue];
             displayText(mainWindow,stim.instruct_nextMOT,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             %also load in last session information here
-            allLast = findNewestFile(ppt_dir,[ppt_dir 'mot_realtime04_' num2str(SUBJECT) '_' num2str(SESSION-1) '*']);
+            allLast = findNewestFile(ppt_dir,[ppt_dir 'mot_realtime05_' num2str(SUBJECT) '_' num2str(SESSION-1) '*']);
             last = load(allLast);
             lastSpeed = last.stim.lastSpeed; %matrix of motRun (1-3), stimID
             lastDecoding = last.stim.lastRTDecoding;
@@ -2192,7 +2192,7 @@ switch SESSION
                     nextTRTime = timing.plannedOnsets.motion(nextTRPos,stim.trial);
                     if abs(GetSecs - nextTRTime) <= 0.050
                         %look for speed update here
-                        TRcounter = nextTRpos; %update TR count (initialized at 0): so it's the TR that we're currently ON
+                        TRcounter = nextTRPos; %update TR count (initialized at 0): so it's the TR that we're currently ON
                         thisTR = allMotionTRs(TRcounter,n);
                         waitForPulse = true;
                         if ismember(TRcounter,promptTRs)

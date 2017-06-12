@@ -1,0 +1,2 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	11.8  	45  	MOON      	lure_easy	2.026	NR  	0   	NR      	1 detail, 2+ details, full

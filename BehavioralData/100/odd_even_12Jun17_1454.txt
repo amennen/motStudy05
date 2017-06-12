@@ -1,0 +1,10 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	17.2  	1   	6  +  8   	---     	1.851	NR  	0   	NR      	even    
+2   	19.2  	2   	5  +  7   	---     	1.851	NR  	0   	NR      	even    
+3   	21.2  	3   	5  +  6   	---     	1.851	NR  	0   	NR      	odd     
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	39.2  	1   	9  +  3   	---     	1.851	NR  	0   	NR      	even    
+2   	41.2  	2   	7  +  4   	---     	1.851	NR  	0   	NR      	odd     
+3   	43.2  	3   	5  +  9   	---     	1.851	NR  	0   	NR      	even    
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	61.2  	1   	7  +  6   	---     	1.851	NR  	0   	NR      	odd     
