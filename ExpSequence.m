@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 8; %experimental subject number
+SUBJECT = 1; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -48,7 +48,7 @@ ASSOCIATES = DESCRIPTION + 1; %27
 % 1-4: SCOUT
 % 5: MPRAGE
 % 6: Example functional
-% 8-9: FIELDMAP (can I uncheck the motion correction here?)
+% 7-8: FIELDMAP 
 
 % 6: LOCALIZER
 % 7: RECALL 1

@@ -31,10 +31,8 @@ subjNum = 8;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
-highresScan = 2;
-APScan = 3;
-PAScan = 4;
-functionalScan = 5;
+highresScan = 5;
+functionalScan = 6;
 
 % set up this subject's paths
 projectName = 'motStudy05';
