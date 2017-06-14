@@ -305,3 +305,7 @@ SESSION 26 ended 12-Jun-2017 14:25:22 for SUBJECT number 100
 
 
 ******************************************************************************
+
+SESSION 7 initiated 13-Jun-2017 19:56:54 for SUBJECT number 100
+
+session	trial	pair	onset	dur	cue         	associate   

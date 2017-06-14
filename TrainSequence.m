@@ -1,7 +1,7 @@
-base_path = [fileparts(which('mot_realtime04MB.m')) filesep];
+base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
-SUBJECT = 8;
+SUBJECT = 100;
 
 
 NUM_TASK_RUNS = 3;
@@ -39,22 +39,22 @@ DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 
 %% first practice set
-mot_realtime04MB(SUBJECT, SETUP, [], 0, 0);
+mot_realtime05(101, SETUP, 1, 0, 0);
 
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 %mot_realtime02(SUBJECT,MOT_PRACTICE,[],0,0);
-mot_realtime04MB(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not go through the break
+mot_realtime05(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not go through the break
 
 %% DAY TWO
 
 %% Refresh on day 2
-mot_realtime04MB(SUBJECT, STIM_REFRESH, [], 0, 0);
+mot_realtime05(SUBJECT, STIM_REFRESH, [], 0, 0);
 
 %% after scanner, test associates and descriptions
 
-mot_realtime04MB(SUBJECT,DESCRIPTION, [], 0, 0); 
-mot_realtime04MB(SUBJECT,ASSOCIATES, [], 0, 0); 
+mot_realtime05(SUBJECT,DESCRIPTION, [], 0, 0); 
+mot_realtime05(SUBJECT,ASSOCIATES, [], 0, 0); 
 
 %% now convert recog to cell
 subjects = [8];
