@@ -1,0 +1,193 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.3   	6   	BELL      	target  	1.974	1.973	1   	full    	1 detail, 2+ details, full
+2   	14.2  	6   	BELL (repeat 1)	target  	2.04	2.04	1   	full    	1 detail, 2+ details, full
+3   	20.2  	6   	BELL (repeat 2)	target  	2.023	2.022	1   	full    	1 detail, 2+ details, full
+4   	26.3  	6   	BELL (repeat 3)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+5   	50.3  	3   	ISLAND    	target  	2.007	2.006	1   	full    	1 detail, 2+ details, full
+6   	56.3  	3   	ISLAND (repeat 1)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+7   	62.2  	3   	ISLAND (repeat 2)	target  	2.009	2.009	1   	2+ details	1 detail, 2+ details, full
+8   	68.3  	3   	ISLAND (repeat 3)	target  	1.979	1.979	1   	2+ details	1 detail, 2+ details, full
+9   	92.3  	7   	HAMMER    	target  	1.99	1.989	1   	1 detail	1 detail, 2+ details, full
+10  	98.2  	7   	HAMMER (repeat 1)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+11  	104.3 	7   	HAMMER (repeat 2)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+12  	110.3 	7   	HAMMER (repeat 3)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+13  	134.2 	8   	PUZZLE    	target  	2.024	2.023	1   	2+ details	1 detail, 2+ details, full
+14  	140.3 	8   	PUZZLE (repeat 1)	target  	1.99	1.99	1   	2+ details	1 detail, 2+ details, full
+15  	146.3 	8   	PUZZLE (repeat 2)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+16  	152.3 	8   	PUZZLE (repeat 3)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+17  	176.3 	4   	RAINBOW   	target  	1.99	1.99	1   	2+ details	1 detail, 2+ details, full
+18  	182.3 	4   	RAINBOW (repeat 1)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+19  	188.3 	4   	RAINBOW (repeat 2)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+20  	194.3 	4   	RAINBOW (repeat 3)	target  	2.006	2.006	1   	2+ details	1 detail, 2+ details, full
+21  	229.6 	3   	ISLAND (repeat 4)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+22  	235.5 	3   	ISLAND (repeat 5)	target  	1.997	1.997	1   	1 detail	1 detail, 2+ details, full
+23  	241.6 	3   	ISLAND (repeat 6)	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+24  	247.6 	3   	ISLAND (repeat 7)	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+25  	271.6 	1   	PIN       	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+26  	277.6 	1   	PIN (repeat 1)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+27  	283.6 	1   	PIN (repeat 2)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+28  	289.6 	1   	PIN (repeat 3)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+29  	313.5 	7   	HAMMER (repeat 4)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+30  	319.6 	7   	HAMMER (repeat 5)	target  	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+31  	325.6 	7   	HAMMER (repeat 6)	target  	1.991	1.99	1   	1 detail	1 detail, 2+ details, full
+32  	331.6 	7   	HAMMER (repeat 7)	target  	1.991	1.99	1   	1 detail	1 detail, 2+ details, full
+33  	355.5 	3   	ISLAND (repeat 8)	target  	2.017	2.017	1   	full    	1 detail, 2+ details, full
+34  	361.6 	3   	ISLAND (repeat 9)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+35  	367.6 	3   	ISLAND (repeat 10)	target  	1.99	1.99	1   	1 detail	1 detail, 2+ details, full
+36  	373.5 	3   	ISLAND (repeat 11)	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+37  	397.6 	7   	HAMMER (repeat 8)	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+38  	403.6 	7   	HAMMER (repeat 9)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+39  	409.6 	7   	HAMMER (repeat 10)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+40  	415.6 	7   	HAMMER (repeat 11)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+41  	443.3 	6   	BELL (repeat 4)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+42  	449.3 	6   	BELL (repeat 5)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+43  	455.3 	6   	BELL (repeat 6)	target  	1.974	1.973	1   	2+ details	1 detail, 2+ details, full
+44  	461.3 	6   	BELL (repeat 7)	target  	2.041	2.04	1   	2+ details	1 detail, 2+ details, full
+45  	485.3 	4   	RAINBOW (repeat 4)	target  	2.024	2.023	1   	2+ details	1 detail, 2+ details, full
+46  	491.3 	4   	RAINBOW (repeat 5)	target  	1.979	1.978	1   	2+ details	1 detail, 2+ details, full
+47  	497.3 	4   	RAINBOW (repeat 6)	target  	2.005	2.004	1   	2+ details	1 detail, 2+ details, full
+48  	503.3 	4   	RAINBOW (repeat 7)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+49  	527.3 	7   	HAMMER (repeat 12)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+50  	533.3 	7   	HAMMER (repeat 13)	target  	1.974	1.973	1   	2+ details	1 detail, 2+ details, full
+51  	539.3 	7   	HAMMER (repeat 14)	target  	2.024	2.023	1   	2+ details	1 detail, 2+ details, full
+52  	545.3 	7   	HAMMER (repeat 15)	target  	2.024	2.023	1   	2+ details	1 detail, 2+ details, full
+53  	569.3 	1   	PIN (repeat 4)	target  	2.007	2.007	0   	no image	1 detail, 2+ details, full
+54  	575.3 	1   	PIN (repeat 5)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+55  	581.3 	1   	PIN (repeat 6)	target  	1.99	1.99	1   	2+ details	1 detail, 2+ details, full
+56  	587.3 	1   	PIN (repeat 7)	target  	1.99	1.99	1   	full    	1 detail, 2+ details, full
+57  	611.3 	6   	BELL (repeat 8)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+58  	617.3 	6   	BELL (repeat 9)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+59  	623.3 	6   	BELL (repeat 10)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+60  	629.3 	6   	BELL (repeat 11)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+61  	658.6 	3   	ISLAND (repeat 12)	target  	1.99	1.99	1   	2+ details	1 detail, 2+ details, full
+62  	664.6 	3   	ISLAND (repeat 13)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+63  	670.6 	3   	ISLAND (repeat 14)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+64  	676.6 	3   	ISLAND (repeat 15)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+65  	700.6 	4   	RAINBOW (repeat 8)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+66  	706.6 	4   	RAINBOW (repeat 9)	target  	2.007	2.006	1   	full    	1 detail, 2+ details, full
+67  	712.6 	4   	RAINBOW (repeat 10)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+68  	718.6 	4   	RAINBOW (repeat 11)	target  	1.989	1.988	1   	full    	1 detail, 2+ details, full
+69  	742.6 	3   	ISLAND (repeat 16)	target  	2.026	2.025	1   	2+ details	1 detail, 2+ details, full
+70  	748.6 	3   	ISLAND (repeat 17)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+71  	754.6 	3   	ISLAND (repeat 18)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+72  	760.6 	3   	ISLAND (repeat 19)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+73  	784.6 	6   	BELL (repeat 12)	target  	1.992	1.991	1   	2+ details	1 detail, 2+ details, full
+74  	790.6 	6   	BELL (repeat 13)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+75  	796.6 	6   	BELL (repeat 14)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+76  	802.6 	6   	BELL (repeat 15)	target  	1.99	1.99	1   	2+ details	1 detail, 2+ details, full
+77  	826.6 	5   	CURTAIN   	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+78  	832.6 	5   	CURTAIN (repeat 1)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+79  	838.6 	5   	CURTAIN (repeat 2)	target  	2.007	2.006	1   	full    	1 detail, 2+ details, full
+80  	844.6 	5   	CURTAIN (repeat 3)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+81  	881.2 	1   	PIN (repeat 8)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+82  	887.2 	1   	PIN (repeat 9)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+83  	893.2 	1   	PIN (repeat 10)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+84  	899.2 	1   	PIN (repeat 11)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+85  	923.2 	8   	PUZZLE (repeat 4)	target  	2.007	2.007	1   	1 detail	1 detail, 2+ details, full
+86  	929.2 	8   	PUZZLE (repeat 5)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+87  	935.2 	8   	PUZZLE (repeat 6)	target  	2.006	2.005	1   	1 detail	1 detail, 2+ details, full
+88  	941.2 	8   	PUZZLE (repeat 7)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+89  	965.2 	3   	ISLAND (repeat 20)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+90  	971.2 	3   	ISLAND (repeat 21)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+91  	977.2 	3   	ISLAND (repeat 22)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+92  	983.2 	3   	ISLAND (repeat 23)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+93  	1007.2	2   	PEBBLE    	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+94  	1013.2	2   	PEBBLE (repeat 1)	target  	2.024	2.023	1   	full    	1 detail, 2+ details, full
+95  	1019.2	2   	PEBBLE (repeat 2)	target  	2.011	2.011	1   	full    	1 detail, 2+ details, full
+96  	1025.2	2   	PEBBLE (repeat 3)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+97  	1049.2	2   	PEBBLE (repeat 4)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+98  	1055.2	2   	PEBBLE (repeat 5)	target  	1.991	1.99	1   	full    	1 detail, 2+ details, full
+99  	1061.2	2   	PEBBLE (repeat 6)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+100 	1067.2	2   	PEBBLE (repeat 7)	target  	2.041	2.04	1   	full    	1 detail, 2+ details, full
+101 	1093  	8   	PUZZLE (repeat 8)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+102 	1099  	8   	PUZZLE (repeat 9)	target  	1.991	1.99	1   	1 detail	1 detail, 2+ details, full
+103 	1105  	8   	PUZZLE (repeat 10)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+104 	1111  	8   	PUZZLE (repeat 11)	target  	1.979	1.978	1   	1 detail	1 detail, 2+ details, full
+105 	1134.9	4   	RAINBOW (repeat 12)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+106 	1141  	4   	RAINBOW (repeat 13)	target  	2.006	2.005	1   	2+ details	1 detail, 2+ details, full
+107 	1147  	4   	RAINBOW (repeat 14)	target  	2.041	2.04	1   	2+ details	1 detail, 2+ details, full
+108 	1153  	4   	RAINBOW (repeat 15)	target  	1.974	1.974	1   	2+ details	1 detail, 2+ details, full
+109 	1176.9	4   	RAINBOW (repeat 16)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+110 	1183  	4   	RAINBOW (repeat 17)	target  	2.007	2.006	1   	2+ details	1 detail, 2+ details, full
+111 	1189  	4   	RAINBOW (repeat 18)	target  	1.989	1.988	1   	2+ details	1 detail, 2+ details, full
+112 	1194.9	4   	RAINBOW (repeat 19)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+113 	1218.9	7   	HAMMER (repeat 16)	target  	2.012	2.011	1   	1 detail	1 detail, 2+ details, full
+114 	1225  	7   	HAMMER (repeat 17)	target  	2.041	2.04	1   	1 detail	1 detail, 2+ details, full
+115 	1231  	7   	HAMMER (repeat 18)	target  	1.975	1.974	1   	1 detail	1 detail, 2+ details, full
+116 	1237  	7   	HAMMER (repeat 19)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+117 	1261  	1   	PIN (repeat 12)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+118 	1266.9	1   	PIN (repeat 13)	target  	2.006	2.005	1   	2+ details	1 detail, 2+ details, full
+119 	1272.9	1   	PIN (repeat 14)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+120 	1279  	1   	PIN (repeat 15)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+121 	1313.2	6   	BELL (repeat 16)	target  	1.989	1.989	1   	2+ details	1 detail, 2+ details, full
+122 	1319.2	6   	BELL (repeat 17)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+123 	1325.2	6   	BELL (repeat 18)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+124 	1331.2	6   	BELL (repeat 19)	target  	1.991	1.99	1   	2+ details	1 detail, 2+ details, full
+125 	1355.2	2   	PEBBLE (repeat 8)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+126 	1361.2	2   	PEBBLE (repeat 9)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+127 	1367.2	2   	PEBBLE (repeat 10)	target  	2.007	2.007	1   	full    	1 detail, 2+ details, full
+128 	1373.2	2   	PEBBLE (repeat 11)	target  	1.991	1.99	1   	full    	1 detail, 2+ details, full
+129 	1397.2	8   	PUZZLE (repeat 12)	target  	2.008	2.007	0   	generic 	1 detail, 2+ details, full
+130 	1403.2	8   	PUZZLE (repeat 13)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+131 	1409.2	8   	PUZZLE (repeat 14)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+132 	1415.2	8   	PUZZLE (repeat 15)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+133 	1439.2	8   	PUZZLE (repeat 16)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+134 	1445.2	8   	PUZZLE (repeat 17)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+135 	1451.2	8   	PUZZLE (repeat 18)	target  	2.024	2.024	1   	1 detail	1 detail, 2+ details, full
+136 	1457.2	8   	PUZZLE (repeat 19)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+137 	1481.2	7   	HAMMER (repeat 20)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+138 	1487.2	7   	HAMMER (repeat 21)	target  	2.041	2.04	1   	1 detail	1 detail, 2+ details, full
+139 	1493.2	7   	HAMMER (repeat 22)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+140 	1499.2	7   	HAMMER (repeat 23)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+141 	1540.8	1   	PIN (repeat 16)	target  	2.008	2.007	0   	generic 	1 detail, 2+ details, full
+142 	1546.8	1   	PIN (repeat 17)	target  	1.991	1.991	1   	2+ details	1 detail, 2+ details, full
+143 	1552.7	1   	PIN (repeat 18)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+144 	1558.7	1   	PIN (repeat 19)	target  	2.025	2.024	1   	2+ details	1 detail, 2+ details, full
+145 	1582.8	2   	PEBBLE (repeat 12)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+146 	1588.8	2   	PEBBLE (repeat 13)	target  	1.958	1.957	1   	full    	1 detail, 2+ details, full
+147 	1594.7	2   	PEBBLE (repeat 14)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+148 	1600.8	2   	PEBBLE (repeat 15)	target  	1.991	1.99	1   	full    	1 detail, 2+ details, full
+149 	1624.7	5   	CURTAIN (repeat 4)	target  	1.977	1.977	1   	2+ details	1 detail, 2+ details, full
+150 	1630.7	5   	CURTAIN (repeat 5)	target  	2.007	2.007	1   	2+ details	1 detail, 2+ details, full
+151 	1636.7	5   	CURTAIN (repeat 6)	target  	2.041	2.04	1   	2+ details	1 detail, 2+ details, full
+152 	1642.8	5   	CURTAIN (repeat 7)	target  	2.005	2.005	1   	2+ details	1 detail, 2+ details, full
+153 	1666.7	6   	BELL (repeat 20)	target  	1.975	1.974	1   	1 detail	1 detail, 2+ details, full
+154 	1672.7	6   	BELL (repeat 21)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+155 	1678.8	6   	BELL (repeat 22)	target  	1.991	1.991	1   	1 detail	1 detail, 2+ details, full
+156 	1684.8	6   	BELL (repeat 23)	target  	1.991	1.991	1   	1 detail	1 detail, 2+ details, full
+157 	1708.7	1   	PIN (repeat 20)	target  	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+158 	1714.7	1   	PIN (repeat 21)	target  	2.042	2.041	1   	2+ details	1 detail, 2+ details, full
+159 	1720.8	1   	PIN (repeat 22)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+160 	1726.7	1   	PIN (repeat 23)	target  	1.974	1.974	1   	2+ details	1 detail, 2+ details, full
+161 	1752.8	8   	PUZZLE (repeat 20)	target  	2.042	2.041	1   	1 detail	1 detail, 2+ details, full
+162 	1758.8	8   	PUZZLE (repeat 21)	target  	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+163 	1764.8	8   	PUZZLE (repeat 22)	target  	2.025	2.024	1   	1 detail	1 detail, 2+ details, full
+164 	1770.8	8   	PUZZLE (repeat 23)	target  	1.974	1.974	1   	1 detail	1 detail, 2+ details, full
+165 	1794.8	5   	CURTAIN (repeat 8)	target  	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+166 	1800.8	5   	CURTAIN (repeat 9)	target  	2.041	2.041	1   	2+ details	1 detail, 2+ details, full
+167 	1806.8	5   	CURTAIN (repeat 10)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+168 	1812.8	5   	CURTAIN (repeat 11)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+169 	1836.8	2   	PEBBLE (repeat 16)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+170 	1842.8	2   	PEBBLE (repeat 17)	target  	2.041	2.04	1   	full    	1 detail, 2+ details, full
+171 	1848.8	2   	PEBBLE (repeat 18)	target  	1.975	1.974	1   	full    	1 detail, 2+ details, full
+172 	1854.8	2   	PEBBLE (repeat 19)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+173 	1878.8	2   	PEBBLE (repeat 20)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+174 	1884.8	2   	PEBBLE (repeat 21)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+175 	1890.8	2   	PEBBLE (repeat 22)	target  	2.008	2.008	1   	full    	1 detail, 2+ details, full
+176 	1896.8	2   	PEBBLE (repeat 23)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full
+177 	1920.8	5   	CURTAIN (repeat 12)	target  	1.975	1.974	1   	2+ details	1 detail, 2+ details, full
+178 	1926.8	5   	CURTAIN (repeat 13)	target  	1.975	1.974	1   	2+ details	1 detail, 2+ details, full
+179 	1932.8	5   	CURTAIN (repeat 14)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+180 	1938.8	5   	CURTAIN (repeat 15)	target  	2.041	2.041	1   	2+ details	1 detail, 2+ details, full
+181 	1964.4	4   	RAINBOW (repeat 20)	target  	2.025	2.024	1   	full    	1 detail, 2+ details, full
+182 	1970.4	4   	RAINBOW (repeat 21)	target  	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+183 	1976.4	4   	RAINBOW (repeat 22)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+184 	1982.4	4   	RAINBOW (repeat 23)	target  	2.025	2.024	1   	2+ details	1 detail, 2+ details, full
+185 	2006.4	5   	CURTAIN (repeat 16)	target  	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+186 	2012.4	5   	CURTAIN (repeat 17)	target  	1.975	1.974	1   	2+ details	1 detail, 2+ details, full
+187 	2018.4	5   	CURTAIN (repeat 18)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+188 	2024.4	5   	CURTAIN (repeat 19)	target  	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+189 	2048.4	5   	CURTAIN (repeat 20)	target  	2.009	2.008	1   	full    	1 detail, 2+ details, full
+190 	2054.4	5   	CURTAIN (repeat 21)	target  	2.008	2.008	1   	full    	1 detail, 2+ details, full
+191 	2060.4	5   	CURTAIN (repeat 22)	target  	2.008	2.008	1   	full    	1 detail, 2+ details, full
+192 	2066.4	5   	CURTAIN (repeat 23)	target  	2.008	2.007	1   	full    	1 detail, 2+ details, full

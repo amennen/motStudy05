@@ -1,12 +1,13 @@
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
-SUBJECT = 100;
+SUBJECT = 1;
 
 
 NUM_TASK_RUNS = 3;
 % orientation session
 SETUP = 1; % stimulus assignment 1
+
 FAMILIARIZE = SETUP + 1; % rsvp study learn associates 2
 TOCRITERION1 = FAMILIARIZE + 1; % rsvp train to critereon 3
 MOT_PRACTICE = TOCRITERION1 + 1;%4
@@ -39,7 +40,7 @@ DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 
 %% first practice set
-mot_realtime05(101, SETUP, 1, 0, 0);
+mot_realtime05(SUBJECT, SETUP, [], 0, 0);
 
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP

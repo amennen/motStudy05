@@ -1,0 +1,113 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	19.1  	1   	SHIRT     	lure    	0.368	NR  	1   	NR      	NR      
+2   	19.5  	2   	PAINT     	lure    	0.61	NR  	1   	NR      	NR      
+3   	20.2  	3   	PHONE     	lure    	0.528	NR  	1   	NR      	NR      
+4   	20.8  	4   	STAPLE    	lure    	0.354	NR  	1   	NR      	NR      
+5   	21.2  	2   	PAINT (repeat 1)	lure    	0.576	NR  	1   	NR      	NR      
+6   	21.8  	5   	CANDLE    	lure    	0.402	NR  	1   	NR      	NR      
+7   	22.3  	4   	STAPLE (repeat 1)	lure    	0.571	NR  	1   	NR      	NR      
+8   	22.9  	6   	NOTE      	lure    	0.534	NR  	1   	NR      	NR      
+9   	23.5  	7   	MATCH     	lure    	0.49	NR  	1   	NR      	NR      
+10  	24.1  	2   	PAINT (repeat 2)	lure    	0.466	NR  	1   	NR      	NR      
+11  	24.6  	6   	NOTE (repeat 1)	lure    	0.503	NR  	1   	NR      	NR      
+12  	25.1  	1   	SHIRT (repeat 1)	lure    	0.671	NR  	1   	NR      	NR      
+13  	25.9  	3   	PHONE (repeat 1)	lure    	0.699	NR  	1   	NR      	NR      
+14  	26.6  	7   	MATCH (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+15  	27.1  	8   	MELON     	fruit   	0.952	0.528	1   	target  	target  
+16  	28.1  	5   	CANDLE (repeat 1)	lure    	0.328	NR  	1   	NR      	NR      
+17  	28.5  	2   	PAINT (repeat 3)	lure    	0.344	NR  	1   	NR      	NR      
+18  	28.9  	7   	MATCH (repeat 2)	lure    	0.38	NR  	1   	NR      	NR      
+19  	29.3  	5   	CANDLE (repeat 2)	lure    	0.601	NR  	1   	NR      	NR      
+20  	30    	7   	MATCH (repeat 3)	lure    	0.345	NR  	1   	NR      	NR      
+21  	30.4  	5   	CANDLE (repeat 3)	lure    	0.319	NR  	1   	NR      	NR      
+22  	30.8  	7   	MATCH (repeat 4)	lure    	0.536	NR  	1   	NR      	NR      
+23  	31.3  	2   	PAINT (repeat 4)	lure    	0.444	NR  	1   	NR      	NR      
+24  	31.8  	6   	NOTE (repeat 2)	lure    	0.426	NR  	1   	NR      	NR      
+25  	32.3  	3   	PHONE (repeat 2)	lure    	0.701	NR  	1   	NR      	NR      
+26  	33.1  	6   	NOTE (repeat 3)	lure    	0.256	NR  	1   	NR      	NR      
+27  	33.4  	7   	MATCH (repeat 5)	lure    	0.382	NR  	1   	NR      	NR      
+28  	33.8  	5   	CANDLE (repeat 4)	lure    	0.335	NR  	1   	NR      	NR      
+29  	34.2  	2   	PAINT (repeat 5)	lure    	0.295	NR  	1   	NR      	NR      
+30  	34.6  	5   	CANDLE (repeat 5)	lure    	0.423	NR  	1   	NR      	NR      
+31  	35    	4   	STAPLE (repeat 2)	lure    	0.584	NR  	1   	NR      	NR      
+32  	35.7  	2   	PAINT (repeat 6)	lure    	0.402	NR  	1   	NR      	NR      
+33  	36.1  	4   	STAPLE (repeat 3)	lure    	0.354	NR  	1   	NR      	NR      
+34  	36.5  	5   	CANDLE (repeat 6)	lure    	0.612	NR  	1   	NR      	NR      
+35  	37.2  	7   	MATCH (repeat 6)	lure    	0.398	NR  	1   	NR      	NR      
+36  	37.7  	3   	PHONE (repeat 3)	lure    	0.534	NR  	1   	NR      	NR      
+37  	38.2  	2   	PAINT (repeat 7)	lure    	0.316	NR  	1   	NR      	NR      
+38  	38.6  	6   	NOTE (repeat 4)	lure    	0.481	NR  	1   	NR      	NR      
+39  	39.1  	3   	PHONE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+40  	39.6  	6   	NOTE (repeat 5)	lure    	0.422	NR  	1   	NR      	NR      
+41  	40.1  	3   	PHONE (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+42  	40.6  	7   	MATCH (repeat 7)	lure    	0.504	NR  	1   	NR      	NR      
+43  	41.2  	4   	STAPLE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+44  	41.7  	2   	PAINT (repeat 8)	lure    	0.268	NR  	1   	NR      	NR      
+45  	42    	7   	MATCH (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+46  	42.5  	1   	SHIRT (repeat 2)	lure    	0.573	NR  	1   	NR      	NR      
+47  	43.2  	6   	NOTE (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+48  	43.7  	9   	BLACKBERRY	fruit   	0.954	0.437	1   	target  	target  
+49  	44.7  	6   	NOTE (repeat 7)	lure    	0.493	NR  	1   	NR      	NR      
+50  	45.2  	2   	PAINT (repeat 9)	lure    	0.576	NR  	1   	NR      	NR      
+51  	45.8  	7   	MATCH (repeat 9)	lure    	0.306	NR  	1   	NR      	NR      
+52  	46.2  	1   	SHIRT (repeat 3)	lure    	0.26	NR  	1   	NR      	NR      
+53  	46.5  	3   	PHONE (repeat 6)	lure    	0.649	NR  	1   	NR      	NR      
+54  	47.2  	6   	NOTE (repeat 8)	lure    	0.537	NR  	1   	NR      	NR      
+55  	47.8  	1   	SHIRT (repeat 4)	lure    	0.553	NR  	1   	NR      	NR      
+56  	48.4  	6   	NOTE (repeat 9)	lure    	0.668	NR  	1   	NR      	NR      
+57  	49.1  	1   	SHIRT (repeat 5)	lure    	0.559	NR  	1   	NR      	NR      
+58  	49.8  	4   	STAPLE (repeat 5)	lure    	0.498	NR  	1   	NR      	NR      
+59  	50.3  	1   	SHIRT (repeat 6)	lure    	0.478	NR  	1   	NR      	NR      
+60  	50.8  	5   	CANDLE (repeat 7)	lure    	0.548	NR  	1   	NR      	NR      
+61  	51.4  	4   	STAPLE (repeat 6)	lure    	0.436	NR  	1   	NR      	NR      
+62  	51.9  	2   	PAINT (repeat 10)	lure    	0.61	NR  	1   	NR      	NR      
+63  	52.6  	3   	PHONE (repeat 7)	lure    	0.362	NR  	1   	NR      	NR      
+64  	53    	1   	SHIRT (repeat 7)	lure    	0.437	NR  	1   	NR      	NR      
+65  	53.5  	6   	NOTE (repeat 10)	lure    	0.274	NR  	1   	NR      	NR      
+66  	53.8  	5   	CANDLE (repeat 8)	lure    	0.442	NR  	1   	NR      	NR      
+67  	54.3  	3   	PHONE (repeat 8)	lure    	0.646	NR  	1   	NR      	NR      
+68  	55    	6   	NOTE (repeat 11)	lure    	0.411	NR  	1   	NR      	NR      
+69  	55.5  	4   	STAPLE (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+70  	56    	6   	NOTE (repeat 12)	lure    	0.691	NR  	1   	NR      	NR      
+71  	56.7  	3   	PHONE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+72  	57.2  	10  	CHERRY    	fruit   	0.951	0.578	1   	target  	target  
+73  	58.2  	5   	CANDLE (repeat 9)	lure    	0.359	NR  	1   	NR      	NR      
+74  	58.7  	3   	PHONE (repeat 10)	lure    	0.319	NR  	1   	NR      	NR      
+75  	59    	4   	STAPLE (repeat 8)	lure    	0.347	NR  	1   	NR      	NR      
+76  	59.4  	6   	NOTE (repeat 13)	lure    	0.642	NR  	1   	NR      	NR      
+77  	60.1  	2   	PAINT (repeat 11)	lure    	0.629	NR  	1   	NR      	NR      
+78  	60.8  	5   	CANDLE (repeat 10)	lure    	0.61	NR  	1   	NR      	NR      
+79  	61.5  	1   	SHIRT (repeat 8)	lure    	0.327	NR  	1   	NR      	NR      
+80  	61.9  	3   	PHONE (repeat 11)	lure    	0.401	NR  	1   	NR      	NR      
+81  	62.3  	7   	MATCH (repeat 10)	lure    	0.434	NR  	1   	NR      	NR      
+82  	62.8  	6   	NOTE (repeat 14)	lure    	0.483	NR  	1   	NR      	NR      
+83  	63.3  	3   	PHONE (repeat 12)	lure    	0.363	NR  	1   	NR      	NR      
+84  	63.8  	6   	NOTE (repeat 15)	lure    	0.323	NR  	1   	NR      	NR      
+85  	64.1  	1   	SHIRT (repeat 9)	lure    	0.541	NR  	1   	NR      	NR      
+86  	64.7  	5   	CANDLE (repeat 11)	lure    	0.295	NR  	1   	NR      	NR      
+87  	65.1  	6   	NOTE (repeat 16)	lure    	0.309	NR  	1   	NR      	NR      
+88  	65.5  	1   	SHIRT (repeat 10)	lure    	0.566	NR  	1   	NR      	NR      
+89  	66.1  	6   	NOTE (repeat 17)	lure    	0.6 	NR  	1   	NR      	NR      
+90  	66.7  	1   	SHIRT (repeat 11)	lure    	0.381	NR  	1   	NR      	NR      
+91  	67.2  	7   	MATCH (repeat 11)	lure    	0.443	NR  	1   	NR      	NR      
+92  	67.7  	4   	STAPLE (repeat 9)	lure    	0.32	NR  	1   	NR      	NR      
+93  	68    	2   	PAINT (repeat 12)	lure    	0.555	NR  	1   	NR      	NR      
+94  	68.7  	1   	SHIRT (repeat 12)	lure    	0.276	NR  	1   	NR      	NR      
+95  	69    	6   	NOTE (repeat 18)	lure    	0.451	NR  	1   	NR      	NR      
+96  	69.5  	11  	LEMON     	fruit   	0.95	0.47	1   	target  	target  
+97  	70.5  	4   	STAPLE (repeat 10)	lure    	0.394	NR  	1   	NR      	NR      
+98  	70.9  	3   	PHONE (repeat 13)	lure    	0.667	NR  	1   	NR      	NR      
+99  	71.7  	5   	CANDLE (repeat 12)	lure    	0.674	NR  	1   	NR      	NR      
+100 	72.4  	6   	NOTE (repeat 19)	lure    	0.269	NR  	1   	NR      	NR      
+101 	72.7  	5   	CANDLE (repeat 13)	lure    	0.514	NR  	1   	NR      	NR      
+102 	73.3  	6   	NOTE (repeat 20)	lure    	0.392	NR  	1   	NR      	NR      
+103 	73.7  	5   	CANDLE (repeat 14)	lure    	0.683	NR  	1   	NR      	NR      
+104 	74.5  	1   	SHIRT (repeat 13)	lure    	0.661	NR  	1   	NR      	NR      
+105 	75.2  	7   	MATCH (repeat 12)	lure    	0.414	NR  	1   	NR      	NR      
+106 	75.7  	2   	PAINT (repeat 13)	lure    	0.561	NR  	1   	NR      	NR      
+107 	76.3  	1   	SHIRT (repeat 14)	lure    	0.414	NR  	1   	NR      	NR      
+108 	76.7  	4   	STAPLE (repeat 11)	lure    	0.638	NR  	1   	NR      	NR      
+109 	77.4  	2   	PAINT (repeat 14)	lure    	0.372	NR  	1   	NR      	NR      
+110 	77.9  	1   	SHIRT (repeat 15)	lure    	0.419	NR  	1   	NR      	NR      
+111 	78.4  	5   	CANDLE (repeat 15)	lure    	0.555	NR  	1   	NR      	NR      
+112 	79    	3   	PHONE (repeat 14)	lure    	0.534	NR  	1   	NR      	NR      
