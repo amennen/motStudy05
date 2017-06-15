@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36.1  	1   	PIN       	targ_hard	1.951	1.037	1   	target  	target  
+2   	78.1  	45  	CANDLE    	lure_easy	1.95	1.213	1   	non-target	non-target
+3   	120.1 	2   	PEBBLE    	targ_easy	1.951	0.693	1   	target  	target  
+4   	162.1 	46  	MATCH     	lure_hard	1.95	1.246	0   	non-target	target  
