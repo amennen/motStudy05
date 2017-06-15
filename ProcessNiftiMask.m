@@ -27,7 +27,7 @@ addpath(genpath(multipath));
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
 % inputs (eventually function)
-subjNum = 8;
+subjNum = 100;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
@@ -76,7 +76,7 @@ unix(sprintf('%sapplywarp -i %s_brain.nii.gz -r $FSLDIR/data/standard/MNI152_T1_
 unix(sprintf('%sconvert_xfm -inverse -omat standard2highres.mat highres2standard.mat', fslpath));
 unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highresFN_RE));
 %% Process example epi file
-fileN = 8; % we can choose 10 later
+fileN = 6; % we can choose 10 later
 functionalFN = 'exfunc';
 functionalFN_RE = 'exfunc_re';
 exfunc_str = sprintf('%s001_0000%s_0000%s.dcm',dicom_dir,num2str(functionalScan,'%2.2i'),num2str(fileN,'%2.2i')); %general string for ALL mprage files**

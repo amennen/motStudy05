@@ -1820,7 +1820,7 @@ switch SESSION
                 lastRun = load(matlabOpenFile);
                 
             catch
-                warning(['Could not find a prior run file. Using speed = 15.']);
+                fprintf(['Could not find a prior run file. Using speed = 15.']);
                 pause(1);
                 lastRun.stim.tGuess = 15;
             end
@@ -2732,7 +2732,7 @@ switch SESSION
             runStart = GetSecs;
         end
        % runStart = timing.trig.wait;
-        config.wait = 180; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
+        config.wait = 150; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
         config.TR = 2;
         timing.plannedOnsets.offEx = runStart + config.wait;
         DrawFormattedText(mainWindow,'Done!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
