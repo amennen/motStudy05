@@ -2242,7 +2242,7 @@ switch SESSION
                 
               
    
-                waitFrames = 5; % looking at half second rate--start to begin % ACM changed this from 15 to 2 after subject 2
+                waitFrames = 15; % looking at half second rate--start to begin % ACM changed this from 15 to 2 after subject 2
                 % but we don't want this to look for the same file more
                 % than once or go through the same loop
                 if realtime
