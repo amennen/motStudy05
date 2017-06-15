@@ -1,3 +1,4 @@
+
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
@@ -58,7 +59,7 @@ mot_realtime05(SUBJECT,DESCRIPTION, [], 0, 0);
 mot_realtime05(SUBJECT,ASSOCIATES, [], 0, 0); 
 
 %% now convert recog to cell
-subjects = [8];
+subjects = [1];
 for s = 1:length(subjects)
     behavioral_dir = ['BehavioralData/' num2str(subjects(s)) '/']
     r = dir(fullfile(behavioral_dir, ['_RECOG' '*.mat']));
