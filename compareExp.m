@@ -25,6 +25,7 @@ svec = [1];%take out 22 to make even by group];
 
 nsub = length(svec);
 sepbystimD = zeros(nstim,nTRs*3,nsub);
+speedbystimD = zeros(nstim,nTRs*3,nsub);
 
 
 for s = 1:nsub
@@ -67,6 +68,7 @@ for s = 1:nsub
         allSpeed = d.stim.motionSpeed;
         speedbytrial = allSpeed'; %now it's trial x TR's
         speedinorder = speedbytrial(indSort,:);
+        speedbystimD(:,(iblock-1)*nTRs + 1: iblock*nTRs,s ) = speedinorder;
        %subtract to get the difference in speed
         FBds = diff(speedinorder,[],2);
         FBdsbystim(:,(iblock-1)*FBTRs + 1: iblock*FBTRs ) = FBds(:,4:end);
@@ -140,5 +142,5 @@ for s = 1:nsub
 end
 %% save to plot in python
 folder= '/jukebox/norman/amennen/PythonMot5';
-save('compareExp5.mat','nGoodRangeD','avg_highD', 'avg_lowD',  'nLowD','nHighD','vectorSepD', 'allSecondDiffD', 'nConsecD','sepbystimD' );
+save('compareExp5.mat','nGoodRangeD','avg_highD', 'avg_lowD',  'nLowD','nHighD','vectorSepD', 'allSecondDiffD', 'nConsecD','sepbystimD' , 'speedbystimD');
 unix(['scp ' 'compareExp5.mat' ' amennen@apps.pni.princeton.edu:' folder '/' ])
