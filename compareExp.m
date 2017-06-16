@@ -24,7 +24,7 @@ avgRange = 12; %divided by 2 is the number of TR's
 svec = [1];%take out 22 to make even by group];
 
 nsub = length(svec);
-sepbystimA = zeros(nstim,nTRs*3,nsub);
+sepbystimD = zeros(nstim,nTRs*3,nsub);
 
 
 for s = 1:nsub
@@ -60,7 +60,7 @@ for s = 1:nsub
         sepbytrial = sepbytrial'; %results by trial number x TR number so 10 x 15
         [~,indSort] = sort(d.stim.id);
         sepinorder = sepbytrial(indSort,:); % so this is nTrials x 15 TR's
-        sepbystimA(:,(iblock-1)*nTRs + 1: iblock*nTRs,s ) = sepinorder;
+        sepbystimD(:,(iblock-1)*nTRs + 1: iblock*nTRs,s ) = sepinorder;
         FBsepbystim(:,(iblock-1)*FBTRs + 1: iblock*FBTRs ) = sepinorder(:,5:end);
         
         % now get all the speed changes
@@ -113,7 +113,7 @@ for s = 1:nsub
         allDiff = diff(diff(sepinorder(:,5:end),1,2),1,2)/4;
         secondDiff = reshape(allDiff,1,numel(allDiff));
         zTR = length(secondDiff);
-        allSecondDiffA(s,(iblock-1)*zTR + 1: iblock*zTR) = secondDiff;
+        allSecondDiffD(s,(iblock-1)*zTR + 1: iblock*zTR) = secondDiff;
     end
     
     
@@ -122,23 +122,23 @@ for s = 1:nsub
     %remove feedback and just look at all datapoints
     z1 =find(FBsepbystim>=goodRange(1));
     z2 = find(FBsepbystim<=goodRange(2));
-    nGoodRangeA(s) = length(intersect(z1,z2))/numel(FBsepbystim);
-    nConsecA(s) = sum(diff(intersect(z1,z2))==1)/numel(FBsepbystim);
-    nLowA(s) = length(find(FBsepbystim<=goodRange(1)))/numel(FBsepbystim);
-    nHighA(s) = length(find(FBsepbystim>=goodRange(2)))/numel(FBsepbystim);
-    vectorSepA(s,:) = reshape(FBsepbystim,1,numel(FBsepbystim));
+    nGoodRangD(s) = length(intersect(z1,z2))/numel(FBsepbystim);
+    nConsecD(s) = sum(diff(intersect(z1,z2))==1)/numel(FBsepbystim);
+    nLowD(s) = length(find(FBsepbystim<=goodRange(1)))/numel(FBsepbystim);
+    nHighD(s) = length(find(FBsepbystim>=goodRange(2)))/numel(FBsepbystim);
+    vectorSepD(s,:) = reshape(FBsepbystim,1,numel(FBsepbystim));
     if isnan(timecourse_high)
-        avg_highA(s,:) = nan(1,15);
+        avg_highD(s,:) = nan(1,15);
     else
-        avg_highA(s,:) = nanmean(timecourse_high);
+        avg_highD(s,:) = nanmean(timecourse_high);
     end
     if isnan(timecourse_low)
-        avg_lowA(s,:) = nan(1,15);
+        avg_lowD(s,:) = nan(1,15);
     else
-        avg_lowA(s,:) = nanmean(timecourse_low);
+        avg_lowD(s,:) = nanmean(timecourse_low);
     end
 end
 %% save to plot in python
 folder= '/jukebox/norman/amennen/PythonMot5';
-save('compareExp.mat','nGoodRangeA', 'nGoodRangeB','avg_highA', 'avg_highB', 'avg_lowA', 'avg_lowB', 'nLowA', 'nLowB', 'nHighA', 'nHighB','vectorSepA', 'vectorSepB', 'allSecondDiffA', 'allSecondDiffB','nConsecA','nConsecB','sepbystimA', 'sepbystimB');
+save('compareExp.mat','nGoodRangeD','avg_highD', 'avg_lowD',  'nLowD','nHighD','vectorSepD', 'allSecondDiffD', 'nConsecD','sepbystimD' );
 unix(['scp ' 'compareExp5.mat' ' amennen@apps.pni.princeton.edu:' folder '/' ])
