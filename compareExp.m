@@ -140,5 +140,5 @@ for s = 1:nsub
 end
 %% save to plot in python
 folder= '/jukebox/norman/amennen/PythonMot5';
-save('compareExp.mat','nGoodRangeD','avg_highD', 'avg_lowD',  'nLowD','nHighD','vectorSepD', 'allSecondDiffD', 'nConsecD','sepbystimD' );
+save('compareExp5.mat','nGoodRangeD','avg_highD', 'avg_lowD',  'nLowD','nHighD','vectorSepD', 'allSecondDiffD', 'nConsecD','sepbystimD' );
 unix(['scp ' 'compareExp5.mat' ' amennen@apps.pni.princeton.edu:' folder '/' ])
