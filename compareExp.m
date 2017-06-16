@@ -122,7 +122,7 @@ for s = 1:nsub
     %remove feedback and just look at all datapoints
     z1 =find(FBsepbystim>=goodRange(1));
     z2 = find(FBsepbystim<=goodRange(2));
-    nGoodRangD(s) = length(intersect(z1,z2))/numel(FBsepbystim);
+    nGoodRangeD(s) = length(intersect(z1,z2))/numel(FBsepbystim);
     nConsecD(s) = sum(diff(intersect(z1,z2))==1)/numel(FBsepbystim);
     nLowD(s) = length(find(FBsepbystim<=goodRange(1)))/numel(FBsepbystim);
     nHighD(s) = length(find(FBsepbystim>=goodRange(2)))/numel(FBsepbystim);
