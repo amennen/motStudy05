@@ -180,7 +180,7 @@ patterns.realtimeLastY = nan(1,numel(roiInds));
 patterns.realtimeVar = nan(1,numel(roiInds));
 patterns.predict = nan(1,patterns.nTRs);
 patterns.activations = nan(numel(patterns.regressor.twoCond(:,1)),patterns.nTRs);
-patterns.block = (SESSION - 19)*ones(1,patterns.nTRs);
+patterns.block = blockNum*ones(1,patterns.nTRs);
 patterns.outputClass = zeros(1,patterns.nTRs);
 %% Output Files Setup
 
