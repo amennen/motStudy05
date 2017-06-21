@@ -1,0 +1,114 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	15.6  	1   	PADDLE    	lure    	0.284	NR  	1   	NR      	NR      
+2   	16    	2   	BRUSH     	lure    	0.394	NR  	1   	NR      	NR      
+3   	16.4  	3   	ANCHOR    	lure    	0.626	NR  	1   	NR      	NR      
+4   	17.1  	4   	RATTLE    	lure    	0.303	NR  	1   	NR      	NR      
+5   	17.5  	2   	BRUSH (repeat 1)	lure    	0.263	NR  	1   	NR      	NR      
+6   	17.8  	5   	DRUM      	lure    	0.472	NR  	1   	NR      	NR      
+7   	18.3  	6   	NOTE      	lure    	0.595	NR  	1   	NR      	NR      
+8   	19    	4   	RATTLE (repeat 1)	lure    	0.551	NR  	1   	NR      	NR      
+9   	19.6  	6   	NOTE (repeat 1)	lure    	0.362	NR  	1   	NR      	NR      
+10  	20    	4   	RATTLE (repeat 2)	lure    	0.389	NR  	1   	NR      	NR      
+11  	20.5  	6   	NOTE (repeat 2)	lure    	0.251	NR  	1   	NR      	NR      
+12  	20.8  	2   	BRUSH (repeat 2)	lure    	0.403	NR  	1   	NR      	NR      
+13  	21.2  	6   	NOTE (repeat 3)	lure    	0.469	NR  	1   	NR      	NR      
+14  	21.7  	5   	DRUM (repeat 1)	lure    	0.538	NR  	1   	NR      	NR      
+15  	22.3  	1   	PADDLE (repeat 1)	lure    	0.343	NR  	1   	NR      	NR      
+16  	22.7  	3   	ANCHOR (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+17  	23.2  	7   	LIME      	fruit   	0.955	0.792	1   	target  	target  
+18  	24.3  	4   	RATTLE (repeat 3)	lure    	0.643	NR  	1   	NR      	NR      
+19  	25    	8   	POLE      	lure    	0.497	NR  	1   	NR      	NR      
+20  	25.5  	6   	NOTE (repeat 4)	lure    	0.407	NR  	1   	NR      	NR      
+21  	26    	3   	ANCHOR (repeat 2)	lure    	0.593	NR  	1   	NR      	NR      
+22  	26.6  	8   	POLE (repeat 1)	lure    	0.472	NR  	1   	NR      	NR      
+23  	27.2  	6   	NOTE (repeat 5)	lure    	0.426	NR  	1   	NR      	NR      
+24  	27.6  	3   	ANCHOR (repeat 3)	lure    	0.443	NR  	1   	NR      	NR      
+25  	28.1  	8   	POLE (repeat 2)	lure    	0.47	NR  	1   	NR      	NR      
+26  	28.7  	3   	ANCHOR (repeat 4)	lure    	0.641	NR  	1   	NR      	NR      
+27  	29.4  	6   	NOTE (repeat 6)	lure    	0.392	NR  	1   	NR      	NR      
+28  	29.8  	4   	RATTLE (repeat 4)	lure    	0.357	NR  	1   	NR      	NR      
+29  	30.2  	8   	POLE (repeat 3)	lure    	0.36	NR  	1   	NR      	NR      
+30  	30.7  	3   	ANCHOR (repeat 5)	lure    	0.648	NR  	1   	NR      	NR      
+31  	31.4  	5   	DRUM (repeat 2)	lure    	0.396	NR  	1   	NR      	NR      
+32  	31.8  	1   	PADDLE (repeat 2)	lure    	0.341	NR  	1   	NR      	NR      
+33  	32.2  	8   	POLE (repeat 4)	lure    	0.526	NR  	1   	NR      	NR      
+34  	32.8  	2   	BRUSH (repeat 3)	lure    	0.474	NR  	1   	NR      	NR      
+35  	33.3  	1   	PADDLE (repeat 3)	lure    	0.602	NR  	1   	NR      	NR      
+36  	34    	6   	NOTE (repeat 7)	lure    	0.671	NR  	1   	NR      	NR      
+37  	34.7  	3   	ANCHOR (repeat 6)	lure    	0.661	NR  	1   	NR      	NR      
+38  	35.4  	1   	PADDLE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+39  	35.9  	2   	BRUSH (repeat 4)	lure    	0.529	NR  	1   	NR      	NR      
+40  	36.5  	1   	PADDLE (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+41  	37    	9   	STRAWBERRY	fruit   	0.955	0.574	1   	target  	target  
+42  	38    	3   	ANCHOR (repeat 7)	lure    	0.454	NR  	1   	NR      	NR      
+43  	38.5  	1   	PADDLE (repeat 6)	lure    	0.279	NR  	1   	NR      	NR      
+44  	38.9  	6   	NOTE (repeat 8)	lure    	0.481	NR  	1   	NR      	NR      
+45  	39.4  	2   	BRUSH (repeat 5)	lure    	0.568	NR  	1   	NR      	NR      
+46  	40    	5   	DRUM (repeat 3)	lure    	0.479	NR  	1   	NR      	NR      
+47  	40.5  	3   	ANCHOR (repeat 8)	lure    	0.51	NR  	1   	NR      	NR      
+48  	41.1  	5   	DRUM (repeat 4)	lure    	0.417	NR  	1   	NR      	NR      
+49  	41.6  	6   	NOTE (repeat 9)	lure    	0.457	NR  	1   	NR      	NR      
+50  	42.1  	4   	RATTLE (repeat 5)	lure    	0.336	NR  	1   	NR      	NR      
+51  	42.5  	8   	POLE (repeat 5)	lure    	0.392	NR  	1   	NR      	NR      
+52  	42.9  	6   	NOTE (repeat 10)	lure    	0.482	NR  	1   	NR      	NR      
+53  	43.5  	5   	DRUM (repeat 5)	lure    	0.367	NR  	1   	NR      	NR      
+54  	43.9  	4   	RATTLE (repeat 6)	lure    	0.685	NR  	1   	NR      	NR      
+55  	44.6  	3   	ANCHOR (repeat 9)	lure    	0.349	NR  	1   	NR      	NR      
+56  	45    	6   	NOTE (repeat 11)	lure    	0.275	NR  	1   	NR      	NR      
+57  	45.4  	2   	BRUSH (repeat 6)	lure    	0.293	NR  	1   	NR      	NR      
+58  	45.7  	6   	NOTE (repeat 12)	lure    	0.499	NR  	1   	NR      	NR      
+59  	46.3  	4   	RATTLE (repeat 7)	lure    	0.544	NR  	1   	NR      	NR      
+60  	46.9  	3   	ANCHOR (repeat 10)	lure    	0.668	NR  	1   	NR      	NR      
+61  	47.6  	5   	DRUM (repeat 6)	lure    	0.643	NR  	1   	NR      	NR      
+62  	48.3  	3   	ANCHOR (repeat 11)	lure    	0.643	NR  	1   	NR      	NR      
+63  	49    	8   	POLE (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+64  	49.5  	1   	PADDLE (repeat 7)	lure    	0.688	NR  	1   	NR      	NR      
+65  	50.2  	3   	ANCHOR (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+66  	50.7  	2   	BRUSH (repeat 7)	lure    	0.565	NR  	1   	NR      	NR      
+67  	51.3  	5   	DRUM (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+68  	51.8  	4   	RATTLE (repeat 8)	lure    	0.669	NR  	1   	NR      	NR      
+69  	52.6  	2   	BRUSH (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+70  	53.1  	10  	GRAPEFRUIT	fruit   	0.951	0.631	1   	target  	target  
+71  	54.1  	2   	BRUSH (repeat 9)	lure    	0.449	NR  	1   	NR      	NR      
+72  	54.6  	6   	NOTE (repeat 13)	lure    	0.284	NR  	1   	NR      	NR      
+73  	54.9  	3   	ANCHOR (repeat 13)	lure    	0.427	NR  	1   	NR      	NR      
+74  	55.4  	2   	BRUSH (repeat 10)	lure    	0.421	NR  	1   	NR      	NR      
+75  	55.8  	5   	DRUM (repeat 8)	lure    	0.294	NR  	1   	NR      	NR      
+76  	56.2  	3   	ANCHOR (repeat 14)	lure    	0.446	NR  	1   	NR      	NR      
+77  	56.7  	6   	NOTE (repeat 14)	lure    	0.369	NR  	1   	NR      	NR      
+78  	57.1  	4   	RATTLE (repeat 9)	lure    	0.374	NR  	1   	NR      	NR      
+79  	57.5  	1   	PADDLE (repeat 8)	lure    	0.305	NR  	1   	NR      	NR      
+80  	57.9  	6   	NOTE (repeat 15)	lure    	0.511	NR  	1   	NR      	NR      
+81  	58.5  	5   	DRUM (repeat 9)	lure    	0.385	NR  	1   	NR      	NR      
+82  	58.9  	2   	BRUSH (repeat 11)	lure    	0.467	NR  	1   	NR      	NR      
+83  	59.4  	4   	RATTLE (repeat 10)	lure    	0.361	NR  	1   	NR      	NR      
+84  	59.8  	2   	BRUSH (repeat 12)	lure    	0.303	NR  	1   	NR      	NR      
+85  	60.2  	8   	POLE (repeat 7)	lure    	0.548	NR  	1   	NR      	NR      
+86  	60.8  	3   	ANCHOR (repeat 15)	lure    	0.598	NR  	1   	NR      	NR      
+87  	61.4  	5   	DRUM (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+88  	61.9  	6   	NOTE (repeat 16)	lure    	0.479	NR  	1   	NR      	NR      
+89  	62.5  	3   	ANCHOR (repeat 16)	lure    	0.397	NR  	1   	NR      	NR      
+90  	62.9  	8   	POLE (repeat 8)	lure    	0.666	NR  	1   	NR      	NR      
+91  	63.7  	5   	DRUM (repeat 11)	lure    	0.412	NR  	1   	NR      	NR      
+92  	64.1  	8   	POLE (repeat 9)	lure    	0.53	NR  	1   	NR      	NR      
+93  	64.7  	4   	RATTLE (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+94  	65.2  	10  	GRAPEFRUIT (repeat 1)	fruit   	0.955	0.583	1   	target  	target  
+95  	66.2  	3   	ANCHOR (repeat 17)	lure    	0.45	NR  	1   	NR      	NR      
+96  	66.7  	2   	BRUSH (repeat 13)	lure    	0.554	NR  	1   	NR      	NR      
+97  	67.3  	8   	POLE (repeat 10)	lure    	0.57	NR  	1   	NR      	NR      
+98  	68    	2   	BRUSH (repeat 14)	lure    	0.366	NR  	1   	NR      	NR      
+99  	68.4  	3   	ANCHOR (repeat 18)	lure    	0.485	NR  	1   	NR      	NR      
+100 	68.9  	2   	BRUSH (repeat 15)	lure    	0.401	NR  	1   	NR      	NR      
+101 	69.4  	6   	NOTE (repeat 17)	lure    	0.59	NR  	1   	NR      	NR      
+102 	70    	1   	PADDLE (repeat 9)	lure    	0.496	NR  	1   	NR      	NR      
+103 	70.6  	3   	ANCHOR (repeat 19)	lure    	0.312	NR  	1   	NR      	NR      
+104 	70.9  	4   	RATTLE (repeat 12)	lure    	0.502	NR  	1   	NR      	NR      
+105 	71.5  	8   	POLE (repeat 11)	lure    	0.369	NR  	1   	NR      	NR      
+106 	71.9  	5   	DRUM (repeat 12)	lure    	0.561	NR  	1   	NR      	NR      
+107 	72.6  	8   	POLE (repeat 12)	lure    	0.336	NR  	1   	NR      	NR      
+108 	73    	6   	NOTE (repeat 18)	lure    	0.473	NR  	1   	NR      	NR      
+109 	73.5  	2   	BRUSH (repeat 16)	lure    	0.547	NR  	1   	NR      	NR      
+110 	74.1  	3   	ANCHOR (repeat 20)	lure    	0.389	NR  	1   	NR      	NR      
+111 	74.5  	5   	DRUM (repeat 13)	lure    	0.531	NR  	1   	NR      	NR      
+112 	75.1  	4   	RATTLE (repeat 13)	lure    	0.439	NR  	1   	NR      	NR      
+113 	75.6  	3   	ANCHOR (repeat 21)	lure    	0.319	NR  	1   	NR      	NR      

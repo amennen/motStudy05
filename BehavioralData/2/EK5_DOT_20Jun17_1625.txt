@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.3  	2   	BELL      	target  	1.95	1.405	1   	non-target	non-target
+2   	76.3  	6   	RAINBOW   	target  	1.955	1.115	1   	non-target	non-target
+3   	118.3 	5   	ISLAND    	target  	1.955	1.049	1   	non-target	non-target
+4   	160.3 	1   	PUZZLE    	target  	1.956	1.623	1   	target  	target  
+5   	202.3 	8   	HAMMER    	target  	1.955	1.188	0   	non-target	target  
+6   	466.1 	5   	ISLAND (repeat 1)	target  	1.955	1.076	1   	target  	target  
+7   	508.1 	7   	CURTAIN   	target  	1.953	1.105	1   	target  	target  
+8   	550.1 	1   	PUZZLE (repeat 1)	target  	1.955	0.872	1   	non-target	non-target
+9   	592.1 	8   	HAMMER (repeat 1)	target  	1.951	1.254	1   	target  	target  
+10  	634.1 	8   	HAMMER (repeat 2)	target  	1.951	NR  	0   	NR      	non-target
+11  	677.7 	4   	PIN       	target  	1.955	1.257	1   	target  	target  
+12  	719.7 	2   	BELL (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
+13  	761.7 	4   	PIN (repeat 1)	target  	1.955	1.67	1   	non-target	non-target
+14  	803.7 	6   	RAINBOW (repeat 1)	target  	1.955	1.362	1   	target  	target  
+15  	845.7 	3   	PEBBLE    	target  	1.956	1.072	1   	target  	target  
+16  	890.5 	4   	PIN (repeat 2)	target  	1.955	1.141	0   	non-target	target  
+17  	932.5 	8   	HAMMER (repeat 3)	target  	1.951	NR  	0   	NR      	target  
+18  	974.5 	4   	PIN (repeat 3)	target  	1.954	1.183	1   	target  	target  
+19  	1016.5	3   	PEBBLE (repeat 1)	target  	1.956	0.917	1   	target  	target  
+20  	1058.5	1   	PUZZLE (repeat 2)	target  	1.955	0.906	1   	target  	target  
+21  	1102  	1   	PUZZLE (repeat 3)	target  	1.951	0.97	1   	non-target	non-target
+22  	1144  	1   	PUZZLE (repeat 4)	target  	1.955	1.552	1   	non-target	non-target
+23  	1186  	2   	BELL (repeat 2)	target  	1.955	1.238	1   	target  	target  
+24  	1228  	7   	CURTAIN (repeat 1)	target  	1.955	1.06	0   	target  	non-target
+25  	1270  	7   	CURTAIN (repeat 2)	target  	1.955	0.98	1   	target  	target  
+26  	1314.7	2   	BELL (repeat 3)	target  	1.955	0.887	1   	target  	target  
+27  	1356.7	5   	ISLAND (repeat 2)	target  	1.955	1.277	1   	non-target	non-target
+28  	1398.7	3   	PEBBLE (repeat 2)	target  	1.956	0.922	1   	target  	target  
+29  	1440.7	6   	RAINBOW (repeat 2)	target  	1.955	1.216	1   	non-target	non-target
+30  	1482.7	5   	ISLAND (repeat 3)	target  	1.956	0.917	1   	target  	target  
+31  	1526.7	1   	PUZZLE (repeat 5)	target  	1.951	NR  	0   	NR      	target  
+32  	1568.7	4   	PIN (repeat 4)	target  	1.956	1.222	1   	non-target	non-target
+33  	1610.7	7   	CURTAIN (repeat 3)	target  	1.956	1.317	1   	non-target	non-target
+34  	1652.7	7   	CURTAIN (repeat 4)	target  	1.955	1.315	0   	non-target	target  
+35  	1694.7	3   	PEBBLE (repeat 3)	target  	1.955	1.137	1   	non-target	non-target
+36  	1738.4	4   	PIN (repeat 5)	target  	1.955	1.665	0   	non-target	target  
+37  	1780.4	2   	BELL (repeat 4)	target  	1.955	1.239	0   	non-target	target  
+38  	1822.4	6   	RAINBOW (repeat 3)	target  	1.955	1.093	0   	target  	non-target
+39  	1864.4	3   	PEBBLE (repeat 4)	target  	1.956	1.219	1   	non-target	non-target
+40  	1906.4	6   	RAINBOW (repeat 4)	target  	1.955	1.088	1   	non-target	non-target
+41  	1949.8	6   	RAINBOW (repeat 5)	target  	1.955	1.222	1   	target  	target  
+42  	1991.8	5   	ISLAND (repeat 4)	target  	1.955	1.004	1   	target  	target  
+43  	2033.8	8   	HAMMER (repeat 4)	target  	1.955	0.882	1   	target  	target  
+44  	2075.8	5   	ISLAND (repeat 5)	target  	1.956	1   	1   	non-target	non-target
+45  	2117.8	8   	HAMMER (repeat 5)	target  	1.952	1.429	1   	non-target	non-target
+46  	2161.1	2   	BELL (repeat 5)	target  	1.955	1.559	1   	non-target	non-target
+47  	2203.1	3   	PEBBLE (repeat 5)	target  	1.951	NR  	0   	NR      	non-target
+48  	2245.1	7   	CURTAIN (repeat 5)	target  	1.955	1.297	1   	non-target	non-target

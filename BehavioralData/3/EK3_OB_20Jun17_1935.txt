@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.9   	6   	PUZZLE    	stair   	3.451	3.289	1   	2+ details	2+ details
+2   	26.3  	1   	HAMMER    	stair   	3.456	1.908	1   	generic 	generic 
+3   	41.1  	2   	ISLAND    	stair   	3.456	2.479	1   	1 detail	1 detail
+4   	55.7  	4   	PIN       	stair   	3.455	1.769	1   	1 detail	1 detail
+5   	67.7  	7   	RAINBOW   	stair   	3.454	1.096	1   	full    	full    
+6   	79.7  	5   	CURTAIN   	stair   	3.45	2.854	1   	generic 	generic 
+7   	91.7  	8   	PEBBLE    	stair   	3.454	1.948	1   	full    	full    
+8   	103.7 	3   	BELL      	stair   	3.452	1.227	1   	full    	full    

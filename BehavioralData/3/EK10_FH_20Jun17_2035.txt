@@ -1,0 +1,108 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	12.5  	1   	DENT      	lure    	0.685	NR  	1   	NR      	NR      
+2   	13.2  	2   	MOON      	lure    	0.414	NR  	1   	NR      	NR      
+3   	13.7  	3   	DRUM      	lure    	0.376	NR  	1   	NR      	NR      
+4   	14.1  	2   	MOON (repeat 1)	lure    	0.568	NR  	1   	NR      	NR      
+5   	14.7  	4   	NAIL      	lure    	0.558	NR  	1   	NR      	NR      
+6   	15.4  	5   	SHIRT     	lure    	0.522	NR  	1   	NR      	NR      
+7   	15.9  	1   	DENT (repeat 1)	lure    	0.615	NR  	1   	NR      	NR      
+8   	16.6  	2   	MOON (repeat 2)	lure    	0.544	NR  	1   	NR      	NR      
+9   	17.2  	1   	DENT (repeat 2)	lure    	0.544	NR  	1   	NR      	NR      
+10  	17.8  	6   	PAINT     	lure    	0.593	NR  	1   	NR      	NR      
+11  	18.5  	4   	NAIL (repeat 1)	lure    	0.489	NR  	1   	NR      	NR      
+12  	19    	7   	BUBBLE    	lure    	0.618	0.505	0   	target  	NR      
+13  	19.7  	2   	MOON (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+14  	20.2  	8   	BANANA    	fruit   	0.955	0.569	1   	target  	target  
+15  	21.2  	7   	BUBBLE (repeat 1)	lure    	0.644	NR  	1   	NR      	NR      
+16  	21.9  	5   	SHIRT (repeat 1)	lure    	0.347	NR  	1   	NR      	NR      
+17  	22.3  	2   	MOON (repeat 4)	lure    	0.688	NR  	1   	NR      	NR      
+18  	23    	4   	NAIL (repeat 2)	lure    	0.308	NR  	1   	NR      	NR      
+19  	23.4  	1   	DENT (repeat 3)	lure    	0.506	NR  	1   	NR      	NR      
+20  	24    	5   	SHIRT (repeat 2)	lure    	0.358	NR  	1   	NR      	NR      
+21  	24.4  	6   	PAINT (repeat 1)	lure    	0.442	NR  	1   	NR      	NR      
+22  	24.9  	3   	DRUM (repeat 1)	lure    	0.628	NR  	1   	NR      	NR      
+23  	25.6  	5   	SHIRT (repeat 3)	lure    	0.463	NR  	1   	NR      	NR      
+24  	26.1  	6   	PAINT (repeat 2)	lure    	0.455	NR  	1   	NR      	NR      
+25  	26.6  	4   	NAIL (repeat 3)	lure    	0.551	NR  	1   	NR      	NR      
+26  	27.2  	2   	MOON (repeat 5)	lure    	0.681	NR  	1   	NR      	NR      
+27  	27.9  	6   	PAINT (repeat 3)	lure    	0.369	NR  	1   	NR      	NR      
+28  	28.4  	5   	SHIRT (repeat 4)	lure    	0.318	NR  	1   	NR      	NR      
+29  	28.7  	7   	BUBBLE (repeat 2)	lure    	0.498	NR  	1   	NR      	NR      
+30  	29.3  	4   	NAIL (repeat 4)	lure    	0.475	NR  	1   	NR      	NR      
+31  	29.8  	7   	BUBBLE (repeat 3)	lure    	0.291	NR  	1   	NR      	NR      
+32  	30.2  	6   	PAINT (repeat 4)	lure    	0.271	NR  	1   	NR      	NR      
+33  	30.5  	7   	BUBBLE (repeat 4)	lure    	0.513	NR  	1   	NR      	NR      
+34  	31.1  	2   	MOON (repeat 6)	lure    	0.482	NR  	1   	NR      	NR      
+35  	31.6  	1   	DENT (repeat 4)	lure    	0.581	NR  	1   	NR      	NR      
+36  	32.2  	3   	DRUM (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+37  	32.7  	9   	LEMON     	fruit   	0.956	0.664	1   	target  	target  
+38  	33.7  	2   	MOON (repeat 7)	lure    	0.478	NR  	1   	NR      	NR      
+39  	34.3  	1   	DENT (repeat 5)	lure    	0.559	NR  	1   	NR      	NR      
+40  	34.9  	5   	SHIRT (repeat 5)	lure    	0.521	NR  	1   	NR      	NR      
+41  	35.5  	3   	DRUM (repeat 3)	lure    	0.602	NR  	1   	NR      	NR      
+42  	36.1  	6   	PAINT (repeat 5)	lure    	0.429	NR  	1   	NR      	NR      
+43  	36.6  	4   	NAIL (repeat 5)	lure    	0.253	NR  	1   	NR      	NR      
+44  	36.9  	3   	DRUM (repeat 4)	lure    	0.46	NR  	1   	NR      	NR      
+45  	37.4  	7   	BUBBLE (repeat 5)	lure    	0.267	NR  	1   	NR      	NR      
+46  	37.7  	4   	NAIL (repeat 6)	lure    	0.285	NR  	1   	NR      	NR      
+47  	38.1  	3   	DRUM (repeat 5)	lure    	0.277	NR  	1   	NR      	NR      
+48  	38.4  	6   	PAINT (repeat 6)	lure    	0.298	NR  	1   	NR      	NR      
+49  	38.8  	4   	NAIL (repeat 7)	lure    	0.335	NR  	1   	NR      	NR      
+50  	39.1  	1   	DENT (repeat 6)	lure    	0.541	NR  	1   	NR      	NR      
+51  	39.7  	7   	BUBBLE (repeat 6)	lure    	0.562	NR  	1   	NR      	NR      
+52  	40.4  	4   	NAIL (repeat 8)	lure    	0.636	NR  	1   	NR      	NR      
+53  	41    	6   	PAINT (repeat 7)	lure    	0.301	NR  	1   	NR      	NR      
+54  	41.4  	2   	MOON (repeat 8)	lure    	0.396	NR  	1   	NR      	NR      
+55  	41.8  	6   	PAINT (repeat 8)	lure    	0.426	NR  	1   	NR      	NR      
+56  	42.3  	2   	MOON (repeat 9)	lure    	0.565	NR  	1   	NR      	NR      
+57  	42.9  	5   	SHIRT (repeat 6)	lure    	0.432	NR  	1   	NR      	NR      
+58  	43.4  	6   	PAINT (repeat 9)	lure    	0.268	NR  	1   	NR      	NR      
+59  	43.7  	7   	BUBBLE (repeat 7)	lure    	0.342	NR  	1   	NR      	NR      
+60  	44.1  	1   	DENT (repeat 7)	lure    	0.628	NR  	1   	NR      	NR      
+61  	44.8  	6   	PAINT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+62  	45.3  	10  	MANGO     	fruit   	0.956	0.478	1   	target  	target  
+63  	46.3  	5   	SHIRT (repeat 7)	lure    	0.348	NR  	1   	NR      	NR      
+64  	46.7  	2   	MOON (repeat 10)	lure    	0.526	NR  	1   	NR      	NR      
+65  	47.3  	6   	PAINT (repeat 11)	lure    	0.596	NR  	1   	NR      	NR      
+66  	48    	5   	SHIRT (repeat 8)	lure    	0.606	NR  	1   	NR      	NR      
+67  	48.6  	2   	MOON (repeat 11)	lure    	0.618	NR  	1   	NR      	NR      
+68  	49.3  	6   	PAINT (repeat 12)	lure    	0.51	NR  	1   	NR      	NR      
+69  	49.9  	2   	MOON (repeat 12)	lure    	0.551	NR  	1   	NR      	NR      
+70  	50.5  	4   	NAIL (repeat 9)	lure    	0.305	NR  	1   	NR      	NR      
+71  	50.8  	2   	MOON (repeat 13)	lure    	0.527	NR  	1   	NR      	NR      
+72  	51.4  	4   	NAIL (repeat 10)	lure    	0.331	NR  	1   	NR      	NR      
+73  	51.8  	3   	DRUM (repeat 6)	lure    	0.403	NR  	1   	NR      	NR      
+74  	52.3  	5   	SHIRT (repeat 9)	lure    	0.641	NR  	1   	NR      	NR      
+75  	53    	7   	BUBBLE (repeat 8)	lure    	0.603	NR  	1   	NR      	NR      
+76  	53.6  	2   	MOON (repeat 14)	lure    	0.414	NR  	1   	NR      	NR      
+77  	54.1  	7   	BUBBLE (repeat 9)	lure    	0.553	NR  	1   	NR      	NR      
+78  	54.7  	5   	SHIRT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+79  	55.2  	2   	MOON (repeat 15)	lure    	0.579	NR  	1   	NR      	NR      
+80  	55.8  	3   	DRUM (repeat 7)	lure    	0.389	NR  	1   	NR      	NR      
+81  	56.3  	1   	DENT (repeat 8)	lure    	0.364	NR  	1   	NR      	NR      
+82  	56.7  	5   	SHIRT (repeat 11)	lure    	0.396	NR  	1   	NR      	NR      
+83  	57.1  	1   	DENT (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+84  	57.6  	9   	LEMON (repeat 1)	fruit   	0.955	0.521	1   	target  	target  
+85  	58.6  	2   	MOON (repeat 16)	lure    	0.696	NR  	1   	NR      	NR      
+86  	59.4  	1   	DENT (repeat 10)	lure    	0.497	NR  	1   	NR      	NR      
+87  	59.9  	3   	DRUM (repeat 8)	lure    	0.582	NR  	1   	NR      	NR      
+88  	60.6  	1   	DENT (repeat 11)	lure    	0.307	NR  	1   	NR      	NR      
+89  	60.9  	5   	SHIRT (repeat 12)	lure    	0.596	NR  	1   	NR      	NR      
+90  	61.6  	3   	DRUM (repeat 9)	lure    	0.662	NR  	1   	NR      	NR      
+91  	62.3  	2   	MOON (repeat 17)	lure    	0.535	NR  	1   	NR      	NR      
+92  	62.9  	5   	SHIRT (repeat 13)	lure    	0.616	NR  	1   	NR      	NR      
+93  	63.5  	6   	PAINT (repeat 13)	lure    	0.639	NR  	1   	NR      	NR      
+94  	64.2  	7   	BUBBLE (repeat 10)	lure    	0.411	NR  	1   	NR      	NR      
+95  	64.7  	6   	PAINT (repeat 14)	lure    	0.697	NR  	1   	NR      	NR      
+96  	65.5  	3   	DRUM (repeat 10)	lure    	0.479	NR  	1   	NR      	NR      
+97  	66    	2   	MOON (repeat 18)	lure    	0.64	NR  	1   	NR      	NR      
+98  	66.7  	5   	SHIRT (repeat 14)	lure    	0.358	NR  	1   	NR      	NR      
+99  	67.1  	2   	MOON (repeat 19)	lure    	0.594	NR  	1   	NR      	NR      
+100 	67.8  	7   	BUBBLE (repeat 11)	lure    	0.562	NR  	1   	NR      	NR      
+101 	68.4  	2   	MOON (repeat 20)	lure    	0.63	NR  	1   	NR      	NR      
+102 	69.1  	1   	DENT (repeat 12)	lure    	0.551	NR  	1   	NR      	NR      
+103 	69.7  	4   	NAIL (repeat 11)	lure    	0.296	NR  	1   	NR      	NR      
+104 	70    	2   	MOON (repeat 21)	lure    	0.696	NR  	1   	NR      	NR      
+105 	70.8  	1   	DENT (repeat 13)	lure    	0.63	NR  	1   	NR      	NR      
+106 	71.5  	4   	NAIL (repeat 12)	lure    	0.555	NR  	1   	NR      	NR      
+107 	72.1  	5   	SHIRT (repeat 15)	lure    	0.578	NR  	1   	NR      	NR      
