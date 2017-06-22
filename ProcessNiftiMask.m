@@ -22,12 +22,12 @@ if ~exist('readmr','file')
     addpath([biac_dir '/mr/']);
     addpath([biac_dir '/general/'])
 end
-multipath = '/Data1/code/multibandutils/';
+multipath = '/Data1/code/multibandutils/';1
 addpath(genpath(multipath));
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
 % inputs (eventually function)
-subjNum = 1;
+subjNum = 3;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
@@ -64,7 +64,7 @@ unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,h
 unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --2niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
 unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R',fslpath,highresFN_RE,highresFN_RE)) 
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
-fprintf('%sfslview %s.nii.gz\n',fslpath,highresFN_RE))
+fprintf('%sfslview %s.nii.gz\n',fslpath,highresFN_RE)
 fprintf('%sfslview %s_brain.nii.gz', fslpath,highresFN_RE)
 
 %% Register standard to nifti
@@ -103,7 +103,7 @@ end
 
 % brain extract functional scan to make sure we stay inside the brain of
 % the subject!
-unix(sprintf('%sbet %s.nii.gz %s_brain -R',fslpath,functionalFN_RE,functionalFN_RE)); % check that this is okay!
+unix(sprintf('%sbet %s4.nii.gz %s_brain -R',fslpath,functionalFN_RE,functionalFN_RE)); % check that this is okay!
 %CHECK OKAY
 fprintf('%sfslview %s_brain.nii.gz', fslpath,functionalFN_RE))
 

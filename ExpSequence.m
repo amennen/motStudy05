@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 1; %experimental subject number
+SUBJECT = 3; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -80,50 +80,50 @@ mot_realtime05(SUBJECT,RSVP2,[],0,scanNow) %will continue until TOCRITERION3
 %look for mask and test it
 
 %% LOCALIZER DISPLAY
-scanNum = 10;
+scanNum = 9;
 mot_realtime05(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
 
 %% LOCALIZER FILE PROCESS
 % number of TR's total: (should be 688 originally)
-scanNum = 10;
+scanNum = 9;
 crossval = 0;
 featureSelect = 1;
 LocalizerNiftiFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER,runNum)
 
 %% RECALL 1
 % number of TR's total: 474
-scanNum = 11;
+scanNum = 10;
 mot_realtime05(SUBJECT,RECALL1,[],scanNum,scanNow);
 
 %% MOT RUN 1 DISPLAY
 % number of TR's total 452 (should be 226 originally)
-scanNum = 12; %11new would be 15
+scanNum = 11; %11new would be 15
 mot_realtime05(SUBJECT,MOT{1},[],scanNum,scanNow);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 12;%normally 15;
+scanNum = 11;%normally 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
 
 %% MOT RUN 2 DISPLAY
-scanNum = 13;
+scanNum = 12;
 mot_realtime05(SUBJECT,MOT{2},[],scanNum,scanNow);
 %% MOT RUN 2 FILE PROCESS
-scanNum = 13;
+scanNum = 12;
 featureSelect = 1;
 blockNum = 2;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 
 %% MOT RUN 3 DISPLAY
-scanNum = 14;
+scanNum = 13;
 mot_realtime05(SUBJECT,MOT{3},[],scanNum,scanNow);
 %% MOT RUN 3 FILE PROCESS
-scanNum = 14;
+scanNum = 13;
 featureSelect = 1;
 blockNum = 3;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 %% RECALL 2
-scanNum = 15;
+scanNum = 14;
 mot_realtime05(SUBJECT,RECALL2,[],scanNum,scanNow);
 %% ANALYZE RECALL DATA
 % do for recall 1 and recall 2
