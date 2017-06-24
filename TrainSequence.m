@@ -2,7 +2,7 @@
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
-SUBJECT = 4;
+SUBJECT = 6;
 
 
 NUM_TASK_RUNS = 3;
@@ -44,7 +44,7 @@ ASSOCIATES = DESCRIPTION + 1; %27
 mot_realtime05(SUBJECT, SETUP, [], 0, 0);
 
 % this will continue to train test and practice MOT, then move on to
-% MOT_Practice, MOT_PREP
+% MOT_Practice, MOT_PREPr5
 %mot_realtime02(SUBJECT,MOT_PRACTICE,[],0,0);
 mot_realtime05(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not go through the break
 
