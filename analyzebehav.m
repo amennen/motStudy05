@@ -37,7 +37,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 
 
 %% look at descriptive ratings
-subjectVec = [4];
+subjectVec = [5:6];
 for s = 1:length(subjectVec)
     subjectNum = subjectVec(s);
     behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
@@ -133,7 +133,7 @@ for s = 1:length(subjectVec)
 end
 %%
 %% now convert recog to cell
-subjects = [4];
+subjects = [5:6];
 for s = 1:length(subjects)
     behavioral_dir = ['BehavioralData/' num2str(subjects(s)) '/']
     r = dir(fullfile(behavioral_dir, ['_RECOG' '*.mat']));
