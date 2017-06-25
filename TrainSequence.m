@@ -6,6 +6,8 @@ SUBJECT = 6;
 
 NUM_TASK_RUNS = 3;
 % orientation session
+
+
 SETUP = 1; % stimulus assignment 1
 
 FAMILIARIZE = SETUP + 1; % rsvp study learn associates 2
