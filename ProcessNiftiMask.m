@@ -27,10 +27,12 @@ addpath(genpath(multipath));
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
 % inputs (eventually function)
-subjNum = 4;
+
+
+subjNum = 6;
 %subjDate = '4-5-17';
 subjDate = NaN;
-runNum = 1;
+runNum = 2;
 highresScan = 5;
 functionalScan = 6;
 
@@ -63,6 +65,8 @@ unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,highresfiles_genstr,highresFN));
 unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,highresFN_RE));
 unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --2niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
 unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R',fslpath,highresFN_RE,highresFN_RE)) 
+%unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -r 90 -R',fslpath,highresFN_RE,highresFN_RE)) 
+
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
 fprintf('%sfslview %s.nii.gz\n',fslpath,highresFN_RE)
 fprintf('%sfslview %s_brain.nii.gz', fslpath,highresFN_RE)

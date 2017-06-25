@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36.1  	1   	ISLAND    	targ_hard	1.951	1.248	1   	non-target	non-target
+2   	78.1  	45  	MATCH     	lure_easy	1.95	1.112	1   	non-target	non-target
+3   	120.1 	2   	PUZZLE    	targ_easy	1.95	0.993	1   	non-target	non-target
+4   	162.1 	46  	RATTLE    	lure_hard	1.951	0.881	1   	target  	target  
