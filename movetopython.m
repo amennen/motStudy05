@@ -4,10 +4,10 @@
 %subject numbers
 %what to name them
 %final path
-folder= '/jukebox/norman/amennen/PythonMot3';
-subjectVec = [3 4 5 6 7 8 9 11 12 13];
+folder= '/jukebox/norman/amennen/PythonMot5';
+subjectVec = [1 3:6];
 %subjectVec = 9; %just put in the newest subject if you've already done for a lot
-projectName = 'motStudy03';
+projectName = 'motStudy05';
 for s = 1:length(subjectVec)
     subjectNum = subjectVec(s);
     behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
@@ -19,7 +19,8 @@ for s = 1:length(subjectVec)
     newname1 = ['r1pat' num2str(s) '.mat'];
     newname2 = ['r2pat' num2str(s) '.mat'];
     
-    unix(['scp ' fname ' amennen@apps.pni.princeton.edu:' folder '/' newname])
+    unix(['scp ' fn1 ' amennen@apps.pni.princeton.edu:' folder '/' newname1])
+    unix(['scp ' fn2 ' amennen@apps.pni.princeton.edu:' folder '/' newname2])
 end
 
 %% for anatomical recall data
@@ -71,7 +72,7 @@ end
 %%
 folder= '/jukebox/norman/amennen/PythonMot5/Loc/';
 %folder= '/jukebox/norman/amennen/PythonMot4/Loc/';
-subjectVec = [1]; %now made it so for all subjects and can separate them into RT/YC afterwards in python 2/17
+subjectVec = [3:6]; %now made it so for all subjects and can separate them into RT/YC afterwards in python 2/17
 
 %subjectVec = 9; %just put in the newest subject if you've already done for a lot
 projectName = 'motStudy05';

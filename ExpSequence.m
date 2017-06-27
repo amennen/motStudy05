@@ -2,10 +2,10 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 6; %experimental subject number
+SUBJECT = 7; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
-runNum = 2; %what number subject they are today
+runNum = 1; %what number subject they are today
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -138,18 +138,25 @@ RecallNiftiFileProcess(SUBJECT,runNum,scanNum1,RECALL1,date,featureSelect,makeFi
 RecallNiftiFileProcess(SUBJECT,runNum,scanNum2,RECALL2,date,featureSelect,makeFile,2);
 %% ANALYZE RECALL DATA FOR ANOTHER MASK
 
-scanNum1 = 13;
-scanNum2 = 21;
-datevec = { '1-13-17', '1-14-17', '1-14-17', '1-20-17', '1-21-17', '1-22-17', '1-26-17', '1-28-17', '1-30-17', '2-1-17'};
-svec = [3 4 5 6 7 8 9 11 12 13];
+scanNum1 = 10;
+scanNum2 = 14;
+datevec = {'6-15-17', '6-21-17', '6-23-17', '6-25-17', '6-25-17'};
+svec = [1 3:6];
 runvec = ones(1,length(svec));
-irun2 = find(svec==5);
+irun2 = find(svec==6);
 runvec(irun2) = 2;
 nsub = length(svec);
-for s = 1:nsub
+for s = 2:nsub
     SUBJECT = svec(s);
+    if SUBJECT == 1
+        scanNum1 = 11;
+        scanNum2 = 15;
+    else
+        scanNum1 = 10;
+        scanNum2 = 14;
+    end
     date = datevec{s};
     runNum = runvec(s);
-    AnatRecallFileProcess(SUBJECT,runNum,scanNum1,RECALL1,date);
-    AnatRecallFileProcess(SUBJECT,runNum,scanNum2,RECALL2,date);
+    AnatRecallFileProcess(SUBJECT,runNum,scanNum1,RECALL1,date,1);
+    AnatRecallFileProcess(SUBJECT,runNum,scanNum2,RECALL2,date,2);
 end

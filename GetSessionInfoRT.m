@@ -42,7 +42,7 @@ NCOND = 4;
 nTRs = config.nTRs.perBlock + 10/TR; %includes 10 seconds at the end
 
 % get hard dot speed
-fileSpeed = dir(fullfile(behav_dir, ['mot_realtime04_' num2str(subjNum) '_' num2str(MOT_PREP)  '*.mat']));
+fileSpeed = dir(fullfile(behav_dir, ['mot_realtime05_' num2str(subjNum) '_' num2str(MOT_PREP)  '*.mat']));
 if ~isempty(fileSpeed)
     matlabOpenFile = [behav_dir '/' fileSpeed(end).name];
     lastRun = load(matlabOpenFile);

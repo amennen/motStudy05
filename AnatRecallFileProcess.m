@@ -1,7 +1,7 @@
 %want this function to read in dicom files with given anatomical mask and
 %output 4d pattern
 
-function [patterns, t] = AnatRecallFileProcess(subjectNum,runNum,scanNum,SESSION,date) %,rtfeedback)
+function [patterns, t] = AnatRecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,blockNum) %,rtfeedback)
 % function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
 %
 % this function describes the file processing procedure for the realtime
@@ -38,9 +38,13 @@ function [patterns, t] = AnatRecallFileProcess(subjectNum,runNum,scanNum,SESSION
 
 %% initialize path prefix for different replyDrive
 
-projectName = 'motStudy03';
+projectName = 'motStudy05';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
+multipath = '/Data1/code/multibandutils/';
+dcm2path = '/opt/MRICROGL/2-2016/';
+fslpath='/opt/fsl/5.0.9/bin/';
 
+addpath(genpath(multipath));
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
 process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
 code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
@@ -53,11 +57,15 @@ dicom_dir = ['/Data1/subjects/' datestr(date,10) datestr(date,5) datestr(date,7)
 assert(logical(exist(dicom_dir,'dir')));
 fprintf('fMRI files being read from: %s\n',dicom_dir);
 
+runHeader = [save_dir 'recallrun' num2str(blockNum)];
+if ~exist(runHeader)
+    mkdir(runHeader);
+end
+cd(runHeader)
 
 %get ROI
-imgmat = 64; %image matrix size
 roi_name = 'paraHCG';
-temp = load(fullfile(process_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
+temp = load(fullfile(process_dir,[roi_name '_mask' '.mat'])); %should be stretched_brain
 roi = logical(temp.mask_brain);
 assert(exist('roi','var')==1);
 roiDims = size(roi);
@@ -78,9 +86,9 @@ GetSecs;
 %% preprocessing parameters
 FWHM = 5;
 cutoff = 160;
-rtData = 2;
-TR = 2;
-shiftTR = 2;
+TR = 2; % changed here back!
+shiftTR = 4/TR; % this will now be 4 TR's (was 2 TRs for a 2 s TR)
+rtData = 1;
 %% Block Sequence
 
 patterns.nTRs = size(patterns.regressor.twoCond,2); %already has first 10 removed
@@ -139,6 +147,7 @@ fprintf(dataFile,'run\tblock\tTR\tloaded\n');
 fprintf('run\tblock\tTR\tloaded\n');
 
 %% acquiring files
+remove = 20/TR;
 
 zscoreNew = 1;
 useHistory = 1;
@@ -151,20 +160,27 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     zscoreConst1 = 1.0/zscoreLen1;
     % increase count of TRs
     %increase the count of TR pulses
-    thisTR = iTrial + 10; %account for taking out TRs
+    thisTR = iTrial + remove; %account for taking out TRs
     while ~patterns.fileAvail(iTrial)
         [patterns.fileAvail(iTrial) patterns.newFile{iTrial}] = GetSpecificFMRIFile(dicom_dir,scanNum,thisTR);
         %timing.fileAppear(iTrial) = toc(tstart(iTrial));
     end
     
     %if desired file is recognized, pause for 200ms to complete transfer
-    if rtData==1 || exist('reply','var')
-        pause(.2);
-    end
     
-    % if file available, load it
     if (patterns.fileAvail(iTrial))
-        [newVol patterns.timeRead{iTrial}] = ReadFile([dicom_dir patterns.newFile{iTrial}],imgmat,roi); % NTB: only reads top file
+        t0 = GetSecs;
+        niftiname = sprintf('nifti%3.3i', thisTR);
+        
+        unix(sprintf('%sdcm2niix %s -f %s -o %s -s y %s%s',dcm2path,dicom_dir,niftiname,runHeader,dicom_dir,patterns.newFile{iTrial}))
+        t1 = GetSecs;
+        unix(sprintf('%smcflirt -in %s.nii -reffile %sexfunc_re.nii',fslpath,niftiname,process_dir))
+        t2 = GetSecs;
+        moco = t2-t1;
+        
+        niftiname = sprintf('nifti%3.3i_mcf.nii.gz', thisTR);
+        niftidata = readnifti(niftiname);
+        newVol = niftidata(roi);
         patterns.raw(iTrial,:) = newVol;  % keep patterns for later training
         
         if (any(isnan(patterns.raw(iTrial,:)))) && (iTrial>1)
@@ -175,6 +191,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
         end
         
     end
+ 
     %smooth files
     patterns.raw_sm(iTrial,:) = SmoothRealTime(patterns.raw(iTrial,:),roiDims,roiInds,FWHM);
     
@@ -203,4 +220,5 @@ preprocTime = toc(preprocStart);  %end timing
 save(sprintf('%s%s_Recall%iPatterns', save_dir,roi_name,block),'patterns');
 fprintf(dataFile,'data preprocessing time: \t%.3f\n',preprocTime);
 fprintf('data preprocessing time: \t%.3f\n',preprocTime);
+cd(code_dir)
 end

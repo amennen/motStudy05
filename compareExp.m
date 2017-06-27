@@ -21,7 +21,7 @@ speedH = 1;
 speedL = speedH * -1; %now change code for loop
 avgRange = 12; %divided by 2 is the number of TR's
 
-svec = [1];%take out 22 to make even by group];
+svec = [1 3:6];%take out 22 to make even by group];
 
 nsub = length(svec);
 sepbystimD = zeros(nstim,nTRs*3,nsub);
