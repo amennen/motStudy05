@@ -69,20 +69,20 @@ for s = 1:length(subjectVec)
     save(newfn,'allRecall');
     unix(['scp ' newfn ' amennen@apps.pni.princeton.edu:' folder '/' newfn])
 end
-%%
+%
 folder= '/jukebox/norman/amennen/PythonMot5/Loc/';
-%folder= '/jukebox/norman/amennen/PythonMot4/Loc/';
+folder= '/jukebox/norman/amennen/PythonMot4/Loc/';
 subjectVec = [3:6]; %now made it so for all subjects and can separate them into RT/YC afterwards in python 2/17
 
-%subjectVec = 9; %just put in the newest subject if you've already done for a lot
+subjectVec = 9; %just put in the newest subject if you've already done for a lot
 projectName = 'motStudy05';
 for s = 1:length(subjectVec)
     subjectNum = subjectVec(s);
     behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
     loc_dir = ['/Data1/code/' projectName '/' 'data' '/' num2str(subjectNum) '/Localizer/'];
-    %fname = findNewestFile(loc_dir, fullfile(loc_dir, ['retrieval_CORR_locpatterns' '*.mat']));
+    fname = findNewestFile(loc_dir, fullfile(loc_dir, ['retrieval_CORR_locpatterns' '*.mat']));
     fname = findNewestFile(loc_dir, fullfile(loc_dir, ['locpatterns' '*.mat']));
-    %fname = findNewestFile(loc_dir, fullfile(loc_dir, ['wholebrain_NOFM_locpatterns' '*.mat']));
+    fname = findNewestFile(loc_dir, fullfile(loc_dir, ['wholebrain_NOFM_locpatterns' '*.mat']));
     newname = ['locpat' num2str(subjectNum) '.mat'];    
     unix(['scp ' fname ' amennen@apps.pni.princeton.edu:' folder '/' newname])
 end

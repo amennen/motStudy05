@@ -37,7 +37,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 
 
 %% look at descriptive ratings
-subjectVec = [5:6];
+subjectVec = [8];
 for s = 1:length(subjectVec)
     subjectNum = subjectVec(s);
     behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
