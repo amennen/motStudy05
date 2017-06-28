@@ -20,7 +20,7 @@ end
 functionalFN_RE = 'exfunc_re';
 highres2exfunc_mat = 'highres2example_func';
 
-svec = [3:6];
+svec = [8];
 
 for s = 1:length(svec)
     subjNum = svec(s);
