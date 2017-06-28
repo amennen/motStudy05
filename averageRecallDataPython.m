@@ -3,7 +3,7 @@
 % matrices with ordered of what stimuli/category they are
 folder= '/jukebox/norman/amennen/PythonMot5';
 
-subjectVec = [1 3:6];
+subjectVec = [1 3:6 8];
 %subjectVec = 9; %just put in the newest subject if you've already done for a lot
 projectName = 'motStudy05';
 nTRsperTrial = 4; %4 TRs of imagining image

@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 7; %experimental subject number
+SUBJECT = 8; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -140,13 +140,13 @@ RecallNiftiFileProcess(SUBJECT,runNum,scanNum2,RECALL2,date,featureSelect,makeFi
 
 scanNum1 = 10;
 scanNum2 = 14;
-datevec = {'6-15-17', '6-21-17', '6-23-17', '6-25-17', '6-25-17'};
-svec = [1 3:6];
+datevec = {'6-15-17', '6-21-17', '6-23-17', '6-25-17', '6-25-17', '6-28-17'};
+svec = [1 3:6 8];
 runvec = ones(1,length(svec));
 irun2 = find(svec==6);
 runvec(irun2) = 2;
 nsub = length(svec);
-for s = 2:nsub
+for s = 6
     SUBJECT = svec(s);
     if SUBJECT == 1
         scanNum1 = 11;
