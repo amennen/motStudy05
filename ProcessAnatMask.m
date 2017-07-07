@@ -1,6 +1,7 @@
 projectName = 'motStudy05';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
-roi_name = 'paraHCG';
+%roi_name = 'paraHCG';
+roi_name = 'leftAmygdala';
 code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 addpath(genpath(code_dir));
 if IsLinux
@@ -20,7 +21,7 @@ end
 functionalFN_RE = 'exfunc_re';
 highres2exfunc_mat = 'highres2example_func';
 
-svec = [8];
+svec = [1 3:6 8 9];
 
 for s = 1:length(svec)
     subjNum = svec(s);
