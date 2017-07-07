@@ -133,7 +133,7 @@ for s = 1:length(subjectVec)
 end
 %%
 %% now convert recog to cell
-subjects = [5:6];
+subjects = [8];
 for s = 1:length(subjects)
     behavioral_dir = ['BehavioralData/' num2str(subjects(s)) '/']
     r = dir(fullfile(behavioral_dir, ['_RECOG' '*.mat']));
