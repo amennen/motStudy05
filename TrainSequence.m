@@ -2,7 +2,11 @@
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
+<<<<<<< HEAD
 SUBJECT = 9;
+=======
+SUBJECT = 10;
+>>>>>>> refs/remotes/origin/master
 
 NUM_TASK_RUNS = 3;
 % orientation session
