@@ -1,0 +1,29 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.8  	31  	PURSE     	realtime	3.454	0.514	0   	1 detail	full    
+2   	26.8  	35  	BROOM     	omit    	3.451	NR  	0   	NR      	full    
+3   	42.8  	38  	PLUG      	omit    	3.451	NR  	0   	NR      	full    
+4   	58.8  	34  	BRACELET  	realtime	3.451	NR  	0   	NR      	1 detail
+5   	74.8  	42  	FOAM      	omit    	3.451	NR  	0   	NR      	2+ details
+6   	90.8  	28  	CHALK     	realtime	3.451	NR  	0   	NR      	2+ details
+7   	106.8 	37  	NICKEL    	omit    	3.451	NR  	0   	NR      	2+ details
+8   	122.8 	33  	LENS      	realtime	3.453	0.824	1   	generic 	generic 
+9   	134.8 	40  	RULER     	omit    	3.451	0.939	0   	full    	1 detail
+10  	150.8 	30  	PYRAMID   	realtime	3.453	3.181	0   	2+ details	1 detail
+11  	166.8 	29  	DRILL     	realtime	3.451	NR  	0   	NR      	generic 
+12  	182.8 	44  	ROPE      	omit    	3.451	NR  	0   	NR      	full    
+13  	198.8 	26  	HOOK      	realtime	3.451	NR  	0   	NR      	full    
+14  	214.8 	41  	PAGE      	omit    	3.451	NR  	0   	NR      	2+ details
+15  	230.8 	43  	SPONGE    	omit    	3.451	NR  	0   	NR      	generic 
+16  	246.8 	27  	HOSE      	realtime	3.451	NR  	0   	NR      	1 detail
+17  	262.8 	32  	JAIL      	realtime	3.451	NR  	0   	NR      	1 detail
+18  	278.8 	36  	DUST      	omit    	3.451	NR  	0   	NR      	2+ details
+19  	294.8 	39  	MIRROR    	omit    	3.451	NR  	0   	NR      	full    
+20  	310.8 	25  	POWDER    	realtime	3.451	NR  	0   	NR      	generic 
+21  	326.8 	29  	DRILL (repeat 1)	realtime	3.455	1.027	0   	full    	generic 
+22  	342.8 	35  	BROOM (repeat 1)	omit    	3.451	NR  	0   	NR      	generic 
+23  	358.8 	38  	PLUG (repeat 1)	omit    	3.451	NR  	0   	NR      	1 detail
+24  	374.8 	26  	HOOK (repeat 1)	realtime	3.451	NR  	0   	NR      	2+ details
+25  	390.8 	37  	NICKEL (repeat 1)	omit    	3.451	NR  	0   	NR      	full    
+26  	406.8 	36  	DUST (repeat 1)	omit    	3.451	NR  	0   	NR      	2+ details
+27  	422.8 	32  	JAIL (repeat 1)	realtime	3.451	NR  	0   	NR      	1 detail
+28  	438.8 	25  	POWDER (repeat 1)	realtime	3.451	NR  	0   	NR      	2+ details

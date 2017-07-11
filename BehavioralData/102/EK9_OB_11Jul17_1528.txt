@@ -1,0 +1,50 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.3   	26  	HOOK      	realtime	3.452	NR  	0   	NR      	2+ details
+2   	25.3  	41  	PAGE      	omit    	3.451	NR  	0   	NR      	1 detail
+3   	41.3  	25  	POWDER    	realtime	3.451	NR  	0   	NR      	generic 
+4   	57.3  	40  	RULER     	omit    	3.451	NR  	0   	NR      	generic 
+5   	73.3  	38  	PLUG      	omit    	3.451	NR  	0   	NR      	generic 
+6   	89.3  	32  	JAIL      	realtime	3.451	NR  	0   	NR      	full    
+7   	105.3 	27  	HOSE      	realtime	3.451	NR  	0   	NR      	2+ details
+8   	121.3 	43  	SPONGE    	omit    	3.451	NR  	0   	NR      	full    
+9   	137.3 	36  	DUST      	omit    	3.451	NR  	0   	NR      	full    
+10  	153.3 	34  	BRACELET  	realtime	3.451	NR  	0   	NR      	2+ details
+11  	169.3 	44  	ROPE      	omit    	3.451	NR  	0   	NR      	generic 
+12  	185.3 	33  	LENS      	realtime	3.451	NR  	0   	NR      	generic 
+13  	201.3 	37  	NICKEL    	omit    	3.451	NR  	0   	NR      	generic 
+14  	217.3 	28  	CHALK     	realtime	3.451	NR  	0   	NR      	1 detail
+15  	233.3 	29  	DRILL     	realtime	3.451	NR  	0   	NR      	1 detail
+16  	249.3 	42  	FOAM      	omit    	3.451	NR  	0   	NR      	generic 
+17  	265.3 	35  	BROOM     	omit    	3.451	NR  	0   	NR      	generic 
+18  	281.3 	30  	PYRAMID   	realtime	3.451	NR  	0   	NR      	full    
+19  	297.3 	39  	MIRROR    	omit    	3.451	NR  	0   	NR      	2+ details
+20  	313.3 	31  	PURSE     	realtime	3.451	NR  	0   	NR      	1 detail
+21  	329.3 	26  	HOOK (repeat 1)	realtime	3.451	NR  	0   	NR      	generic 
+22  	345.3 	35  	BROOM (repeat 1)	omit    	3.451	NR  	0   	NR      	2+ details
+23  	361.3 	31  	PURSE (repeat 1)	realtime	3.451	NR  	0   	NR      	1 detail
+24  	377.3 	30  	PYRAMID (repeat 1)	realtime	3.451	NR  	0   	NR      	1 detail
+25  	393.3 	43  	SPONGE (repeat 1)	omit    	3.451	NR  	0   	NR      	full    
+26  	409.3 	27  	HOSE (repeat 1)	realtime	3.451	NR  	0   	NR      	generic 
+27  	425.3 	37  	NICKEL (repeat 1)	omit    	3.451	NR  	0   	NR      	full    
+28  	441.3 	29  	DRILL (repeat 1)	realtime	3.451	NR  	0   	NR      	generic 
+29  	457.3 	42  	FOAM (repeat 1)	omit    	3.451	NR  	0   	NR      	1 detail
+30  	473.3 	44  	ROPE (repeat 1)	omit    	3.451	NR  	0   	NR      	full    
+31  	489.3 	38  	PLUG (repeat 1)	omit    	3.451	NR  	0   	NR      	1 detail
+32  	505.3 	33  	LENS (repeat 1)	realtime	3.451	NR  	0   	NR      	generic 
+33  	521.3 	39  	MIRROR (repeat 1)	omit    	3.451	NR  	0   	NR      	generic 
+34  	537.3 	36  	DUST (repeat 1)	omit    	3.455	0.757	1   	2+ details	2+ details
+35  	549.3 	28  	CHALK (repeat 1)	realtime	3.451	NR  	0   	NR      	1 detail
+36  	565.3 	25  	POWDER (repeat 1)	realtime	3.455	0.305	0   	full    	generic 
+37  	581.3 	41  	PAGE (repeat 1)	omit    	3.451	NR  	0   	NR      	generic 
+38  	597.3 	40  	RULER (repeat 1)	omit    	3.451	NR  	0   	NR      	2+ details
+39  	613.3 	32  	JAIL (repeat 1)	realtime	3.451	2.194	1   	1 detail	1 detail
+40  	625.3 	34  	BRACELET (repeat 1)	realtime	3.451	NR  	0   	NR      	full    
+41  	641.3 	40  	RULER (repeat 2)	omit    	3.451	NR  	0   	NR      	full    
+42  	657.3 	37  	NICKEL (repeat 2)	omit    	3.451	NR  	0   	NR      	1 detail
+43  	673.3 	26  	HOOK (repeat 2)	realtime	3.451	NR  	0   	NR      	2+ details
+44  	689.3 	38  	PLUG (repeat 2)	omit    	3.451	NR  	0   	NR      	1 detail
+45  	705.3 	34  	BRACELET (repeat 2)	realtime	3.451	NR  	0   	NR      	full    
+46  	721.3 	41  	PAGE (repeat 2)	omit    	3.451	NR  	0   	NR      	full    
+47  	737.3 	43  	SPONGE (repeat 2)	omit    	3.451	NR  	0   	NR      	generic 
+48  	753.3 	39  	MIRROR (repeat 2)	omit    	3.451	NR  	0   	NR      	generic 
+49  	769.3 	28  	CHALK (repeat 2)	realtime	3.451	NR  	0   	NR      	2+ details

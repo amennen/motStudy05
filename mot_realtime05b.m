@@ -1,18 +1,12 @@
-% syntax: mot_realtime05(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+% syntax: mot_realtime05b(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
 %
 % This is an implementation of a MOT memory experiment designed to
-% reactivate memory, adapted from a study by Ken Norman and J. Poppenk. I
-% (JP) wrote this before we developed our modern experiment design
-% framework and it should not be used as an example of "how to do things"
-% -- yet there are times when it is more efficient to adapt awkward,
-% functional older code than it is to write nice, tidy new code. It has
-% been at least updated to make of the current superpsychtoolbox
-% implementation.
+% reactivate memory, adapted from a study by Ken Norman and J. Poppenk.
 
 
 %%
 
-function mot_realtime05(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+function mot_realtime05b(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow,s2)
 
 %SUBJECT: Subject number
 %SESSION: task that they're going to do (listed below)
@@ -95,7 +89,7 @@ end
 SESSIONSTRINGS{RECALL_PRACTICE} = 'DELIBERATE RECALL PRACTICE'; % get used to task during anatomical
 SESSIONSTRINGS{RECALL1} = 'RECALL1'; % baseline recollection, used to train recollection classifier
 SESSIONSTRINGS{RECALL2} = 'RECALL2'; % post-test recollection, used to measure effectiveness of manipulation
-SESSIONSTRINGS{DESCRIPTION} = 'SCENE DESCRIPTION TASK'; 
+SESSIONSTRINGS{DESCRIPTION} = 'SCENE DESCRIPTION TASK';
 SESSIONSTRINGS{ASSOCIATES} = 'ASSOCIATES TASK'; % face-scene classification
 % SETUP: prepare experiment
 if ~exist('SUBJECT','var'), SUBJECT = -1; end
@@ -168,7 +162,7 @@ stim.num_realtime = 10;
 stim.num_omit = 10;
 stim.num_learn = 8;
 stim.num_localizer = 16;
-stim.num_total = stim.num_learn + stim.num_realtime + stim.num_omit + stim.num_localizer; 
+stim.num_total = stim.num_learn + stim.num_realtime + stim.num_omit + stim.num_localizer;
 stim.runSpeed = SPEED;
 stim.TRlength = 2*SPEED; %this is the speed
 stim.fontSize = 24;
@@ -339,17 +333,55 @@ seed = randseedwclock();
 % find a stimulus file if this is not first session
 if SESSION ~= SETUP
     try
-        load(MATLAB_STIM_FILE);
+        load(MATLAB_STIM_FILE); % here's it's going to load the training
     catch
         error('No stimulus assignment file detected');
     end
 end
+
+%this has to be after you load the actual subject info
+if SESSION >= FAMILIARIZE2
+    if SESSION == FAMILIARIZE2
+        if s2 < 0 %put an error message exciting here
+            Screen('TextSize',mainWindow,stim.fontSize);
+            halfway = ['Thanks so much for participating! Unfortunately, we cannot continue the experiment because you haven''t matched a previous '...
+                'subject''s data. This is purely by chance and is in no way a reflection of your performance. Please notify the experimenter now.'];
+            displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            WaitSecs(60)
+            sca;
+            error('Could not continue :(')
+        else
+            ppt_dir2 = [data_dir filesep num2str(s2) filesep];
+            MATLAB_PREV_STIM = [ppt_dir2 'mot_realtime05_subj_' num2str(s2) '_stimAssignment.mat'];
+            % now we want to replace the practice words that person had with the
+            % match's stimuli
+            s_prev = load(MATLAB_PREV_STIM);
+            temp = s_prev.preparedCues;
+            temp(1:8) = trainWords;
+            preparedCues = temp;
+            temp = s_prev.pics;
+            temp(1:8) = trainPics;
+            pics = temp;
+            pairIndex = s_prev.pairIndex;
+            stimmap = makeMap(preparedCues);
+            lureWords = s_prev.lureWords;
+            save(MATLAB_STIM_FILE, 'cues', 'preparedCues', 'pics', 'pairIndex', 'lureWords','stimmap', 'trainWords', 'trainPics');
+            clear cues preparedCues pics pairIndex lureWords recogLures stimmap
+            load(MATLAB_STIM_FILE);
+        end
+    else
+        ppt_dir2 = [data_dir filesep num2str(s2) filesep];
+    end
+end
+
+
 Screen('TextSize',mainWindow,stim.fontSize);
 
 % main experiment session switch
 switch SESSION
     %% 0. SETUP
     case SETUP
+        
         
         % goal: create all stimuli for subject
         % ordered training pics and training word pairs
@@ -420,7 +452,7 @@ switch SESSION
                 end
             end
         end
-
+        
         % now choose all the words
         preapredCues = {};
         wordCount = 1;
@@ -470,9 +502,7 @@ switch SESSION
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','stimmap', 'trainWords', 'trainPics');
         
         
-        mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
-        
-        
+        mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         %% 1. FAMILIARIZATION
     case {FAMILIARIZE, FAMILIARIZE2, FAMILIARIZE3,STIM_REFRESH}
         % print headers to file and command window - don't need to wait for
@@ -497,30 +527,35 @@ switch SESSION
         % initialization
         trial = 0;
         printlog(LOG_NAME,'session\ttrial\tpair\tonset\tdur\tcue         \tassociate   \n');
-
+        
         if SESSION == FAMILIARIZE
             [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LEARN}},{CONDSTRINGS{LEARN}}); %this just gets the cue words
             picList = lutSort(stimList, preparedCues, pics);
             IDlist = lutSort(stimList, preparedCues, pairIndex);
             PF = TRAININGFOLDER;
-        elseif SESSION == FAMILIARIZE2 || SESSION == STIM_REFRESH
-            [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
-            picList = lutSort(stimList, preparedCues, pics);
-            IDlist = lutSort(stimList, preparedCues, pairIndex);
-        elseif SESSION == FAMILIARIZE3
-            [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LOC}},{CONDSTRINGS{LOC}});
-            picList = lutSort(stimList, preparedCues, pics);
-            IDlist = lutSort(stimList, preparedCues, pairIndex);
-            PF = LOCALIZERFOLDER;
+        else
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+            y = load(fname);
+            stim.stim = y.stim.stim;
+            stim.id = y.stim.id;
+            stim.picStim = y.stim.picStim;
+            stim.cond = y.stim.cond;
+            stim.condString = y.stim.condString;
+            config.nTrials = y.config.nTrials;
+            picList = stim.picStim;
+            stimList = stim.stim;
+            IDlist = stim.id;
+            if SESSION == FAMILIARIZE3
+                PF = LOCALIZERFOLDER;
+            end
         end
-        
         
         if SESSION == FAMILIARIZE2
             halfway = ['Great job, youre''re halfway there! You can take a stretching or bathroom break if you need to now. \n\n-- press ' PROGRESS_TEXT ' to continue when you''re ready. --'];
             displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,KEYDEVICES);
         end
-
+        
         
         instruct = ['NAMED SCENES\n\nToday, you will learn the names of ' num2str(length(stimList)) ' different scenes. ' ...
             'It is important that you learn these now, as you will need to be able to picture each scene based on its name throughout our study.\n\n' ...
@@ -529,11 +564,11 @@ switch SESSION
             'so you will need to work quickly.\n\n-- press ' PROGRESS_TEXT ' to begin --'];
         instruct2 = ['Now we will repeat the NAMED SCENE task from before, but this time we will be using different scenes'];
         if SESSION == STIM_REFRESH
-             instruct = ['NAMED SCENES\n\nToday, we''ll start with a quick refresher of the ' num2str(length(stimList)) ' different scenes you learned yesterday. ' ...
-            'It is important that you focus, as you will need to be able to picture each scene based on its name throughout our study.\n\n' ...
-            'In this section, you will get a chance to study each name-scene pair, one pair at a time. To help you remember each pair, try to imagine how ' ...
-            'each scene got its name - the more vivid and unique, the better your memory will be. However, you will see each scene for only four seconds, ' ...
-            'so you will need to work quickly.\n\n-- press ' PROGRESS_TEXT ' to begin --'];
+            instruct = ['NAMED SCENES\n\nToday, we''ll start with a quick refresher of the ' num2str(length(stimList)) ' different scenes you learned yesterday. ' ...
+                'It is important that you focus, as you will need to be able to picture each scene based on its name throughout our study.\n\n' ...
+                'In this section, you will get a chance to study each name-scene pair, one pair at a time. To help you remember each pair, try to imagine how ' ...
+                'each scene got its name - the more vivid and unique, the better your memory will be. However, you will see each scene for only four seconds, ' ...
+                'so you will need to work quickly.\n\n-- press ' PROGRESS_TEXT ' to begin --'];
         end
         displayText(mainWindow,instruct,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         
@@ -607,7 +642,11 @@ switch SESSION
         % return
         sca
         if SESSION ~= STIM_REFRESH
-            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow); %don't continue if just refreshing on laptop
+            if SESSION > MOT_PREP
+                mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
+            else
+                mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            end
         end
         %% 2. LEARN TO CRITERION
     case {TOCRITERION1, TOCRITERION2, TOCRITERION2_REP, TOCRITERION3}
@@ -634,6 +673,7 @@ switch SESSION
         stim.triggerCounter = 1;
         stim.missedTriggers = 0;
         stim.loopNumber = 1;
+        match = 0;
         % sequence preparation
         if SESSION == TOCRITERION1
             [cond strings stimList] = counterbalance_items({cues{STIMULI}{LEARN}},{CONDSTRINGS{LEARN}});
@@ -641,19 +681,34 @@ switch SESSION
             pics = lutSort(stimList, preparedCues, pics);
             pairIndex = lutSort(stimList, preparedCues, pairIndex);
             PF = TRAININGFOLDER;
-        elseif SESSION == TOCRITERION2 || SESSION == TOCRITERION2_REP
-            [cond strings stimList] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
-            condmap = makeMap({'realtime','omit'});
-            pics = lutSort(stimList, preparedCues, pics);
-            pairIndex = lutSort(stimList, preparedCues, pairIndex);
-            PF = MOTFOLDER;
-        elseif SESSION == TOCRITERION3
-            [cond strings stimList] = counterbalance_items({cues{STIMULI}{LOC}},{CONDSTRINGS{LOC}});
-            condmap = makeMap({'localizer'});
-            pics = lutSort(stimList, preparedCues, pics);
-            pairIndex = lutSort(stimList, preparedCues, pairIndex);
-            PF = LOCALIZERFOLDER;
+        else
+            match = 1;
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+            y = load(fname);
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
+            y2 = load(fname);
+            trials = table2cell(y2.datastruct.trials);
+            stimID = cell2mat(trials(:,8));
+            nstim = length(unique(stimID));
+            stim.choicePos = y.stim.choicePos(1:nstim,:); % in (trials, position)
+            stimList = preparedCues(stimID(1:nstim));
+            pairIndex = stimID(1:nstim);
+            pics = pics(stimID(1:nstim));
+            prev_cpos = cell2mat(trials(:,22)) -1; %this is the position of the correct choice on every trial
+            cond = cell2mat(trials(:,9));
+            cond = cond(1:nstim);
+            strings = y.stim.condString(1:nstim);
+            
+            if SESSION == TOCRITERION2 || SESSION == TOCRITERION2_REP
+                %check if this leads to errors with all the loading stim
+                condmap = makeMap({'realtime','omit'});
+                PF = MOTFOLDER;
+            else
+                condmap = makeMap({'localizer'});
+                PF = LOCALIZERFOLDER;
+            end
         end
+        
         %first pics is all pics, preparedCues is all cues--pics is then the
         %stimuli that were used in the run
         
@@ -699,7 +754,7 @@ switch SESSION
         
         
         stim.subjStartTime = waitForKeyboard(kbTrig_keycode,KEYDEVICES);
-       
+        
         objectiveEK = initEasyKeys([exp_string_long '_OB'], SUBJ_NAME,ppt_dir, ...
             'default_respmap', subj_scale, ...
             'stimmap', stimmap, ...
@@ -754,39 +809,57 @@ switch SESSION
                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.cue(stim.trial) - timing.plannedOnsets.cue(stim.trial));
                 
                 % choose lures
-                cpos{stim.trial} = randi(4);
-                lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
-                temp_pics = pics; %these are the 5 used in the learning trial
-                numLures = 0;
-                fullidx = 1:length(temp_pics);
-                notidx = n;
-                good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
-                inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
-                outside = ~inside;
-                allOtherPics = pics;
-                allOtherPics(n) = [];
-                indexC = strfind(allOtherPics, 'o');
-                allOtherOutside = find(not(cellfun('isempty', indexC)));
-                allOtherInside = setdiff(1:length(allOtherPics),allOtherOutside);
-                
-                % choose 2 of each inside/outside
-                if inside %choose 2 outside
-                    outsidePics = allOtherOutside(randperm(length(allOtherOutside),2));
-                    insidePics = allOtherInside(randperm(length(allOtherInside),1));
-                else % if outside, choose 2 inside
-                    outsidePics = allOtherOutside(randperm(length(allOtherOutside),1));
-                    insidePics = allOtherInside(randperm(length(allOtherInside),2));
+                % YOKE if within the first presentation!
+                if match && stim.trial <= nstim
+                    cpos{stim.trial} = prev_cpos(stim.trial);
+                    lureIndex = setdiff(1:CHOICES,cpos{stim.trial});
+                    temp_pics = pics;
+                    numLures = 0;
+                    fullidx = 1:length(temp_pics);
+                    notidx = n;
+                    good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
+                    inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
+                    outside = ~inside;
+                    allOtherPics = pics;
+                    allOtherPics(n) = [];
+                    
+                    for i=1:CHOICES-1
+                        picLures{i} = allOtherPics{stim.choicePos(stim.trial,lureIndex(i))}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)   
+                        picIndex(lureIndex(i)) = prepImage(char(strcat(PF, picLures{i})),mainWindow);
+                        
+                    end
+                else
+                    cpos{stim.trial} = randi(4);
+                    lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
+                    temp_pics = pics; %these are the 5 used in the learning trial
+                    numLures = 0;
+                    fullidx = 1:length(temp_pics);
+                    notidx = n;
+                    good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
+                    inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
+                    outside = ~inside;
+                    allOtherPics = pics;
+                    allOtherPics(n) = [];
+                    indexC = strfind(allOtherPics, 'o');
+                    allOtherOutside = find(not(cellfun('isempty', indexC)));
+                    allOtherInside = setdiff(1:length(allOtherPics),allOtherOutside);
+                    
+                    % choose 2 of each inside/outside
+                    if inside %choose 2 outside
+                        outsidePics = allOtherOutside(randperm(length(allOtherOutside),2));
+                        insidePics = allOtherInside(randperm(length(allOtherInside),1));
+                    else % if outside, choose 2 inside
+                        outsidePics = allOtherOutside(randperm(length(allOtherOutside),1));
+                        insidePics = allOtherInside(randperm(length(allOtherInside),2));
+                    end
+                    lureIndices = Shuffle([outsidePics insidePics]); %shuffles the order of 2 inside, 2 outside but they're indexes
+                    
+                    for i=1:length(lureIndices)
+                        stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
+                        picLures{i} = allOtherPics{lureIndices(i)};
+                        picIndex(lureIndex(i)) = prepImage(char(strcat(PF, picLures{i})),mainWindow);
+                    end
                 end
-                lureIndices = Shuffle([outsidePics insidePics]); %shuffles the order of 2 inside, 2 outside but they're indexes
-                
-               
-                
-                for i=1:length(lureIndices)
-                    stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
-                    picLures{i} = allOtherPics{lureIndices(i)};
-                    picIndex(lureIndex(i)) = prepImage(char(strcat(PF, picLures{i})),mainWindow);
-                end
-                
                 % close and replace the lure in the spot that belongs to the target
                 picIndex(cpos{stim.trial}) = prepImage(strcat(PF, pics{n}),mainWindow); %%ooooh here you take the lure out and add target
                 
@@ -921,11 +994,23 @@ switch SESSION
         %return
         %normally would go to session 4 but instead we want to go to
         if SESSION ~= TOCRITERION3
-            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            if SESSION > MOT_PREP
+                mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
+            else
+                mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            end
         end
         
         %% 3. PRE/POST MEMORY TEST
     case {RECALL_PRACTICE,RECALL1,RECALL2}
+        % load previous file
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        stim.stim = y.stim.stim;
+        stim.cond = y.stim.cond;
+        stim.condString = y.stim.condString;
+        stim.id = y.stim.id;
+        
         % stimulus presentation parameters
         stim.promptDur = 8*SPEED; % cue word alone
         stim.prepDur = 2*SPEED;
@@ -958,11 +1043,9 @@ switch SESSION
             'ignoring other mental imagery (e.g., you pictured a beach). You will use the provided rating scale to indicate details, using all five fingers on the key pad.'...
             '\n\n---- Press ' PROGRESS_TEXT ' once you understand these instructions,\n then press it again when you are done viewing the rating scale ---'];
         
-   
+        
         % initialize stimulus order with initial warmup item
         if SESSION == RECALL_PRACTICE
-            stim.stim = cues{STIMULI}{LEARN}(1:3);
-            stim.cond = [PRACTICE, PRACTICE, PRACTICE];
             condmap = makeMap({'PRACTICE'});
             stim.condString = {CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}};
             displayText(mainWindow,['MENTAL PICTURES TASK - PRACTICE\n\nThis is a memory test with some differences ' ...
@@ -972,7 +1055,6 @@ switch SESSION
                 '-- Please press ' PROGRESS_TEXT ' to briefly review the instructions --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
         else
-            [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
             condmap = makeMap({'realtime','omit'});
             if SESSION ==RECALL1
                 displayText(mainWindow,['The experiment will now ONLY involve the stimuli that you studied yesterday, both ' ...
@@ -987,17 +1069,7 @@ switch SESSION
             end
         end
         
-        %generate stimulus ID's first so can add them easily
-        for i = 1:length(stim.cond)
-            if SESSION == RECALL_PRACTICE
-                pos = find(strcmp(cues{STIMULI}{LEARN},stim.stim{i}));
-                stim.id(i) = pos;
-            else
-                pos = find(strcmp(preparedCues,stim.stim{i}));
-                stim.id(i) = pos;
-            end
-        end
-        
+     
         % display instructions
         DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         displayText(mainWindow,stim.instruct1,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -1083,7 +1155,7 @@ switch SESSION
         stimID = stim.id;
         stimCond = stim.cond;
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION)]);
-        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
+        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config');
         
         for n = 1:length(stim.stim)
             % initialize trial and show cue
@@ -1121,7 +1193,7 @@ switch SESSION
                 'cond', stim.cond(stim.trial), ...
                 'cresp', cresp, 'cresp_map', cresp_map, 'valid_map', subj_map);
             
-           
+            
             %endrecord = GetSecs;
             %display even/odd
             if CURRENTLY_ONLINE && SESSION > TOCRITERION3
@@ -1163,15 +1235,23 @@ switch SESSION
             endSession(subjectiveEK, CONGRATS)
         end
         sca
-           %% 4. Typing description task
+        %% 4. Typing description task
     case {DESCRIPTION}
-         % stimulus presentation parameters
+        % load previous file
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        stim.stim = y.stim.stim;
+        stim.cond = y.stim.cond;
+        stim.condString = y.stim.condString;
+        stim.id = y.stim.id;
+        
+        % stimulus presentation parameters
         stim.promptDur = 6*SPEED; % cue word alone
         stim.prepDur = 2*SPEED;
         stim.isiDuration = 4*SPEED; %
         stim.typeDur = 20*SPEED;
         % stimulus data fields
-
+        
         stim.description = {};
         PROGRESS_TEXT = 'INDEX';
         
@@ -1191,30 +1271,24 @@ switch SESSION
             'should aim to capture the key elements of the scene so that someone unfamiliar with the scene could reliably select the image corresponding to your description. '...
             'You will have 20 seconds to type your answer. After 15 seconds, you will see a red bar appear to signal that you have 5 seconds left. Please keep describing for all '...
             '20 seconds though.\n\n-- Press ' PROGRESS_TEXT ' once you understand these instructions --'];
+        
 
-        % let's have the first three trials be practice ones
-        % prepare counterbalanced trial sequence (at most 2 in a row)
-        [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
-        practiceWords = cues{STIMULI}{LEARN}(1:3); % practice words from before is current state?
-        stim.stim = [practiceWords stim.stim];
-        stim.cond = [PRACTICE PRACTICE PRACTICE stim.cond];
-        stim.condString = [CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} stim.condString];
         % initialize stimulus order with initial warmup item
         
         displayText(mainWindow,['SCENE DESCRIPTION TASK\n\nThis is a memory test with some differences ' ...
-                'from earlier: you will get only one try per item, there is no feedback, and you will type descriptions of the scenes instead of choosing the correct option.' ...
-                'Please carefully review today''s instructions, since many things have ' ...
-                'changed and it is important you follow them exactly.\n\n' ...
-                '-- Please press ' PROGRESS_TEXT ' to briefly review the instructions --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            'from earlier: you will get only one try per item, there is no feedback, and you will type descriptions of the scenes instead of choosing the correct option.' ...
+            'Please carefully review today''s instructions, since many things have ' ...
+            'changed and it is important you follow them exactly.\n\n' ...
+            '-- Please press ' PROGRESS_TEXT ' to briefly review the instructions --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
-
+        
         % display instructions
         DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         displayText(mainWindow,stim.instruct1,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
-        displayText(mainWindow,stim.instruct2,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);   
+        displayText(mainWindow,stim.instruct2,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
-
+        
         %last instructions
         displayText(mainWindow,['To help you get used to the feel of this task, we will ' ...
             'now give you three practice words. Because of the system used, shift keys won''t work so don''t use symbols. ' ...
@@ -1222,10 +1296,10 @@ switch SESSION
             '-- Press ' PROGRESS_TEXT ' to begin once you understand these instructions --'], ...
             minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         stim.subjStartTime = waitForKeyboard(kbTrig_keycode,DEVICE);
-
+        
         runStart = GetSecs;
         config.wait = 0;
-
+        
         % want: cued word then window to type description
         % then math, ISI
         % for all stimuli
@@ -1243,23 +1317,16 @@ switch SESSION
         timing.plannedOnsets.type(1:config.nTrials) = timing.plannedOnsets.prompt + config.nTRs.prompt*config.TR;
         timing.plannedOnsets.lastITI = timing.plannedOnsets.type(end) + config.nTRs.type*config.TR;
         
-     
+        
         stimCond = stim.cond;
         % initialize trial
         %generate stimulus ID's first so can add them easily
-        for i = 1:length(stim.cond)
-            pos = find(strcmp(preparedCues,stim.stim{i}));
-            if ~isempty(pos)
-                stim.id(i) = pos;
-            else
-                stim.id(i) = -1; %so this should never go during MOT
-            end
-        end
+       
         stimID = stim.id;
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION)]);
-        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
+        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config');
         
-
+        
         for n = 1:length(stim.stim)
             % initialize trial and show cue
             stim.trial = n;
@@ -1296,12 +1363,12 @@ switch SESSION
             Screen('FillRect', mainWindow, COLORS.GREY/5, new);
             timing.actualOnsets.type(n) = Screen('Flip',mainWindow, timespec);
             fprintf('Flip time error = %.4f\n', timing.actualOnsets.type(n) - timing.plannedOnsets.type(n));
-           
+            
             KbQueueCreate;
             KbQueueStart;
             AsteriskBuffer=[]; %initializes buffer
             WRAPCHARS = 100;
-
+            
             AsteriskBuffer = ' ';
             while GetSecs - timing.actualOnsets.type(n) < stim.typeDur % keep checking for more typing until you can't anymore
                 [ pressed, firstPress]=KbQueueCheck; %checks for keys
@@ -1339,7 +1406,7 @@ switch SESSION
                 Screen('Flip',mainWindow);
                 WaitSecs(.01); % put in small interval to allow other system events
             end
-            Screen('TextSize',mainWindow,20); 
+            Screen('TextSize',mainWindow,20);
             stim.description{n} = AsteriskBuffer;
             %endrecord = GetSecs;
             %display even/odd
@@ -1371,7 +1438,7 @@ switch SESSION
                 timing.plannedOnsets.lastITI = timing.plannedOnsets.lastITI + OffFB-OnFB;
             end
             
-            KbQueueRelease;            
+            KbQueueRelease;
             save(MATLAB_SAVE_FILE,'stim', 'timing', 'config');
         end
         
@@ -1386,7 +1453,7 @@ switch SESSION
         if GetSecs - timing.actualOnsets.lastITI < 2
             WaitSecs(2 - (GetSecs - timing.actualOnsets.lastITI));
         end
-
+        
         % clean up
         save(MATLAB_SAVE_FILE,'stim', 'timing', 'config');
         
@@ -1403,7 +1470,12 @@ switch SESSION
         %% POST PICTURES TASK
         
     case ASSOCIATES
-        
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['_RECOG' '*.mat']));
+        y2 = load(fname);
+        Ptrials = table2cell(y2.datastruct.trials);
+        Pcresp = cell2mat(Ptrials(:,22));
         % declarations
         stim.promptDur = .75*SPEED;
         stim.listenDur = 0.5*SPEED;
@@ -1427,59 +1499,17 @@ switch SESSION
         stim.triggerCounter = 1;
         stim.missedTriggers = 0;
         
-  
+        
         % prepare stimuli: first actual ones that were seen
         
-        COMPLETED = 0;
-        while ~COMPLETED
-            [stim.cond stim.condString stim.associate] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
-            [stim.cond2 stim.condString2 stim.associate2] = counterbalance_items({cues{STIMULI}{REALTIME}, cues{STIMULI}{OMIT}},CONDSTRINGS);
-            for n = 1:length(stim.cond)
-                cueSearch = strcmp(preparedCues,stim.associate{n});
-                stim.pos1(n) = find(cueSearch);
-                stim.stim1{n} = pics{stim.pos1(n)};
-                stim.id1(n) = find(strcmp(pics,stim.stim1{n}));
-                
-                cueSearch = strcmp(preparedCues,stim.associate2{n});
-                stim.pos2(n) = find(cueSearch);
-                stim.stim2{n} = pics{stim.pos2(n)};
-                stim.id2(n) = find(strcmp(pics,stim.stim2{n}));
-            end
-            allImages = [stim.id1 stim.id2];
-            for n = 1:length(stim.cond)
-                thisImage = allImages(n);
-                nextImage = max(find(thisImage == allImages));
-                diffinpos(n) = abs(n-nextImage);
-            end
-            nokay = length(find(diffinpos >=10));
-            if nokay == length(stim.cond)
-                COMPLETED =1;
-            end
-        end
+        stim.cond = y.stim.cond;
+        stim.condString = y.stim.condString;
+        stim.associate = y.stim.associate;
+        stim.AAP = y.stim.AAP;
+        stim.AAPID = y.stim.AAPID;
+        stim.stim = y.stim.stim;
+        stim.id = y.stim.id;        
         
-        % now choose which ones come AA' and which are A'A
-        % choose 5 omit images
-        OMIT_INDS = find(stim.cond==OMIT);
-        omit_AAP = OMIT_INDS(randperm(10,5));
-        REALTIME_INDS = find(stim.cond==REALTIME);
-        rt_AAP = REALTIME_INDS(randperm(10,5));
-        stim.AAP = [omit_AAP rt_AAP]; % for the first round of all 20 these will have A first
-        stim.AAPID = stim.id1(stim.AAP); % these are the stimulus id numbers to present the A first!
-        % Get practice images--don't worry about balancing indoor/outdoor
-        % here
-        stim.cond = [stim.cond stim.cond2];
-        stim.stim = [stim.stim1 stim.stim2];
-        stim.id = [stim.id1 stim.id2];
-        stim.associate = [stim.associate stim.associate2];
-        
-        stim.stim = [Shuffle(pics(1:nPractice)) stim.stim]; % practice words from before is current state?
-        stim.id = [-1 -1 -1 stim.id];
-        stim.cond = [PRACTICE PRACTICE PRACTICE stim.cond];
-        stim.condString = [CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} stim.condString stim.condString2];
-        stim.associate = [CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} stim.associate];
-        % get practice indoor/outdoor
-
-       
         % display instructions
         DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         displayText(mainWindow,stim.instruct1,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -1521,11 +1551,12 @@ switch SESSION
             timing.actualOnsets.preITI(n) = isi_specific(mainWindow,COLORS.MAINFONTCOLOR,timespec);
             fprintf('Flip time error = %.4f\n', timing.actualOnsets.preITI(n) - timing.plannedOnsets.preITI(n));
             
-
+            
             
             % now present the target and lure and choose where to put them!
             if n <= nPractice% randomize if lure or not
-                lure = randi(2);
+                %get if practice stimuli were correct or not
+                lure = Pcresp(n); % match what practice stimuli were--if using real or lures here
                 if lure == 1
                     picIndex = prepImage(strcat(TRAININGFOLDER,stim.stim{n}),mainWindow);
                     cresp = recog_scale.inputs(1);
@@ -1560,11 +1591,11 @@ switch SESSION
                         picIndex = prepImage(strcat(MOTFOLDER, stim.stim{n}),mainWindow);
                         cresp = recog_scale.inputs(1);
                         cresp_map = keys.map(2,:);
-                    	recog.cresp_string{n} = 'old';
+                        recog.cresp_string{n} = 'old';
                     end
                 end
             end
-
+            
             % now present the target
             topLeft(HORIZONTAL) = CENTER(HORIZONTAL) - (PICDIMS(HORIZONTAL)*RESCALE_FACTOR/2);
             topLeft(VERTICAL) = CENTER(VERTICAL) - (PICDIMS(VERTICAL)*RESCALE_FACTOR/2);
@@ -1660,25 +1691,25 @@ switch SESSION
                 'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
         end
-
+        
         
         % stimulus presentation parameters
         instant = 0;
         num_dots = 5; %where set total dots
         stim.square_dims = round([20 20] ./ mean(WINDOWSIZE.degrees_per_pixel)); % 20ï¿½ visual angle in pixels
         stim.dot_diameter = 1.5 / mean(WINDOWSIZE.degrees_per_pixel); % 1.5 visual angle in pixels
-%         if SESSION < MOT{1}
-%             stim.trialDur = 20*SPEED;
-%             promptTRs = 3:2:9;
-%         else
+        %         if SESSION < MOT{1}
+        %             stim.trialDur = 20*SPEED;
+        %             promptTRs = 3:2:9;
+        %         else
         stim.trialDur = 30*SPEED; %chaning length from 20 to 30 s or 15 TRs
         promptTRs = 3:3:13; %which TR's to make the prompt active- %TO BE CHANGED-used to be 3:3:13; with 15 2 s TRs--now will have 30 TR's
-  %      end
+        %      end
         stim.inter_prompt_interval = 4*SPEED;
         stim.maxspeed = 30;
         stim.minspeed = -30; %0.3; %changed to -30 to go into function--now will allow negative speeds and result in them being faded to black
         stim.targ_dur = 2*SPEED;
-        stim.fixBlock = 20; %time in the beginnning they're staring--20s, 10 TRs 
+        stim.fixBlock = 20; %time in the beginnning they're staring--20s, 10 TRs
         %stim.betweenPrompt = 2;
         %stim.beforePrompt = 4;
         vis_promptDur = 2*SPEED;
@@ -1693,7 +1724,7 @@ switch SESSION
         stim.fbDuration = 2*SPEED; %for dot probe choice
         dot_map = keys.map([1 5],:);
         
-        %rt parameters 
+        %rt parameters
         OptimalForget = 0.15;
         maxIncrement = 1.25; %will also have to check this
         Kp = 5;
@@ -1834,41 +1865,39 @@ switch SESSION
                 [stim.cond stim.condString stim.stim] = counterbalance_items({[cues{STIMULI}{LEARN} cues{STIMULI}{LEARN} cues{STIMULI}{LEARN} cues{STIMULI}{LEARN} cues{STIMULI}{LEARN} cues{STIMULI}{LEARN}]},{MOTSTRINGS{LEARN}},0);
             end
             condmap = makeMap({'target'});
-        elseif SESSION==MOT_PRACTICE2
-            stim.lureWords = lureWords(6:7);
-            [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}(1) cues{STIMULI}{LEARN}(2), stim.lureWords(1), stim.lureWords(2)},MOTSTRINGS,1);
-            condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
-            square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
+            %generate stimulus ID's first so can add them easily
+            for i = 1:length(stim.cond)
+                pos = find(strcmp(preparedCues,stim.stim{i}));
+                if ~isempty(pos)
+                    stim.id(i) = pos;
+                else
+                    stim.id(i) = -1; %so this should never go during MOT
+                end
+            end
             stim.condString = condmap.descriptors(stim.cond);
-        elseif SESSION == MOT_LOCALIZER
-            stim.lureWords = lureWords(8:23);
-            [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LOC}(1:8), cues{STIMULI}{LOC}(9:16), stim.lureWords(1:8), stim.lureWords(9:16)},MOTSTRINGS,1); %looks like he wanted to separate easy/hard conditions
-            condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
-            square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
-            stim.condString = condmap.descriptors(stim.cond);
+
         else
-            %stim.lureWords = lureWords(1:5); %don't need these anymore but oh well
-            [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}}, MOT_RT_STRINGS,1);
-            condmap = makeMap({'rt-targ'});
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+            y = load(fname);
+            stim.stim = y.stim.stim;
+            stim.cond = y.stim.cond;
+            stim.id = y. stim.id;
+            stim.condString = y.stim.condString;
+            if SESSION==MOT_PRACTICE2 || SESSION == MOT_LOCALIZER
+                stim.lureWords = y.stim.lureWords;
+                condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
+            else 
+                condmap = makeMap({'rt-targ'});
+            end
         end
         square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
-        stim.condString = condmap.descriptors(stim.cond);
         stim.repulse = 2;
         % assign parameters based on condition
         lureCounter = 0;
         stim.num_targets = 1;
         repulsor_force_small = 1;
         
-        %generate stimulus ID's first so can add them easily
-        for i = 1:length(stim.cond)
-            pos = find(strcmp(preparedCues,stim.stim{i}));
-            if ~isempty(pos)
-                stim.id(i) = pos;
-            else
-                stim.id(i) = -1; %so this should never go during MOT
-            end
-        end
-        
+       
         
         for i=1:length(stim.cond)
             
@@ -1933,7 +1962,7 @@ switch SESSION
             Screen('DrawTexture',mainWindow,keymap_prompt,[],[],[]); %[0 0 keymap_dims],[topLeft topLeft+keymap_dims]);
             Screen('Flip',mainWindow);
             waitForKeyboard(kbTrig_keycode,DEVICE);
-        elseif SESSION == MOT_LOCALIZER 
+        elseif SESSION == MOT_LOCALIZER
             displayText(mainWindow,stim.fMRI_instruct,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
         elseif SESSION == MOT{1}
@@ -2044,6 +2073,10 @@ switch SESSION
             allMotionTRs = allMotionTRs + stim.fixBlock/stim.TRlength;
             addTR = stim.fixBlock/stim.TRlength;
         end
+        if SESSION >= MOT{1} % then we need to match previous
+            rtData.plannedSpeeds = y.rtData.allSpeeds;
+            rtData.plannedTimes = {};
+        end
         rtData.classOutputFileLoad = nan(1,config.nTRs.perBlock + addTR);
         rtData.classOutputFile = cell(1,config.nTRs.perBlock + addTR);
         rtData.rtDecoding = nan(1,config.nTRs.perBlock+ addTR);
@@ -2063,8 +2096,8 @@ switch SESSION
         stimID = stim.id;
         stimCond = stim.cond;
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']);
-        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
-                
+        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config');
+        
         rtData.foundFn = [];
         rtData.RTVEC = {};
         rtData.allSpeeds = {};
@@ -2132,15 +2165,18 @@ switch SESSION
             initFeedback = config.initFeedback;
             initFunction = config.initFunction;
             current_speed = stim.speed(stim.trial);
-
-            if SESSION > MOT{1}
+            
+            if SESSION >= MOT{1}
                 %load the previous last speed for this stimulus and set
                 %this as the speed
-                initSpeed = lastSpeed(stim.id(stim.trial)); %check the indexing is right!!
-                current_speed = initSpeed;
-                initFeedback = lastDecoding(stim.id(stim.trial));
-                initFunction = lastDecodingFunction(stim.id(stim.trial));
+                %initSpeed = lastSpeed(stim.id(stim.trial)); %check the indexing is right!!
+                trialSpeeds = rtData.plannedSpeeds{n}; %same trial so now just match everything by trial
+                rtData.plannedTimes{n} = y.rtData.allTimeChanges{n} - y.timing.actualOnsets.motion(1,n);
+                remainingDS = ones(length(rtData.plannedTimes{n}),1);
+                initSpeed = trialSpeeds(1);
+                current_speed = initSpeed;    
             end
+            
             rtData.allSpeeds{n} = [];
             rtData.allSpeeds{n}(1) = current_speed;
             rtData.allTimeChanges{n} = [];
@@ -2170,9 +2206,9 @@ switch SESSION
             printlog(LOG_NAME,'trial\tTR\tprompt active\tspeed\tds\tflip error\tFound File #\tThisTR\tCategSep\n');
             check = [];
             rtData.RTVEC{n} = [];
-           
+            
             while abs(GetSecs - timing.plannedOnsets.probe(n)) > 0.050;%SLACK*2 %so this is just constatnly running, stops when it's within a flip
-               
+                
                 stim.frame_counter(stim.trial) = stim.frame_counter(stim.trial) + 1;
                 % here we go!
                 
@@ -2231,42 +2267,21 @@ switch SESSION
                     end
                 end
                 
-              
-   
-                waitFrames = 15; % looking at half second rate--start to begin % ACM changed this from 15 to 2 after subject 2
-                % but we don't want this to look for the same file more
-                % than once or go through the same loop
+                
+                
+
                 if realtime
                     if TRcounter >=4
                         thisTR = allMotionTRs(TRcounter,n); %this is the TR we're actually on KEEP THIS WAY--starts on 4, ends on 10
-                        fileTR = thisTR - 1; 
+                        fileTR = thisTR - 1;
                         if scanNum
-                            if ~mod(stim.frame_counter(n),waitFrames) %check only evert so often to spare memory
-                                % first check if there's a new file
-                                rtData.fileList{thisTR} = ls(classOutputDir);
-                                allFn = dir([classOutputDir 'vol' '*']);
-                                dates = [allFn.datenum];
-                                names = {allFn.name};
-                                [~,newestIndex] = max(dates);
-                                rtData.newestFile{thisTR} = names{newestIndex};
-                                % figure out the NUMBER file that it came from
-                                filename = rtData.newestFile{thisTR};
-                                startI = 5;
-                                fileNumber = str2double(filename(startI:(length(filename)-4)));
-                                % let's see if we've loaded this before
-                                if ~ismember(fileNumber,rtData.foundFn) && ismember(fileNumber,allMotionTRs(3:end,n)) % so only accept it if it's one of the TR's for that trial
-                                    % now add this to the found file
-                                    rtData.foundFn(end+1) = fileNumber;
-
-                                    rtData.classOutputFileLoad(fileNumber) = 1;
-                                    tempStruct = load(fullfile(classOutputDir,filename));
-                                    rtData.rtDecoding(fileNumber) = tempStruct.classOutput;
-                                    rtData.RTVEC{n}(end+1) = rtData.rtDecoding(fileNumber);
-                                    rtData.rtDecodingFunction(fileNumber) = PID(rtData.RTVEC{n},Kp,Ki,Kd,OptimalForget,maxIncrement);
-                                    
+                            nextDSPos = find(remainingDS,1,'first');
+                            nextDSTime = rtData.plannedTimes{n}(nextDSPos);
+                            if ~isempty(nextDSPos)
+                                timeSince = GetSecs - timing.actualOnsets.motion(1,n);
+                                if abs(timeSince - nextDSTime) <= 0.050
                                     % update speed here
-                                    current_speed = current_speed + rtData.rtDecodingFunction(fileNumber); % apply in THIS TR what was from 2 TR's ago (indexed by what file it is) so file 3 will be applied at TR5!
-                                    stim.changeSpeed(TRcounter,n) = rtData.rtDecodingFunction(fileNumber); %speed changed ON that TR
+                                    current_speed = rtData.plannedSpeeds{n}(nextDSPos+1);
                                     % so this will update every time a new
                                     % file comes through!
                                     % you can check rtData.rtDecoding to
@@ -2275,10 +2290,9 @@ switch SESSION
                                     
                                     % make sure speed is between [stim.minspeed
                                     % stim.maxspeed] (0,30) right now
-                                    current_speed = min([stim.maxspeed current_speed]);
-                                    current_speed = max([stim.minspeed current_speed]);
                                     rtData.allSpeeds{n}(end+1) = current_speed;
                                     rtData.allTimeChanges{n}(end+1) = GetSecs;
+                                    remainingDS(nextDSPos) = 0;
                                 end
                             end
                             
@@ -2322,7 +2336,7 @@ switch SESSION
                     printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%d\t\t%5.3f\n',n,TRcounter,prompt_active,current_speed,rtData.rtDecodingFunction(fileNumber),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),fileNumber,thisTR,rtData.rtDecoding(fileNumber));
                     printTR(TRcounter) = 0;
                 end
-
+                
                 
             end  %30 s trial ends here THEN probe
             % update parameters at the end of the trial
@@ -2488,7 +2502,7 @@ switch SESSION
         if CURRENTLY_ONLINE && SESSION > TOCRITERION3
             WaitSecs(10);
         end
-
+        
         if SESSION < MOT{1}
             save(MATLAB_SAVE_FILE,'stim', 'timing', 'config');
         else
@@ -2510,15 +2524,19 @@ switch SESSION
         else
             %displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, subjectiveEK,CONGRATS);
-            if SESSION < MOT_LOCALIZER
-                mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            if SESSION == MOT_PRACTICE
+                    mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            elseif SESSION == MOT_PRACTICE2
+                    mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
             end
         end
         sca;
         
         %% FRUIT HARVEST
     case {RSVP,RSVP2}
-        
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        stim.fillerCues = y.stim.fillerCues;
         % stimulus presentation parameters
         secs_per_item = 8*SPEED; % secs per item
         stim.targetLatencyMean = 12*SPEED; % time between target exposures for use in distribution. count on this being about 0.5s longer than specified, since filler items will spill over
@@ -2539,11 +2557,7 @@ switch SESSION
         relative_paths = 1; % for use with file search functions
         stim.exclusionList = [preparedCues];
         
-        % during practice, filler is going to be a small set of repeated words to familiarize
-        if SESSION == RSVP
-            stim.fillerCues = lureWords(1:7);
-        else stim.fillerCues = lureWords(8:23);
-        end
+        
         stim.num_short = 0; stim.num_long = 0; stim.num_omit = 0;
         PROGRESS = INDEXFINGER;
         % final initialization
@@ -2573,66 +2587,24 @@ switch SESSION
         idealLag = normrnd(stim.targetLatencyMean,stim.targetLatencySd);
         stim.enterLoop = GetSecs;
         stim.expDuration = 0;
+        stim.stim = y.stim.stim;
+        stim.condString = y.stim.condString;
         % keep pumping out filler words until the time is up
-        while stim.expDuration < ((stim.scanLength)/60) %4 seconds less
+        while stim.trial <length(stim.stim) %4 seconds less
             
             % initialize trial
             stim.trial = stim.trial + 1;
-            cueDistance = GetSecs() - lastCue; % rear-view mirror
-            if countdown, countdown = countdown - 1; end
+            stim.cond(stim.trial) = y.stim.cond(stim.trial);
+            stim.promptDur(stim.trial) = y.stim.promptDur(stim.trial);
             
-            % figure out if there are any cues left
-            if ~stim.availableFruit %if there are no more fruit
-                timeToCue = inf;
-            else % if there are cues left, check whether it's nearly time to present one
-                timeToCue =  idealLag - cueDistance;
-                buffer_time = unifrnd(stim.shortest_expos,stim.longest_expos);
-                if ~countdown && timeToCue < stim.nminus1+buffer_time
-                    countdown = 2; % step 5 is sync to TR; step 4 is 0.5s constant filler; step 3 is cue; then two fillers and back to normal
-                end
-            end
-            
-            % get stimulus, make sure it wasn't just used
-            stim.stim{stim.trial} = [];
-            while isempty(stim.stim{stim.trial})
-                candidate = [];
-                while isempty(candidate)
-                    candidate = stim.fillerCues{randi(length(stim.fillerCues))};
-                    if stim.trial > 1
-                        if strcmp(stim.stim{stim.trial-1},candidate)
-                            candidate = [];
-                        end
-                    end
-                end
-                stim.stim{stim.trial} = candidate;
-            end
-            % by default, words are filler with random duration
-            stim.cond(stim.trial) = LUREWORD;
+           
             cresp = {nan};
             cresp_map = zeros(1,256);
             valid_map = keys.map(2,:);
-            stim.promptDur(stim.trial) = unifrnd(stim.shortest_expos,stim.longest_expos);
-            duration = stim.promptDur(stim.trial);
-            
-            % now override details based on real item type
-            switch countdown
-                case 1 % target--if the countdown is 1, make it a fruit with 1 s duration (and 33% of the time)
-                    % what condition will the cue come from?
-                    if stim.availableFruit && (rand() < 0.33) %1/3 of the time take a fruit (stim.availableFruit / (stim.num_short + stim.num_long + stim.availableFruit - cueIndex(EASY) - cueIndex(HARD))))
-                        cresp = {INDEXFINGER};
-                        cresp_map = keys.map(2,:);
-                        stim.cond(stim.trial) = FRUIT;
-                        stim.stim{stim.trial} = fillerCueTargets{randi(length(fillerCueTargets))};
-                        stim.promptDur(stim.trial) = 1;
-                        lastCue = GetSecs() + duration + stim.fruit_extradelay; % assures us a reasonable buffer before memory cue is presented
-                        stim.availableFruit = stim.availableFruit - 1;
-                        idealLag = normrnd(stim.targetLatencyMean,stim.targetLatencySd);
-                        
-                    end
-                case 2 % filler with n-1 duration
-                    stim.promptDur(stim.trial) = stim.nminus1;
+            if stim.cond(stim.trial) == FRUIT
+                cresp = {INDEXFINGER};
+                cresp_map = keys.map(2,:);
             end
-            stim.condString{stim.trial} = CONDSTRINGS{stim.cond(stim.trial)};
             
             trial_message = ['sess' num2str(SESSION) '_trial' num2str(stim.trial) '_cond' num2str(stim.cond(stim.trial))];
             
@@ -2681,7 +2653,7 @@ switch SESSION
             if mod(stim.trial,10)==0 || (stim.enterLoop >= (stim.scanLength-(STABILIZATIONTIME)))
                 stim.expDuration = (GetSecs - stim.enterLoop) / 60; % experiment time in mins
                 save(MATLAB_SAVE_FILE,'stim','timing');
-            end 
+            end
         end
         isi(mainWindow,stim.isiDuration,COLORS.MAINFONTCOLOR); %cange this to be actual ISI
         
@@ -2700,7 +2672,7 @@ switch SESSION
             sca
         else
             endSession(fruitHarvestEK, CONGRATS);
-            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            mot_realtime05b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
         end
         
         %% SCAN PREP
@@ -2708,21 +2680,21 @@ switch SESSION
     case SCAN_PREP
         % instructions
         displayText(mainWindow,['Great job! Now, we''re now going to take a sequence of short scans before you complete various tasks. Please work through these and we''ll get in ' ...
-             'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
         DrawFormattedText(mainWindow,'Waiting for scanner start, hold tight!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         Screen('Flip', mainWindow);
         
         if CURRENTLY_ONLINE
-        [timing.trig.wait timing.trig.waitSuccess] = WaitTRPulse(TRIGGER_keycode,DEVICE);
-        runStart = timing.trig.wait;
-        displayText(mainWindow,STILLREMINDER,STILLDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        DrawFormattedText(mainWindow,'+','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        Screen('Flip', mainWindow)
+            [timing.trig.wait timing.trig.waitSuccess] = WaitTRPulse(TRIGGER_keycode,DEVICE);
+            runStart = timing.trig.wait;
+            displayText(mainWindow,STILLREMINDER,STILLDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            DrawFormattedText(mainWindow,'+','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            Screen('Flip', mainWindow)
         else
             runStart = GetSecs;
         end
-       % runStart = timing.trig.wait;
+        % runStart = timing.trig.wait;
         config.wait = 150; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
         config.TR = 2;
         timing.plannedOnsets.offEx = runStart + config.wait;

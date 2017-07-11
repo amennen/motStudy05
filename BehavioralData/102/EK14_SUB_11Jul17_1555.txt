@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	13.1  	45  	MOON      	lure_hard	2.058	NR  	0   	NR      	1 detail, 2+ details, full
+2   	19.1  	45  	MOON (repeat 1)	lure_hard	2.088	NR  	0   	NR      	1 detail, 2+ details, full
+3   	25.1  	45  	MOON (repeat 2)	lure_hard	1.976	NR  	0   	NR      	1 detail, 2+ details, full
+4   	31.1  	45  	MOON (repeat 3)	lure_hard	2.005	NR  	0   	NR      	1 detail, 2+ details, full
+5   	55.1  	2   	HAMMER    	targ_hard	2.014	NR  	0   	NR      	1 detail, 2+ details, full
+6   	61.1  	2   	HAMMER (repeat 1)	targ_hard	1.971	NR  	0   	NR      	1 detail, 2+ details, full
+7   	67.1  	2   	HAMMER (repeat 2)	targ_hard	2.003	NR  	0   	NR      	1 detail, 2+ details, full
+8   	73.1  	2   	HAMMER (repeat 3)	targ_hard	2.012	NR  	0   	NR      	1 detail, 2+ details, full
+9   	97.1  	46  	NAIL      	lure_easy	1.988	NR  	0   	NR      	1 detail, 2+ details, full
+10  	103.1 	46  	NAIL (repeat 1)	lure_easy	2.005	NR  	0   	NR      	1 detail, 2+ details, full
+11  	109.1 	46  	NAIL (repeat 2)	lure_easy	2.036	NR  	0   	NR      	1 detail, 2+ details, full
+12  	115.1 	46  	NAIL (repeat 3)	lure_easy	1.989	NR  	0   	NR      	1 detail, 2+ details, full
+13  	139.1 	4   	ISLAND    	targ_easy	1.999	NR  	0   	NR      	1 detail, 2+ details, full
+14  	145.1 	4   	ISLAND (repeat 1)	targ_easy	2.036	NR  	0   	NR      	1 detail, 2+ details, full
+15  	151.1 	4   	ISLAND (repeat 2)	targ_easy	1.995	NR  	0   	NR      	1 detail, 2+ details, full
+16  	157.1 	4   	ISLAND (repeat 3)	targ_easy	1.973	NR  	0   	NR      	1 detail, 2+ details, full
