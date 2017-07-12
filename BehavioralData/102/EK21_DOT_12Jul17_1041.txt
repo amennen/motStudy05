@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	39.7  	28  	CHALK     	rt-targ 	1.952	NR  	0   	NR      	non-target
+2   	81.7  	29  	DRILL     	rt-targ 	1.951	NR  	0   	NR      	non-target
+3   	123.6 	25  	POWDER    	rt-targ 	1.951	NR  	0   	NR      	non-target
+4   	165.7 	27  	HOSE      	rt-targ 	1.951	NR  	0   	NR      	target  
+5   	207.7 	26  	HOOK      	rt-targ 	1.951	NR  	0   	NR      	non-target
+6   	249.6 	30  	PYRAMID   	rt-targ 	1.951	NR  	0   	NR      	target  
+7   	291.6 	34  	BRACELET  	rt-targ 	1.951	NR  	0   	NR      	target  
+8   	333.7 	32  	JAIL      	rt-targ 	1.951	NR  	0   	NR      	non-target
+9   	375.7 	31  	PURSE     	rt-targ 	1.951	NR  	0   	NR      	target  
+10  	417.7 	33  	LENS      	rt-targ 	1.951	NR  	0   	NR      	non-target

@@ -100,7 +100,7 @@ mot_realtime05b(SUBJECT,RECALL1,[],scanNum,scanNow,s2);
 %% MOT RUN 1 DISPLAY
 % number of TR's total 452 (should be 226 originally)
 scanNum = 11; %11new would be 15
-mot_realtime05b(SUBJECT,MOT{1},[],scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,MOT{1},1,scanNum,scanNow,s2);
 %% MOT RUN 1 FILE PROCESS
 scanNum = 11;%normally 15;
 blockNum = 1;
@@ -109,7 +109,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},block
 
 %% MOT RUN 2 DISPLAY
 scanNum = 12;
-mot_realtime05b(SUBJECT,MOT{2},[],scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,MOT{2},1,scanNum,scanNow,s2);
 %% MOT RUN 2 FILE PROCESS
 scanNum = 12;
 featureSelect = 1;

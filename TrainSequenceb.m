@@ -2,7 +2,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 102;
+SUBJECT = 11;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %all given subjects: 8,12,13,14,15,18,21,22
@@ -44,9 +44,7 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 %% first practice set
-mot_realtime05b(SUBJECT, SETUP, 1, 0, 0);
-mot_realtime05b(SUBJECT, MOT_PRACTICE, 1, 0, 0);
-
+mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
 %for testing
 %mot_realtime01b(SUBJECT,TOCRITERION1,[],0,0);
 % this will continue to train test and practice MOT, then move on to
@@ -60,16 +58,13 @@ if s2 < 0 % if no match then do regular RT
     originalFomat = 1;
     save([subjDir 'matchSubj.mat'],'s2','SVEC', 'originalFormat');
     mot_realtime05(SUBJECT,FAMILIARIZE2,[],0,0); % have mot go to familiarize 2 after making pairs!
-    
-
 else %keep going 
     oldfile = [subjDir 'mot_realtime05_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
     newfile = [subjDir 'OLDstimAssignment.mat'];
     system(['cp ' subjDir 'mot_realtime05_subj_' num2str(SUBJECT) '_stimAssignment.mat ' subjDir 'OLDstimAssignment.mat']);
     originalFormat = 0;
     save([subjDir 'matchSubj.mat'],'s2','SVEC', 'originalFormat');
-    mot_realtime05b(SUBJECT, FAMILIARIZE2, 1, 0, 0,s2); %continue because want to not go through the break
-
+    mot_realtime05b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 end
 
 

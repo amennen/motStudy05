@@ -106,7 +106,7 @@ if SESSION>=MOT_LOCALIZER %if localizer or more check that all stimuli are the s
         t1-t2
         % make this time then closer and retest!
     end
-    
+        s1_f.stim.motionSpeed == s2_f.stim.motionSpeed
 end
 %% CHECK IF RECALL_PRACTICE IS SHOWING WORDS, KEY PRESSES ARE RECORDED and then recall1 and 2: 14, 19 and 23
 SESSION = 23;
