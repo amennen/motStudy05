@@ -80,6 +80,6 @@ mot_realtime05b(SUBJECT, STIM_REFRESH, [], 0, 0,s2);
 
 %% after scanner, test associates and descriptions
 load([subjDir 'matchSubj.mat'])
-mot_realtime05b(SUBJECT,DESCRIPTION, [], 0, 0,s2); 
-mot_realtime05b(SUBJECT,ASSOCIATES, [], 0, 0,s2); 
+mot_realtime05b(SUBJECT,DESCRIPTION, 1, 0, 0,s2); 
+mot_realtime05b(SUBJECT,ASSOCIATES, 1, 0, 0,s2); 
 

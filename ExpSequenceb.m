@@ -118,7 +118,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},block
 
 %% MOT RUN 3 DISPLAY
 scanNum = 13;
-mot_realtime05b(SUBJECT,MOT{3},[],scanNum,scanNow);
+mot_realtime05b(SUBJECT,MOT{3},1,scanNum,scanNow,s2);
 %% MOT RUN 3 FILE PROCESS
 scanNum = 13;
 featureSelect = 1;
@@ -126,7 +126,7 @@ blockNum = 3;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 %% RECALL 2
 scanNum = 14;
-mot_realtime05b(SUBJECT,RECALL2,[],scanNum,scanNow);
+mot_realtime05b(SUBJECT,RECALL2,1,scanNum,scanNow,s2);
 %% ANALYZE RECALL DATA
 % do for recall 1 and recall 2
 makeFile = 1;
