@@ -2359,3 +2359,35 @@ SESSION 10 ended 12-Jul-2017 15:20:23 for SUBJECT number 102
 
 
 ******************************************************************************
+
+SESSION 12 initiated 13-Jul-2017 08:39:25 for SUBJECT number 102
+
+session	trial	pair	onset	dur	cue         	associate   
+12	1	42	1998  	2000  	FOAM        	pici05.jpg  
+12	2	25	10003 	2002  	POWDER      	pici12.jpg  
+12	3	37	18009 	2001  	NICKEL      	pici03.jpg  
+12	4	30	25998 	2002  	PYRAMID     	pico08.jpg  
+12	5	40	34004 	2000  	RULER       	pici08.jpg  
+12	6	32	42001 	2001  	JAIL        	pico03.jpg  
+12	7	26	49999 	2000  	HOOK        	pici29.jpg  
+12	8	44	58006 	2003  	ROPE        	pici15.jpg  
+12	9	39	66004 	2002  	MIRROR      	pico29.jpg  
+12	10	28	74002 	2001  	CHALK       	pici25.jpg  
+12	11	36	82000 	2002  	DUST        	pico15.jpg  
+12	12	33	90003 	2000  	LENS        	pico22.jpg  
+12	13	41	97997 	2003  	PAGE        	pico02.jpg  
+12	14	31	106003	2003  	PURSE       	pici23.jpg  
+12	15	34	113995	2005  	BRACELET    	pici01.jpg  
+12	16	38	122000	2002  	PLUG        	pici11.jpg  
+12	17	43	130006	1990  	SPONGE      	pico21.jpg  
+12	18	27	138001	2002  	HOSE        	pico12.jpg  
+12	19	35	146002	1999  	BROOM       	pico28.jpg  
+12	20	29	154009	2002  	DRILL       	pico06.jpg  
+
+
+SESSION 12 ended 13-Jul-2017 08:42:12 for SUBJECT number 102
+
+
+
+
+******************************************************************************
