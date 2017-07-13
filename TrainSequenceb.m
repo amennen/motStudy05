@@ -2,7 +2,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 102;
+SUBJECT = 11;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %all given subjects: 8,12,13,14,15,18,21,22
@@ -71,10 +71,10 @@ end
 %% REFRESH
 %% Refresh on day 2
 load([subjDir 'matchSubj.mat'])
-mot_realtime05b(SUBJECT, STIM_REFRESH, 1, 0, 0,s2);
+mot_realtime05b(SUBJECT, STIM_REFRESH, [], 0, 0,s2);
 
 %% after scanner, test associates and descriptions
 load([subjDir 'matchSubj.mat'])
-mot_realtime05b(SUBJECT,DESCRIPTION, 1, 0, 0,s2); 
-mot_realtime05b(SUBJECT,ASSOCIATES, 1, 0, 0,s2); 
+mot_realtime05b(SUBJECT,DESCRIPTION, [], 0, 0,s2); 
+mot_realtime05b(SUBJECT,ASSOCIATES, [], 0, 0,s2); 
 

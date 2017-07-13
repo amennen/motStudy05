@@ -69,7 +69,7 @@ for s = 1:length(subjectVec)
     save(newfn,'allRecall');
     unix(['scp ' newfn ' amennen@apps.pni.princeton.edu:' folder '/' newfn])
 end
-%
+%%
 folder= '/jukebox/norman/amennen/PythonMot5/Loc/';
 folder= '/jukebox/norman/amennen/PythonMot4/Loc/';
 subjectVec = [3:6]; %now made it so for all subjects and can separate them into RT/YC afterwards in python 2/17

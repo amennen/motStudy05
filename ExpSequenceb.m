@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 102; %experimental subject number
+SUBJECT = 11; %experimental subject number
 prev = 0; %5if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -61,7 +61,7 @@ ASSOCIATES = DESCRIPTION + 1; %27
 %% RUN MP_RAGE FIRST
 %% RUN VARIOUS BEHAVIORAL TASKS
 %first MOT_PRACTICE and RECALL PRACTICE
-mot_realtime05b(SUBJECT,MOT_PRACTICE2, 1,0,scanNow,s2); %will move automatically into RECALL_PRACTICE
+mot_realtime05b(SUBJECT,MOT_PRACTICE2, [],0,scanNow,s2); %will move automatically into RECALL_PRACTICE
 %then start RSVP task5
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 5; % here run process Nifti but look at outputs--make sure magnitude bet is okay and functional bet!
@@ -78,7 +78,7 @@ mot_realtime05b(SUBJECT,SCAN_PREP,[],scanNum,scanNow,s2)
 % run after functional scans! as soon as it finishes!
 % (could maybe have two windows to process anatomical and other functional
 % ones but eh)
-mot_realtime05b(SUBJECT,RSVP2,1,0,scanNow,s2) %will continue until TOCRITERION3
+mot_realtime05b(SUBJECT,RSVP2,[],0,scanNow,s2) %will continue until TOCRITERION3
 %look for mask and test it
 
 %% LOCALIZER DISPLAY
@@ -100,7 +100,7 @@ mot_realtime05b(SUBJECT,RECALL1,[],scanNum,scanNow,s2);
 %% MOT RUN 1 DISPLAY
 % number of TR's total 452 (should be 226 originally)
 scanNum = 11; %11new would be 15
-mot_realtime05b(SUBJECT,MOT{1},1,scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,MOT{1},[],scanNum,scanNow,s2);
 %% MOT RUN 1 FILE PROCESS
 scanNum = 11;%normally 15;
 blockNum = 1;
@@ -109,7 +109,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},block
 
 %% MOT RUN 2 DISPLAY
 scanNum = 12;
-mot_realtime05b(SUBJECT,MOT{2},1,scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,MOT{2},[],scanNum,scanNow,s2);
 %% MOT RUN 2 FILE PROCESS
 scanNum = 12;
 featureSelect = 1;
@@ -118,7 +118,7 @@ RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},block
 
 %% MOT RUN 3 DISPLAY
 scanNum = 13;
-mot_realtime05b(SUBJECT,MOT{3},1,scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,MOT{3},[],scanNum,scanNow,s2);
 %% MOT RUN 3 FILE PROCESS
 scanNum = 13;
 featureSelect = 1;
@@ -126,7 +126,7 @@ blockNum = 3;
 RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 %% RECALL 2
 scanNum = 14;
-mot_realtime05b(SUBJECT,RECALL2,1,scanNum,scanNow,s2);
+mot_realtime05b(SUBJECT,RECALL2,[],scanNum,scanNow,s2);
 %% ANALYZE RECALL DATA
 % do for recall 1 and recall 2
 makeFile = 1;

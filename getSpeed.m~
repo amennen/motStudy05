@@ -15,5 +15,3 @@ end
 
 % other idea: too difficult to do beforehand without setting everythign
 % exactly the same so could calibrate things if they're different?
-save('allHardSpeeds.mat', 'hardSpeed', 'svec')
-
