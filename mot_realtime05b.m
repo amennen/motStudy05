@@ -366,7 +366,7 @@ if SESSION >= FAMILIARIZE2
             stimmap = makeMap(preparedCues);
             lureWords = s_prev.lureWords;
             save(MATLAB_STIM_FILE, 'cues', 'preparedCues', 'pics', 'pairIndex', 'lureWords','stimmap', 'trainWords', 'trainPics');
-            clear cues preparedCues pics pairIndex lureWords recogLures stimmap
+            clear cues preparedCues pics pairIndex lureWords recogLures stimmap trainWords trainPics
             load(MATLAB_STIM_FILE);
         end
     else
@@ -2281,7 +2281,7 @@ switch SESSION
                                 timeSince = GetSecs - timing.actualOnsets.motion(1,n);
                                 if abs(timeSince - nextDSTime) <= 0.05
                                     % update speed here
-                                    current_speed = rtData.plannedSpeeds{n}(nextDSPos+1);
+                                    current_speed = rtData.plannedSpeeds{n}(nextDSPos+1); % add 1 because the first value is the initial speed
                                     % so this will update every time a new
                                     % file comes through!
                                     % you can check rtData.rtDecoding to

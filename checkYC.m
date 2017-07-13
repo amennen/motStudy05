@@ -22,7 +22,7 @@ s1_stim.preparedCues(21:28) %these should be only the training words
 
 %% check familiarization matches familiarize2, can also do familiarize 3 which is 16 (2,7,16)
 
-SESSION = FAMILIARIZE3; 
+SESSION = STIM_REFRESH; 
 
 
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime05_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
@@ -109,11 +109,11 @@ if SESSION>=MOT_LOCALIZER %if localizer or more check that all stimuli are the s
         s1_f.stim.motionSpeed == s2_f.stim.motionSpeed
 end
 %% CHECK IF RECALL_PRACTICE IS SHOWING WORDS, KEY PRESSES ARE RECORDED and then recall1 and 2: 14, 19 and 23
-SESSION = 23;
-fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+SESSION = RECALL2;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime05_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
 
-fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
 s2_f = load(fname);
 
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['EK' num2str(SESSION)  '*.mat']));
@@ -122,13 +122,24 @@ s1_ek.datastruct.trials; %check that key presses are correct
 allw = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
 
 %% associates task is the same --pictures
-SESSION = 24;
-fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+SESSION = ASSOCIATES;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime05_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
 
-fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
 s2_f = load(fname);
 
 allpic = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
 checkCond = isempty(find(~isequal(s1_f.stim.cond,s2_f.stim.cond)))
 checkid = isempty(find(~isequal(s1_f.stim.id,s2_f.stim.id)))
+checkCond2 = isempty(find(~isequal(s1_f.stim.AAP,s2_f.stim.AAP)))
+checkCond3 = isempty(find(~isequal(s1_f.stim.AAPID,s2_f.stim.AAPID)))
+%% DESCRIPTION TASK
+SESSION = DESCRIPTION;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime05_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+s1_f = load(fname);
+
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime05_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+s2_f = load(fname);
+checkid = isempty(find(~isequal(s1_f.stim.id,s2_f.stim.id)))
+checkid = isempty(find(~isequal(s1_f.stim.stim,s2_f.stim.stim)))
