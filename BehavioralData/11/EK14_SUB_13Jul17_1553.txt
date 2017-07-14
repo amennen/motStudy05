@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.2  	4   	ISLAND    	targ_hard	2.072	2.068	1   	1 detail	1 detail, 2+ details, full
+2   	16.2  	4   	ISLAND (repeat 1)	targ_hard	2.021	2.02	1   	2+ details	1 detail, 2+ details, full
+3   	22.2  	4   	ISLAND (repeat 2)	targ_hard	2.013	2.012	1   	1 detail	1 detail, 2+ details, full
+4   	28.2  	4   	ISLAND (repeat 3)	targ_hard	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+5   	52.2  	45  	MATCH     	lure_easy	2.044	NR  	0   	NR      	1 detail, 2+ details, full
+6   	58.2  	45  	MATCH (repeat 1)	lure_easy	2.008	NR  	0   	NR      	1 detail, 2+ details, full
+7   	64.2  	45  	MATCH (repeat 2)	lure_easy	2.009	NR  	0   	NR      	1 detail, 2+ details, full
+8   	70.2  	45  	MATCH (repeat 3)	lure_easy	2.011	NR  	0   	NR      	1 detail, 2+ details, full
+9   	94.2  	7   	PUZZLE    	targ_easy	2.008	2.007	0   	generic 	1 detail, 2+ details, full
+10  	100.2 	7   	PUZZLE (repeat 1)	targ_easy	2.013	2.011	1   	1 detail	1 detail, 2+ details, full
+11  	106.2 	7   	PUZZLE (repeat 2)	targ_easy	2.013	2.012	0   	generic 	1 detail, 2+ details, full
+12  	112.2 	7   	PUZZLE (repeat 3)	targ_easy	2.017	2.016	1   	1 detail	1 detail, 2+ details, full
+13  	136.2 	46  	RATTLE    	lure_hard	2.031	2.03	0   	no image	1 detail, 2+ details, full
+14  	142.2 	46  	RATTLE (repeat 1)	lure_hard	2.023	2.021	0   	no image	1 detail, 2+ details, full
+15  	148.2 	46  	RATTLE (repeat 2)	lure_hard	2.016	2.014	0   	no image	1 detail, 2+ details, full
+16  	154.2 	46  	RATTLE (repeat 3)	lure_hard	2.013	2.011	0   	no image	1 detail, 2+ details, full
