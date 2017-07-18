@@ -2279,7 +2279,7 @@ switch SESSION
                             nextDSTime = rtData.plannedTimes{n}(nextDSPos);
                             if ~isempty(nextDSPos)
                                 timeSince = GetSecs - timing.actualOnsets.motion(1,n);
-                                if abs(timeSince - nextDSTime) <= 0.05
+                                if abs(timeSince - nextDSTime) <= 0.04
                                     % update speed here
                                     current_speed = rtData.plannedSpeeds{n}(nextDSPos+1); % add 1 because the first value is the initial speed
                                     % so this will update every time a new

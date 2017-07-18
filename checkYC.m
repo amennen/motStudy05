@@ -1,6 +1,6 @@
 % check yoking--created to make sure that things are okay
-s1 = 102; %this is the YC subject
-s2 = 3;
+s1 = 11; %this is the YC subject
+s2 = 6;
 
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 s1_dir = fullfile(base_path, 'BehavioralData', num2str(s1));
