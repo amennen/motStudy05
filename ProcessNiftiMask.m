@@ -29,7 +29,7 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 11;
+subjNum = 12;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
@@ -80,7 +80,7 @@ unix(sprintf('%sapplywarp -i %s_brain.nii.gz -r $FSLDIR/data/standard/MNI152_T1_
 unix(sprintf('%sconvert_xfm -inverse -omat standard2highres.mat highres2standard.mat', fslpath));
 unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highresFN_RE));
 %% Process example epi file
-fileN = 6; % we can choose 10 later
+fileN = 6; % we can choose 10 later2
 functionalFN = 'exfunc';
 functionalFN_RE = 'exfunc_re';
 exfunc_str = sprintf('%s001_0000%s_0000%s.dcm',dicom_dir,num2str(functionalScan,'%2.2i'),num2str(fileN,'%2.2i')); %general string for ALL mprage files**
@@ -102,7 +102,7 @@ unix(sprintf('%sapplywarp -i %s%s.nii.gz -r %s.nii.gz -o %s_exfunc.nii.gz -w sta
 % check after here that the applied warp is binary and in the right
 % orientation so we could just apply to nifti files afterwards
 if exist(sprintf('%s_exfunc.nii.gz',roi_name),'file')
-    unix(sprintf('gunzip %s_exfunc.nii.gz',roi_name));
+    unix(sprintf('gunzip %s_exfunc.nii.gz',roi_name));2
 end
 
 % brain extract functional scan to make sure we stay inside the brain of

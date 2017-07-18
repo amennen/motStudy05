@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	37.1  	45  	CANDLE    	lure_hard	1.951	1.239	1   	non-target	non-target
+2   	79.1  	1   	RAINBOW   	targ_hard	1.95	1.144	0   	non-target	target  
+3   	121.1 	46  	PAINT     	lure_easy	1.95	1.448	1   	target  	target  
+4   	163.1 	2   	PUZZLE    	targ_easy	1.951	1.232	1   	non-target	non-target
