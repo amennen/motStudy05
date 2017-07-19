@@ -1,0 +1,44 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	5.5   	1   	pico11.jpg	5       	0.717	NR  	0   	NR      	left    
+2   	13.2  	3   	pici18.jpg	5       	0.717	1   	1   	left    	left    
+3   	17.8  	2   	pici17.jpg	5       	0.717	0.6 	1   	left    	left    
+4   	28.2  	43  	pico21.jpg	omit    	0.717	0.614	1   	left    	left    
+5   	31.5  	28  	pico06.jpg	realtime	0.717	1   	1   	right   	right   
+6   	34.7  	40  	pico12.jpg	omit    	0.733	0.586	1   	right   	right   
+7   	38    	31  	pici23.jpg	realtime	0.733	0.673	1   	right   	right   
+8   	41.2  	37  	pico02.jpg	omit    	0.733	0.67	1   	right   	right   
+9   	44.5  	32  	pico15.jpg	realtime	0.717	0.687	1   	right   	right   
+10  	47.7  	30  	pici12.jpg	realtime	0.717	NR  	0   	NR      	left    
+11  	51    	41  	pici29.jpg	omit    	0.717	1   	1   	left    	left    
+12  	54.2  	26  	pico28.jpg	realtime	0.717	0.581	1   	right   	right   
+13  	57.5  	38  	pici03.jpg	omit    	0.717	0.636	1   	left    	left    
+14  	60.7  	35  	pici15.jpg	omit    	0.717	1   	1   	right   	right   
+15  	64    	33  	pici11.jpg	realtime	0.717	0.674	1   	left    	left    
+16  	67.2  	25  	pico08.jpg	realtime	0.733	0.632	1   	right   	right   
+17  	70.5  	42  	pici01.jpg	omit    	0.717	1   	1   	left    	left    
+18  	73.7  	44  	pico22.jpg	omit    	0.733	0.584	1   	left    	left    
+19  	77    	29  	pici08.jpg	realtime	0.717	NR  	0   	NR      	left    
+20  	80.2  	27  	pici25.jpg	realtime	0.717	1   	1   	left    	left    
+21  	83.5  	36  	pici05.jpg	omit    	0.717	0.68	1   	right   	right   
+22  	86.7  	34  	pico03.jpg	realtime	0.717	1   	1   	left    	left    
+23  	90    	39  	pico29.jpg	omit    	0.717	0.669	1   	right   	right   
+24  	93.2  	40  	pico12.jpg (repeat 1)	omit    	0.717	0.666	0   	right   	left    
+25  	96.5  	26  	pico28.jpg (repeat 1)	realtime	0.717	NR  	0   	NR      	left    
+26  	99.7  	30  	pici12.jpg (repeat 1)	realtime	0.717	0.684	1   	right   	right   
+27  	103   	41  	pici29.jpg (repeat 1)	omit    	0.717	1   	1   	right   	right   
+28  	106.2 	25  	pico08.jpg (repeat 1)	realtime	0.733	0.583	1   	left    	left    
+29  	109.5 	44  	pico22.jpg (repeat 1)	omit    	0.717	0.588	1   	right   	right   
+30  	112.7 	28  	pico06.jpg (repeat 1)	realtime	0.717	1   	0   	right   	left    
+31  	116   	35  	pici15.jpg (repeat 1)	omit    	0.733	0.511	1   	left    	left    
+32  	119.2 	37  	pico02.jpg (repeat 1)	omit    	0.733	0.609	1   	left    	left    
+33  	122.5 	34  	pico03.jpg (repeat 1)	realtime	0.717	0.67	1   	right   	right   
+34  	125.7 	31  	pici23.jpg (repeat 1)	realtime	0.733	0.671	1   	left    	left    
+35  	129   	39  	pico29.jpg (repeat 1)	omit    	0.717	1   	1   	left    	left    
+36  	132.2 	36  	pici05.jpg (repeat 1)	omit    	0.717	1   	1   	left    	left    
+37  	135.5 	33  	pici11.jpg (repeat 1)	realtime	0.733	0.686	1   	right   	right   
+38  	138.7 	42  	pici01.jpg (repeat 1)	omit    	0.733	0.606	1   	right   	right   
+39  	142   	29  	pici08.jpg (repeat 1)	realtime	0.717	0.656	1   	right   	right   
+40  	145.2 	38  	pici03.jpg (repeat 1)	omit    	0.717	0.6 	1   	right   	right   
+41  	148.5 	32  	pico15.jpg (repeat 1)	realtime	0.733	0.649	1   	left    	left    
+42  	151.7 	43  	pico21.jpg (repeat 1)	omit    	0.717	0.689	1   	right   	right   
+43  	155   	27  	pici25.jpg (repeat 1)	realtime	0.717	1   	1   	right   	right   
