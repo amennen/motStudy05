@@ -2,12 +2,12 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 11;
+SUBJECT = 15;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %all given subjects: 8,12,13,14,15,18,21,22
-SVEC = [1 3:6 8:10];
-
+%SVEC = [1 3:6 8:10];
+SVEC = [1 5 8 12 13];
 
 NUM_TASK_RUNS = 3;
 % orientation session
