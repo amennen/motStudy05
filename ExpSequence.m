@@ -2,10 +2,10 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 13; %experimental subject number
+SUBJECT = 14; %experimental subject number
 prev = 0; %5if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
-runNum = 2; %what number subject they are today
+runNum = 1; %what number subject they are today
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
