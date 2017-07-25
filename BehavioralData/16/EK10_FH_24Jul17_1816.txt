@@ -1,0 +1,115 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	23.8  	1   	PAINT     	lure    	0.673	NR  	1   	NR      	NR      
+2   	24.5  	2   	STAPLE    	lure    	0.59	NR  	1   	NR      	NR      
+3   	25.2  	3   	DRUM      	lure    	0.507	NR  	1   	NR      	NR      
+4   	25.7  	2   	STAPLE (repeat 1)	lure    	0.559	NR  	1   	NR      	NR      
+5   	26.4  	1   	PAINT (repeat 1)	lure    	0.506	NR  	1   	NR      	NR      
+6   	26.9  	4   	CANDLE    	lure    	0.33	NR  	1   	NR      	NR      
+7   	27.3  	2   	STAPLE (repeat 2)	lure    	0.32	NR  	1   	NR      	NR      
+8   	27.7  	5   	NAIL      	lure    	0.328	NR  	1   	NR      	NR      
+9   	28.1  	6   	MOON      	lure    	0.656	NR  	1   	NR      	NR      
+10  	28.8  	4   	CANDLE (repeat 1)	lure    	0.497	NR  	1   	NR      	NR      
+11  	29.3  	1   	PAINT (repeat 2)	lure    	0.607	NR  	1   	NR      	NR      
+12  	30    	6   	MOON (repeat 1)	lure    	0.393	NR  	1   	NR      	NR      
+13  	30.5  	7   	EASEL     	lure    	0.466	NR  	1   	NR      	NR      
+14  	31    	4   	CANDLE (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+15  	31.5  	5   	NAIL (repeat 1)	lure    	0.626	NR  	1   	NR      	NR      
+16  	32.2  	3   	DRUM (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+17  	32.7  	5   	NAIL (repeat 2)	lure    	0.471	NR  	1   	NR      	NR      
+18  	33.2  	1   	PAINT (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+19  	33.7  	3   	DRUM (repeat 2)	lure    	0.315	NR  	1   	NR      	NR      
+20  	34.1  	6   	MOON (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+21  	34.6  	8   	CANTELOUPE	fruit   	0.955	0.754	1   	target  	target  
+22  	35.6  	1   	PAINT (repeat 4)	lure    	0.303	NR  	1   	NR      	NR      
+23  	35.9  	4   	CANDLE (repeat 3)	lure    	0.682	NR  	1   	NR      	NR      
+24  	36.6  	7   	EASEL (repeat 1)	lure    	0.518	NR  	1   	NR      	NR      
+25  	37.2  	3   	DRUM (repeat 3)	lure    	0.445	NR  	1   	NR      	NR      
+26  	37.7  	1   	PAINT (repeat 5)	lure    	0.491	NR  	1   	NR      	NR      
+27  	38.3  	5   	NAIL (repeat 3)	lure    	0.338	NR  	1   	NR      	NR      
+28  	38.7  	3   	DRUM (repeat 4)	lure    	0.425	NR  	1   	NR      	NR      
+29  	39.1  	1   	PAINT (repeat 6)	lure    	0.265	NR  	1   	NR      	NR      
+30  	39.5  	4   	CANDLE (repeat 4)	lure    	0.657	NR  	1   	NR      	NR      
+31  	40.2  	2   	STAPLE (repeat 3)	lure    	0.469	NR  	1   	NR      	NR      
+32  	40.7  	7   	EASEL (repeat 2)	lure    	0.374	NR  	1   	NR      	NR      
+33  	41.1  	1   	PAINT (repeat 7)	lure    	0.272	NR  	1   	NR      	NR      
+34  	41.5  	3   	DRUM (repeat 5)	lure    	0.46	NR  	1   	NR      	NR      
+35  	42    	1   	PAINT (repeat 8)	lure    	0.511	NR  	1   	NR      	NR      
+36  	42.5  	5   	NAIL (repeat 4)	lure    	0.555	NR  	1   	NR      	NR      
+37  	43.2  	1   	PAINT (repeat 9)	lure    	0.536	NR  	1   	NR      	NR      
+38  	43.7  	7   	EASEL (repeat 3)	lure    	0.255	NR  	1   	NR      	NR      
+39  	44.1  	3   	DRUM (repeat 6)	lure    	0.505	NR  	1   	NR      	NR      
+40  	44.6  	4   	CANDLE (repeat 5)	lure    	0.579	NR  	1   	NR      	NR      
+41  	45.3  	5   	NAIL (repeat 5)	lure    	0.265	NR  	1   	NR      	NR      
+42  	45.6  	4   	CANDLE (repeat 6)	lure    	0.446	NR  	1   	NR      	NR      
+43  	46.1  	1   	PAINT (repeat 10)	lure    	0.5 	NR  	1   	NR      	NR      
+44  	46.6  	4   	CANDLE (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+45  	47.1  	3   	DRUM (repeat 7)	lure    	0.665	NR  	1   	NR      	NR      
+46  	47.9  	5   	NAIL (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+47  	48.4  	1   	PAINT (repeat 11)	lure    	0.476	NR  	1   	NR      	NR      
+48  	48.9  	7   	EASEL (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+49  	49.4  	4   	CANDLE (repeat 8)	lure    	0.648	NR  	1   	NR      	NR      
+50  	50.1  	5   	NAIL (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+51  	50.6  	1   	PAINT (repeat 12)	lure    	0.429	NR  	1   	NR      	NR      
+52  	51.1  	4   	CANDLE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+53  	51.6  	9   	NECTARINE 	fruit   	0.956	0.731	1   	target  	target  
+54  	52.6  	7   	EASEL (repeat 5)	lure    	0.309	NR  	1   	NR      	NR      
+55  	52.9  	4   	CANDLE (repeat 10)	lure    	0.256	NR  	1   	NR      	NR      
+56  	53.3  	1   	PAINT (repeat 13)	lure    	0.431	NR  	1   	NR      	NR      
+57  	53.7  	5   	NAIL (repeat 8)	lure    	0.328	NR  	1   	NR      	NR      
+58  	54.1  	7   	EASEL (repeat 6)	lure    	0.693	NR  	1   	NR      	NR      
+59  	54.9  	2   	STAPLE (repeat 4)	lure    	0.482	NR  	1   	NR      	NR      
+60  	55.4  	7   	EASEL (repeat 7)	lure    	0.277	NR  	1   	NR      	NR      
+61  	55.7  	4   	CANDLE (repeat 11)	lure    	0.489	NR  	1   	NR      	NR      
+62  	56.3  	2   	STAPLE (repeat 5)	lure    	0.473	NR  	1   	NR      	NR      
+63  	56.8  	1   	PAINT (repeat 14)	lure    	0.601	NR  	1   	NR      	NR      
+64  	57.5  	3   	DRUM (repeat 8)	lure    	0.51	NR  	1   	NR      	NR      
+65  	58    	7   	EASEL (repeat 8)	lure    	0.377	NR  	1   	NR      	NR      
+66  	58.5  	5   	NAIL (repeat 9)	lure    	0.414	NR  	1   	NR      	NR      
+67  	58.9  	3   	DRUM (repeat 9)	lure    	0.625	NR  	1   	NR      	NR      
+68  	59.6  	1   	PAINT (repeat 15)	lure    	0.677	NR  	1   	NR      	NR      
+69  	60.4  	6   	MOON (repeat 3)	lure    	0.275	NR  	1   	NR      	NR      
+70  	60.7  	7   	EASEL (repeat 9)	lure    	0.606	NR  	1   	NR      	NR      
+71  	61.4  	3   	DRUM (repeat 10)	lure    	0.609	NR  	1   	NR      	NR      
+72  	62    	2   	STAPLE (repeat 6)	lure    	0.475	NR  	1   	NR      	NR      
+73  	62.6  	5   	NAIL (repeat 10)	lure    	0.403	NR  	1   	NR      	NR      
+74  	63    	3   	DRUM (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+75  	63.5  	4   	CANDLE (repeat 12)	lure    	0.404	NR  	1   	NR      	NR      
+76  	64    	7   	EASEL (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+77  	64.5  	10  	PEACH     	fruit   	0.955	0.701	1   	target  	target  
+78  	65.5  	6   	MOON (repeat 4)	lure    	0.366	NR  	1   	NR      	NR      
+79  	65.9  	5   	NAIL (repeat 11)	lure    	0.372	NR  	1   	NR      	NR      
+80  	66.3  	6   	MOON (repeat 5)	lure    	0.304	NR  	1   	NR      	NR      
+81  	66.7  	5   	NAIL (repeat 12)	lure    	0.341	NR  	1   	NR      	NR      
+82  	67.1  	3   	DRUM (repeat 12)	lure    	0.613	NR  	1   	NR      	NR      
+83  	67.7  	2   	STAPLE (repeat 7)	lure    	0.398	NR  	1   	NR      	NR      
+84  	68.2  	6   	MOON (repeat 6)	lure    	0.259	NR  	1   	NR      	NR      
+85  	68.5  	2   	STAPLE (repeat 8)	lure    	0.403	NR  	1   	NR      	NR      
+86  	69    	5   	NAIL (repeat 13)	lure    	0.655	NR  	1   	NR      	NR      
+87  	69.7  	4   	CANDLE (repeat 13)	lure    	0.616	NR  	1   	NR      	NR      
+88  	70.3  	3   	DRUM (repeat 13)	lure    	0.557	NR  	1   	NR      	NR      
+89  	71    	6   	MOON (repeat 7)	lure    	0.253	NR  	1   	NR      	NR      
+90  	71.3  	1   	PAINT (repeat 16)	lure    	0.301	NR  	1   	NR      	NR      
+91  	71.6  	6   	MOON (repeat 8)	lure    	0.662	NR  	1   	NR      	NR      
+92  	72.3  	2   	STAPLE (repeat 9)	lure    	0.5 	NR  	1   	NR      	NR      
+93  	72.9  	7   	EASEL (repeat 11)	lure    	0.381	NR  	1   	NR      	NR      
+94  	73.3  	6   	MOON (repeat 9)	lure    	0.362	NR  	1   	NR      	NR      
+95  	73.7  	2   	STAPLE (repeat 10)	lure    	0.276	NR  	1   	NR      	NR      
+96  	74.1  	6   	MOON (repeat 10)	lure    	0.467	NR  	1   	NR      	NR      
+97  	74.6  	3   	DRUM (repeat 14)	lure    	0.441	NR  	1   	NR      	NR      
+98  	75.1  	6   	MOON (repeat 11)	lure    	0.649	NR  	1   	NR      	NR      
+99  	75.8  	7   	EASEL (repeat 12)	lure    	0.544	NR  	1   	NR      	NR      
+100 	76.4  	5   	NAIL (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+101 	76.9  	2   	STAPLE (repeat 11)	lure    	0.294	NR  	1   	NR      	NR      
+102 	77.2  	4   	CANDLE (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+103 	77.7  	5   	NAIL (repeat 15)	lure    	0.66	NR  	1   	NR      	NR      
+104 	78.4  	4   	CANDLE (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+105 	79    	1   	PAINT (repeat 17)	lure    	0.493	NR  	1   	NR      	NR      
+106 	79.5  	3   	DRUM (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+107 	80    	4   	CANDLE (repeat 16)	lure    	0.542	NR  	1   	NR      	NR      
+108 	80.6  	2   	STAPLE (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+109 	81.1  	5   	NAIL (repeat 16)	lure    	0.415	NR  	1   	NR      	NR      
+110 	81.6  	3   	DRUM (repeat 16)	lure    	0.451	NR  	1   	NR      	NR      
+111 	82.1  	6   	MOON (repeat 12)	lure    	0.371	NR  	1   	NR      	NR      
+112 	82.6  	5   	NAIL (repeat 17)	lure    	0.451	NR  	1   	NR      	NR      
+113 	83.1  	2   	STAPLE (repeat 13)	lure    	0.421	NR  	1   	NR      	NR      
+114 	83.6  	7   	EASEL (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
