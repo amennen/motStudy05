@@ -1,6 +1,6 @@
 % get dot speeds for every subject
 
-svec = [1 3:6 8 9 10 11 12];
+svec = [1 3:6 8 9 10 11 12 13];
 MOT_PREP = 5;
 MAX_SPEED = 30;
 for s = 1:length(svec)
@@ -15,5 +15,5 @@ end
 
 % other idea: too difficult to do beforehand without setting everythign
 % exactly the same so could calibrate things if they're different?
-save('allHardSpeeds.mat', 'hardSpeed', 'svec')
+save('/Volumes/norman/amennen/PythonMot5/allHardSpeeds.mat', 'hardSpeed', 'svec')
 
