@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.3  	7   	BELL      	targ_hard	2.071	2.067	1   	full    	1 detail, 2+ details, full
+2   	16.3  	7   	BELL (repeat 1)	targ_hard	2.018	2.017	1   	full    	1 detail, 2+ details, full
+3   	22.3  	7   	BELL (repeat 2)	targ_hard	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+4   	28.3  	7   	BELL (repeat 3)	targ_hard	2.012	2.011	1   	1 detail	1 detail, 2+ details, full
+5   	52.3  	4   	HAMMER    	targ_easy	2.034	NR  	0   	NR      	1 detail, 2+ details, full
+6   	58.3  	4   	HAMMER (repeat 1)	targ_easy	2.025	2.024	1   	2+ details	1 detail, 2+ details, full
+7   	64.3  	4   	HAMMER (repeat 2)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+8   	70.3  	4   	HAMMER (repeat 3)	targ_easy	2.007	2.006	1   	full    	1 detail, 2+ details, full
+9   	94.3  	45  	PAINT     	lure_hard	2.062	2.061	0   	generic 	1 detail, 2+ details, full
+10  	100.3 	45  	PAINT (repeat 1)	lure_hard	2.013	2.012	0   	no image	1 detail, 2+ details, full
+11  	106.3 	45  	PAINT (repeat 2)	lure_hard	2.011	2.01	0   	no image	1 detail, 2+ details, full
+12  	112.3 	45  	PAINT (repeat 3)	lure_hard	2.012	2.011	0   	no image	1 detail, 2+ details, full
+13  	136.3 	46  	SHIRT     	lure_easy	2.027	2.026	0   	no image	1 detail, 2+ details, full
+14  	142.3 	46  	SHIRT (repeat 1)	lure_easy	2.011	2.01	0   	no image	1 detail, 2+ details, full
+15  	148.3 	46  	SHIRT (repeat 2)	lure_easy	2.014	2.012	0   	no image	1 detail, 2+ details, full
+16  	154.3 	46  	SHIRT (repeat 3)	lure_easy	2.012	2.01	0   	no image	1 detail, 2+ details, full

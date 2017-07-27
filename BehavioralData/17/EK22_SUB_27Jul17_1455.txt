@@ -1,0 +1,41 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	42.1  	31  	RULER     	rt-targ 	2.047	2.045	1   	full    	1 detail, 2+ details, full
+2   	48.1  	31  	RULER (repeat 1)	rt-targ 	2.034	2.033	1   	full    	1 detail, 2+ details, full
+3   	54.1  	31  	RULER (repeat 2)	rt-targ 	2.013	2.011	1   	full    	1 detail, 2+ details, full
+4   	60.1  	31  	RULER (repeat 3)	rt-targ 	2.013	2.011	1   	full    	1 detail, 2+ details, full
+5   	84.1  	30  	DRILL     	rt-targ 	2.031	2.03	1   	2+ details	1 detail, 2+ details, full
+6   	90.1  	30  	DRILL (repeat 1)	rt-targ 	2.011	2.009	1   	2+ details	1 detail, 2+ details, full
+7   	96.1  	30  	DRILL (repeat 2)	rt-targ 	2.012	2.011	1   	full    	1 detail, 2+ details, full
+8   	102.1 	30  	DRILL (repeat 3)	rt-targ 	1.991	1.99	1   	full    	1 detail, 2+ details, full
+9   	126.1 	28  	PAGE      	rt-targ 	2.013	2.012	1   	1 detail	1 detail, 2+ details, full
+10  	132.1 	28  	PAGE (repeat 1)	rt-targ 	2.012	2.01	1   	full    	1 detail, 2+ details, full
+11  	138.1 	28  	PAGE (repeat 2)	rt-targ 	2.012	2.011	1   	2+ details	1 detail, 2+ details, full
+12  	144.1 	28  	PAGE (repeat 3)	rt-targ 	1.991	1.99	1   	full    	1 detail, 2+ details, full
+13  	168.1 	25  	DUST      	rt-targ 	2.025	2.024	1   	full    	1 detail, 2+ details, full
+14  	174.1 	25  	DUST (repeat 1)	rt-targ 	2.009	2.008	1   	full    	1 detail, 2+ details, full
+15  	180.1 	25  	DUST (repeat 2)	rt-targ 	2.012	2.011	1   	full    	1 detail, 2+ details, full
+16  	186.1 	25  	DUST (repeat 3)	rt-targ 	2.03	2.029	1   	2+ details	1 detail, 2+ details, full
+17  	210.1 	29  	SPONGE    	rt-targ 	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+18  	216.1 	29  	SPONGE (repeat 1)	rt-targ 	2.012	2.011	1   	full    	1 detail, 2+ details, full
+19  	222.1 	29  	SPONGE (repeat 2)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+20  	228.1 	29  	SPONGE (repeat 3)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+21  	252.1 	27  	BROOM     	rt-targ 	2.012	2.011	1   	2+ details	1 detail, 2+ details, full
+22  	258.1 	27  	BROOM (repeat 1)	rt-targ 	2.014	2.012	1   	2+ details	1 detail, 2+ details, full
+23  	264.1 	27  	BROOM (repeat 2)	rt-targ 	2.015	2.014	1   	2+ details	1 detail, 2+ details, full
+24  	270.1 	27  	BROOM (repeat 3)	rt-targ 	2.012	2.01	1   	2+ details	1 detail, 2+ details, full
+25  	294.1 	34  	HOOK      	rt-targ 	2.008	2.007	1   	full    	1 detail, 2+ details, full
+26  	300.1 	34  	HOOK (repeat 1)	rt-targ 	2.008	2.007	1   	full    	1 detail, 2+ details, full
+27  	306.1 	34  	HOOK (repeat 2)	rt-targ 	2.016	NR  	0   	NR      	1 detail, 2+ details, full
+28  	312.1 	34  	HOOK (repeat 3)	rt-targ 	2.008	2.007	1   	full    	1 detail, 2+ details, full
+29  	336.1 	26  	JAIL      	rt-targ 	2.014	2.012	1   	2+ details	1 detail, 2+ details, full
+30  	342.1 	26  	JAIL (repeat 1)	rt-targ 	2.012	2.01	1   	full    	1 detail, 2+ details, full
+31  	348.1 	26  	JAIL (repeat 2)	rt-targ 	2.008	2.007	1   	full    	1 detail, 2+ details, full
+32  	354.1 	26  	JAIL (repeat 3)	rt-targ 	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+33  	378.1 	32  	PYRAMID   	rt-targ 	2.013	2.012	1   	1 detail	1 detail, 2+ details, full
+34  	384.1 	32  	PYRAMID (repeat 1)	rt-targ 	2.015	2.014	1   	2+ details	1 detail, 2+ details, full
+35  	390.1 	32  	PYRAMID (repeat 2)	rt-targ 	2.014	2.013	1   	full    	1 detail, 2+ details, full
+36  	396.1 	32  	PYRAMID (repeat 3)	rt-targ 	2.01	NR  	0   	NR      	1 detail, 2+ details, full
+37  	420.1 	33  	PLUG      	rt-targ 	2.014	2.012	1   	2+ details	1 detail, 2+ details, full
+38  	426.1 	33  	PLUG (repeat 1)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+39  	432.1 	33  	PLUG (repeat 2)	rt-targ 	2.012	2.011	1   	1 detail	1 detail, 2+ details, full
+40  	438.1 	33  	PLUG (repeat 3)	rt-targ 	2.01	2.009	1   	2+ details	1 detail, 2+ details, full
