@@ -2,12 +2,12 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 17;
+SUBJECT = 18;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %SVEC = [1 3:6 8:10];
-%used = [11 12]; % make sure these aren't in list
-SVEC = [1 3:5 8:10 13:14]; % 6 is used--should add check no used are here and 11 is yoked!
+%used = [10 11 12]; % make sure these aren't in list
+SVEC = [1 3:5 8 13:14]; % 6 is used--should add check no used are here and 11 is yoked!
 
 NUM_TASK_RUNS = 3;
 % orientation session
@@ -44,7 +44,9 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 %% first practice set
-mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
+%mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
+mot_realtime05b(SUBJECT, TOCRITERION1, [], 0, 0);
+
 %for testing
 %mot_realtime01b(SUBJECT,TOCRITERION1,[],0,0);
 % this will continue to train test and practice MOT, then move on to
