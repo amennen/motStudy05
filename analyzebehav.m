@@ -146,3 +146,40 @@ for s = 1:length(subjects)
     cresp = cell2mat(trials(:,22));
     save([behavioral_dir '/' 'recogcell.mat'],'stimID', 'cond', 'acc', 'rt', 'cresp')
 end
+%% see in localizer task if there's a difference in ratings
+subjectVec = [1 3:6 8:14 16:18]; % skip 2, 7, 15s
+SESSION = MOT_LOCALIZER;
+allresp = zeros(10,4);
+for s = 1:length(subjectVec)
+    subjectNum = subjectVec(s);
+    behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
+        r = dir(fullfile(behavioral_dir, ['EK' num2str(SESSION) '_' 'SUB'  '*.mat']));
+        r = load(fullfile(behavioral_dir,r(end).name));
+        trials = table2cell(r.datastruct.trials);
+        resp = cell2mat(trials(:,12));
+        cond = cell2mat(trials(:,9));
+
+        condmat = reshape(cond,4,length(cond)/4)';
+        condvec = condmat(:,1);
+        TH = find(condvec==1);
+        TE = find(condvec==2);
+        RESPmat = reshape(resp,4,length(resp)/4)';
+        RESP_TH(s,:) = nanmean(RESPmat(TH,:),1);
+        RESP_TE(s,:) = nanmean(RESPmat(TE,:),1);
+   % save(fullfile(behavioral_dir, 'MOTLOCresponses.mat'), 'allresp')
+end
+%% plot!
+timeHigh = [ nanmean(RESP_TH,1); nanmean(RESP_TE,1)];
+eHigh = [nanstd(RESP_TH,[],1)/sqrt(nsub-1) ;nanstd(RESP_TE,[],1)/sqrt(nsub-1)];
+h = figure;
+npts = size(RESP_TH,2);
+mseb((1:npts)*3,timeHigh, eHigh);
+title(sprintf('High Timecourse'))
+ylim([3 5])
+xlim([1 15])
+%set(gca, 'XTick', [3:npts-2])
+%set(gca,'XTickLabel',[' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8'; ' 9'; '10'; '11'; '12'; '13'; '14'; '15']);
+ylabel('Retrieval Rating')
+xlabel('Time Points')
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+legend('Retrieve-Fast', 'Retrieve-Slow')
