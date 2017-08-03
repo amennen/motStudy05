@@ -29,10 +29,10 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 14;
+subjNum = 18;
 %subjDate = '4-5-17';
 subjDate = NaN;
-runNum = 1;
+runNum = 2;
 highresScan = 5;
 functionalScan = 6;
 
