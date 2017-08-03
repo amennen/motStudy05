@@ -22,7 +22,7 @@ if ~exist('readmr','file')
     addpath([biac_dir '/mr/']);
     addpath([biac_dir '/general/'])
 end
-multipath = '/Data1/code/multibandutils/';1
+multipath = '/Data1/code/multibandutils/';
 addpath(genpath(multipath));
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
@@ -64,12 +64,12 @@ highresfiles_genstr = sprintf('%s001_0000%s_0*',dicom_dir,num2str(highresScan,'%
 unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,highresfiles_genstr,highresFN));
 unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,highresFN_RE));
 unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --2niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
-unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R',fslpath,highresFN_RE,highresFN_RE)) 
+unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R -m',fslpath,highresFN_RE,highresFN_RE)) 
 %unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -r 90 -R',fslpath,highresFN_RE,highresFN_RE)) 
 
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
 fprintf('%sfslview %s.nii.gz\n',fslpath,highresFN_RE)
-fprintf('%sfslview %s_brain.nii.gz', fslpath,highresFN_RE)
+fprintf('%sfslview %s_brain_mask.nii.gz', fslpath,highresFN_RE)
 
 %% Register standard to nifti
 % Register to standard=2
