@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.1  	2   	PIN       	targ_hard	2.07	2.066	1   	full    	1 detail, 2+ details, full
+2   	16.1  	2   	PIN (repeat 1)	targ_hard	1.994	1.992	1   	full    	1 detail, 2+ details, full
+3   	22.1  	2   	PIN (repeat 2)	targ_hard	2.016	2.014	1   	full    	1 detail, 2+ details, full
+4   	28.1  	2   	PIN (repeat 3)	targ_hard	2.018	2.016	1   	full    	1 detail, 2+ details, full
+5   	52.1  	45  	CANDLE    	lure_easy	2.029	2.027	0   	no image	1 detail, 2+ details, full
+6   	58.1  	45  	CANDLE (repeat 1)	lure_easy	2.014	2.013	0   	no image	1 detail, 2+ details, full
+7   	64.1  	45  	CANDLE (repeat 2)	lure_easy	2.012	2.011	0   	no image	1 detail, 2+ details, full
+8   	70.1  	45  	CANDLE (repeat 3)	lure_easy	2.014	2.012	0   	no image	1 detail, 2+ details, full
+9   	94    	1   	PEBBLE    	targ_easy	2.014	2.013	1   	full    	1 detail, 2+ details, full
+10  	100.1 	1   	PEBBLE (repeat 1)	targ_easy	2.012	2.011	1   	full    	1 detail, 2+ details, full
+11  	106.1 	1   	PEBBLE (repeat 2)	targ_easy	2.02	2.019	1   	full    	1 detail, 2+ details, full
+12  	112.1 	1   	PEBBLE (repeat 3)	targ_easy	2.016	2.015	1   	full    	1 detail, 2+ details, full
+13  	136   	46  	MATCH     	lure_hard	2.03	2.029	0   	no image	1 detail, 2+ details, full
+14  	142   	46  	MATCH (repeat 1)	lure_hard	2.012	2.011	0   	no image	1 detail, 2+ details, full
+15  	148   	46  	MATCH (repeat 2)	lure_hard	2.011	2.01	0   	no image	1 detail, 2+ details, full
+16  	154   	46  	MATCH (repeat 3)	lure_hard	2.012	2.011	0   	no image	1 detail, 2+ details, full

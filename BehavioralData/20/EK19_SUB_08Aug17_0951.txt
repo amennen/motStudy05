@@ -1,0 +1,129 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	65.1  	10  	MAGNET    	targ_hard	2.043	2.041	0   	no image	1 detail, 2+ details, full
+2   	71.1  	10  	MAGNET (repeat 1)	targ_hard	1.995	1.994	0   	no image	1 detail, 2+ details, full
+3   	77.1  	10  	MAGNET (repeat 2)	targ_hard	2.008	2.007	0   	no image	1 detail, 2+ details, full
+4   	83.1  	10  	MAGNET (repeat 3)	targ_hard	2.012	2.01	0   	no image	1 detail, 2+ details, full
+5   	107.1 	45  	MOON      	lure_hard	2.019	2.018	0   	no image	1 detail, 2+ details, full
+6   	113.1 	45  	MOON (repeat 1)	lure_hard	2.008	2.007	0   	no image	1 detail, 2+ details, full
+7   	119.1 	45  	MOON (repeat 2)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+8   	125.1 	45  	MOON (repeat 3)	lure_hard	2.008	2.008	0   	no image	1 detail, 2+ details, full
+9   	149.1 	46  	PUDDLE    	lure_easy	2.03	2.029	0   	no image	1 detail, 2+ details, full
+10  	155.1 	46  	PUDDLE (repeat 1)	lure_easy	2.012	2.01	0   	no image	1 detail, 2+ details, full
+11  	161.1 	46  	PUDDLE (repeat 2)	lure_easy	2.012	2.011	0   	no image	1 detail, 2+ details, full
+12  	167.1 	46  	PUDDLE (repeat 3)	lure_easy	2.012	2.011	0   	no image	1 detail, 2+ details, full
+13  	191.1 	23  	MARBLE    	targ_easy	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+14  	197.1 	23  	MARBLE (repeat 1)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+15  	203.1 	23  	MARBLE (repeat 2)	targ_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+16  	209.1 	23  	MARBLE (repeat 3)	targ_easy	2.007	2.006	1   	full    	1 detail, 2+ details, full
+17  	233.1 	15  	SHOVEL    	targ_hard	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+18  	239.1 	15  	SHOVEL (repeat 1)	targ_hard	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+19  	245.1 	15  	SHOVEL (repeat 2)	targ_hard	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+20  	251.1 	15  	SHOVEL (repeat 3)	targ_hard	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+21  	275.1 	18  	COLLAR    	targ_easy	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+22  	281.1 	18  	COLLAR (repeat 1)	targ_easy	2.041	2.04	1   	1 detail	1 detail, 2+ details, full
+23  	287.1 	18  	COLLAR (repeat 2)	targ_easy	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+24  	293.1 	18  	COLLAR (repeat 3)	targ_easy	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+25  	317.1 	47  	PADDLE    	lure_hard	2.019	2.018	0   	no image	1 detail, 2+ details, full
+26  	323.1 	47  	PADDLE (repeat 1)	lure_hard	2.008	2.008	0   	no image	1 detail, 2+ details, full
+27  	329.1 	47  	PADDLE (repeat 2)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+28  	335.1 	47  	PADDLE (repeat 3)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+29  	359.1 	48  	GLASS     	lure_easy	2.019	2.018	1   	full    	1 detail, 2+ details, full
+30  	365.1 	48  	GLASS (repeat 1)	lure_easy	2.014	2.013	1   	full    	1 detail, 2+ details, full
+31  	371.1 	48  	GLASS (repeat 2)	lure_easy	2.014	2.012	1   	full    	1 detail, 2+ details, full
+32  	377.1 	48  	GLASS (repeat 3)	lure_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+33  	401.1 	13  	WALLET    	targ_hard	2.014	2.012	1   	2+ details	1 detail, 2+ details, full
+34  	407.1 	13  	WALLET (repeat 1)	targ_hard	2.007	2.006	1   	full    	1 detail, 2+ details, full
+35  	413.1 	13  	WALLET (repeat 2)	targ_hard	2.007	2.007	1   	full    	1 detail, 2+ details, full
+36  	419.1 	13  	WALLET (repeat 3)	targ_hard	2.008	2.007	1   	full    	1 detail, 2+ details, full
+37  	443.1 	49  	DENT      	lure_easy	2.017	2.017	0   	no image	1 detail, 2+ details, full
+38  	449.1 	49  	DENT (repeat 1)	lure_easy	2.008	2.007	0   	no image	1 detail, 2+ details, full
+39  	455.1 	49  	DENT (repeat 2)	lure_easy	2.008	2.007	0   	no image	1 detail, 2+ details, full
+40  	461.1 	49  	DENT (repeat 3)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+41  	485.1 	21  	WIRE      	targ_easy	2.008	2.008	1   	1 detail	1 detail, 2+ details, full
+42  	491.1 	21  	WIRE (repeat 1)	targ_easy	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+43  	497.1 	21  	WIRE (repeat 2)	targ_easy	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+44  	503.1 	21  	WIRE (repeat 3)	targ_easy	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+45  	527.1 	50  	ANCHOR    	lure_hard	2.02	2.019	0   	no image	1 detail, 2+ details, full
+46  	533.1 	50  	ANCHOR (repeat 1)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+47  	539.1 	50  	ANCHOR (repeat 2)	lure_hard	2.007	2.006	0   	no image	1 detail, 2+ details, full
+48  	545.1 	50  	ANCHOR (repeat 3)	lure_hard	2.008	2.008	0   	no image	1 detail, 2+ details, full
+49  	569.1 	12  	RAKE      	targ_hard	2.009	2.008	1   	1 detail	1 detail, 2+ details, full
+50  	575.1 	12  	RAKE (repeat 1)	targ_hard	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+51  	581.1 	12  	RAKE (repeat 2)	targ_hard	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+52  	587.1 	12  	RAKE (repeat 3)	targ_hard	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+53  	611.1 	19  	DOME      	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+54  	617.1 	19  	DOME (repeat 1)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+55  	623.1 	19  	DOME (repeat 2)	targ_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+56  	629.1 	19  	DOME (repeat 3)	targ_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+57  	653.1 	51  	BUBBLE    	lure_hard	2.019	2.018	0   	no image	1 detail, 2+ details, full
+58  	659.1 	51  	BUBBLE (repeat 1)	lure_hard	2.01	2.009	0   	no image	1 detail, 2+ details, full
+59  	665.1 	51  	BUBBLE (repeat 2)	lure_hard	2.015	2.014	0   	no image	1 detail, 2+ details, full
+60  	671.1 	51  	BUBBLE (repeat 3)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+61  	695.1 	52  	BASKET    	lure_easy	2.017	2.016	0   	no image	1 detail, 2+ details, full
+62  	701.1 	52  	BASKET (repeat 1)	lure_easy	2.011	2.01	0   	no image	1 detail, 2+ details, full
+63  	707.1 	52  	BASKET (repeat 2)	lure_easy	2.008	2.007	0   	no image	1 detail, 2+ details, full
+64  	713.1 	52  	BASKET (repeat 3)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+65  	737.1 	24  	FRAME     	targ_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+66  	743.1 	24  	FRAME (repeat 1)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+67  	749.1 	24  	FRAME (repeat 2)	targ_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+68  	755.1 	24  	FRAME (repeat 3)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+69  	779.1 	53  	DRUM      	lure_hard	2.017	2.016	0   	no image	1 detail, 2+ details, full
+70  	785.1 	53  	DRUM (repeat 1)	lure_hard	2.02	2.018	0   	no image	1 detail, 2+ details, full
+71  	791.1 	53  	DRUM (repeat 2)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+72  	797.1 	53  	DRUM (repeat 3)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+73  	821.1 	9   	TRIPOD    	targ_hard	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+74  	827.1 	9   	TRIPOD (repeat 1)	targ_hard	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+75  	833.1 	9   	TRIPOD (repeat 2)	targ_hard	2.015	2.014	1   	2+ details	1 detail, 2+ details, full
+76  	839.1 	9   	TRIPOD (repeat 3)	targ_hard	2.018	2.016	1   	2+ details	1 detail, 2+ details, full
+77  	863.1 	54  	POLE      	lure_easy	2.033	2.031	0   	no image	1 detail, 2+ details, full
+78  	869.1 	54  	POLE (repeat 1)	lure_easy	2.01	2.009	0   	no image	1 detail, 2+ details, full
+79  	875.1 	54  	POLE (repeat 2)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+80  	881.1 	54  	POLE (repeat 3)	lure_easy	2.008	2.007	0   	no image	1 detail, 2+ details, full
+81  	905.1 	55  	NAIL      	lure_easy	2.019	2.019	0   	no image	1 detail, 2+ details, full
+82  	911.1 	55  	NAIL (repeat 1)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+83  	917.1 	55  	NAIL (repeat 2)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
+84  	923.1 	55  	NAIL (repeat 3)	lure_easy	2.008	2.008	0   	no image	1 detail, 2+ details, full
+85  	947.1 	14  	HANDLE    	targ_hard	2.008	2.007	1   	full    	1 detail, 2+ details, full
+86  	953.1 	14  	HANDLE (repeat 1)	targ_hard	2.013	2.012	1   	full    	1 detail, 2+ details, full
+87  	959.1 	14  	HANDLE (repeat 2)	targ_hard	2.016	2.014	1   	full    	1 detail, 2+ details, full
+88  	965.1 	14  	HANDLE (repeat 3)	targ_hard	2.01	2.009	1   	full    	1 detail, 2+ details, full
+89  	989.1 	22  	JOURNAL   	targ_easy	2.021	2.019	1   	full    	1 detail, 2+ details, full
+90  	995.1 	22  	JOURNAL (repeat 1)	targ_easy	2.01	2.009	1   	full    	1 detail, 2+ details, full
+91  	1001.1	22  	JOURNAL (repeat 2)	targ_easy	2.026	2.025	1   	full    	1 detail, 2+ details, full
+92  	1007.1	22  	JOURNAL (repeat 3)	targ_easy	2.008	2.007	1   	full    	1 detail, 2+ details, full
+93  	1031.1	56  	TICKET    	lure_hard	2.007	2.006	0   	no image	1 detail, 2+ details, full
+94  	1037.1	56  	TICKET (repeat 1)	lure_hard	2.014	2.013	0   	no image	1 detail, 2+ details, full
+95  	1043.1	56  	TICKET (repeat 2)	lure_hard	2.017	2.016	0   	no image	1 detail, 2+ details, full
+96  	1049.1	56  	TICKET (repeat 3)	lure_hard	2.017	2.015	0   	no image	1 detail, 2+ details, full
+97  	1073.1	16  	PARADE    	targ_hard	1.994	1.993	1   	1 detail	1 detail, 2+ details, full
+98  	1079.1	16  	PARADE (repeat 1)	targ_hard	2.033	2.031	1   	full    	1 detail, 2+ details, full
+99  	1085.1	16  	PARADE (repeat 2)	targ_hard	2.009	2.008	1   	full    	1 detail, 2+ details, full
+100 	1091.1	16  	PARADE (repeat 3)	targ_hard	2.015	2.014	1   	full    	1 detail, 2+ details, full
+101 	1115.1	57  	RATTLE    	lure_easy	2.037	2.036	0   	no image	1 detail, 2+ details, full
+102 	1121.1	57  	RATTLE (repeat 1)	lure_easy	2.036	2.034	0   	no image	1 detail, 2+ details, full
+103 	1127.1	57  	RATTLE (repeat 2)	lure_easy	2.009	2.009	0   	no image	1 detail, 2+ details, full
+104 	1133.1	57  	RATTLE (repeat 3)	lure_easy	2.036	2.034	0   	no image	1 detail, 2+ details, full
+105 	1157.1	58  	EASEL     	lure_hard	2.003	2.002	0   	no image	1 detail, 2+ details, full
+106 	1163.1	58  	EASEL (repeat 1)	lure_hard	2.017	2.015	0   	no image	1 detail, 2+ details, full
+107 	1169.1	58  	EASEL (repeat 2)	lure_hard	2.017	2.016	0   	no image	1 detail, 2+ details, full
+108 	1175.1	58  	EASEL (repeat 3)	lure_hard	2.009	2.008	0   	no image	1 detail, 2+ details, full
+109 	1199.1	20  	COAL      	targ_easy	2.022	2.02	1   	1 detail	1 detail, 2+ details, full
+110 	1205.1	20  	COAL (repeat 1)	targ_easy	1.998	1.996	1   	full    	1 detail, 2+ details, full
+111 	1211.1	20  	COAL (repeat 2)	targ_easy	2.012	2.011	1   	full    	1 detail, 2+ details, full
+112 	1217.1	20  	COAL (repeat 3)	targ_easy	2.009	2.008	1   	full    	1 detail, 2+ details, full
+113 	1241.1	59  	BRUSH     	lure_hard	2.049	2.047	0   	no image	1 detail, 2+ details, full
+114 	1247.1	59  	BRUSH (repeat 1)	lure_hard	1.997	1.996	0   	no image	1 detail, 2+ details, full
+115 	1253.1	59  	BRUSH (repeat 2)	lure_hard	2.016	2.014	0   	no image	1 detail, 2+ details, full
+116 	1259.1	59  	BRUSH (repeat 3)	lure_hard	2.015	2.013	0   	no image	1 detail, 2+ details, full
+117 	1283.1	17  	PIPE      	targ_easy	2.05	2.048	1   	full    	1 detail, 2+ details, full
+118 	1289.1	17  	PIPE (repeat 1)	targ_easy	1.998	1.996	1   	full    	1 detail, 2+ details, full
+119 	1295.1	17  	PIPE (repeat 2)	targ_easy	1.992	1.991	1   	full    	1 detail, 2+ details, full
+120 	1301.1	17  	PIPE (repeat 3)	targ_easy	1.992	1.992	1   	full    	1 detail, 2+ details, full
+121 	1325.1	11  	BELT      	targ_hard	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+122 	1331.1	11  	BELT (repeat 1)	targ_hard	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+123 	1337.1	11  	BELT (repeat 2)	targ_hard	2.049	2.048	1   	2+ details	1 detail, 2+ details, full
+124 	1343.1	11  	BELT (repeat 3)	targ_hard	2.048	2.047	1   	2+ details	1 detail, 2+ details, full
+125 	1367.1	60  	APRON     	lure_easy	2.022	2.021	0   	no image	1 detail, 2+ details, full
+126 	1373.1	60  	APRON (repeat 1)	lure_easy	1.975	1.974	0   	no image	1 detail, 2+ details, full
+127 	1379.1	60  	APRON (repeat 2)	lure_easy	1.993	1.992	0   	no image	1 detail, 2+ details, full
+128 	1385.1	60  	APRON (repeat 3)	lure_easy	2.009	2.008	0   	no image	1 detail, 2+ details, full
