@@ -1,0 +1,18 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	10  	BELT      	localizer	3.451	0.819	1   	full    	full    
+2   	20.6  	17  	COLLAR    	localizer	3.45	2.131	1   	full    	full    
+3   	32.6  	15  	RAKE      	localizer	3.45	1.012	1   	full    	full    
+4   	44.6  	22  	FRAME     	localizer	3.45	2.956	1   	1 detail	1 detail
+5   	56.6  	14  	SHOVEL    	localizer	3.451	1.78	1   	full    	full    
+6   	68.6  	11  	DOME      	localizer	3.451	1.924	1   	1 detail	1 detail
+7   	80.6  	18  	WALLET    	localizer	3.451	2.62	1   	generic 	generic 
+8   	92.6  	16  	JOURNAL   	localizer	3.451	1.044	1   	generic 	generic 
+9   	104.6 	13  	PARADE    	localizer	3.45	0.788	1   	full    	full    
+10  	116.6 	23  	MAGNET    	localizer	3.452	NR  	0   	NR      	2+ details
+11  	132.6 	20  	HANDLE    	localizer	3.45	1.156	1   	generic 	generic 
+12  	144.6 	19  	PIPE      	localizer	3.45	1.276	1   	1 detail	1 detail
+13  	156.6 	9   	COAL      	localizer	3.45	0.661	1   	full    	full    
+14  	168.6 	21  	MARBLE    	localizer	3.45	1.381	1   	full    	full    
+15  	180.6 	24  	WIRE      	localizer	3.451	0.709	1   	full    	full    
+16  	192.6 	12  	TRIPOD    	localizer	3.451	2.173	1   	1 detail	1 detail
+17  	204.6 	23  	MAGNET (repeat 1)	localizer	3.451	0.629	1   	2+ details	2+ details
