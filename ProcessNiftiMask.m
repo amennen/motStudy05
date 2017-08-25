@@ -29,7 +29,7 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 21;
+subjNum = 22;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
