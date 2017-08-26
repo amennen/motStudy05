@@ -979,6 +979,14 @@ SESSION 10 ended 16-Aug-2017 18:09:33 for SUBJECT number 22
 
 ******************************************************************************
 
+<<<<<<< HEAD
+
+SESSION 25 ended 17-Aug-2017 18:13:01 for SUBJECT number 22
+
+
+
+SESSION 26 ended 17-Aug-2017 18:16:07 for SUBJECT number 22
+=======
 SESSION 12 initiated 17-Aug-2017 16:17:50 for SUBJECT number 22
 
 session	trial	pair	onset	dur	cue         	associate   
@@ -1081,11 +1089,14 @@ SESSION 15 ended 17-Aug-2017 16:31:50 for SUBJECT number 22
 
 
 SESSION 16 ended 17-Aug-2017 16:39:41 for SUBJECT number 22
+>>>>>>> refs/remotes/origin/master
 
 
 
 
 ******************************************************************************
+<<<<<<< HEAD
+=======
 
 SESSION 17 initiated 17-Aug-2017 16:39:46 for SUBJECT number 22
 
@@ -2122,3 +2133,4 @@ trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
 
 SESSION 24 ended 17-Aug-2017 17:57:58 for SUBJECT number 22
 
+>>>>>>> refs/remotes/origin/master
