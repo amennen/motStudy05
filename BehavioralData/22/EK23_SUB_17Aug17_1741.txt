@@ -1,0 +1,41 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	41    	28  	DRILL     	rt-targ 	2.045	2.042	1   	2+ details	1 detail, 2+ details, full
+2   	47    	28  	DRILL (repeat 1)	rt-targ 	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+3   	53    	28  	DRILL (repeat 2)	rt-targ 	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+4   	59    	28  	DRILL (repeat 3)	rt-targ 	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+5   	83    	33  	BROOM     	rt-targ 	2.013	2.012	1   	1 detail	1 detail, 2+ details, full
+6   	89    	33  	BROOM (repeat 1)	rt-targ 	2.014	2.013	1   	2+ details	1 detail, 2+ details, full
+7   	95    	33  	BROOM (repeat 2)	rt-targ 	2.019	2.017	1   	2+ details	1 detail, 2+ details, full
+8   	101   	33  	BROOM (repeat 3)	rt-targ 	2.008	2.007	1   	2+ details	1 detail, 2+ details, full
+9   	125   	34  	MIRROR    	rt-targ 	2.014	2.013	1   	2+ details	1 detail, 2+ details, full
+10  	131   	34  	MIRROR (repeat 1)	rt-targ 	2.014	2.013	1   	2+ details	1 detail, 2+ details, full
+11  	137   	34  	MIRROR (repeat 2)	rt-targ 	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+12  	143   	34  	MIRROR (repeat 3)	rt-targ 	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+13  	167   	25  	PYRAMID   	rt-targ 	2.028	2.026	1   	2+ details	1 detail, 2+ details, full
+14  	173   	25  	PYRAMID (repeat 1)	rt-targ 	2.017	2.015	1   	2+ details	1 detail, 2+ details, full
+15  	179   	25  	PYRAMID (repeat 2)	rt-targ 	2.009	2.008	1   	2+ details	1 detail, 2+ details, full
+16  	185   	25  	PYRAMID (repeat 3)	rt-targ 	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+17  	209   	30  	NICKEL    	rt-targ 	2.007	2.006	1   	1 detail	1 detail, 2+ details, full
+18  	215   	30  	NICKEL (repeat 1)	rt-targ 	2.008	2.008	1   	2+ details	1 detail, 2+ details, full
+19  	221   	30  	NICKEL (repeat 2)	rt-targ 	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+20  	227   	30  	NICKEL (repeat 3)	rt-targ 	2.015	2.013	1   	2+ details	1 detail, 2+ details, full
+21  	251   	31  	DUST      	rt-targ 	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+22  	257   	31  	DUST (repeat 1)	rt-targ 	2.017	2.015	1   	1 detail	1 detail, 2+ details, full
+23  	263   	31  	DUST (repeat 2)	rt-targ 	2.015	2.013	1   	1 detail	1 detail, 2+ details, full
+24  	269   	31  	DUST (repeat 3)	rt-targ 	2.008	2.007	1   	1 detail	1 detail, 2+ details, full
+25  	293   	29  	BRACELET  	rt-targ 	2.016	2.015	1   	1 detail	1 detail, 2+ details, full
+26  	299   	29  	BRACELET (repeat 1)	rt-targ 	2.019	2.018	1   	1 detail	1 detail, 2+ details, full
+27  	305   	29  	BRACELET (repeat 2)	rt-targ 	2.014	2.013	1   	1 detail	1 detail, 2+ details, full
+28  	311   	29  	BRACELET (repeat 3)	rt-targ 	2.014	2.013	1   	1 detail	1 detail, 2+ details, full
+29  	335   	27  	PAGE      	rt-targ 	2.014	2.013	1   	full    	1 detail, 2+ details, full
+30  	341   	27  	PAGE (repeat 1)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+31  	347   	27  	PAGE (repeat 2)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+32  	353   	27  	PAGE (repeat 3)	rt-targ 	2.014	2.013	1   	full    	1 detail, 2+ details, full
+33  	377   	32  	ROPE      	rt-targ 	2.014	2.012	1   	2+ details	1 detail, 2+ details, full
+34  	383   	32  	ROPE (repeat 1)	rt-targ 	2.012	2.01	1   	2+ details	1 detail, 2+ details, full
+35  	389   	32  	ROPE (repeat 2)	rt-targ 	2.015	2.013	1   	2+ details	1 detail, 2+ details, full
+36  	395   	32  	ROPE (repeat 3)	rt-targ 	2.019	2.017	1   	2+ details	1 detail, 2+ details, full
+37  	419   	26  	LENS      	rt-targ 	2.019	2.017	1   	full    	1 detail, 2+ details, full
+38  	425   	26  	LENS (repeat 1)	rt-targ 	2.008	2.007	1   	full    	1 detail, 2+ details, full
+39  	431   	26  	LENS (repeat 2)	rt-targ 	2.035	2.033	1   	full    	1 detail, 2+ details, full
+40  	437   	26  	LENS (repeat 3)	rt-targ 	2.019	2.017	1   	full    	1 detail, 2+ details, full

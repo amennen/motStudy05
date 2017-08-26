@@ -29,7 +29,7 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 21;
+subjNum = 22;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
@@ -104,7 +104,7 @@ unix(sprintf('%sapplywarp -i %s%s.nii.gz -r %s.nii.gz -o %s_exfunc.nii.gz -w sta
 % check after here that the applied warp is binary and in the right
 % orientation so we could just apply to nifti files afterwards
 if exist(sprintf('%s_exfunc.nii.gz',roi_name),'file')
-    unix(sprintf('gunzip %s_exfunc.nii.gz',roi_name));2
+    unix(sprintf('gunzip %s_exfunc.nii.gz',roi_name));
 end
 
 % brain extract functional scan to make sure we stay inside the brain of
