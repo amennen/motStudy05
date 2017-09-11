@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36.1  	6   	PUZZLE    	targ_hard	1.951	1.544	1   	non-target	non-target
+2   	78.1  	45  	NOTE      	lure_hard	1.951	0.913	1   	non-target	non-target
+3   	120.1 	46  	NAIL      	lure_easy	1.95	1.249	1   	target  	target  
+4   	162.1 	4   	PEBBLE    	targ_easy	1.95	0.961	1   	target  	target  

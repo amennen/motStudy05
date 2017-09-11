@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	72.5  	32  	BRACELET  	rt-targ 	1.951	1.234	1   	target  	target  
+2   	114.5 	27  	JAIL      	rt-targ 	1.951	0.938	1   	non-target	non-target
+3   	156.5 	29  	RULER     	rt-targ 	1.95	1.219	0   	non-target	target  
+4   	198.5 	26  	POWDER    	rt-targ 	1.951	1.196	1   	target  	target  
+5   	240.5 	28  	LENS      	rt-targ 	1.951	0.875	1   	target  	target  
+6   	282.5 	30  	PLUG      	rt-targ 	1.95	1.155	1   	target  	target  
+7   	324.5 	33  	CHALK     	rt-targ 	1.95	0.956	1   	target  	target  
+8   	366.5 	25  	MIRROR    	rt-targ 	1.95	1.003	1   	non-target	non-target
+9   	408.5 	31  	NICKEL    	rt-targ 	1.951	0.804	1   	target  	target  
+10  	450.5 	34  	HOSE      	rt-targ 	1.95	0.877	1   	non-target	non-target
