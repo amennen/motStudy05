@@ -109,7 +109,7 @@ for iTrial = 1:nTRs % the first 10 TRs have been taken out to detrend
     
     %if desired file is recognized, pause for 200ms to complete transfer
     if scanNow==1 && patterns.fileAvail(iTrial)
-       pause(.2);
+       pause(.3); %make longer here in case
     end
     
     % if file available, load it
