@@ -1,0 +1,41 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	45.3  	27  	HOOK      	rt-targ 	2.056	2.053	1   	1 detail	1 detail, 2+ details, full
+2   	51.3  	27  	HOOK (repeat 1)	rt-targ 	2.036	2.034	1   	1 detail	1 detail, 2+ details, full
+3   	57.3  	27  	HOOK (repeat 2)	rt-targ 	2.028	2.027	1   	1 detail	1 detail, 2+ details, full
+4   	63.3  	27  	HOOK (repeat 3)	rt-targ 	1.989	1.987	1   	1 detail	1 detail, 2+ details, full
+5   	87.3  	30  	PLUG      	rt-targ 	2.03	2.029	1   	2+ details	1 detail, 2+ details, full
+6   	93.3  	30  	PLUG (repeat 1)	rt-targ 	2.026	NR  	0   	NR      	1 detail, 2+ details, full
+7   	99.3  	30  	PLUG (repeat 2)	rt-targ 	2.012	2.011	1   	2+ details	1 detail, 2+ details, full
+8   	105.3 	30  	PLUG (repeat 3)	rt-targ 	2.011	2.009	1   	2+ details	1 detail, 2+ details, full
+9   	129.3 	26  	JAIL      	rt-targ 	2.014	2.012	1   	full    	1 detail, 2+ details, full
+10  	135.3 	26  	JAIL (repeat 1)	rt-targ 	2.013	2.012	1   	full    	1 detail, 2+ details, full
+11  	141.3 	26  	JAIL (repeat 2)	rt-targ 	2.029	2.027	1   	full    	1 detail, 2+ details, full
+12  	147.3 	26  	JAIL (repeat 3)	rt-targ 	2.013	2.011	1   	2+ details	1 detail, 2+ details, full
+13  	171.3 	32  	ROPE      	rt-targ 	2.012	2.01	0   	no image	1 detail, 2+ details, full
+14  	177.3 	32  	ROPE (repeat 1)	rt-targ 	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+15  	183.3 	32  	ROPE (repeat 2)	rt-targ 	2.028	2.027	1   	2+ details	1 detail, 2+ details, full
+16  	189.3 	32  	ROPE (repeat 3)	rt-targ 	1.996	1.995	1   	2+ details	1 detail, 2+ details, full
+17  	213.3 	29  	HOSE      	rt-targ 	2.015	2.013	1   	2+ details	1 detail, 2+ details, full
+18  	219.3 	29  	HOSE (repeat 1)	rt-targ 	2.013	2.012	1   	2+ details	1 detail, 2+ details, full
+19  	225.3 	29  	HOSE (repeat 2)	rt-targ 	2.027	NR  	0   	NR      	1 detail, 2+ details, full
+20  	231.3 	29  	HOSE (repeat 3)	rt-targ 	1.998	1.997	1   	1 detail	1 detail, 2+ details, full
+21  	255.3 	31  	FOAM      	rt-targ 	1.988	NR  	0   	NR      	1 detail, 2+ details, full
+22  	261.3 	31  	FOAM (repeat 1)	rt-targ 	2.008	NR  	0   	NR      	1 detail, 2+ details, full
+23  	267.3 	31  	FOAM (repeat 2)	rt-targ 	2.008	NR  	0   	NR      	1 detail, 2+ details, full
+24  	273.3 	31  	FOAM (repeat 3)	rt-targ 	2.013	2.011	1   	1 detail	1 detail, 2+ details, full
+25  	297.3 	34  	RULER     	rt-targ 	1.994	1.993	0   	generic 	1 detail, 2+ details, full
+26  	303.3 	34  	RULER (repeat 1)	rt-targ 	2.016	2.015	1   	1 detail	1 detail, 2+ details, full
+27  	309.3 	34  	RULER (repeat 2)	rt-targ 	2.033	2.032	1   	2+ details	1 detail, 2+ details, full
+28  	315.3 	34  	RULER (repeat 3)	rt-targ 	2.01	NR  	0   	NR      	1 detail, 2+ details, full
+29  	339.3 	33  	CHALK     	rt-targ 	1.999	1.998	0   	no image	1 detail, 2+ details, full
+30  	345.3 	33  	CHALK (repeat 1)	rt-targ 	1.997	1.995	0   	no image	1 detail, 2+ details, full
+31  	351.3 	33  	CHALK (repeat 2)	rt-targ 	2.014	2.013	0   	no image	1 detail, 2+ details, full
+32  	357.3 	33  	CHALK (repeat 3)	rt-targ 	2.011	2.01	1   	2+ details	1 detail, 2+ details, full
+33  	381.3 	25  	MIRROR    	rt-targ 	1.998	1.996	1   	1 detail	1 detail, 2+ details, full
+34  	387.3 	25  	MIRROR (repeat 1)	rt-targ 	1.992	NR  	0   	NR      	1 detail, 2+ details, full
+35  	393.3 	25  	MIRROR (repeat 2)	rt-targ 	2.008	NR  	0   	NR      	1 detail, 2+ details, full
+36  	399.3 	25  	MIRROR (repeat 3)	rt-targ 	2.029	2.027	1   	1 detail	1 detail, 2+ details, full
+37  	423.3 	28  	BRACELET  	rt-targ 	2.027	2.026	1   	1 detail	1 detail, 2+ details, full
+38  	429.3 	28  	BRACELET (repeat 1)	rt-targ 	2.029	2.028	1   	1 detail	1 detail, 2+ details, full
+39  	435.3 	28  	BRACELET (repeat 2)	rt-targ 	1.996	1.995	1   	1 detail	1 detail, 2+ details, full
+40  	441.3 	28  	BRACELET (repeat 3)	rt-targ 	2.013	2.011	1   	1 detail	1 detail, 2+ details, full
