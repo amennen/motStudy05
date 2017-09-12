@@ -1,0 +1,33 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	10  	BELT      	localizer	3.451	2.283	0   	1 detail	full    
+2   	24.6  	17  	COLLAR    	localizer	3.45	2.315	0   	no image	full    
+3   	40.6  	15  	RAKE      	localizer	3.45	2.939	1   	full    	full    
+4   	52.6  	22  	FRAME     	localizer	3.45	2.715	1   	1 detail	1 detail
+5   	64.6  	14  	SHOVEL    	localizer	3.45	2.395	0   	2+ details	full    
+6   	80.6  	11  	DOME      	localizer	3.45	2.219	0   	generic 	1 detail
+7   	96.6  	18  	WALLET    	localizer	3.45	2.163	0   	no image	generic 
+8   	112.6 	16  	JOURNAL   	localizer	3.451	2.1 	0   	full    	generic 
+9   	128.6 	13  	PARADE    	localizer	3.451	2.964	1   	full    	full    
+10  	140.6 	23  	MAGNET    	localizer	3.45	2.612	0   	full    	2+ details
+11  	156.6 	20  	HANDLE    	localizer	3.45	2.974	0   	no image	generic 
+12  	172.6 	19  	PIPE      	localizer	3.451	NR  	0   	NR      	1 detail
+13  	188.6 	9   	COAL      	localizer	3.451	2.284	1   	full    	full    
+14  	200.6 	21  	MARBLE    	localizer	3.453	2.331	0   	no image	full    
+15  	216.6 	24  	WIRE      	localizer	3.451	2.477	1   	full    	full    
+16  	228.6 	12  	TRIPOD    	localizer	3.451	3.093	0   	2+ details	1 detail
+17  	244.6 	16  	JOURNAL (repeat 1)	localizer	3.45	3.061	0   	no image	generic 
+18  	260.6 	10  	BELT (repeat 1)	localizer	3.45	2.149	1   	1 detail	1 detail
+19  	272.6 	17  	COLLAR (repeat 1)	localizer	3.451	2.525	0   	2+ details	generic 
+20  	288.6 	20  	HANDLE (repeat 1)	localizer	3.45	0.573	1   	2+ details	2+ details
+21  	300.6 	18  	WALLET (repeat 1)	localizer	3.451	1.574	1   	generic 	generic 
+22  	312.6 	11  	DOME (repeat 1)	localizer	3.45	1.741	0   	full    	1 detail
+23  	328.6 	23  	MAGNET (repeat 1)	localizer	3.45	2.157	1   	2+ details	2+ details
+24  	340.6 	12  	TRIPOD (repeat 1)	localizer	3.45	2.125	1   	full    	full    
+25  	352.6 	19  	PIPE (repeat 1)	localizer	3.45	2.509	0   	2+ details	full    
+26  	368.6 	21  	MARBLE (repeat 1)	localizer	3.451	1.726	1   	generic 	generic 
+27  	380.6 	14  	SHOVEL (repeat 1)	localizer	3.45	1.734	0   	full    	1 detail
+28  	396.6 	19  	PIPE (repeat 2)	localizer	3.451	0.789	1   	1 detail	1 detail
+29  	408.6 	14  	SHOVEL (repeat 2)	localizer	3.451	1.557	1   	full    	full    
+30  	420.6 	17  	COLLAR (repeat 2)	localizer	3.451	1.429	1   	full    	full    
+31  	432.6 	11  	DOME (repeat 2)	localizer	3.45	2.365	1   	full    	full    
+32  	444.6 	16  	JOURNAL (repeat 2)	localizer	3.45	2.102	1   	1 detail	1 detail

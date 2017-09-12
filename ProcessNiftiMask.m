@@ -29,7 +29,7 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 24;
+subjNum = 25;
 %subjDate = '4-5-17';
 subjDate = NaN;
 runNum = 1;
@@ -65,10 +65,10 @@ highresFN_RE = 'highres_re';
 highresfiles_genstr = sprintf('%s001_0000%s_0*',dicom_dir,num2str(highresScan,'%2.2i')); %general string for ALL mprage files**
 unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,highresfiles_genstr,highresFN));
 unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,highresFN_RE));
-unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --2niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
+unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
 unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R -m',fslpath,highresFN_RE,highresFN_RE)) 
 %unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -r 90 -R',fslpath,highresFN_RE,highresFN_RE)) 
-
+%dcm2niix -o /Data1/code/motStudy05/data/25/reg/ -f anat /Data1/code/motStudy05/data/25/reg/ANAT/
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
 fprintf('%sfslview %s.nii.gz\n',fslpath,highresFN_RE)
 fprintf('%sfslview %s_brain_mask.nii.gz', fslpath,highresFN_RE)
