@@ -1,0 +1,114 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	12.9  	1   	ANCHOR    	lure    	0.425	NR  	1   	NR      	NR      
+2   	13.3  	2   	NAIL      	lure    	0.65	NR  	1   	NR      	NR      
+3   	14    	3   	MOON      	lure    	0.275	NR  	1   	NR      	NR      
+4   	14.4  	2   	NAIL (repeat 1)	lure    	0.564	NR  	1   	NR      	NR      
+5   	15    	4   	BUBBLE    	lure    	0.333	NR  	1   	NR      	NR      
+6   	15.4  	2   	NAIL (repeat 2)	lure    	0.371	NR  	1   	NR      	NR      
+7   	15.8  	5   	STAPLE    	lure    	0.603	NR  	1   	NR      	NR      
+8   	16.5  	4   	BUBBLE (repeat 1)	lure    	0.502	NR  	1   	NR      	NR      
+9   	17    	6   	BASKET    	lure    	0.319	NR  	1   	NR      	NR      
+10  	17.4  	1   	ANCHOR (repeat 1)	lure    	0.554	NR  	1   	NR      	NR      
+11  	18    	3   	MOON (repeat 1)	lure    	0.532	NR  	1   	NR      	NR      
+12  	18.6  	2   	NAIL (repeat 3)	lure    	0.552	NR  	1   	NR      	NR      
+13  	19.2  	5   	STAPLE (repeat 1)	lure    	0.59	NR  	1   	NR      	NR      
+14  	19.9  	3   	MOON (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+15  	20.4  	5   	STAPLE (repeat 2)	lure    	0.313	NR  	1   	NR      	NR      
+16  	20.7  	3   	MOON (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+17  	21.2  	7   	PUDDLE    	lure    	0.668	NR  	1   	NR      	NR      
+18  	22    	2   	NAIL (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+19  	22.5  	8   	PLUM      	fruit   	0.951	0.624	1   	target  	target  
+20  	23.5  	5   	STAPLE (repeat 3)	lure    	0.456	NR  	1   	NR      	NR      
+21  	24    	2   	NAIL (repeat 5)	lure    	0.687	NR  	1   	NR      	NR      
+22  	24.7  	6   	BASKET (repeat 1)	lure    	0.649	NR  	1   	NR      	NR      
+23  	25.4  	1   	ANCHOR (repeat 2)	lure    	0.305	NR  	1   	NR      	NR      
+24  	25.8  	2   	NAIL (repeat 6)	lure    	0.614	NR  	1   	NR      	NR      
+25  	26.4  	4   	BUBBLE (repeat 2)	lure    	0.469	NR  	1   	NR      	NR      
+26  	27    	1   	ANCHOR (repeat 3)	lure    	0.343	NR  	1   	NR      	NR      
+27  	27.4  	2   	NAIL (repeat 7)	lure    	0.568	NR  	1   	NR      	NR      
+28  	28    	4   	BUBBLE (repeat 3)	lure    	0.667	NR  	1   	NR      	NR      
+29  	28.7  	5   	STAPLE (repeat 4)	lure    	0.272	NR  	1   	NR      	NR      
+30  	29    	2   	NAIL (repeat 8)	lure    	0.478	NR  	1   	NR      	NR      
+31  	29.6  	7   	PUDDLE (repeat 1)	lure    	0.609	NR  	1   	NR      	NR      
+32  	30.2  	4   	BUBBLE (repeat 4)	lure    	0.407	NR  	1   	NR      	NR      
+33  	30.7  	3   	MOON (repeat 4)	lure    	0.547	NR  	1   	NR      	NR      
+34  	31.3  	1   	ANCHOR (repeat 4)	lure    	0.372	NR  	1   	NR      	NR      
+35  	31.7  	2   	NAIL (repeat 9)	lure    	0.555	NR  	1   	NR      	NR      
+36  	32.4  	3   	MOON (repeat 5)	lure    	0.614	NR  	1   	NR      	NR      
+37  	33    	5   	STAPLE (repeat 5)	lure    	0.58	NR  	1   	NR      	NR      
+38  	33.7  	1   	ANCHOR (repeat 5)	lure    	0.262	NR  	1   	NR      	NR      
+39  	34    	3   	MOON (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+40  	34.5  	8   	PLUM (repeat 1)	fruit   	0.951	0.478	1   	target  	target  
+41  	35.5  	5   	STAPLE (repeat 6)	lure    	0.578	NR  	1   	NR      	NR      
+42  	36.1  	6   	BASKET (repeat 2)	lure    	0.319	NR  	1   	NR      	NR      
+43  	36.5  	7   	PUDDLE (repeat 2)	lure    	0.63	NR  	1   	NR      	NR      
+44  	37.2  	3   	MOON (repeat 7)	lure    	0.276	NR  	1   	NR      	NR      
+45  	37.5  	2   	NAIL (repeat 10)	lure    	0.572	NR  	1   	NR      	NR      
+46  	38.1  	3   	MOON (repeat 8)	lure    	0.485	NR  	1   	NR      	NR      
+47  	38.7  	4   	BUBBLE (repeat 5)	lure    	0.558	NR  	1   	NR      	NR      
+48  	39.3  	3   	MOON (repeat 9)	lure    	0.309	NR  	1   	NR      	NR      
+49  	39.6  	6   	BASKET (repeat 3)	lure    	0.559	NR  	1   	NR      	NR      
+50  	40.3  	3   	MOON (repeat 10)	lure    	0.445	NR  	1   	NR      	NR      
+51  	40.8  	5   	STAPLE (repeat 7)	lure    	0.277	NR  	1   	NR      	NR      
+52  	41.1  	2   	NAIL (repeat 11)	lure    	0.54	NR  	1   	NR      	NR      
+53  	41.7  	6   	BASKET (repeat 4)	lure    	0.402	NR  	1   	NR      	NR      
+54  	42.1  	2   	NAIL (repeat 12)	lure    	0.533	NR  	1   	NR      	NR      
+55  	42.7  	5   	STAPLE (repeat 8)	lure    	0.315	NR  	1   	NR      	NR      
+56  	43.1  	1   	ANCHOR (repeat 6)	lure    	0.531	NR  	1   	NR      	NR      
+57  	43.7  	2   	NAIL (repeat 13)	lure    	0.585	NR  	1   	NR      	NR      
+58  	44.3  	4   	BUBBLE (repeat 6)	lure    	0.252	NR  	1   	NR      	NR      
+59  	44.6  	6   	BASKET (repeat 5)	lure    	0.354	NR  	1   	NR      	NR      
+60  	45    	2   	NAIL (repeat 14)	lure    	0.362	NR  	1   	NR      	NR      
+61  	45.4  	7   	PUDDLE (repeat 3)	lure    	0.255	NR  	1   	NR      	NR      
+62  	45.8  	1   	ANCHOR (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+63  	46.3  	9   	PINEAPPLE 	fruit   	0.95	0.549	1   	target  	target  
+64  	47.3  	6   	BASKET (repeat 6)	lure    	0.382	NR  	1   	NR      	NR      
+65  	47.7  	7   	PUDDLE (repeat 4)	lure    	0.414	NR  	1   	NR      	NR      
+66  	48.2  	1   	ANCHOR (repeat 8)	lure    	0.668	NR  	1   	NR      	NR      
+67  	48.9  	5   	STAPLE (repeat 9)	lure    	0.598	NR  	1   	NR      	NR      
+68  	49.5  	6   	BASKET (repeat 7)	lure    	0.415	NR  	1   	NR      	NR      
+69  	50    	2   	NAIL (repeat 15)	lure    	0.493	NR  	1   	NR      	NR      
+70  	50.6  	4   	BUBBLE (repeat 7)	lure    	0.617	NR  	1   	NR      	NR      
+71  	51.2  	2   	NAIL (repeat 16)	lure    	0.372	NR  	1   	NR      	NR      
+72  	51.7  	6   	BASKET (repeat 8)	lure    	0.634	NR  	1   	NR      	NR      
+73  	52.3  	3   	MOON (repeat 11)	lure    	0.573	NR  	1   	NR      	NR      
+74  	53    	5   	STAPLE (repeat 10)	lure    	0.483	NR  	1   	NR      	NR      
+75  	53.5  	7   	PUDDLE (repeat 5)	lure    	0.355	NR  	1   	NR      	NR      
+76  	53.9  	1   	ANCHOR (repeat 9)	lure    	0.415	NR  	1   	NR      	NR      
+77  	54.4  	4   	BUBBLE (repeat 8)	lure    	0.507	NR  	1   	NR      	NR      
+78  	55    	2   	NAIL (repeat 17)	lure    	0.296	NR  	1   	NR      	NR      
+79  	55.3  	3   	MOON (repeat 12)	lure    	0.379	NR  	1   	NR      	NR      
+80  	55.7  	1   	ANCHOR (repeat 10)	lure    	0.459	NR  	1   	NR      	NR      
+81  	56.3  	5   	STAPLE (repeat 11)	lure    	0.545	NR  	1   	NR      	NR      
+82  	56.9  	3   	MOON (repeat 13)	lure    	0.259	NR  	1   	NR      	NR      
+83  	57.2  	5   	STAPLE (repeat 12)	lure    	0.574	NR  	1   	NR      	NR      
+84  	57.8  	2   	NAIL (repeat 18)	lure    	0.451	NR  	1   	NR      	NR      
+85  	58.3  	10  	RASPBERRY 	fruit   	0.955	0.441	1   	target  	target  
+86  	59.3  	6   	BASKET (repeat 9)	lure    	0.307	NR  	1   	NR      	NR      
+87  	59.7  	3   	MOON (repeat 14)	lure    	0.262	NR  	1   	NR      	NR      
+88  	60    	5   	STAPLE (repeat 13)	lure    	0.268	NR  	1   	NR      	NR      
+89  	60.3  	4   	BUBBLE (repeat 9)	lure    	0.687	NR  	1   	NR      	NR      
+90  	61.1  	5   	STAPLE (repeat 14)	lure    	0.489	NR  	1   	NR      	NR      
+91  	61.6  	6   	BASKET (repeat 10)	lure    	0.595	NR  	1   	NR      	NR      
+92  	62.3  	4   	BUBBLE (repeat 10)	lure    	0.388	NR  	1   	NR      	NR      
+93  	62.7  	6   	BASKET (repeat 11)	lure    	0.323	NR  	1   	NR      	NR      
+94  	63.1  	1   	ANCHOR (repeat 11)	lure    	0.354	NR  	1   	NR      	NR      
+95  	63.5  	5   	STAPLE (repeat 15)	lure    	0.672	NR  	1   	NR      	NR      
+96  	64.3  	4   	BUBBLE (repeat 11)	lure    	0.418	NR  	1   	NR      	NR      
+97  	64.7  	3   	MOON (repeat 15)	lure    	0.385	NR  	1   	NR      	NR      
+98  	65.2  	5   	STAPLE (repeat 16)	lure    	0.38	NR  	1   	NR      	NR      
+99  	65.6  	6   	BASKET (repeat 12)	lure    	0.306	NR  	1   	NR      	NR      
+100 	66    	4   	BUBBLE (repeat 12)	lure    	0.343	NR  	1   	NR      	NR      
+101 	66.4  	6   	BASKET (repeat 13)	lure    	0.679	NR  	1   	NR      	NR      
+102 	67.1  	4   	BUBBLE (repeat 13)	lure    	0.493	NR  	1   	NR      	NR      
+103 	67.7  	2   	NAIL (repeat 19)	lure    	0.557	NR  	1   	NR      	NR      
+104 	68.3  	6   	BASKET (repeat 14)	lure    	0.592	NR  	1   	NR      	NR      
+105 	69    	3   	MOON (repeat 16)	lure    	0.694	NR  	1   	NR      	NR      
+106 	69.7  	5   	STAPLE (repeat 17)	lure    	0.406	NR  	1   	NR      	NR      
+107 	70.2  	7   	PUDDLE (repeat 6)	lure    	0.268	NR  	1   	NR      	NR      
+108 	70.5  	2   	NAIL (repeat 20)	lure    	0.325	NR  	1   	NR      	NR      
+109 	70.9  	4   	BUBBLE (repeat 14)	lure    	0.405	NR  	1   	NR      	NR      
+110 	71.4  	6   	BASKET (repeat 15)	lure    	0.561	NR  	1   	NR      	NR      
+111 	72    	3   	MOON (repeat 17)	lure    	0.461	NR  	1   	NR      	NR      
+112 	72.5  	2   	NAIL (repeat 21)	lure    	0.311	NR  	1   	NR      	NR      
+113 	72.9  	7   	PUDDLE (repeat 7)	lure    	0.442	NR  	1   	NR      	NR      
