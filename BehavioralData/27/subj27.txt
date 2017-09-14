@@ -978,3 +978,1147 @@ SESSION 10 ended 13-Sep-2017 12:47:28 for SUBJECT number 27
 
 
 ******************************************************************************
+
+SESSION 12 initiated 14-Sep-2017 17:05:38 for SUBJECT number 27
+
+session	trial	pair	onset	dur	cue         	associate   
+12	1	44	2008  	2002  	FOAM        	pici25.jpg  
+12	2	29	10008 	2001  	HOOK        	pici23.jpg  
+12	3	30	18008 	2009  	BROOM       	pico06.jpg  
+12	4	36	26008 	2001  	ROPE        	pico08.jpg  
+12	5	27	34008 	2001  	NICKEL      	pici05.jpg  
+12	6	41	42008 	2001  	HOSE        	pico29.jpg  
+12	7	38	50008 	2001  	LENS        	pico12.jpg  
+12	8	33	58008 	2001  	PYRAMID     	pico28.jpg  
+12	9	25	66008 	2001  	PURSE       	pici08.jpg  
+12	10	40	74008 	2001  	JAIL        	pici03.jpg  
+12	11	37	82008 	2001  	SPONGE      	pici15.jpg  
+12	12	32	90007 	2001  	DRILL       	pico02.jpg  
+12	13	43	98007 	2001  	BRACELET    	pici01.jpg  
+12	14	26	106007	2001  	CHALK       	pico03.jpg  
+12	15	35	114007	2001  	PAGE        	pico22.jpg  
+12	16	31	122007	2001  	RULER       	pici12.jpg  
+12	17	28	130007	2001  	DUST        	pico21.jpg  
+12	18	39	138007	2001  	MIRROR      	pico15.jpg  
+12	19	34	146007	2001  	POWDER      	pici29.jpg  
+12	20	42	154007	2001  	PLUG        	pici11.jpg  
+
+
+SESSION 12 ended 14-Sep-2017 17:08:47 for SUBJECT number 27
+
+
+
+
+******************************************************************************
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+1	1	0		15.084	  NaN	0.0040		1		3		  NaN
+1	2	0		15.084	  NaN	0.0040		1		4		  NaN
+1	3	1		15.084	  NaN	0.0040		1		5		  NaN
+1	4	0		15.084	  NaN	0.1044		1		6		  NaN
+1	5	0		15.084	  NaN	0.0040		1		7		  NaN
+1	6	1		15.084	  NaN	0.0039		1		8		  NaN
+1	7	0		15.084	  NaN	0.0039		1		9		  NaN
+1	8	0		15.084	  NaN	0.0039		1		10		  NaN
+1	9	1		15.084	  NaN	0.0039		1		11		  NaN
+1	10	0		15.084	  NaN	0.0377		1		12		  NaN
+1	11	0		15.084	  NaN	0.0039		1		13		  NaN
+1	12	1		15.084	  NaN	0.0039		1		14		  NaN
+1	13	0		15.084	  NaN	0.0209		1		15		  NaN
+1	14	0		15.084	  NaN	0.0037		1		16		  NaN
+1	15	0		15.084	  NaN	0.0038		1		17		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+2	1	0		-7.500	  NaN	0.0036		1		24		  NaN
+2	2	0		-7.500	  NaN	0.0037		1		25		  NaN
+2	3	1		-7.500	  NaN	0.0037		1		26		  NaN
+2	4	0		-7.500	  NaN	0.0208		1		27		  NaN
+2	5	0		-7.500	  NaN	0.0036		1		28		  NaN
+2	6	1		-7.500	  NaN	0.0036		1		29		  NaN
+2	7	0		-7.500	  NaN	0.0041		1		30		  NaN
+2	8	0		-7.500	  NaN	0.0036		1		31		  NaN
+2	9	1		-7.500	  NaN	0.0035		1		32		  NaN
+2	10	0		-7.500	  NaN	0.0040		1		33		  NaN
+2	11	0		-7.500	  NaN	0.0035		1		34		  NaN
+2	12	1		-7.500	  NaN	0.0035		1		35		  NaN
+2	13	0		-7.500	  NaN	0.0206		1		36		  NaN
+2	14	0		-7.500	  NaN	0.0035		1		37		  NaN
+2	15	0		-7.500	  NaN	0.0035		1		38		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+3	1	0		15.084	  NaN	0.0033		1		45		  NaN
+3	2	0		15.084	  NaN	0.0033		1		46		  NaN
+3	3	1		15.084	  NaN	0.0033		1		47		  NaN
+3	4	0		15.084	  NaN	0.0038		1		48		  NaN
+3	5	0		15.084	  NaN	0.0033		1		49		  NaN
+3	6	1		15.084	  NaN	0.0033		1		50		  NaN
+3	7	0		15.084	  NaN	0.0371		1		51		  NaN
+3	8	0		15.084	  NaN	0.0033		1		52		  NaN
+3	9	1		15.084	  NaN	0.0033		1		53		  NaN
+3	10	0		15.084	  NaN	0.0037		1		54		  NaN
+3	11	0		15.084	  NaN	0.0032		1		55		  NaN
+3	12	1		15.084	  NaN	0.0032		1		56		  NaN
+3	13	0		15.084	  NaN	0.0037		1		57		  NaN
+3	14	0		15.084	  NaN	0.0032		1		58		  NaN
+3	15	0		15.084	  NaN	0.0032		1		59		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+4	1	0		-7.500	  NaN	0.0031		1		66		  NaN
+4	2	0		-7.500	  NaN	0.0030		1		67		  NaN
+4	3	1		-7.500	  NaN	0.0030		1		68		  NaN
+4	4	0		-7.500	  NaN	0.0035		1		69		  NaN
+4	5	0		-7.500	  NaN	0.0030		1		70		  NaN
+4	6	1		-7.500	  NaN	0.0030		1		71		  NaN
+4	7	0		-7.500	  NaN	0.0034		1		72		  NaN
+4	8	0		-7.500	  NaN	0.0030		1		73		  NaN
+4	9	1		-7.500	  NaN	0.0030		1		74		  NaN
+4	10	0		-7.500	  NaN	0.0034		1		75		  NaN
+4	11	0		-7.500	  NaN	0.0029		1		76		  NaN
+4	12	1		-7.500	  NaN	0.0029		1		77		  NaN
+4	13	0		-7.500	  NaN	0.0033		1		78		  NaN
+4	14	0		-7.500	  NaN	0.0029		1		79		  NaN
+4	15	0		-7.500	  NaN	0.0029		1		80		  NaN
+
+
+SESSION 15 ended 14-Sep-2017 17:18:35 for SUBJECT number 27
+
+
+
+SESSION 16 ended 14-Sep-2017 17:28:25 for SUBJECT number 27
+
+
+
+
+******************************************************************************
+
+SESSION 17 initiated 14-Sep-2017 17:28:30 for SUBJECT number 27
+
+session	trial	pair	onset	dur	cue         	associate   
+17	1	16	1996  	2002  	COLLAR      	pico24.jpg  
+17	2	22	9996  	2001  	RAKE        	pico26.jpg  
+17	3	12	17996 	2001  	PIPE        	pici09.jpg  
+17	4	17	25996 	2001  	HANDLE      	pici07.jpg  
+17	5	13	33996 	2001  	TRIPOD      	pici10.jpg  
+17	6	18	41996 	2001  	DOME        	pici04.jpg  
+17	7	20	49996 	2001  	MARBLE      	pici19.jpg  
+17	8	24	57996 	2001  	BELT        	pico19.jpg  
+17	9	21	65996 	2001  	PARADE      	pici06.jpg  
+17	10	15	73996 	2001  	WIRE        	pico18.jpg  
+17	11	23	81995 	2001  	SHOVEL      	pici27.jpg  
+17	12	10	89995 	2001  	WALLET      	pico25.jpg  
+17	13	9	97995 	2001  	FRAME       	pico13.jpg  
+17	14	11	105995	2001  	MAGNET      	pico17.jpg  
+17	15	14	113995	2001  	COAL        	pici24.jpg  
+17	16	19	121995	2001  	JOURNAL     	pico01.jpg  
+
+
+SESSION 17 ended 14-Sep-2017 17:30:54 for SUBJECT number 27
+
+
+
+
+******************************************************************************
+
+
+SESSION 18 ended 14-Sep-2017 17:36:49 for SUBJECT number 27
+
+
+
+
+******************************************************************************
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+1	1	0		15.084	  NaN	0.0179		1		13		  NaN
+1	2	0		15.084	  NaN	0.0183		1		14		  NaN
+1	3	1		15.084	  NaN	0.0181		1		15		  NaN
+1	4	0		15.084	  NaN	0.1182		1		16		  NaN
+1	5	0		15.084	  NaN	0.0180		1		17		  NaN
+1	6	1		15.084	  NaN	0.0180		1		18		  NaN
+1	7	0		15.084	  NaN	0.0180		1		19		  NaN
+1	8	0		15.084	  NaN	0.0180		1		20		  NaN
+1	9	1		15.084	  NaN	0.0180		1		21		  NaN
+1	10	0		15.084	  NaN	0.0182		1		22		  NaN
+1	11	0		15.084	  NaN	0.0181		1		23		  NaN
+1	12	1		15.084	  NaN	0.0181		1		24		  NaN
+1	13	0		15.084	  NaN	0.0181		1		25		  NaN
+1	14	0		15.084	  NaN	0.0182		1		26		  NaN
+1	15	0		15.084	  NaN	0.0179		1		27		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+2	1	0		-7.500	  NaN	0.0180		1		34		  NaN
+2	2	0		-7.500	  NaN	0.0180		1		35		  NaN
+2	3	1		-7.500	  NaN	0.0179		1		36		  NaN
+2	4	0		-7.500	  NaN	0.0513		1		37		  NaN
+2	5	0		-7.500	  NaN	0.0179		1		38		  NaN
+2	6	1		-7.500	  NaN	0.0177		1		39		  NaN
+2	7	0		-7.500	  NaN	0.0177		1		40		  NaN
+2	8	0		-7.500	  NaN	0.0177		1		41		  NaN
+2	9	1		-7.500	  NaN	0.0176		1		42		  NaN
+2	10	0		-7.500	  NaN	0.0174		1		43		  NaN
+2	11	0		-7.500	  NaN	0.0178		1		44		  NaN
+2	12	1		-7.500	  NaN	0.0177		1		45		  NaN
+2	13	0		-7.500	  NaN	0.0178		1		46		  NaN
+2	14	0		-7.500	  NaN	0.0178		1		47		  NaN
+2	15	0		-7.500	  NaN	0.0178		1		48		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+3	1	0		-7.500	  NaN	0.0176		1		55		  NaN
+3	2	0		-7.500	  NaN	0.0174		1		56		  NaN
+3	3	1		-7.500	  NaN	0.0174		1		57		  NaN
+3	4	0		-7.500	  NaN	0.0174		1		58		  NaN
+3	5	0		-7.500	  NaN	0.0174		1		59		  NaN
+3	6	1		-7.500	  NaN	0.0174		1		60		  NaN
+3	7	0		-7.500	  NaN	0.0174		1		61		  NaN
+3	8	0		-7.500	  NaN	0.0173		1		62		  NaN
+3	9	1		-7.500	  NaN	0.0173		1		63		  NaN
+3	10	0		-7.500	  NaN	0.0173		1		64		  NaN
+3	11	0		-7.500	  NaN	0.0173		1		65		  NaN
+3	12	1		-7.500	  NaN	0.0173		1		66		  NaN
+3	13	0		-7.500	  NaN	0.0175		1		67		  NaN
+3	14	0		-7.500	  NaN	0.0174		1		68		  NaN
+3	15	0		-7.500	  NaN	0.0174		1		69		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+4	1	0		15.084	  NaN	0.0173		1		76		  NaN
+4	2	0		15.084	  NaN	0.0173		1		77		  NaN
+4	3	1		15.084	  NaN	0.0173		1		78		  NaN
+4	4	0		15.084	  NaN	0.0175		1		79		  NaN
+4	5	0		15.084	  NaN	0.0171		1		80		  NaN
+4	6	1		15.084	  NaN	0.0173		1		81		  NaN
+4	7	0		15.084	  NaN	0.0172		1		82		  NaN
+4	8	0		15.084	  NaN	0.0172		1		83		  NaN
+4	9	1		15.084	  NaN	0.0170		1		84		  NaN
+4	10	0		15.084	  NaN	0.0170		1		85		  NaN
+4	11	0		15.084	  NaN	0.0170		1		86		  NaN
+4	12	1		15.084	  NaN	0.0170		1		87		  NaN
+4	13	0		15.084	  NaN	0.0171		1		88		  NaN
+4	14	0		15.084	  NaN	0.0169		1		89		  NaN
+4	15	0		15.084	  NaN	0.0169		1		90		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+5	1	0		-7.500	  NaN	0.0170		1		97		  NaN
+5	2	0		-7.500	  NaN	0.0168		1		98		  NaN
+5	3	1		-7.500	  NaN	0.0168		1		99		  NaN
+5	4	0		-7.500	  NaN	0.0167		1		100		  NaN
+5	5	0		-7.500	  NaN	0.0167		1		101		  NaN
+5	6	1		-7.500	  NaN	0.0167		1		102		  NaN
+5	7	0		-7.500	  NaN	0.0164		1		103		  NaN
+5	8	0		-7.500	  NaN	0.0169		1		104		  NaN
+5	9	1		-7.500	  NaN	0.0167		1		105		  NaN
+5	10	0		-7.500	  NaN	0.0166		1		106		  NaN
+5	11	0		-7.500	  NaN	0.0166		1		107		  NaN
+5	12	1		-7.500	  NaN	0.0166		1		108		  NaN
+5	13	0		-7.500	  NaN	0.0166		1		109		  NaN
+5	14	0		-7.500	  NaN	0.0168		1		110		  NaN
+5	15	0		-7.500	  NaN	0.0167		1		111		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+6	1	0		15.084	  NaN	0.0166		1		118		  NaN
+6	2	0		15.084	  NaN	0.0167		1		119		  NaN
+6	3	1		15.084	  NaN	0.0166		1		120		  NaN
+6	4	0		15.084	  NaN	0.0334		1		121		  NaN
+6	5	0		15.084	  NaN	0.0166		1		122		  NaN
+6	6	1		15.084	  NaN	0.0166		1		123		  NaN
+6	7	0		15.084	  NaN	0.0166		1		124		  NaN
+6	8	0		15.084	  NaN	0.0166		1		125		  NaN
+6	9	1		15.084	  NaN	0.0328		1		126		  NaN
+6	10	0		15.084	  NaN	0.0666		1		127		  NaN
+6	11	0		15.084	  NaN	0.0328		1		128		  NaN
+6	12	1		15.084	  NaN	0.0328		1		129		  NaN
+6	13	0		15.084	  NaN	0.0665		1		130		  NaN
+6	14	0		15.084	  NaN	0.0161		1		131		  NaN
+6	15	0		15.084	  NaN	0.0164		1		132		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+7	1	0		15.084	  NaN	0.0163		1		139		  NaN
+7	2	0		15.084	  NaN	0.0158		1		140		  NaN
+7	3	1		15.084	  NaN	0.0161		1		141		  NaN
+7	4	0		15.084	  NaN	0.0494		1		142		  NaN
+7	5	0		15.084	  NaN	0.0160		1		143		  NaN
+7	6	1		15.084	  NaN	0.0158		1		144		  NaN
+7	7	0		15.084	  NaN	0.0168		1		145		  NaN
+7	8	0		15.084	  NaN	0.0160		1		146		  NaN
+7	9	1		15.084	  NaN	0.0160		1		147		  NaN
+7	10	0		15.084	  NaN	0.0160		1		148		  NaN
+7	11	0		15.084	  NaN	0.0158		1		149		  NaN
+7	12	1		15.084	  NaN	0.0157		1		150		  NaN
+7	13	0		15.084	  NaN	0.0660		1		151		  NaN
+7	14	0		15.084	  NaN	0.0161		1		152		  NaN
+7	15	0		15.084	  NaN	0.0160		1		153		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+8	1	0		-7.500	  NaN	0.0160		1		160		  NaN
+8	2	0		-7.500	  NaN	0.0155		1		161		  NaN
+8	3	1		-7.500	  NaN	0.0155		1		162		  NaN
+8	4	0		-7.500	  NaN	0.0157		1		163		  NaN
+8	5	0		-7.500	  NaN	0.0154		1		164		  NaN
+8	6	1		-7.500	  NaN	0.0157		1		165		  NaN
+8	7	0		-7.500	  NaN	0.0157		1		166		  NaN
+8	8	0		-7.500	  NaN	0.0157		1		167		  NaN
+8	9	1		-7.500	  NaN	0.0157		1		168		  NaN
+8	10	0		-7.500	  NaN	0.0157		1		169		  NaN
+8	11	0		-7.500	  NaN	0.0153		1		170		  NaN
+8	12	1		-7.500	  NaN	0.0156		1		171		  NaN
+8	13	0		-7.500	  NaN	0.0489		1		172		  NaN
+8	14	0		-7.500	  NaN	0.0153		1		173		  NaN
+8	15	0		-7.500	  NaN	0.0156		1		174		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+9	1	0		15.084	  NaN	0.0157		1		181		  NaN
+9	2	0		15.084	  NaN	0.0155		1		182		  NaN
+9	3	1		15.084	  NaN	0.0153		1		183		  NaN
+9	4	0		15.084	  NaN	0.0156		1		184		  NaN
+9	5	0		15.084	  NaN	0.0156		1		185		  NaN
+9	6	1		15.084	  NaN	0.0156		1		186		  NaN
+9	7	0		15.084	  NaN	0.0656		1		187		  NaN
+9	8	0		15.084	  NaN	0.0152		1		188		  NaN
+9	9	1		15.084	  NaN	0.0156		1		189		  NaN
+9	10	0		15.084	  NaN	0.0655		1		190		  NaN
+9	11	0		15.084	  NaN	0.0155		1		191		  NaN
+9	12	1		15.084	  NaN	0.0155		1		192		  NaN
+9	13	0		15.084	  NaN	0.0320		1		193		  NaN
+9	14	0		15.084	  NaN	0.0153		1		194		  NaN
+9	15	0		15.084	  NaN	0.0149		1		195		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+10	1	0		-7.500	  NaN	0.0154		1		202		  NaN
+10	2	0		-7.500	  NaN	0.0151		1		203		  NaN
+10	3	1		-7.500	  NaN	0.0149		1		204		  NaN
+10	4	0		-7.500	  NaN	0.0651		1		205		  NaN
+10	5	0		-7.500	  NaN	0.0153		1		206		  NaN
+10	6	1		-7.500	  NaN	0.0153		1		207		  NaN
+10	7	0		-7.500	  NaN	0.0317		1		208		  NaN
+10	8	0		-7.500	  NaN	0.0314		1		209		  NaN
+10	9	1		-7.500	  NaN	0.0150		1		210		  NaN
+10	10	0		-7.500	  NaN	0.0150		1		211		  NaN
+10	11	0		-7.500	  NaN	0.0147		1		212		  NaN
+10	12	1		-7.500	  NaN	0.0147		1		213		  NaN
+10	13	0		-7.500	  NaN	0.0150		1		214		  NaN
+10	14	0		-7.500	  NaN	0.0151		1		215		  NaN
+10	15	0		-7.500	  NaN	0.0151		1		216		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+11	1	0		15.084	  NaN	0.0151		1		223		  NaN
+11	2	0		15.084	  NaN	0.0150		1		224		  NaN
+11	3	1		15.084	  NaN	0.0146		1		225		  NaN
+11	4	0		15.084	  NaN	0.0152		1		226		  NaN
+11	5	0		15.084	  NaN	0.0145		1		227		  NaN
+11	6	1		15.084	  NaN	0.0148		1		228		  NaN
+11	7	0		15.084	  NaN	0.0647		1		229		  NaN
+11	8	0		15.084	  NaN	0.0147		1		230		  NaN
+11	9	1		15.084	  NaN	0.0147		1		231		  NaN
+11	10	0		15.084	  NaN	0.0147		1		232		  NaN
+11	11	0		15.084	  NaN	0.0148		1		233		  NaN
+11	12	1		15.084	  NaN	0.0147		1		234		  NaN
+11	13	0		15.084	  NaN	0.0146		1		235		  NaN
+11	14	0		15.084	  NaN	0.0143		1		236		  NaN
+11	15	0		15.084	  NaN	0.0149		1		237		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+12	1	0		-7.500	  NaN	0.0147		1		244		  NaN
+12	2	0		-7.500	  NaN	0.0145		1		245		  NaN
+12	3	1		-7.500	  NaN	0.0146		1		246		  NaN
+12	4	0		-7.500	  NaN	0.0145		1		247		  NaN
+12	5	0		-7.500	  NaN	0.0144		1		248		  NaN
+12	6	1		-7.500	  NaN	0.0142		1		249		  NaN
+12	7	0		-7.500	  NaN	0.0479		1		250		  NaN
+12	8	0		-7.500	  NaN	0.0144		1		251		  NaN
+12	9	1		-7.500	  NaN	0.0141		1		252		  NaN
+12	10	0		-7.500	  NaN	0.0310		1		253		  NaN
+12	11	0		-7.500	  NaN	0.0143		1		254		  NaN
+12	12	1		-7.500	  NaN	0.0143		1		255		  NaN
+12	13	0		-7.500	  NaN	0.0476		1		256		  NaN
+12	14	0		-7.500	  NaN	0.0143		1		257		  NaN
+12	15	0		-7.500	  NaN	0.0145		1		258		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+13	1	0		-7.500	  NaN	0.0143		1		265		  NaN
+13	2	0		-7.500	  NaN	0.0142		1		266		  NaN
+13	3	1		-7.500	  NaN	0.0141		1		267		  NaN
+13	4	0		-7.500	  NaN	0.0475		1		268		  NaN
+13	5	0		-7.500	  NaN	0.0143		1		269		  NaN
+13	6	1		-7.500	  NaN	0.0143		1		270		  NaN
+13	7	0		-7.500	  NaN	0.0143		1		271		  NaN
+13	8	0		-7.500	  NaN	0.0141		1		272		  NaN
+13	9	1		-7.500	  NaN	0.0140		1		273		  NaN
+13	10	0		-7.500	  NaN	0.0140		1		274		  NaN
+13	11	0		-7.500	  NaN	0.0140		1		275		  NaN
+13	12	1		-7.500	  NaN	0.0138		1		276		  NaN
+13	13	0		-7.500	  NaN	0.0142		1		277		  NaN
+13	14	0		-7.500	  NaN	0.0137		1		278		  NaN
+13	15	0		-7.500	  NaN	0.0141		1		279		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+14	1	0		-7.500	  NaN	0.0140		1		286		  NaN
+14	2	0		-7.500	  NaN	0.0140		1		287		  NaN
+14	3	1		-7.500	  NaN	0.0140		1		288		  NaN
+14	4	0		-7.500	  NaN	0.0640		1		289		  NaN
+14	5	0		-7.500	  NaN	0.0303		1		290		  NaN
+14	6	1		-7.500	  NaN	0.0140		1		291		  NaN
+14	7	0		-7.500	  NaN	0.0139		1		292		  NaN
+14	8	0		-7.500	  NaN	0.0137		1		293		  NaN
+14	9	1		-7.500	  NaN	0.0137		1		294		  NaN
+14	10	0		-7.500	  NaN	0.0137		1		295		  NaN
+14	11	0		-7.500	  NaN	0.0137		1		296		  NaN
+14	12	1		-7.500	  NaN	0.0139		1		297		  NaN
+14	13	0		-7.500	  NaN	0.0305		1		298		  NaN
+14	14	0		-7.500	  NaN	0.0138		1		299		  NaN
+14	15	0		-7.500	  NaN	0.0138		1		300		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+15	1	0		15.084	  NaN	0.0137		1		307		  NaN
+15	2	0		15.084	  NaN	0.0299		1		308		  NaN
+15	3	1		15.084	  NaN	0.0136		1		309		  NaN
+15	4	0		15.084	  NaN	0.0304		1		310		  NaN
+15	5	0		15.084	  NaN	0.0137		1		311		  NaN
+15	6	1		15.084	  NaN	0.0137		1		312		  NaN
+15	7	0		15.084	  NaN	0.0303		1		313		  NaN
+15	8	0		15.084	  NaN	0.0135		1		314		  NaN
+15	9	1		15.084	  NaN	0.0135		1		315		  NaN
+15	10	0		15.084	  NaN	0.0302		1		316		  NaN
+15	11	0		15.084	  NaN	0.0135		1		317		  NaN
+15	12	1		15.084	  NaN	0.0135		1		318		  NaN
+15	13	0		15.084	  NaN	0.0135		1		319		  NaN
+15	14	0		15.084	  NaN	0.0130		1		320		  NaN
+15	15	0		15.084	  NaN	0.0133		1		321		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+16	1	0		15.084	  NaN	0.0134		1		328		  NaN
+16	2	0		15.084	  NaN	0.0132		1		329		  NaN
+16	3	1		15.084	  NaN	0.0131		1		330		  NaN
+16	4	0		15.084	  NaN	0.0298		1		331		  NaN
+16	5	0		15.084	  NaN	0.0131		1		332		  NaN
+16	6	1		15.084	  NaN	0.0296		1		333		  NaN
+16	7	0		15.084	  NaN	0.0298		1		334		  NaN
+16	8	0		15.084	  NaN	0.0295		1		335		  NaN
+16	9	1		15.084	  NaN	0.0132		1		336		  NaN
+16	10	0		15.084	  NaN	0.0632		1		337		  NaN
+16	11	0		15.084	  NaN	0.0132		1		338		  NaN
+16	12	1		15.084	  NaN	0.0132		1		339		  NaN
+16	13	0		15.084	  NaN	0.0299		1		340		  NaN
+16	14	0		15.084	  NaN	0.0130		1		341		  NaN
+16	15	0		15.084	  NaN	0.0293		1		342		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+17	1	0		-7.500	  NaN	0.0130		1		349		  NaN
+17	2	0		-7.500	  NaN	0.0128		1		350		  NaN
+17	3	1		-7.500	  NaN	0.0293		1		351		  NaN
+17	4	0		-7.500	  NaN	0.0463		1		352		  NaN
+17	5	0		-7.500	  NaN	0.0129		1		353		  NaN
+17	6	1		-7.500	  NaN	0.0125		1		354		  NaN
+17	7	0		-7.500	  NaN	0.0294		1		355		  NaN
+17	8	0		-7.500	  NaN	0.0128		1		356		  NaN
+17	9	1		-7.500	  NaN	0.0128		1		357		  NaN
+17	10	0		-7.500	  NaN	0.0296		1		358		  NaN
+17	11	0		-7.500	  NaN	0.0129		1		359		  NaN
+17	12	1		-7.500	  NaN	0.0130		1		360		  NaN
+17	13	0		-7.500	  NaN	0.0126		1		361		  NaN
+17	14	0		-7.500	  NaN	0.0290		1		362		  NaN
+17	15	0		-7.500	  NaN	0.0127		1		363		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+18	1	0		15.084	  NaN	0.0127		1		370		  NaN
+18	2	0		15.084	  NaN	0.0125		1		371		  NaN
+18	3	1		15.084	  NaN	0.0127		1		372		  NaN
+18	4	0		15.084	  NaN	0.0125		1		373		  NaN
+18	5	0		15.084	  NaN	0.0127		1		374		  NaN
+18	6	1		15.084	  NaN	0.0126		1		375		  NaN
+18	7	0		15.084	  NaN	0.0293		1		376		  NaN
+18	8	0		15.084	  NaN	0.0288		1		377		  NaN
+18	9	1		15.084	  NaN	0.0127		1		378		  NaN
+18	10	0		15.084	  NaN	0.0292		1		379		  NaN
+18	11	0		15.084	  NaN	0.0126		1		380		  NaN
+18	12	1		15.084	  NaN	0.0123		1		381		  NaN
+18	13	0		15.084	  NaN	0.0291		1		382		  NaN
+18	14	0		15.084	  NaN	0.0121		1		383		  NaN
+18	15	0		15.084	  NaN	0.0125		1		384		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+19	1	0		15.084	  NaN	0.0123		1		391		  NaN
+19	2	0		15.084	  NaN	0.0285		1		392		  NaN
+19	3	1		15.084	  NaN	0.0121		1		393		  NaN
+19	4	0		15.084	  NaN	0.0288		1		394		  NaN
+19	5	0		15.084	  NaN	0.0285		1		395		  NaN
+19	6	1		15.084	  NaN	0.0121		1		396		  NaN
+19	7	0		15.084	  NaN	0.0454		1		397		  NaN
+19	8	0		15.084	  NaN	0.0284		1		398		  NaN
+19	9	1		15.084	  NaN	0.0120		1		399		  NaN
+19	10	0		15.084	  NaN	0.0287		1		400		  NaN
+19	11	0		15.084	  NaN	0.0284		1		401		  NaN
+19	12	1		15.084	  NaN	0.0117		1		402		  NaN
+19	13	0		15.084	  NaN	0.0286		1		403		  NaN
+19	14	0		15.084	  NaN	0.0283		1		404		  NaN
+19	15	0		15.084	  NaN	0.0283		1		405		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+20	1	0		-7.500	  NaN	0.0120		1		412		  NaN
+20	2	0		-7.500	  NaN	0.0120		1		413		  NaN
+20	3	1		-7.500	  NaN	0.0121		1		414		  NaN
+20	4	0		-7.500	  NaN	0.0285		1		415		  NaN
+20	5	0		-7.500	  NaN	0.0118		1		416		  NaN
+20	6	1		-7.500	  NaN	0.0118		1		417		  NaN
+20	7	0		-7.500	  NaN	0.0453		1		418		  NaN
+20	8	0		-7.500	  NaN	0.0282		1		419		  NaN
+20	9	1		-7.500	  NaN	0.0117		1		420		  NaN
+20	10	0		-7.500	  NaN	0.0117		1		421		  NaN
+20	11	0		-7.500	  NaN	0.0281		1		422		  NaN
+20	12	1		-7.500	  NaN	0.0119		1		423		  NaN
+20	13	0		-7.500	  NaN	0.0450		1		424		  NaN
+20	14	0		-7.500	  NaN	0.0281		1		425		  NaN
+20	15	0		-7.500	  NaN	0.0114		1		426		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+21	1	0		15.084	  NaN	0.0118		1		433		  NaN
+21	2	0		15.084	  NaN	0.0117		1		434		  NaN
+21	3	1		15.084	  NaN	0.0112		1		435		  NaN
+21	4	0		15.084	  NaN	0.0617		1		436		  NaN
+21	5	0		15.084	  NaN	0.0117		1		437		  NaN
+21	6	1		15.084	  NaN	0.0117		1		438		  NaN
+21	7	0		15.084	  NaN	0.0116		1		439		  NaN
+21	8	0		15.084	  NaN	0.0278		1		440		  NaN
+21	9	1		15.084	  NaN	0.0116		1		441		  NaN
+21	10	0		15.084	  NaN	0.0615		1		442		  NaN
+21	11	0		15.084	  NaN	0.0111		1		443		  NaN
+21	12	1		15.084	  NaN	0.0116		1		444		  NaN
+21	13	0		15.084	  NaN	0.0282		1		445		  NaN
+21	14	0		15.084	  NaN	0.0278		1		446		  NaN
+21	15	0		15.084	  NaN	0.0278		1		447		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+22	1	0		15.084	  NaN	0.0114		1		454		  NaN
+22	2	0		15.084	  NaN	0.0113		1		455		  NaN
+22	3	1		15.084	  NaN	0.0114		1		456		  NaN
+22	4	0		15.084	  NaN	0.0614		1		457		  NaN
+22	5	0		15.084	  NaN	0.0276		1		458		  NaN
+22	6	1		15.084	  NaN	0.0276		1		459		  NaN
+22	7	0		15.084	  NaN	0.0281		1		460		  NaN
+22	8	0		15.084	  NaN	0.0275		1		461		  NaN
+22	9	1		15.084	  NaN	0.0275		1		462		  NaN
+22	10	0		15.084	  NaN	0.0279		1		463		  NaN
+22	11	0		15.084	  NaN	0.0112		1		464		  NaN
+22	12	1		15.084	  NaN	0.0111		1		465		  NaN
+22	13	0		15.084	  NaN	0.0279		1		466		  NaN
+22	14	0		15.084	  NaN	0.0274		1		467		  NaN
+22	15	0		15.084	  NaN	0.0111		1		468		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+23	1	0		-7.500	  NaN	0.0110		1		475		  NaN
+23	2	0		-7.500	  NaN	0.0272		1		476		  NaN
+23	3	1		-7.500	  NaN	0.0273		1		477		  NaN
+23	4	0		-7.500	  NaN	0.0109		1		478		  NaN
+23	5	0		-7.500	  NaN	0.0272		1		479		  NaN
+23	6	1		-7.500	  NaN	0.0110		1		480		  NaN
+23	7	0		-7.500	  NaN	0.0277		1		481		  NaN
+23	8	0		-7.500	  NaN	0.0110		1		482		  NaN
+23	9	1		-7.500	  NaN	0.0108		1		483		  NaN
+23	10	0		-7.500	  NaN	0.0277		1		484		  NaN
+23	11	0		-7.500	  NaN	0.0109		1		485		  NaN
+23	12	1		-7.500	  NaN	0.0272		1		486		  NaN
+23	13	0		-7.500	  NaN	0.0108		1		487		  NaN
+23	14	0		-7.500	  NaN	0.0108		1		488		  NaN
+23	15	0		-7.500	  NaN	0.0270		1		489		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+24	1	0		-7.500	  NaN	0.0106		1		496		  NaN
+24	2	0		-7.500	  NaN	0.0106		1		497		  NaN
+24	3	1		-7.500	  NaN	0.0107		1		498		  NaN
+24	4	0		-7.500	  NaN	0.0273		1		499		  NaN
+24	5	0		-7.500	  NaN	0.0106		1		500		  NaN
+24	6	1		-7.500	  NaN	0.0104		1		501		  NaN
+24	7	0		-7.500	  NaN	0.0439		1		502		  NaN
+24	8	0		-7.500	  NaN	0.0104		1		503		  NaN
+24	9	1		-7.500	  NaN	0.0105		1		504		  NaN
+24	10	0		-7.500	  NaN	0.0274		1		505		  NaN
+24	11	0		-7.500	  NaN	0.0268		1		506		  NaN
+24	12	1		-7.500	  NaN	0.0105		1		507		  NaN
+24	13	0		-7.500	  NaN	0.0439		1		508		  NaN
+24	14	0		-7.500	  NaN	0.0106		1		509		  NaN
+24	15	0		-7.500	  NaN	0.0268		1		510		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+25	1	0		15.084	  NaN	0.0103		1		517		  NaN
+25	2	0		15.084	  NaN	0.0103		1		518		  NaN
+25	3	1		15.084	  NaN	0.0102		1		519		  NaN
+25	4	0		15.084	  NaN	0.0269		1		520		  NaN
+25	5	0		15.084	  NaN	0.0101		1		521		  NaN
+25	6	1		15.084	  NaN	0.0104		1		522		  NaN
+25	7	0		15.084	  NaN	0.0102		1		523		  NaN
+25	8	0		15.084	  NaN	0.0270		1		524		  NaN
+25	9	1		15.084	  NaN	0.0103		1		525		  NaN
+25	10	0		15.084	  NaN	0.0102		1		526		  NaN
+25	11	0		15.084	  NaN	0.0101		1		527		  NaN
+25	12	1		15.084	  NaN	0.0102		1		528		  NaN
+25	13	0		15.084	  NaN	0.0102		1		529		  NaN
+25	14	0		15.084	  NaN	0.0102		1		530		  NaN
+25	15	0		15.084	  NaN	0.0101		1		531		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+26	1	0		-7.500	  NaN	0.0100		1		538		  NaN
+26	2	0		-7.500	  NaN	0.0262		1		539		  NaN
+26	3	1		-7.500	  NaN	0.0100		1		540		  NaN
+26	4	0		-7.500	  NaN	0.0266		1		541		  NaN
+26	5	0		-7.500	  NaN	0.0099		1		542		  NaN
+26	6	1		-7.500	  NaN	0.0099		1		543		  NaN
+26	7	0		-7.500	  NaN	0.0099		1		544		  NaN
+26	8	0		-7.500	  NaN	0.0098		1		545		  NaN
+26	9	1		-7.500	  NaN	0.0100		1		546		  NaN
+26	10	0		-7.500	  NaN	0.0098		1		547		  NaN
+26	11	0		-7.500	  NaN	0.0099		1		548		  NaN
+26	12	1		-7.500	  NaN	0.0098		1		549		  NaN
+26	13	0		-7.500	  NaN	0.0099		1		550		  NaN
+26	14	0		-7.500	  NaN	0.0098		1		551		  NaN
+26	15	0		-7.500	  NaN	0.0098		1		552		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+27	1	0		15.084	  NaN	0.0097		1		559		  NaN
+27	2	0		15.084	  NaN	0.0097		1		560		  NaN
+27	3	1		15.084	  NaN	0.0097		1		561		  NaN
+27	4	0		15.084	  NaN	0.0596		1		562		  NaN
+27	5	0		15.084	  NaN	0.0096		1		563		  NaN
+27	6	1		15.084	  NaN	0.0097		1		564		  NaN
+27	7	0		15.084	  NaN	0.0096		1		565		  NaN
+27	8	0		15.084	  NaN	0.0095		1		566		  NaN
+27	9	1		15.084	  NaN	0.0091		1		567		  NaN
+27	10	0		15.084	  NaN	0.0096		1		568		  NaN
+27	11	0		15.084	  NaN	0.0091		1		569		  NaN
+27	12	1		15.084	  NaN	0.0096		1		570		  NaN
+27	13	0		15.084	  NaN	0.0098		1		571		  NaN
+27	14	0		15.084	  NaN	0.0095		1		572		  NaN
+27	15	0		15.084	  NaN	0.0096		1		573		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+28	1	0		-7.500	  NaN	0.0093		1		580		  NaN
+28	2	0		-7.500	  NaN	0.0094		1		581		  NaN
+28	3	1		-7.500	  NaN	0.0092		1		582		  NaN
+28	4	0		-7.500	  NaN	0.0096		1		583		  NaN
+28	5	0		-7.500	  NaN	0.0094		1		584		  NaN
+28	6	1		-7.500	  NaN	0.0093		1		585		  NaN
+28	7	0		-7.500	  NaN	0.0260		1		586		  NaN
+28	8	0		-7.500	  NaN	0.0093		1		587		  NaN
+28	9	1		-7.500	  NaN	0.0093		1		588		  NaN
+28	10	0		-7.500	  NaN	0.0095		1		589		  NaN
+28	11	0		-7.500	  NaN	0.0091		1		590		  NaN
+28	12	1		-7.500	  NaN	0.0092		1		591		  NaN
+28	13	0		-7.500	  NaN	0.0092		1		592		  NaN
+28	14	0		-7.500	  NaN	0.0091		1		593		  NaN
+28	15	0		-7.500	  NaN	0.0091		1		594		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+29	1	0		15.084	  NaN	0.0090		1		601		  NaN
+29	2	0		15.084	  NaN	0.0090		1		602		  NaN
+29	3	1		15.084	  NaN	0.0085		1		603		  NaN
+29	4	0		15.084	  NaN	0.0422		1		604		  NaN
+29	5	0		15.084	  NaN	0.0090		1		605		  NaN
+29	6	1		15.084	  NaN	0.0090		1		606		  NaN
+29	7	0		15.084	  NaN	0.0089		1		607		  NaN
+29	8	0		15.084	  NaN	0.0088		1		608		  NaN
+29	9	1		15.084	  NaN	0.0089		1		609		  NaN
+29	10	0		15.084	  NaN	0.0089		1		610		  NaN
+29	11	0		15.084	  NaN	0.0088		1		611		  NaN
+29	12	1		15.084	  NaN	0.0086		1		612		  NaN
+29	13	0		15.084	  NaN	0.0086		1		613		  NaN
+29	14	0		15.084	  NaN	0.0086		1		614		  NaN
+29	15	0		15.084	  NaN	0.0086		1		615		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+30	1	0		-7.500	  NaN	0.0087		1		622		  NaN
+30	2	0		-7.500	  NaN	0.0085		1		623		  NaN
+30	3	1		-7.500	  NaN	0.0086		1		624		  NaN
+30	4	0		-7.500	  NaN	0.0585		1		625		  NaN
+30	5	0		-7.500	  NaN	0.0086		1		626		  NaN
+30	6	1		-7.500	  NaN	0.0087		1		627		  NaN
+30	7	0		-7.500	  NaN	0.0085		1		628		  NaN
+30	8	0		-7.500	  NaN	0.0086		1		629		  NaN
+30	9	1		-7.500	  NaN	0.0085		1		630		  NaN
+30	10	0		-7.500	  NaN	0.0092		1		631		  NaN
+30	11	0		-7.500	  NaN	0.0086		1		632		  NaN
+30	12	1		-7.500	  NaN	0.0085		1		633		  NaN
+30	13	0		-7.500	  NaN	0.0091		1		634		  NaN
+30	14	0		-7.500	  NaN	0.0085		1		635		  NaN
+30	15	0		-7.500	  NaN	0.0084		1		636		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+31	1	0		15.084	  NaN	0.0083		1		643		  NaN
+31	2	0		15.084	  NaN	0.0083		1		644		  NaN
+31	3	1		15.084	  NaN	0.0083		1		645		  NaN
+31	4	0		15.084	  NaN	0.0583		1		646		  NaN
+31	5	0		15.084	  NaN	0.0082		1		647		  NaN
+31	6	1		15.084	  NaN	0.0083		1		648		  NaN
+31	7	0		15.084	  NaN	0.0416		1		649		  NaN
+31	8	0		15.084	  NaN	0.0083		1		650		  NaN
+31	9	1		15.084	  NaN	0.0081		1		651		  NaN
+31	10	0		15.084	  NaN	0.0255		1		652		  NaN
+31	11	0		15.084	  NaN	0.0082		1		653		  NaN
+31	12	1		15.084	  NaN	0.0081		1		654		  NaN
+31	13	0		15.084	  NaN	0.0081		1		655		  NaN
+31	14	0		15.084	  NaN	0.0080		1		656		  NaN
+31	15	0		15.084	  NaN	0.0082		1		657		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+32	1	0		-7.500	  NaN	0.0080		1		664		  NaN
+32	2	0		-7.500	  NaN	0.0080		1		665		  NaN
+32	3	1		-7.500	  NaN	0.0078		1		666		  NaN
+32	4	0		-7.500	  NaN	0.0244		1		667		  NaN
+32	5	0		-7.500	  NaN	0.0077		1		668		  NaN
+32	6	1		-7.500	  NaN	0.0080		1		669		  NaN
+32	7	0		-7.500	  NaN	0.0082		1		670		  NaN
+32	8	0		-7.500	  NaN	0.0079		1		671		  NaN
+32	9	1		-7.500	  NaN	0.0079		1		672		  NaN
+32	10	0		-7.500	  NaN	0.0078		1		673		  NaN
+32	11	0		-7.500	  NaN	0.0079		1		674		  NaN
+32	12	1		-7.500	  NaN	0.0078		1		675		  NaN
+32	13	0		-7.500	  NaN	0.0244		1		676		  NaN
+32	14	0		-7.500	  NaN	0.0077		1		677		  NaN
+32	15	0		-7.500	  NaN	0.0078		1		678		  NaN
+
+
+SESSION 20 ended 14-Sep-2017 18:11:54 for SUBJECT number 27
+
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+1	1	0		2.000	  NaN	0.0172		1		13		  NaN
+1	2	0		2.000	  NaN	0.0174		1		14		  NaN
+1	3	1		2.000	  NaN	0.0175		1		15		  NaN
+1	4	0		1.293	  NaN	0.0843		1		16		  NaN
+1	5	0		0.991	  NaN	0.0175		1		17		  NaN
+1	6	1		-0.259	  NaN	0.0176		1		18		  NaN
+1	7	0		-1.509	  NaN	0.0507		1		19		  NaN
+1	8	0		-2.759	  NaN	0.0173		1		20		  NaN
+1	9	1		-3.496	  NaN	0.0173		1		21		  NaN
+1	10	0		-3.758	  NaN	0.0173		1		22		  NaN
+1	11	0		-5.008	  NaN	0.0175		1		23		  NaN
+1	12	1		-6.258	  NaN	0.0175		1		24		  NaN
+1	13	0		-7.472	  NaN	0.0174		1		25		  NaN
+1	14	0		-8.722	  NaN	0.0174		1		26		  NaN
+1	15	0		-9.972	  NaN	0.0174		1		27		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+2	1	0		2.000	  NaN	0.0174		1		34		  NaN
+2	2	0		2.000	  NaN	0.0173		1		35		  NaN
+2	3	1		2.000	  NaN	0.0173		1		36		  NaN
+2	4	0		0.750	  NaN	0.0172		1		37		  NaN
+2	5	0		2.000	  NaN	0.0172		1		38		  NaN
+2	6	1		3.250	  NaN	0.0170		1		39		  NaN
+2	7	0		2.544	  NaN	0.0173		1		40		  NaN
+2	8	0		1.534	  NaN	0.0172		1		41		  NaN
+2	9	1		0.284	  NaN	0.0172		1		42		  NaN
+2	10	0		1.534	  NaN	0.0172		1		43		  NaN
+2	11	0		2.035	  NaN	0.0171		1		44		  NaN
+2	12	1		2.409	  NaN	0.0171		1		45		  NaN
+2	13	0		1.159	  NaN	0.0171		1		46		  NaN
+2	14	0		-0.091	  NaN	0.0171		1		47		  NaN
+2	15	0		-1.341	  NaN	0.0171		1		48		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+3	1	0		2.000	  NaN	0.0171		1		55		  NaN
+3	2	0		2.000	  NaN	0.0170		1		56		  NaN
+3	3	1		2.000	  NaN	0.0169		1		57		  NaN
+3	4	0		2.436	  NaN	0.0169		1		58		  NaN
+3	5	0		3.656	  NaN	0.0169		1		59		  NaN
+3	6	1		4.906	  NaN	0.0167		1		60		  NaN
+3	7	0		6.156	  NaN	0.0167		1		61		  NaN
+3	8	0		7.406	  NaN	0.0167		1		62		  NaN
+3	9	1		7.279	  NaN	0.0167		1		63		  NaN
+3	10	0		6.907	  NaN	0.0167		1		64		  NaN
+3	11	0		5.657	  NaN	0.0166		1		65		  NaN
+3	12	1		4.407	  NaN	0.0166		1		66		  NaN
+3	13	0		3.219	  NaN	0.0166		1		67		  NaN
+3	14	0		3.102	  NaN	0.0168		1		68		  NaN
+3	15	0		2.728	  NaN	0.0166		1		69		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+4	1	0		2.000	  NaN	0.0166		1		76		  NaN
+4	2	0		2.000	  NaN	0.0328		1		77		  NaN
+4	3	1		2.000	  NaN	0.0328		1		78		  NaN
+4	4	0		3.250	  NaN	0.0664		1		79		  NaN
+4	5	0		4.500	  NaN	0.0165		1		80		  NaN
+4	6	1		5.750	  NaN	0.0166		1		81		  NaN
+4	7	0		7.000	  NaN	0.0166		1		82		  NaN
+4	8	0		8.250	  NaN	0.0166		1		83		  NaN
+4	9	1		9.500	  NaN	0.0161		1		84		  NaN
+4	10	0		10.750	  NaN	0.0165		1		85		  NaN
+4	11	0		12.000	  NaN	0.0160		1		86		  NaN
+4	12	1		12.903	  NaN	0.0163		1		87		  NaN
+4	13	0		14.153	  NaN	0.0330		1		88		  NaN
+4	14	0		15.104	  NaN	0.0160		1		89		  NaN
+4	15	0		16.354	  NaN	0.0160		1		90		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+5	1	0		2.000	  NaN	0.0163		1		97		  NaN
+5	2	0		2.000	  NaN	0.0158		1		98		  NaN
+5	3	1		2.000	  NaN	0.0158		1		99		  NaN
+5	4	0		2.125	  NaN	0.0496		1		100		  NaN
+5	5	0		2.607	  NaN	0.0163		1		101		  NaN
+5	6	1		3.114	  NaN	0.0158		1		102		  NaN
+5	7	0		4.364	  NaN	0.0163		1		103		  NaN
+5	8	0		3.114	  NaN	0.0158		1		104		  NaN
+5	9	1		1.864	  NaN	0.0158		1		105		  NaN
+5	10	0		3.114	  NaN	0.0498		1		106		  NaN
+5	11	0		4.364	  NaN	0.0162		1		107		  NaN
+5	12	1		5.614	  NaN	0.0161		1		108		  NaN
+5	13	0		6.738	  NaN	0.0161		1		109		  NaN
+5	14	0		6.237	  NaN	0.0159		1		110		  NaN
+5	15	0		4.987	  NaN	0.0159		1		111		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+6	1	0		2.000	  NaN	0.0159		1		118		  NaN
+6	2	0		2.000	  NaN	0.0158		1		119		  NaN
+6	3	1		2.000	  NaN	0.0158		1		120		  NaN
+6	4	0		1.253	  NaN	0.0160		1		121		  NaN
+6	5	0		2.376	  NaN	0.0158		1		122		  NaN
+6	6	1		2.025	  NaN	0.0322		1		123		  NaN
+6	7	0		0.775	  NaN	0.0324		1		124		  NaN
+6	8	0		-0.475	  NaN	0.0155		1		125		  NaN
+6	9	1		-1.326	  NaN	0.0320		1		126		  NaN
+6	10	0		-1.499	  NaN	0.0326		1		127		  NaN
+6	11	0		-0.526	  NaN	0.0320		1		128		  NaN
+6	12	1		0.287	  NaN	0.0154		1		129		  NaN
+6	13	0		0.175	  NaN	0.0158		1		130		  NaN
+6	14	0		0.208	  NaN	0.0153		1		131		  NaN
+6	15	0		0.099	  NaN	0.0153		1		132		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+7	1	0		2.000	  NaN	0.0157		1		139		  NaN
+7	2	0		2.000	  NaN	0.0154		1		140		  NaN
+7	3	1		2.000	  NaN	0.0157		1		141		  NaN
+7	4	0		2.044	  NaN	0.0156		1		142		  NaN
+7	5	0		3.294	  NaN	0.0318		1		143		  NaN
+7	6	1		4.544	  NaN	0.0156		1		144		  NaN
+7	7	0		5.794	  NaN	0.0487		1		145		  NaN
+7	8	0		7.044	  NaN	0.0317		1		146		  NaN
+7	9	1		6.848	  NaN	0.0155		1		147		  NaN
+7	10	0		7.384	  NaN	0.0153		1		148		  NaN
+7	11	0		6.825	  NaN	0.0150		1		149		  NaN
+7	12	1		8.075	  NaN	0.0153		1		150		  NaN
+7	13	0		8.862	  NaN	0.0153		1		151		  NaN
+7	14	0		8.953	  NaN	0.0317		1		152		  NaN
+7	15	0		8.769	  NaN	0.0155		1		153		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+8	1	0		2.000	  NaN	0.0152		1		160		  NaN
+8	2	0		2.000	  NaN	0.0149		1		161		  NaN
+8	3	1		2.000	  NaN	0.0316		1		162		  NaN
+8	4	0		3.250	  NaN	0.0653		1		163		  NaN
+8	5	0		3.610	  NaN	0.0152		1		164		  NaN
+8	6	1		4.860	  NaN	0.0147		1		165		  NaN
+8	7	0		5.827	  NaN	0.0491		1		166		  NaN
+8	8	0		7.077	  NaN	0.0314		1		167		  NaN
+8	9	1		6.762	  NaN	0.0153		1		168		  NaN
+8	10	0		6.037	  NaN	0.0483		1		169		  NaN
+8	11	0		5.482	  NaN	0.0147		1		170		  NaN
+8	12	1		4.791	  NaN	0.0149		1		171		  NaN
+8	13	0		3.541	  NaN	0.0649		1		172		  NaN
+8	14	0		2.291	  NaN	0.0151		1		173		  NaN
+8	15	0		1.533	  NaN	0.0147		1		174		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+9	1	0		2.000	  NaN	0.0149		1		181		  NaN
+9	2	0		2.000	  NaN	0.0312		1		182		  NaN
+9	3	1		2.000	  NaN	0.0145		1		183		  NaN
+9	4	0		0.750	  NaN	0.0316		1		184		  NaN
+9	5	0		2.000	  NaN	0.0147		1		185		  NaN
+9	6	1		3.250	  NaN	0.0147		1		186		  NaN
+9	7	0		4.500	  NaN	0.0147		1		187		  NaN
+9	8	0		5.750	  NaN	0.0143		1		188		  NaN
+9	9	1		6.236	  NaN	0.0146		1		189		  NaN
+9	10	0		7.486	  NaN	0.0146		1		190		  NaN
+9	11	0		8.736	  NaN	0.0146		1		191		  NaN
+9	12	1		9.167	  NaN	0.0146		1		192		  NaN
+9	13	0		9.520	  NaN	0.0479		1		193		  NaN
+9	14	0		8.270	  NaN	0.0146		1		194		  NaN
+9	15	0		7.789	  NaN	0.0146		1		195		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+10	1	0		2.000	  NaN	0.0146		1		202		  NaN
+10	2	0		2.000	  NaN	0.0146		1		203		  NaN
+10	3	1		2.000	  NaN	0.0142		1		204		  NaN
+10	4	0		0.750	  NaN	0.0146		1		205		  NaN
+10	5	0		1.886	  NaN	0.0141		1		206		  NaN
+10	6	1		3.032	  NaN	0.0146		1		207		  NaN
+10	7	0		4.282	  NaN	0.0145		1		208		  NaN
+10	8	0		5.532	  NaN	0.0145		1		209		  NaN
+10	9	1		6.782	  NaN	0.0144		1		210		  NaN
+10	10	0		8.032	  NaN	0.0145		1		211		  NaN
+10	11	0		9.282	  NaN	0.0145		1		212		  NaN
+10	12	1		10.047	  NaN	0.0307		1		213		  NaN
+10	13	0		8.797	  NaN	0.0645		1		214		  NaN
+10	14	0		7.547	  NaN	0.0307		1		215		  NaN
+10	15	0		6.297	  NaN	0.0307		1		216		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+1	1	0		7.789	  NaN	0.0324		1		13		  NaN
+1	2	0		7.789	  NaN	0.0162		1		14		  NaN
+1	3	1		7.789	  NaN	0.0161		1		15		  NaN
+1	4	0		6.935	  NaN	0.0994		1		16		  NaN
+1	5	0		5.685	  NaN	0.0161		1		17		  NaN
+1	6	1		4.435	  NaN	0.0159		1		18		  NaN
+1	7	0		3.365	  NaN	0.0161		1		19		  NaN
+1	8	0		2.363	  NaN	0.0160		1		20		  NaN
+1	9	1		1.113	  NaN	0.0160		1		21		  NaN
+1	10	0		0.628	  NaN	0.0160		1		22		  NaN
+1	11	0		-0.045	  NaN	0.0160		1		23		  NaN
+1	12	1		1.205	  NaN	0.0160		1		24		  NaN
+1	13	0		0.907	  NaN	0.0160		1		25		  NaN
+1	14	0		1.930	  NaN	0.0159		1		26		  NaN
+1	15	0		3.180	  NaN	0.0160		1		27		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+2	1	0		0.099	  NaN	0.0158		1		34		  NaN
+2	2	0		0.099	  NaN	0.0156		1		35		  NaN
+2	3	1		0.099	  NaN	0.0156		1		36		  NaN
+2	4	0		-1.073	  NaN	0.0156		1		37		  NaN
+2	5	0		-0.835	  NaN	0.0156		1		38		  NaN
+2	6	1		0.415	  NaN	0.0157		1		39		  NaN
+2	7	0		1.665	  NaN	0.0158		1		40		  NaN
+2	8	0		2.915	  NaN	0.0158		1		41		  NaN
+2	9	1		4.165	  NaN	0.0155		1		42		  NaN
+2	10	0		5.415	  NaN	0.0155		1		43		  NaN
+2	11	0		5.997	  NaN	0.0155		1		44		  NaN
+2	12	1		6.039	  NaN	0.0154		1		45		  NaN
+2	13	0		5.436	  NaN	0.0154		1		46		  NaN
+2	14	0		4.327	  NaN	0.0156		1		47		  NaN
+2	15	0		3.077	  NaN	0.0156		1		48		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+3	1	0		2.728	  NaN	0.0155		1		55		  NaN
+3	2	0		2.728	  NaN	0.0156		1		56		  NaN
+3	3	1		2.728	  NaN	0.0155		1		57		  NaN
+3	4	0		1.478	  NaN	0.0155		1		58		  NaN
+3	5	0		2.728	  NaN	0.0154		1		59		  NaN
+3	6	1		2.518	  NaN	0.0154		1		60		  NaN
+3	7	0		1.268	  NaN	0.0163		1		61		  NaN
+3	8	0		0.018	  NaN	0.0153		1		62		  NaN
+3	9	1		0.836	  NaN	0.0154		1		63		  NaN
+3	10	0		-0.414	  NaN	0.0154		1		64		  NaN
+3	11	0		-1.664	  NaN	0.0154		1		65		  NaN
+3	12	1		-2.914	  NaN	0.0152		1		66		  NaN
+3	13	0		-4.164	  NaN	0.0153		1		67		  NaN
+3	14	0		-5.414	  NaN	0.0151		1		68		  NaN
+3	15	0		-6.664	  NaN	0.0151		1		69		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+4	1	0		8.769	  NaN	0.0152		1		76		  NaN
+4	2	0		8.769	  NaN	0.0152		1		77		  NaN
+4	3	1		8.769	  NaN	0.0149		1		78		  NaN
+4	4	0		7.519	  NaN	0.0158		1		79		  NaN
+4	5	0		6.632	  NaN	0.0151		1		80		  NaN
+4	6	1		7.243	  NaN	0.0151		1		81		  NaN
+4	7	0		8.493	  NaN	0.0150		1		82		  NaN
+4	8	0		9.743	  NaN	0.0151		1		83		  NaN
+4	9	1		10.993	  NaN	0.0150		1		84		  NaN
+4	10	0		12.243	  NaN	0.0150		1		85		  NaN
+4	11	0		13.493	  NaN	0.0150		1		86		  NaN
+4	12	1		14.743	  NaN	0.0150		1		87		  NaN
+4	13	0		14.055	  NaN	0.0150		1		88		  NaN
+4	14	0		12.954	  NaN	0.0149		1		89		  NaN
+4	15	0		14.204	  NaN	0.0150		1		90		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+5	1	0		-1.341	  NaN	0.0149		1		97		  NaN
+5	2	0		-1.341	  NaN	0.0146		1		98		  NaN
+5	3	1		-1.341	  NaN	0.0146		1		99		  NaN
+5	4	0		-2.591	  NaN	0.0148		1		100		  NaN
+5	5	0		-1.386	  NaN	0.0148		1		101		  NaN
+5	6	1		-0.136	  NaN	0.0148		1		102		  NaN
+5	7	0		1.114	  NaN	0.0147		1		103		  NaN
+5	8	0		2.364	  NaN	0.0145		1		104		  NaN
+5	9	1		3.614	  NaN	0.0145		1		105		  NaN
+5	10	0		3.758	  NaN	0.0147		1		106		  NaN
+5	11	0		2.672	  NaN	0.0146		1		107		  NaN
+5	12	1		2.115	  NaN	0.0147		1		108		  NaN
+5	13	0		3.365	  NaN	0.0146		1		109		  NaN
+5	14	0		2.610	  NaN	0.0146		1		110		  NaN
+5	15	0		2.261	  NaN	0.0144		1		111		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+6	1	0		16.354	  NaN	0.0141		1		118		  NaN
+6	2	0		16.354	  NaN	0.0145		1		119		  NaN
+6	3	1		16.354	  NaN	0.0143		1		120		  NaN
+6	4	0		16.601	  NaN	0.0144		1		121		  NaN
+6	5	0		16.270	  NaN	0.0145		1		122		  NaN
+6	6	1		16.877	  NaN	0.0142		1		123		  NaN
+6	7	0		16.204	  NaN	0.0310		1		124		  NaN
+6	8	0		16.493	  NaN	0.0142		1		125		  NaN
+6	9	1		17.743	  NaN	0.0144		1		126		  NaN
+6	10	0		18.993	  NaN	0.0308		1		127		  NaN
+6	11	0		18.755	  NaN	0.0141		1		128		  NaN
+6	12	1		17.691	  NaN	0.0141		1		129		  NaN
+6	13	0		17.718	  NaN	0.0141		1		130		  NaN
+6	14	0		17.151	  NaN	0.0142		1		131		  NaN
+6	15	0		15.901	  NaN	0.0143		1		132		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+7	1	0		6.297	  NaN	0.0141		1		139		  NaN
+7	2	0		6.297	  NaN	0.0141		1		140		  NaN
+7	3	1		6.297	  NaN	0.0141		1		141		  NaN
+7	4	0		5.047	  NaN	0.0141		1		142		  NaN
+7	5	0		3.892	  NaN	0.0141		1		143		  NaN
+7	6	1		3.759	  NaN	0.0139		1		144		  NaN
+7	7	0		2.509	  NaN	0.0139		1		145		  NaN
+7	8	0		1.259	  NaN	0.0140		1		146		  NaN
+7	9	1		0.009	  NaN	0.0140		1		147		  NaN
+7	10	0		-1.241	  NaN	0.0140		1		148		  NaN
+7	11	0		-2.091	  NaN	0.0140		1		149		  NaN
+7	12	1		-1.148	  NaN	0.0140		1		150		  NaN
+7	13	0		0.102	  NaN	0.0140		1		151		  NaN
+7	14	0		1.315	  NaN	0.0137		1		152		  NaN
+7	15	0		1.327	  NaN	0.0137		1		153		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+8	1	0		4.987	  NaN	0.0138		1		160		  NaN
+8	2	0		4.987	  NaN	0.0138		1		161		  NaN
+8	3	1		4.987	  NaN	0.0138		1		162		  NaN
+8	4	0		3.737	  NaN	0.0138		1		163		  NaN
+8	5	0		2.718	  NaN	0.0137		1		164		  NaN
+8	6	1		3.968	  NaN	0.0137		1		165		  NaN
+8	7	0		3.343	  NaN	0.0137		1		166		  NaN
+8	8	0		2.093	  NaN	0.0137		1		167		  NaN
+8	9	1		2.624	  NaN	0.0137		1		168		  NaN
+8	10	0		3.874	  NaN	0.0137		1		169		  NaN
+8	11	0		2.624	  NaN	0.0136		1		170		  NaN
+8	12	1		1.374	  NaN	0.0136		1		171		  NaN
+8	13	0		0.124	  NaN	0.0135		1		172		  NaN
+8	14	0		1.314	  NaN	0.0136		1		173		  NaN
+8	15	0		2.564	  NaN	0.0136		1		174		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+9	1	0		1.533	  NaN	0.0130		1		181		  NaN
+9	2	0		1.533	  NaN	0.0135		1		182		  NaN
+9	3	1		1.533	  NaN	0.0134		1		183		  NaN
+9	4	0		0.908	  NaN	0.0300		1		184		  NaN
+9	5	0		2.158	  NaN	0.0134		1		185		  NaN
+9	6	1		1.362	  NaN	0.0134		1		186		  NaN
+9	7	0		0.805	  NaN	0.0300		1		187		  NaN
+9	8	0		-0.088	  NaN	0.0134		1		188		  NaN
+9	9	1		0.632	  NaN	0.0133		1		189		  NaN
+9	10	0		-0.618	  NaN	0.0466		1		190		  NaN
+9	11	0		-1.868	  NaN	0.0131		1		191		  NaN
+9	12	1		-1.557	  NaN	0.0131		1		192		  NaN
+9	13	0		-1.981	  NaN	0.0297		1		193		  NaN
+9	14	0		-3.231	  NaN	0.0130		1		194		  NaN
+9	15	0		-4.481	  NaN	0.0130		1		195		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+10	1	0		-9.972	  NaN	0.0131		1		202		  NaN
+10	2	0		-9.972	  NaN	0.0131		1		203		  NaN
+10	3	1		-9.972	  NaN	0.0130		1		204		  NaN
+10	4	0		-10.135	  NaN	0.0131		1		205		  NaN
+10	5	0		-8.885	  NaN	0.0130		1		206		  NaN
+10	6	1		-7.635	  NaN	0.0130		1		207		  NaN
+10	7	0		-8.451	  NaN	0.0297		1		208		  NaN
+10	8	0		-9.556	  NaN	0.0128		1		209		  NaN
+10	9	1		-8.407	  NaN	0.0128		1		210		  NaN
+10	10	0		-7.157	  NaN	0.0294		1		211		  NaN
+10	11	0		-7.947	  NaN	0.0128		1		212		  NaN
+10	12	1		-9.197	  NaN	0.0127		1		213		  NaN
+10	13	0		-10.447	  NaN	0.0462		1		214		  NaN
+10	14	0		-11.646	  NaN	0.0129		1		215		  NaN
+10	15	0		-11.197	  NaN	0.0129		1		216		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+1	1	0		2.564	  NaN	0.0325		1		13		  NaN
+1	2	0		2.564	  NaN	0.0165		1		14		  NaN
+1	3	1		2.564	  NaN	0.0163		1		15		  NaN
+1	4	0		1.316	  NaN	0.1329		1		16		  NaN
+1	5	0		0.190	  NaN	0.0159		1		17		  NaN
+1	6	1		-1.060	  NaN	0.0162		1		18		  NaN
+1	7	0		-1.654	  NaN	0.0495		1		19		  NaN
+1	8	0		-2.904	  NaN	0.0158		1		20		  NaN
+1	9	1		-4.154	  NaN	0.0162		1		21		  NaN
+1	10	0		-4.214	  NaN	0.0328		1		22		  NaN
+1	11	0		-4.972	  NaN	0.0161		1		23		  NaN
+1	12	1		-6.101	  NaN	0.0160		1		24		  NaN
+1	13	0		-7.351	  NaN	0.0336		1		25		  NaN
+1	14	0		-8.574	  NaN	0.0161		1		26		  NaN
+1	15	0		-9.668	  NaN	0.0161		1		27		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+2	1	0		1.327	  NaN	-0.0007		1		34		  NaN
+2	2	0		1.327	  NaN	0.0159		1		35		  NaN
+2	3	1		1.327	  NaN	0.0159		1		36		  NaN
+2	4	0		2.577	  NaN	0.0158		1		37		  NaN
+2	5	0		3.827	  NaN	0.0155		1		38		  NaN
+2	6	1		5.077	  NaN	0.0159		1		39		  NaN
+2	7	0		6.327	  NaN	0.0491		1		40		  NaN
+2	8	0		7.512	  NaN	0.0155		1		41		  NaN
+2	9	1		8.762	  NaN	0.0159		1		42		  NaN
+2	10	0		8.761	  NaN	0.0160		1		43		  NaN
+2	11	0		9.721	  NaN	0.0154		1		44		  NaN
+2	12	1		10.971	  NaN	0.0154		1		45		  NaN
+2	13	0		12.221	  NaN	0.0322		1		46		  NaN
+2	14	0		13.471	  NaN	0.0153		1		47		  NaN
+2	15	0		14.012	  NaN	0.0152		1		48		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+3	1	0		-11.197	  NaN	-0.0010		1		55		  NaN
+3	2	0		-11.197	  NaN	0.0156		1		56		  NaN
+3	3	1		-11.197	  NaN	0.0154		1		57		  NaN
+3	4	0		-10.658	  NaN	0.0489		1		58		  NaN
+3	5	0		-9.491	  NaN	0.0152		1		59		  NaN
+3	6	1		-8.241	  NaN	0.0156		1		60		  NaN
+3	7	0		-7.978	  NaN	0.0322		1		61		  NaN
+3	8	0		-7.729	  NaN	0.0151		1		62		  NaN
+3	9	1		-8.567	  NaN	0.0155		1		63		  NaN
+3	10	0		-7.927	  NaN	0.0322		1		64		  NaN
+3	11	0		-6.677	  NaN	0.0150		1		65		  NaN
+3	12	1		-5.427	  NaN	0.0151		1		66		  NaN
+3	13	0		-4.177	  NaN	0.0488		1		67		  NaN
+3	14	0		-4.435	  NaN	0.0150		1		68		  NaN
+3	15	0		-3.185	  NaN	0.0150		1		69		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+4	1	0		3.077	  NaN	-0.0014		1		76		  NaN
+4	2	0		3.077	  NaN	0.0149		1		77		  NaN
+4	3	1		3.077	  NaN	0.0153		1		78		  NaN
+4	4	0		4.327	  NaN	0.0153		1		79		  NaN
+4	5	0		5.131	  NaN	0.0148		1		80		  NaN
+4	6	1		6.381	  NaN	0.0152		1		81		  NaN
+4	7	0		7.142	  NaN	0.0154		1		82		  NaN
+4	8	0		7.869	  NaN	0.0148		1		83		  NaN
+4	9	1		9.119	  NaN	0.0147		1		84		  NaN
+4	10	0		10.369	  NaN	0.0154		1		85		  NaN
+4	11	0		11.433	  NaN	0.0147		1		86		  NaN
+4	12	1		12.683	  NaN	0.0148		1		87		  NaN
+4	13	0		13.933	  NaN	0.0317		1		88		  NaN
+4	14	0		15.183	  NaN	0.0147		1		89		  NaN
+4	15	0		16.433	  NaN	0.0146		1		90		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+5	1	0		2.261	  NaN	0.0149		1		97		  NaN
+5	2	0		2.261	  NaN	0.0149		1		98		  NaN
+5	3	1		2.261	  NaN	0.0149		1		99		  NaN
+5	4	0		1.011	  NaN	0.0316		1		100		  NaN
+5	5	0		1.311	  NaN	0.0148		1		101		  NaN
+5	6	1		2.561	  NaN	0.0149		1		102		  NaN
+5	7	0		2.551	  NaN	0.0315		1		103		  NaN
+5	8	0		2.769	  NaN	0.0149		1		104		  NaN
+5	9	1		4.019	  NaN	0.0144		1		105		  NaN
+5	10	0		5.269	  NaN	0.0318		1		106		  NaN
+5	11	0		6.519	  NaN	0.0144		1		107		  NaN
+5	12	1		7.769	  NaN	0.0144		1		108		  NaN
+5	13	0		8.526	  NaN	0.0479		1		109		  NaN
+5	14	0		9.776	  NaN	0.0148		1		110		  NaN
+5	15	0		11.026	  NaN	0.0143		1		111		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+6	1	0		-6.664	  NaN	0.0146		1		118		  NaN
+6	2	0		-6.664	  NaN	0.0146		1		119		  NaN
+6	3	1		-6.664	  NaN	0.0146		1		120		  NaN
+6	4	0		-7.914	  NaN	0.0312		1		121		  NaN
+6	5	0		-9.164	  NaN	0.0145		1		122		  NaN
+6	6	1		-10.414	  NaN	0.0145		1		123		  NaN
+6	7	0		-10.793	  NaN	0.0312		1		124		  NaN
+6	8	0		-11.838	  NaN	0.0145		1		125		  NaN
+6	9	1		-10.588	  NaN	0.0144		1		126		  NaN
+6	10	0		-9.338	  NaN	0.0311		1		127		  NaN
+6	11	0		-10.164	  NaN	0.0141		1		128		  NaN
+6	12	1		-10.886	  NaN	0.0140		1		129		  NaN
+6	13	0		-9.732	  NaN	0.0144		1		130		  NaN
+6	14	0		-8.482	  NaN	0.0143		1		131		  NaN
+6	15	0		-7.232	  NaN	0.0140		1		132		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+7	1	0		15.901	  NaN	0.0143		1		139		  NaN
+7	2	0		15.901	  NaN	0.0142		1		140		  NaN
+7	3	1		15.901	  NaN	0.0143		1		141		  NaN
+7	4	0		17.151	  NaN	0.0475		1		142		  NaN
+7	5	0		18.401	  NaN	0.0142		1		143		  NaN
+7	6	1		19.651	  NaN	0.0140		1		144		  NaN
+7	7	0		20.721	  NaN	0.0473		1		145		  NaN
+7	8	0		21.971	  NaN	0.0138		1		146		  NaN
+7	9	1		23.221	  NaN	0.0138		1		147		  NaN
+7	10	0		24.471	  NaN	0.0308		1		148		  NaN
+7	11	0		25.721	  NaN	0.0140		1		149		  NaN
+7	12	1		26.971	  NaN	0.0141		1		150		  NaN
+7	13	0		28.221	  NaN	0.0307		1		151		  NaN
+7	14	0		28.022	  NaN	0.0140		1		152		  NaN
+7	15	0		28.354	  NaN	0.0140		1		153		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+8	1	0		14.204	  NaN	-0.0028		1		160		  NaN
+8	2	0		14.204	  NaN	0.0135		1		161		  NaN
+8	3	1		14.204	  NaN	0.0139		1		162		  NaN
+8	4	0		12.954	  NaN	0.0306		1		163		  NaN
+8	5	0		14.204	  NaN	0.0139		1		164		  NaN
+8	6	1		14.147	  NaN	0.0139		1		165		  NaN
+8	7	0		12.897	  NaN	0.0472		1		166		  NaN
+8	8	0		14.049	  NaN	0.0138		1		167		  NaN
+8	9	1		14.882	  NaN	0.0138		1		168		  NaN
+8	10	0		13.632	  NaN	0.0304		1		169		  NaN
+8	11	0		13.779	  NaN	0.0136		1		170		  NaN
+8	12	1		14.175	  NaN	0.0136		1		171		  NaN
+8	13	0		14.598	  NaN	0.0303		1		172		  NaN
+8	14	0		14.926	  NaN	0.0136		1		173		  NaN
+8	15	0		14.207	  NaN	0.0136		1		174		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+9	1	0		-4.481	  NaN	-0.0031		1		181		  NaN
+9	2	0		-4.481	  NaN	0.0131		1		182		  NaN
+9	3	1		-4.481	  NaN	0.0135		1		183		  NaN
+9	4	0		-4.988	  NaN	0.0466		1		184		  NaN
+9	5	0		-3.829	  NaN	0.0130		1		185		  NaN
+9	6	1		-2.579	  NaN	0.0130		1		186		  NaN
+9	7	0		-1.329	  NaN	0.0467		1		187		  NaN
+9	8	0		-0.079	  NaN	0.0131		1		188		  NaN
+9	9	1		1.171	  NaN	0.0130		1		189		  NaN
+9	10	0		1.707	  NaN	0.0132		1		190		  NaN
+9	11	0		1.821	  NaN	0.0132		1		191		  NaN
+9	12	1		0.571	  NaN	0.0129		1		192		  NaN
+9	13	0		0.690	  NaN	0.0298		1		193		  NaN
+9	14	0		0.264	  NaN	0.0133		1		194		  NaN
+9	15	0		1.514	  NaN	0.0128		1		195		  NaN
+trial	TR	prompt active	speed	ds	flip error	Found File #	ThisTR	CategSep
+10	1	0		3.180	  NaN	0.0132		1		202		  NaN
+10	2	0		3.180	  NaN	0.0132		1		203		  NaN
+10	3	1		3.180	  NaN	0.0132		1		204		  NaN
+10	4	0		1.930	  NaN	0.0465		1		205		  NaN
+10	5	0		0.680	  NaN	0.0126		1		206		  NaN
+10	6	1		-0.570	  NaN	0.0126		1		207		  NaN
+10	7	0		-1.820	  NaN	0.0129		1		208		  NaN
+10	8	0		-3.070	  NaN	0.0127		1		209		  NaN
+10	9	1		-3.572	  NaN	0.0126		1		210		  NaN
+10	10	0		-2.322	  NaN	0.0462		1		211		  NaN
+10	11	0		-1.072	  NaN	0.0128		1		212		  NaN
+10	12	1		-1.319	  NaN	0.0125		1		213		  NaN
+10	13	0		-0.925	  NaN	0.0461		1		214		  NaN
+10	14	0		-1.515	  NaN	0.0128		1		215		  NaN
+10	15	0		-0.265	  NaN	0.0126		1		216		  NaN
+
+
+SESSION 24 ended 14-Sep-2017 18:48:21 for SUBJECT number 27
+
