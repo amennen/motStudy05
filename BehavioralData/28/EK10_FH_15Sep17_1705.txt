@@ -1,0 +1,113 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	7.3   	1   	NOTE      	lure    	0.269	NR  	1   	NR      	NR      
+2   	7.6   	2   	MATCH     	lure    	0.265	NR  	1   	NR      	NR      
+3   	8     	3   	BRUSH     	lure    	0.321	NR  	1   	NR      	NR      
+4   	8.4   	4   	BUBBLE    	lure    	0.618	NR  	1   	NR      	NR      
+5   	9     	1   	NOTE (repeat 1)	lure    	0.48	NR  	1   	NR      	NR      
+6   	9.6   	5   	GLASS     	lure    	0.319	NR  	1   	NR      	NR      
+7   	10    	4   	BUBBLE (repeat 1)	lure    	0.541	NR  	1   	NR      	NR      
+8   	10.6  	2   	MATCH (repeat 1)	lure    	0.297	NR  	1   	NR      	NR      
+9   	10.9  	3   	BRUSH (repeat 1)	lure    	0.598	NR  	1   	NR      	NR      
+10  	11.6  	6   	POLE      	lure    	0.324	NR  	1   	NR      	NR      
+11  	11.9  	4   	BUBBLE (repeat 2)	lure    	0.573	NR  	1   	NR      	NR      
+12  	12.6  	5   	GLASS (repeat 1)	lure    	0.488	NR  	1   	NR      	NR      
+13  	13.1  	6   	POLE (repeat 1)	lure    	0.567	NR  	1   	NR      	NR      
+14  	13.7  	5   	GLASS (repeat 2)	lure    	0.685	NR  	1   	NR      	NR      
+15  	14.5  	7   	DENT      	lure    	0.451	NR  	1   	NR      	NR      
+16  	15    	8   	NECTARINE 	fruit   	0.955	0.586	1   	target  	target  
+17  	16    	4   	BUBBLE (repeat 3)	lure    	0.576	NR  	1   	NR      	NR      
+18  	16.6  	2   	MATCH (repeat 2)	lure    	0.446	NR  	1   	NR      	NR      
+19  	17.1  	3   	BRUSH (repeat 2)	lure    	0.331	NR  	1   	NR      	NR      
+20  	17.5  	1   	NOTE (repeat 2)	lure    	0.599	NR  	1   	NR      	NR      
+21  	18.1  	4   	BUBBLE (repeat 4)	lure    	0.566	NR  	1   	NR      	NR      
+22  	18.8  	3   	BRUSH (repeat 3)	lure    	0.312	NR  	1   	NR      	NR      
+23  	19.1  	7   	DENT (repeat 1)	lure    	0.613	NR  	1   	NR      	NR      
+24  	19.8  	5   	GLASS (repeat 3)	lure    	0.521	NR  	1   	NR      	NR      
+25  	20.4  	2   	MATCH (repeat 3)	lure    	0.549	NR  	1   	NR      	NR      
+26  	21    	1   	NOTE (repeat 3)	lure    	0.252	NR  	1   	NR      	NR      
+27  	21.3  	2   	MATCH (repeat 4)	lure    	0.308	NR  	1   	NR      	NR      
+28  	21.6  	7   	DENT (repeat 2)	lure    	0.698	NR  	1   	NR      	NR      
+29  	22.4  	2   	MATCH (repeat 5)	lure    	0.618	NR  	1   	NR      	NR      
+30  	23.1  	3   	BRUSH (repeat 4)	lure    	0.429	NR  	1   	NR      	NR      
+31  	23.5  	4   	BUBBLE (repeat 5)	lure    	0.33	NR  	1   	NR      	NR      
+32  	23.9  	2   	MATCH (repeat 6)	lure    	0.491	NR  	1   	NR      	NR      
+33  	24.5  	3   	BRUSH (repeat 5)	lure    	0.332	NR  	1   	NR      	NR      
+34  	24.9  	7   	DENT (repeat 3)	lure    	0.565	NR  	1   	NR      	NR      
+35  	25.5  	5   	GLASS (repeat 4)	lure    	0.459	NR  	1   	NR      	NR      
+36  	26    	6   	POLE (repeat 2)	lure    	0.574	NR  	1   	NR      	NR      
+37  	26.6  	7   	DENT (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+38  	27.1  	6   	POLE (repeat 3)	lure    	0.546	NR  	1   	NR      	NR      
+39  	27.7  	2   	MATCH (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+40  	28.2  	6   	POLE (repeat 4)	lure    	0.437	NR  	1   	NR      	NR      
+41  	28.7  	1   	NOTE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+42  	29.2  	6   	POLE (repeat 5)	lure    	0.3 	NR  	1   	NR      	NR      
+43  	29.6  	7   	DENT (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+44  	30.1  	1   	NOTE (repeat 5)	lure    	0.334	NR  	1   	NR      	NR      
+45  	30.5  	7   	DENT (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+46  	31    	9   	CANTELOUPE	fruit   	0.955	0.389	1   	target  	target  
+47  	32    	6   	POLE (repeat 6)	lure    	0.556	NR  	1   	NR      	NR      
+48  	32.6  	5   	GLASS (repeat 5)	lure    	0.666	NR  	1   	NR      	NR      
+49  	33.3  	4   	BUBBLE (repeat 6)	lure    	0.546	NR  	1   	NR      	NR      
+50  	33.9  	2   	MATCH (repeat 8)	lure    	0.371	NR  	1   	NR      	NR      
+51  	34.3  	3   	BRUSH (repeat 6)	lure    	0.256	NR  	1   	NR      	NR      
+52  	34.7  	4   	BUBBLE (repeat 7)	lure    	0.577	NR  	1   	NR      	NR      
+53  	35.3  	6   	POLE (repeat 7)	lure    	0.406	NR  	1   	NR      	NR      
+54  	35.8  	4   	BUBBLE (repeat 8)	lure    	0.522	NR  	1   	NR      	NR      
+55  	36.3  	6   	POLE (repeat 8)	lure    	0.415	NR  	1   	NR      	NR      
+56  	36.8  	2   	MATCH (repeat 9)	lure    	0.39	NR  	1   	NR      	NR      
+57  	37.3  	5   	GLASS (repeat 6)	lure    	0.507	NR  	1   	NR      	NR      
+58  	37.8  	1   	NOTE (repeat 6)	lure    	0.56	NR  	1   	NR      	NR      
+59  	38.4  	5   	GLASS (repeat 7)	lure    	0.351	NR  	1   	NR      	NR      
+60  	38.8  	4   	BUBBLE (repeat 9)	lure    	0.402	NR  	1   	NR      	NR      
+61  	39.3  	5   	GLASS (repeat 8)	lure    	0.339	NR  	1   	NR      	NR      
+62  	39.7  	7   	DENT (repeat 7)	lure    	0.277	NR  	1   	NR      	NR      
+63  	40    	2   	MATCH (repeat 10)	lure    	0.431	NR  	1   	NR      	NR      
+64  	40.5  	3   	BRUSH (repeat 7)	lure    	0.322	NR  	1   	NR      	NR      
+65  	40.9  	7   	DENT (repeat 8)	lure    	0.376	NR  	1   	NR      	NR      
+66  	41.3  	3   	BRUSH (repeat 8)	lure    	0.661	NR  	1   	NR      	NR      
+67  	42    	5   	GLASS (repeat 9)	lure    	0.691	NR  	1   	NR      	NR      
+68  	42.8  	3   	BRUSH (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+69  	43.3  	10  	GRAPEFRUIT	fruit   	0.955	0.501	1   	target  	target  
+70  	44.3  	6   	POLE (repeat 9)	lure    	0.574	NR  	1   	NR      	NR      
+71  	44.9  	5   	GLASS (repeat 10)	lure    	0.35	NR  	1   	NR      	NR      
+72  	45.3  	1   	NOTE (repeat 7)	lure    	0.7 	NR  	1   	NR      	NR      
+73  	46.1  	4   	BUBBLE (repeat 10)	lure    	0.691	NR  	1   	NR      	NR      
+74  	46.8  	1   	NOTE (repeat 8)	lure    	0.503	NR  	1   	NR      	NR      
+75  	47.4  	2   	MATCH (repeat 11)	lure    	0.69	NR  	1   	NR      	NR      
+76  	48.1  	7   	DENT (repeat 9)	lure    	0.615	NR  	1   	NR      	NR      
+77  	48.8  	2   	MATCH (repeat 12)	lure    	0.281	NR  	1   	NR      	NR      
+78  	49.1  	1   	NOTE (repeat 9)	lure    	0.531	NR  	1   	NR      	NR      
+79  	49.7  	3   	BRUSH (repeat 10)	lure    	0.285	NR  	1   	NR      	NR      
+80  	50.1  	7   	DENT (repeat 10)	lure    	0.448	NR  	1   	NR      	NR      
+81  	50.6  	3   	BRUSH (repeat 11)	lure    	0.551	NR  	1   	NR      	NR      
+82  	51.2  	5   	GLASS (repeat 11)	lure    	0.634	NR  	1   	NR      	NR      
+83  	51.8  	7   	DENT (repeat 11)	lure    	0.612	NR  	1   	NR      	NR      
+84  	52.5  	6   	POLE (repeat 10)	lure    	0.531	NR  	1   	NR      	NR      
+85  	53.1  	4   	BUBBLE (repeat 11)	lure    	0.404	NR  	1   	NR      	NR      
+86  	53.6  	6   	POLE (repeat 11)	lure    	0.267	NR  	1   	NR      	NR      
+87  	53.9  	5   	GLASS (repeat 12)	lure    	0.288	NR  	1   	NR      	NR      
+88  	54.2  	6   	POLE (repeat 12)	lure    	0.529	NR  	1   	NR      	NR      
+89  	54.8  	4   	BUBBLE (repeat 12)	lure    	0.457	NR  	1   	NR      	NR      
+90  	55.3  	5   	GLASS (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
+91  	55.8  	4   	BUBBLE (repeat 13)	lure    	0.272	NR  	1   	NR      	NR      
+92  	56.2  	2   	MATCH (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
+93  	56.7  	6   	POLE (repeat 13)	lure    	0.669	NR  	1   	NR      	NR      
+94  	57.4  	5   	GLASS (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+95  	57.9  	2   	MATCH (repeat 14)	lure    	0.576	NR  	1   	NR      	NR      
+96  	58.5  	3   	BRUSH (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+97  	59    	6   	POLE (repeat 14)	lure    	0.288	NR  	1   	NR      	NR      
+98  	59.4  	7   	DENT (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+99  	59.9  	11  	PEAR      	fruit   	0.952	0.745	1   	target  	target  
+100 	60.9  	3   	BRUSH (repeat 13)	lure    	0.569	NR  	1   	NR      	NR      
+101 	61.5  	2   	MATCH (repeat 15)	lure    	0.57	NR  	1   	NR      	NR      
+102 	62.1  	6   	POLE (repeat 15)	lure    	0.556	NR  	1   	NR      	NR      
+103 	62.8  	3   	BRUSH (repeat 14)	lure    	0.336	NR  	1   	NR      	NR      
+104 	63.2  	7   	DENT (repeat 13)	lure    	0.343	NR  	1   	NR      	NR      
+105 	63.6  	6   	POLE (repeat 16)	lure    	0.535	NR  	1   	NR      	NR      
+106 	64.2  	2   	MATCH (repeat 16)	lure    	0.38	NR  	1   	NR      	NR      
+107 	64.6  	5   	GLASS (repeat 15)	lure    	0.517	NR  	1   	NR      	NR      
+108 	65.2  	7   	DENT (repeat 14)	lure    	0.564	NR  	1   	NR      	NR      
+109 	65.8  	1   	NOTE (repeat 10)	lure    	0.455	NR  	1   	NR      	NR      
+110 	66.3  	3   	BRUSH (repeat 15)	lure    	0.316	NR  	1   	NR      	NR      
+111 	66.7  	1   	NOTE (repeat 11)	lure    	0.523	NR  	1   	NR      	NR      
+112 	67.3  	2   	MATCH (repeat 17)	lure    	0.666	NR  	1   	NR      	NR      
