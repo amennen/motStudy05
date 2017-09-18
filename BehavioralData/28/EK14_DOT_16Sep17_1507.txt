@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36    	45  	POLE      	lure_easy	1.951	1.321	1   	non-target	non-target
+2   	78    	46  	BRUSH     	lure_hard	1.951	0.841	1   	non-target	non-target
+3   	120   	1   	PIN       	targ_hard	1.951	0.921	1   	target  	target  
+4   	162   	2   	PUZZLE    	targ_easy	1.95	1.001	1   	non-target	non-target
