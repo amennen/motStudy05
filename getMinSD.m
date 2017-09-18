@@ -1,6 +1,6 @@
 nrun = 3;
 for i = 1:nrun
-    
+  
     folder = ['motRun' num2str(i)];
     cd(i);
     fn = dir([lastRunHeader 'motpatternsdata_' '*']);
