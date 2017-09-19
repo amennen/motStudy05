@@ -205,7 +205,7 @@ remove = 20/TR;
 zscoreNew = 1;
 useHistory = 1;
 firstBlockTRs = 128/TR; %total number of TRs to take for standard deviation of last run
-notMoving = [];
+patterns.allLow = [];
 for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     
     tstart(iTrial) = tic;
@@ -305,22 +305,35 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
             
             patterns.raw_sm_filt_z(iTrial,:) = (patterns.raw_sm_filt(iTrial,:) - patterns.realtimeMean(1,:))./patterns.lastStd(1,:);
         end
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TESTING IF VOXELS ARE OKAY
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% IN/OUT BRAIN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % test if low voxel
+        lowVox = find(patterns.raw(iTrial,:)<20);
+        patterns.allLow = unique([patterns.allLow lowVox]);
+        % SET VALUE TO ZERO
+        if ~isempty(patterns.allLow)
+            patterns.raw_sm_filt_z(iTrial,patterns.allLow) = 0; % so you remove it from mattering to the classifier
+        end
+        % test if low standard deviation just in case we don't want it to
+        % increase z scored values so much
+        if iTrial > firstBlockTRs
+            lowVar = find(patterns.realtimeStd<1E-3);
+        else
+            lowVar = find(patterns.lastStd<1E-3);
+        end
+        if ~isempty(lowVar)
+            patterns.raw_sm_filt_z(iTrial,lowVar) = 0;
+        end
+        % set voxels on this tr to be zero then--if their data is above 20
+        % then they could be just constant initially OR were constant last
+        % time
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
         % now test if it's when we want to
         if any(patterns.regressor.twoCond(:,iTrial)) || any(patterns.regressor.twoCond(:,iTrial-(shiftTR+2))) %go a little extra
-            % this is where you would actually apply the classifier so this
-            % is where it would matter
-            % check if any voxel activity isn't changing
-            % if it is then set the activity to zero
-            % check if any zero
-            % initialize notMoving at the start of the fMRI run to be empty
-            test_sd = std(patterns.raw(1:iTrial,:),[],1);
-            bad = find(test_sd==0);
-            notMoving = [notMoving bad];
-            patterns.constantVoxels = unique(notMoving);
-            patterns.raw_sm_filt_z(iTrial,constantVoxels) = 0;
-            % what to do if later works? keep setting it to zero
-            
-            
+                  
             if featureSelect
                 goodVox = loc.patterns.sigVox;
                 [patterns.predict(iTrial), patterns.activations(1:2,iTrial)] = predict_ridge(patterns.raw_sm_filt_z(iTrial,goodVox),trainedModel);
