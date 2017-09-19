@@ -1,6 +1,10 @@
 % check if in sigvox
 r = load('reg/retrieval_mask.mat');
 roiInds = find(r.mask_brain);
+
+fname = findNewestFile('Localizer',fullfile(['Localizer/locpatternsdata'  '*.mat']));
+%load(fname);
+
 fn = dir(['Localizer/locpatternsdata_' '*']);
 n = load(fullfile(fn(end).name));
 ind = roiInds(n.patterns.sigVox);
