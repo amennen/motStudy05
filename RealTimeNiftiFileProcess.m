@@ -206,6 +206,7 @@ zscoreNew = 1;
 useHistory = 1;
 firstBlockTRs = 128/TR; %total number of TRs to take for standard deviation of last run
 patterns.allLow = [];
+patterns.lowVar = {};
 for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     
     tstart(iTrial) = tic;
@@ -324,6 +325,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
         end
         if ~isempty(lowVar)
             patterns.raw_sm_filt_z(iTrial,lowVar) = 0;
+            patterns.lowVar{iTrial} = lowVar;
         end
         % set voxels on this tr to be zero then--if their data is above 20
         % then they could be just constant initially OR were constant last
