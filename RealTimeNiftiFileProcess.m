@@ -73,7 +73,7 @@ if ~prev %if getting data today
     subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
-    allDates = {'4-5-17'};
+    allDates = {'9-16-17'};
     %allDates = {'7-1-2016' '3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
     subjectName = [datestr(allDates{1},5) datestr(allDates{1},7) datestr(allDates{1},11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(allDates{1},10) datestr(allDates{1},5) datestr(allDates{1},7) '.' subjectName '.' subjectName '/'];
@@ -230,16 +230,20 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     % if file available, load it
     if (patterns.fileAvail(iTrial))
         %[newVol patterns.timeRead{iTrial}] = ReadFile([dicom_dir patterns.newFile{iTrial}],imgmat,roi); % NTB: only reads top file
-        t0 = GetSecs;
-        niftiname = sprintf('nifti%3.3i', thisTR);
         
-        unix(sprintf('%sdcm2niix %s -f %s -o %s -s y %s%s',dcm2path,dicom_dir,niftiname,runHeader,dicom_dir,patterns.newFile{iTrial}))
-        t1 = GetSecs;
-        unix(sprintf('%smcflirt -in %s.nii -reffile %sexfunc_re.nii',fslpath,niftiname,process_dir))
-        t2 = GetSecs;
-        moco = t2-t1;
-        
-        niftiname = sprintf('nifti%3.3i_mcf.nii.gz', thisTR);
+        if ~prev
+            t0 = GetSecs;
+            niftiname = sprintf('nifti%3.3i', thisTR);
+            
+            unix(sprintf('%sdcm2niix %s -f %s -o %s -s y %s%s',dcm2path,dicom_dir,niftiname,runHeader,dicom_dir,patterns.newFile{iTrial}))
+            t1 = GetSecs;
+            unix(sprintf('%smcflirt -in %s.nii -reffile %sexfunc_re.nii',fslpath,niftiname,process_dir))
+            t2 = GetSecs;
+            moco = t2-t1;
+            niftiname = sprintf('nifti%3.3i_mcf.nii.gz', thisTR);
+        else
+            niftiname = sprintf('nifti%3.3i_mcf.nii', thisTR);
+        end
         niftidata = readnifti(niftiname);
         newVol = niftidata(roi);
         patterns.raw(iTrial,:) = newVol;  % keep patterns for later training

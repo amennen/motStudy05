@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36.1  	45  	MOON      	lure_easy	1.951	1.082	1   	non-target	non-target
+2   	78.1  	8   	RAINBOW   	targ_hard	1.95	0.915	0   	non-target	target  
+3   	120.1 	46  	BRUSH     	lure_hard	1.951	1.034	1   	non-target	non-target
+4   	162.1 	2   	HAMMER    	targ_easy	1.95	0.89	1   	target  	target  
