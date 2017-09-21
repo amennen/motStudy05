@@ -1,0 +1,116 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	16    	1   	MATCH     	lure    	0.434	NR  	1   	NR      	NR      
+2   	16.4  	2   	PAINT     	lure    	0.377	NR  	1   	NR      	NR      
+3   	16.9  	3   	NOTE      	lure    	0.642	NR  	1   	NR      	NR      
+4   	17.6  	2   	PAINT (repeat 1)	lure    	0.519	NR  	1   	NR      	NR      
+5   	18.2  	4   	PHONE     	lure    	0.679	NR  	1   	NR      	NR      
+6   	18.9  	5   	DENT      	lure    	0.627	NR  	1   	NR      	NR      
+7   	19.6  	6   	CANDLE    	lure    	0.266	NR  	1   	NR      	NR      
+8   	19.9  	2   	PAINT (repeat 2)	lure    	0.569	NR  	1   	NR      	NR      
+9   	20.5  	3   	NOTE (repeat 1)	lure    	0.603	NR  	1   	NR      	NR      
+10  	21.2  	6   	CANDLE (repeat 1)	lure    	0.493	NR  	1   	NR      	NR      
+11  	21.7  	4   	PHONE (repeat 1)	lure    	0.496	NR  	1   	NR      	NR      
+12  	22.3  	2   	PAINT (repeat 3)	lure    	0.623	NR  	1   	NR      	NR      
+13  	23    	7   	APRON     	lure    	0.451	NR  	1   	NR      	NR      
+14  	23.5  	8   	WATERMELON	fruit   	0.956	0.432	1   	target  	target  
+15  	24.5  	5   	DENT (repeat 1)	lure    	0.449	NR  	1   	NR      	NR      
+16  	25    	2   	PAINT (repeat 4)	lure    	0.576	NR  	1   	NR      	NR      
+17  	25.6  	6   	CANDLE (repeat 2)	lure    	0.33	NR  	1   	NR      	NR      
+18  	26    	1   	MATCH (repeat 1)	lure    	0.606	NR  	1   	NR      	NR      
+19  	26.6  	7   	APRON (repeat 1)	lure    	0.536	NR  	1   	NR      	NR      
+20  	27.2  	2   	PAINT (repeat 5)	lure    	0.427	NR  	1   	NR      	NR      
+21  	27.7  	5   	DENT (repeat 2)	lure    	0.465	NR  	1   	NR      	NR      
+22  	28.2  	7   	APRON (repeat 2)	lure    	0.455	NR  	1   	NR      	NR      
+23  	28.8  	5   	DENT (repeat 3)	lure    	0.311	NR  	1   	NR      	NR      
+24  	29.1  	3   	NOTE (repeat 2)	lure    	0.331	NR  	1   	NR      	NR      
+25  	29.5  	7   	APRON (repeat 3)	lure    	0.292	NR  	1   	NR      	NR      
+26  	29.9  	4   	PHONE (repeat 2)	lure    	0.313	NR  	1   	NR      	NR      
+27  	30.2  	7   	APRON (repeat 4)	lure    	0.378	NR  	1   	NR      	NR      
+28  	30.7  	4   	PHONE (repeat 3)	lure    	0.608	NR  	1   	NR      	NR      
+29  	31.3  	6   	CANDLE (repeat 3)	lure    	0.49	NR  	1   	NR      	NR      
+30  	31.9  	3   	NOTE (repeat 3)	lure    	0.676	NR  	1   	NR      	NR      
+31  	32.6  	1   	MATCH (repeat 2)	lure    	0.594	NR  	1   	NR      	NR      
+32  	33.3  	5   	DENT (repeat 4)	lure    	0.279	NR  	1   	NR      	NR      
+33  	33.6  	1   	MATCH (repeat 3)	lure    	0.494	NR  	1   	NR      	NR      
+34  	34.2  	3   	NOTE (repeat 4)	lure    	0.58	NR  	1   	NR      	NR      
+35  	34.8  	6   	CANDLE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+36  	35.3  	9   	MANGO     	fruit   	0.956	0.485	1   	target  	target  
+37  	36.3  	6   	CANDLE (repeat 5)	lure    	0.282	NR  	1   	NR      	NR      
+38  	36.6  	4   	PHONE (repeat 4)	lure    	0.382	NR  	1   	NR      	NR      
+39  	37.1  	1   	MATCH (repeat 4)	lure    	0.626	NR  	1   	NR      	NR      
+40  	37.7  	5   	DENT (repeat 5)	lure    	0.37	NR  	1   	NR      	NR      
+41  	38.2  	4   	PHONE (repeat 5)	lure    	0.645	NR  	1   	NR      	NR      
+42  	38.9  	1   	MATCH (repeat 5)	lure    	0.567	NR  	1   	NR      	NR      
+43  	39.5  	5   	DENT (repeat 6)	lure    	0.398	NR  	1   	NR      	NR      
+44  	39.9  	4   	PHONE (repeat 6)	lure    	0.686	NR  	1   	NR      	NR      
+45  	40.7  	2   	PAINT (repeat 6)	lure    	0.554	NR  	1   	NR      	NR      
+46  	41.3  	1   	MATCH (repeat 6)	lure    	0.544	NR  	1   	NR      	NR      
+47  	41.9  	5   	DENT (repeat 7)	lure    	0.269	NR  	1   	NR      	NR      
+48  	42.2  	1   	MATCH (repeat 7)	lure    	0.264	NR  	1   	NR      	NR      
+49  	42.5  	2   	PAINT (repeat 7)	lure    	0.38	NR  	1   	NR      	NR      
+50  	43    	3   	NOTE (repeat 5)	lure    	0.535	NR  	1   	NR      	NR      
+51  	43.5  	4   	PHONE (repeat 7)	lure    	0.67	NR  	1   	NR      	NR      
+52  	44.3  	2   	PAINT (repeat 8)	lure    	0.415	NR  	1   	NR      	NR      
+53  	44.7  	5   	DENT (repeat 8)	lure    	0.384	NR  	1   	NR      	NR      
+54  	45.2  	7   	APRON (repeat 5)	lure    	0.393	NR  	1   	NR      	NR      
+55  	45.6  	4   	PHONE (repeat 8)	lure    	0.306	NR  	1   	NR      	NR      
+56  	46    	1   	MATCH (repeat 8)	lure    	0.38	NR  	1   	NR      	NR      
+57  	46.4  	5   	DENT (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+58  	46.9  	7   	APRON (repeat 6)	lure    	0.488	NR  	1   	NR      	NR      
+59  	47.5  	4   	PHONE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+60  	48    	3   	NOTE (repeat 6)	lure    	0.631	NR  	1   	NR      	NR      
+61  	48.6  	1   	MATCH (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+62  	49.1  	10  	BLACKBERRY	fruit   	0.953	0.416	1   	target  	target  
+63  	50.1  	3   	NOTE (repeat 7)	lure    	0.257	NR  	1   	NR      	NR      
+64  	50.5  	7   	APRON (repeat 7)	lure    	0.443	NR  	1   	NR      	NR      
+65  	51    	6   	CANDLE (repeat 6)	lure    	0.45	NR  	1   	NR      	NR      
+66  	51.5  	4   	PHONE (repeat 10)	lure    	0.342	NR  	1   	NR      	NR      
+67  	51.9  	5   	DENT (repeat 10)	lure    	0.637	NR  	1   	NR      	NR      
+68  	52.5  	6   	CANDLE (repeat 7)	lure    	0.511	NR  	1   	NR      	NR      
+69  	53.1  	5   	DENT (repeat 11)	lure    	0.677	NR  	1   	NR      	NR      
+70  	53.9  	1   	MATCH (repeat 10)	lure    	0.504	NR  	1   	NR      	NR      
+71  	54.4  	3   	NOTE (repeat 8)	lure    	0.296	NR  	1   	NR      	NR      
+72  	54.8  	4   	PHONE (repeat 11)	lure    	0.615	NR  	1   	NR      	NR      
+73  	55.4  	1   	MATCH (repeat 11)	lure    	0.677	NR  	1   	NR      	NR      
+74  	56.2  	6   	CANDLE (repeat 8)	lure    	0.296	NR  	1   	NR      	NR      
+75  	56.5  	5   	DENT (repeat 12)	lure    	0.486	NR  	1   	NR      	NR      
+76  	57    	6   	CANDLE (repeat 9)	lure    	0.369	NR  	1   	NR      	NR      
+77  	57.5  	3   	NOTE (repeat 9)	lure    	0.472	NR  	1   	NR      	NR      
+78  	58    	5   	DENT (repeat 13)	lure    	0.41	NR  	1   	NR      	NR      
+79  	58.5  	6   	CANDLE (repeat 10)	lure    	0.273	NR  	1   	NR      	NR      
+80  	58.8  	4   	PHONE (repeat 12)	lure    	0.28	NR  	1   	NR      	NR      
+81  	59.1  	5   	DENT (repeat 14)	lure    	0.654	NR  	1   	NR      	NR      
+82  	59.8  	2   	PAINT (repeat 9)	lure    	0.319	NR  	1   	NR      	NR      
+83  	60.2  	3   	NOTE (repeat 10)	lure    	0.251	NR  	1   	NR      	NR      
+84  	60.5  	2   	PAINT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+85  	61    	1   	MATCH (repeat 12)	lure    	0.256	NR  	1   	NR      	NR      
+86  	61.3  	3   	NOTE (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+87  	61.8  	6   	CANDLE (repeat 11)	lure    	0.67	NR  	1   	NR      	NR      
+88  	62.5  	1   	MATCH (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
+89  	63    	11  	GRAPE     	fruit   	0.951	0.568	1   	target  	target  
+90  	64    	2   	PAINT (repeat 11)	lure    	0.464	NR  	1   	NR      	NR      
+91  	64.6  	7   	APRON (repeat 8)	lure    	0.333	NR  	1   	NR      	NR      
+92  	64.9  	6   	CANDLE (repeat 12)	lure    	0.436	NR  	1   	NR      	NR      
+93  	65.4  	2   	PAINT (repeat 12)	lure    	0.589	NR  	1   	NR      	NR      
+94  	66.1  	3   	NOTE (repeat 12)	lure    	0.527	NR  	1   	NR      	NR      
+95  	66.7  	6   	CANDLE (repeat 13)	lure    	0.255	NR  	1   	NR      	NR      
+96  	67    	1   	MATCH (repeat 14)	lure    	0.505	NR  	1   	NR      	NR      
+97  	67.6  	2   	PAINT (repeat 13)	lure    	0.257	NR  	1   	NR      	NR      
+98  	67.9  	6   	CANDLE (repeat 14)	lure    	0.295	NR  	1   	NR      	NR      
+99  	68.2  	3   	NOTE (repeat 13)	lure    	0.335	NR  	1   	NR      	NR      
+100 	68.6  	1   	MATCH (repeat 15)	lure    	0.392	NR  	1   	NR      	NR      
+101 	69.1  	5   	DENT (repeat 15)	lure    	0.319	NR  	1   	NR      	NR      
+102 	69.5  	6   	CANDLE (repeat 15)	lure    	0.378	NR  	1   	NR      	NR      
+103 	69.9  	7   	APRON (repeat 9)	lure    	0.444	NR  	1   	NR      	NR      
+104 	70.4  	6   	CANDLE (repeat 16)	lure    	0.411	NR  	1   	NR      	NR      
+105 	70.9  	1   	MATCH (repeat 16)	lure    	0.541	NR  	1   	NR      	NR      
+106 	71.5  	4   	PHONE (repeat 13)	lure    	0.605	NR  	1   	NR      	NR      
+107 	72.1  	6   	CANDLE (repeat 17)	lure    	0.288	NR  	1   	NR      	NR      
+108 	72.5  	1   	MATCH (repeat 17)	lure    	0.532	NR  	1   	NR      	NR      
+109 	73.1  	5   	DENT (repeat 16)	lure    	0.369	NR  	1   	NR      	NR      
+110 	73.5  	7   	APRON (repeat 10)	lure    	0.282	NR  	1   	NR      	NR      
+111 	73.9  	4   	PHONE (repeat 14)	lure    	0.266	NR  	1   	NR      	NR      
+112 	74.2  	7   	APRON (repeat 11)	lure    	0.622	NR  	1   	NR      	NR      
+113 	74.9  	6   	CANDLE (repeat 18)	lure    	0.621	NR  	1   	NR      	NR      
+114 	75.6  	2   	PAINT (repeat 14)	lure    	0.329	NR  	1   	NR      	NR      
+115 	76    	3   	NOTE (repeat 14)	lure    	0.647	NR  	1   	NR      	NR      
