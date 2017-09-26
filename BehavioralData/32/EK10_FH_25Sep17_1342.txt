@@ -1,0 +1,112 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	16.2  	1   	POLE      	lure    	0.527	NR  	1   	NR      	NR      
+2   	16.7  	2   	GLASS     	lure    	0.483	NR  	1   	NR      	NR      
+3   	17.3  	1   	POLE (repeat 1)	lure    	0.578	NR  	1   	NR      	NR      
+4   	17.9  	3   	BUBBLE    	lure    	0.448	NR  	1   	NR      	NR      
+5   	18.4  	2   	GLASS (repeat 1)	lure    	0.58	NR  	1   	NR      	NR      
+6   	19.1  	4   	BRUSH     	lure    	0.56	NR  	1   	NR      	NR      
+7   	19.7  	3   	BUBBLE (repeat 1)	lure    	0.476	NR  	1   	NR      	NR      
+8   	20.2  	5   	PADDLE    	lure    	0.454	NR  	1   	NR      	NR      
+9   	20.7  	6   	PAINT     	lure    	0.386	NR  	1   	NR      	NR      
+10  	21.2  	5   	PADDLE (repeat 1)	lure    	0.274	NR  	1   	NR      	NR      
+11  	21.5  	3   	BUBBLE (repeat 2)	lure    	0.479	NR  	1   	NR      	NR      
+12  	22.1  	7   	DRUM      	lure    	0.634	NR  	1   	NR      	NR      
+13  	22.8  	5   	PADDLE (repeat 2)	lure    	0.674	NR  	1   	NR      	NR      
+14  	23.5  	4   	BRUSH (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+15  	24    	7   	DRUM (repeat 1)	lure    	0.37	NR  	1   	NR      	NR      
+16  	24.4  	3   	BUBBLE (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+17  	25    	5   	PADDLE (repeat 3)	lure    	0.458	NR  	1   	NR      	NR      
+18  	25.5  	2   	GLASS (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+19  	26    	5   	PADDLE (repeat 4)	lure    	0.587	NR  	1   	NR      	NR      
+20  	26.6  	4   	BRUSH (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+21  	27.1  	8   	LEMON     	fruit   	0.955	0.504	1   	target  	target  
+22  	28.2  	5   	PADDLE (repeat 5)	lure    	0.474	NR  	1   	NR      	NR      
+23  	28.7  	1   	POLE (repeat 2)	lure    	0.565	NR  	1   	NR      	NR      
+24  	29.3  	3   	BUBBLE (repeat 4)	lure    	0.314	NR  	1   	NR      	NR      
+25  	29.7  	6   	PAINT (repeat 1)	lure    	0.552	NR  	1   	NR      	NR      
+26  	30.3  	3   	BUBBLE (repeat 5)	lure    	0.284	NR  	1   	NR      	NR      
+27  	30.6  	4   	BRUSH (repeat 3)	lure    	0.523	NR  	1   	NR      	NR      
+28  	31.2  	1   	POLE (repeat 3)	lure    	0.294	NR  	1   	NR      	NR      
+29  	31.6  	3   	BUBBLE (repeat 6)	lure    	0.599	NR  	1   	NR      	NR      
+30  	32.2  	5   	PADDLE (repeat 6)	lure    	0.487	NR  	1   	NR      	NR      
+31  	32.8  	2   	GLASS (repeat 3)	lure    	0.361	NR  	1   	NR      	NR      
+32  	33.2  	6   	PAINT (repeat 2)	lure    	0.314	NR  	1   	NR      	NR      
+33  	33.6  	1   	POLE (repeat 4)	lure    	0.694	NR  	1   	NR      	NR      
+34  	34.3  	4   	BRUSH (repeat 4)	lure    	0.567	NR  	1   	NR      	NR      
+35  	34.9  	6   	PAINT (repeat 3)	lure    	0.291	NR  	1   	NR      	NR      
+36  	35.3  	7   	DRUM (repeat 2)	lure    	0.528	NR  	1   	NR      	NR      
+37  	35.9  	1   	POLE (repeat 5)	lure    	0.308	NR  	1   	NR      	NR      
+38  	36.3  	7   	DRUM (repeat 3)	lure    	0.304	NR  	1   	NR      	NR      
+39  	36.7  	2   	GLASS (repeat 4)	lure    	0.347	NR  	1   	NR      	NR      
+40  	37.1  	6   	PAINT (repeat 4)	lure    	0.26	NR  	1   	NR      	NR      
+41  	37.4  	3   	BUBBLE (repeat 7)	lure    	0.587	NR  	1   	NR      	NR      
+42  	38.1  	4   	BRUSH (repeat 5)	lure    	0.524	NR  	1   	NR      	NR      
+43  	38.7  	5   	PADDLE (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+44  	39.2  	1   	POLE (repeat 6)	lure    	0.253	NR  	1   	NR      	NR      
+45  	39.5  	4   	BRUSH (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+46  	40    	5   	PADDLE (repeat 8)	lure    	0.314	NR  	1   	NR      	NR      
+47  	40.3  	6   	PAINT (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+48  	40.9  	2   	GLASS (repeat 5)	lure    	0.539	NR  	1   	NR      	NR      
+49  	41.5  	5   	PADDLE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+50  	42    	4   	BRUSH (repeat 7)	lure    	0.443	NR  	1   	NR      	NR      
+51  	42.5  	1   	POLE (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+52  	43    	9   	STRAWBERRY	fruit   	0.955	0.473	1   	target  	target  
+53  	44    	1   	POLE (repeat 8)	lure    	0.585	NR  	1   	NR      	NR      
+54  	44.7  	4   	BRUSH (repeat 8)	lure    	0.618	NR  	1   	NR      	NR      
+55  	45.3  	3   	BUBBLE (repeat 8)	lure    	0.562	NR  	1   	NR      	NR      
+56  	46    	2   	GLASS (repeat 6)	lure    	0.687	NR  	1   	NR      	NR      
+57  	46.7  	1   	POLE (repeat 9)	lure    	0.524	NR  	1   	NR      	NR      
+58  	47.3  	4   	BRUSH (repeat 9)	lure    	0.634	NR  	1   	NR      	NR      
+59  	48    	7   	DRUM (repeat 4)	lure    	0.638	NR  	1   	NR      	NR      
+60  	48.7  	6   	PAINT (repeat 6)	lure    	0.56	NR  	1   	NR      	NR      
+61  	49.3  	1   	POLE (repeat 10)	lure    	0.506	NR  	1   	NR      	NR      
+62  	49.9  	6   	PAINT (repeat 7)	lure    	0.597	NR  	1   	NR      	NR      
+63  	50.5  	2   	GLASS (repeat 7)	lure    	0.578	NR  	1   	NR      	NR      
+64  	51.2  	3   	BUBBLE (repeat 9)	lure    	0.563	NR  	1   	NR      	NR      
+65  	51.8  	2   	GLASS (repeat 8)	lure    	0.282	NR  	1   	NR      	NR      
+66  	52.2  	1   	POLE (repeat 11)	lure    	0.389	NR  	1   	NR      	NR      
+67  	52.6  	3   	BUBBLE (repeat 10)	lure    	0.351	NR  	1   	NR      	NR      
+68  	53    	6   	PAINT (repeat 8)	lure    	0.303	NR  	1   	NR      	NR      
+69  	53.4  	1   	POLE (repeat 12)	lure    	0.499	NR  	1   	NR      	NR      
+70  	54    	4   	BRUSH (repeat 10)	lure    	0.492	NR  	1   	NR      	NR      
+71  	54.6  	6   	PAINT (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+72  	55.1  	5   	PADDLE (repeat 10)	lure    	0.554	NR  	1   	NR      	NR      
+73  	55.7  	6   	PAINT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+74  	56.2  	2   	GLASS (repeat 9)	lure    	0.586	NR  	1   	NR      	NR      
+75  	56.8  	7   	DRUM (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+76  	57.3  	3   	BUBBLE (repeat 11)	lure    	0.326	NR  	1   	NR      	NR      
+77  	57.7  	7   	DRUM (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+78  	58.2  	2   	GLASS (repeat 10)	lure    	0.599	NR  	1   	NR      	NR      
+79  	58.9  	6   	PAINT (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+80  	59.4  	2   	GLASS (repeat 11)	lure    	0.298	NR  	1   	NR      	NR      
+81  	59.8  	7   	DRUM (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+82  	60.3  	2   	GLASS (repeat 12)	lure    	0.413	NR  	1   	NR      	NR      
+83  	60.8  	4   	BRUSH (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+84  	61.3  	5   	PADDLE (repeat 11)	lure    	0.572	NR  	1   	NR      	NR      
+85  	61.9  	7   	DRUM (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+86  	62.4  	6   	PAINT (repeat 12)	lure    	0.651	NR  	1   	NR      	NR      
+87  	63.1  	5   	PADDLE (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+88  	63.6  	8   	LEMON (repeat 1)	fruit   	0.955	0.551	1   	target  	target  
+89  	64.7  	5   	PADDLE (repeat 13)	lure    	0.533	NR  	1   	NR      	NR      
+90  	65.3  	4   	BRUSH (repeat 12)	lure    	0.409	NR  	1   	NR      	NR      
+91  	65.8  	6   	PAINT (repeat 13)	lure    	0.284	NR  	1   	NR      	NR      
+92  	66.1  	7   	DRUM (repeat 9)	lure    	0.308	NR  	1   	NR      	NR      
+93  	66.5  	4   	BRUSH (repeat 13)	lure    	0.498	NR  	1   	NR      	NR      
+94  	67.1  	2   	GLASS (repeat 13)	lure    	0.255	NR  	1   	NR      	NR      
+95  	67.4  	7   	DRUM (repeat 10)	lure    	0.329	NR  	1   	NR      	NR      
+96  	67.8  	5   	PADDLE (repeat 14)	lure    	0.261	NR  	1   	NR      	NR      
+97  	68.1  	3   	BUBBLE (repeat 12)	lure    	0.408	NR  	1   	NR      	NR      
+98  	68.6  	5   	PADDLE (repeat 15)	lure    	0.333	NR  	1   	NR      	NR      
+99  	69    	1   	POLE (repeat 13)	lure    	0.643	NR  	1   	NR      	NR      
+100 	69.7  	5   	PADDLE (repeat 16)	lure    	0.652	NR  	1   	NR      	NR      
+101 	70.4  	3   	BUBBLE (repeat 13)	lure    	0.341	NR  	1   	NR      	NR      
+102 	70.8  	4   	BRUSH (repeat 14)	lure    	0.618	NR  	1   	NR      	NR      
+103 	71.5  	1   	POLE (repeat 14)	lure    	0.643	NR  	1   	NR      	NR      
+104 	72.2  	6   	PAINT (repeat 14)	lure    	0.638	NR  	1   	NR      	NR      
+105 	72.9  	4   	BRUSH (repeat 15)	lure    	0.649	NR  	1   	NR      	NR      
+106 	73.6  	2   	GLASS (repeat 14)	lure    	0.399	NR  	1   	NR      	NR      
+107 	74.1  	7   	DRUM (repeat 11)	lure    	0.387	NR  	1   	NR      	NR      
+108 	74.5  	3   	BUBBLE (repeat 14)	lure    	0.381	NR  	1   	NR      	NR      
+109 	75    	7   	DRUM (repeat 12)	lure    	0.469	NR  	1   	NR      	NR      
+110 	75.5  	5   	PADDLE (repeat 17)	lure    	0.451	NR  	1   	NR      	NR      
+111 	76.1  	2   	GLASS (repeat 15)	lure    	0.32	NR  	1   	NR      	NR      

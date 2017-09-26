@@ -173,6 +173,7 @@ patterns.raw_sm_z = nan(patterns.nTRs,numel(roiInds));
 patterns.categsep = nan(1,patterns.nTRs);
 patterns.realtimeMean = nan(1,numel(roiInds));
 patterns.realtimeStd = nan(1,numel(roiInds));
+patterns.realtimeRawStd = nan(1,numel(roiInds));
 patterns.realtimeY = nan(1,numel(roiInds));
 patterns.realtimeLastMean = nan(1,numel(roiInds));
 patterns.realtimeLastStd = nan(1,numel(roiInds));
@@ -281,6 +282,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
         patterns.realtimeMean(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:),1);
         patterns.realtimeY(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:).^2,1);
         patterns.realtimeStd(1,:) = std(patterns.raw_sm_filt(1:iTrial,:),1,1); %flad to use N instead of N-1
+        patterns.realtimeRawStd(1,:) = std(patterns.raw(1:iTrial,:),1,1);
         patterns.realtimeVar(1,:) = patterns.realtimeStd(1,:).^2;
         
         %now zscore
@@ -323,7 +325,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
         % test if low standard deviation just in case we don't want it to
         % increase z scored values so much
         if iTrial > firstBlockTRs
-            lowVar = find(patterns.realtimeStd<1E-3);
+            lowVar = find(patterns.realtimeRawStd<1E-3);
         else
             lowVar = find(patterns.lastStd<1E-3);
         end
