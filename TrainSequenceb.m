@@ -7,7 +7,7 @@ subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %SVEC = [1 3:6 8:10];
 %used = [10 11 12]; % make sure these aren't in list
-SVEC = [4:5 13 19 23 26 29]; % 6 is used--should add check no used are here and 11 is yoked!
+SVEC = [4:5 13 19 23 29 32]; % 6 is used--should add check no used are here and 11 is yoked!
 
 NUM_TASK_RUNS = 3;
 % orientation session
