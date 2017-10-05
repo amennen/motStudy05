@@ -1,0 +1,112 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	16.6  	1   	PADDLE    	lure    	0.583	NR  	1   	NR      	NR      
+2   	17.2  	2   	RATTLE    	lure    	0.512	NR  	1   	NR      	NR      
+3   	17.8  	3   	DENT      	lure    	0.669	NR  	1   	NR      	NR      
+4   	18.5  	4   	NOTE      	lure    	0.415	NR  	1   	NR      	NR      
+5   	19    	5   	BRUSH     	lure    	0.328	NR  	1   	NR      	NR      
+6   	19.4  	3   	DENT (repeat 1)	lure    	0.545	NR  	1   	NR      	NR      
+7   	20    	2   	RATTLE (repeat 1)	lure    	0.547	NR  	1   	NR      	NR      
+8   	20.6  	5   	BRUSH (repeat 1)	lure    	0.273	NR  	1   	NR      	NR      
+9   	20.9  	4   	NOTE (repeat 1)	lure    	0.559	NR  	1   	NR      	NR      
+10  	21.5  	3   	DENT (repeat 2)	lure    	0.605	NR  	1   	NR      	NR      
+11  	22.2  	6   	CANDLE    	lure    	0.313	NR  	1   	NR      	NR      
+12  	22.5  	2   	RATTLE (repeat 2)	lure    	0.298	NR  	1   	NR      	NR      
+13  	22.9  	5   	BRUSH (repeat 2)	lure    	0.43	NR  	1   	NR      	NR      
+14  	23.4  	6   	CANDLE (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+15  	23.9  	7   	ORANGE    	fruit   	0.955	0.602	1   	target  	target  
+16  	24.9  	8   	APRON     	lure    	0.287	NR  	1   	NR      	NR      
+17  	25.2  	3   	DENT (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+18  	25.7  	6   	CANDLE (repeat 2)	lure    	0.296	NR  	1   	NR      	NR      
+19  	26.1  	4   	NOTE (repeat 2)	lure    	0.573	NR  	1   	NR      	NR      
+20  	26.7  	5   	BRUSH (repeat 3)	lure    	0.353	NR  	1   	NR      	NR      
+21  	27.1  	8   	APRON (repeat 1)	lure    	0.4 	NR  	1   	NR      	NR      
+22  	27.6  	2   	RATTLE (repeat 3)	lure    	0.255	NR  	1   	NR      	NR      
+23  	27.9  	1   	PADDLE (repeat 1)	lure    	0.323	NR  	1   	NR      	NR      
+24  	28.3  	3   	DENT (repeat 4)	lure    	0.477	NR  	1   	NR      	NR      
+25  	28.8  	1   	PADDLE (repeat 2)	lure    	0.546	NR  	1   	NR      	NR      
+26  	29.4  	6   	CANDLE (repeat 3)	lure    	0.525	NR  	1   	NR      	NR      
+27  	30    	5   	BRUSH (repeat 4)	lure    	0.646	NR  	1   	NR      	NR      
+28  	30.7  	2   	RATTLE (repeat 4)	lure    	0.275	NR  	1   	NR      	NR      
+29  	31    	3   	DENT (repeat 5)	lure    	0.559	NR  	1   	NR      	NR      
+30  	31.7  	2   	RATTLE (repeat 5)	lure    	0.297	NR  	1   	NR      	NR      
+31  	32    	4   	NOTE (repeat 3)	lure    	0.679	NR  	1   	NR      	NR      
+32  	32.7  	1   	PADDLE (repeat 3)	lure    	0.322	NR  	1   	NR      	NR      
+33  	33.1  	3   	DENT (repeat 6)	lure    	0.537	NR  	1   	NR      	NR      
+34  	33.7  	1   	PADDLE (repeat 4)	lure    	0.433	NR  	1   	NR      	NR      
+35  	34.2  	4   	NOTE (repeat 4)	lure    	0.33	NR  	1   	NR      	NR      
+36  	34.6  	5   	BRUSH (repeat 5)	lure    	0.284	NR  	1   	NR      	NR      
+37  	34.9  	3   	DENT (repeat 7)	lure    	0.621	NR  	1   	NR      	NR      
+38  	35.6  	1   	PADDLE (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+39  	36.1  	9   	LIME      	fruit   	0.955	0.511	1   	target  	target  
+40  	37.1  	4   	NOTE (repeat 5)	lure    	0.541	NR  	1   	NR      	NR      
+41  	37.7  	8   	APRON (repeat 2)	lure    	0.368	NR  	1   	NR      	NR      
+42  	38.1  	5   	BRUSH (repeat 6)	lure    	0.694	NR  	1   	NR      	NR      
+43  	38.9  	1   	PADDLE (repeat 6)	lure    	0.661	NR  	1   	NR      	NR      
+44  	39.6  	6   	CANDLE (repeat 4)	lure    	0.332	NR  	1   	NR      	NR      
+45  	40    	8   	APRON (repeat 3)	lure    	0.38	NR  	1   	NR      	NR      
+46  	40.4  	3   	DENT (repeat 8)	lure    	0.69	NR  	1   	NR      	NR      
+47  	41.2  	6   	CANDLE (repeat 5)	lure    	0.517	NR  	1   	NR      	NR      
+48  	41.7  	1   	PADDLE (repeat 7)	lure    	0.642	NR  	1   	NR      	NR      
+49  	42.4  	4   	NOTE (repeat 6)	lure    	0.66	NR  	1   	NR      	NR      
+50  	43.1  	6   	CANDLE (repeat 6)	lure    	0.362	NR  	1   	NR      	NR      
+51  	43.6  	2   	RATTLE (repeat 6)	lure    	0.306	NR  	1   	NR      	NR      
+52  	43.9  	3   	DENT (repeat 9)	lure    	0.433	NR  	1   	NR      	NR      
+53  	44.4  	2   	RATTLE (repeat 7)	lure    	0.362	NR  	1   	NR      	NR      
+54  	44.8  	6   	CANDLE (repeat 7)	lure    	0.29	NR  	1   	NR      	NR      
+55  	45.2  	4   	NOTE (repeat 7)	lure    	0.574	NR  	1   	NR      	NR      
+56  	45.8  	6   	CANDLE (repeat 8)	lure    	0.565	NR  	1   	NR      	NR      
+57  	46.4  	8   	APRON (repeat 4)	lure    	0.478	NR  	1   	NR      	NR      
+58  	47    	2   	RATTLE (repeat 8)	lure    	0.635	NR  	1   	NR      	NR      
+59  	47.7  	6   	CANDLE (repeat 9)	lure    	0.63	NR  	1   	NR      	NR      
+60  	48.3  	3   	DENT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+61  	48.8  	10  	BERRY     	fruit   	0.955	0.551	1   	target  	target  
+62  	49.8  	8   	APRON (repeat 5)	lure    	0.503	NR  	1   	NR      	NR      
+63  	50.4  	1   	PADDLE (repeat 8)	lure    	0.32	NR  	1   	NR      	NR      
+64  	50.8  	8   	APRON (repeat 6)	lure    	0.694	NR  	1   	NR      	NR      
+65  	51.5  	6   	CANDLE (repeat 10)	lure    	0.476	NR  	1   	NR      	NR      
+66  	52.1  	3   	DENT (repeat 11)	lure    	0.69	NR  	1   	NR      	NR      
+67  	52.8  	1   	PADDLE (repeat 9)	lure    	0.305	NR  	1   	NR      	NR      
+68  	53.2  	6   	CANDLE (repeat 11)	lure    	0.365	NR  	1   	NR      	NR      
+69  	53.6  	3   	DENT (repeat 12)	lure    	0.303	NR  	1   	NR      	NR      
+70  	53.9  	1   	PADDLE (repeat 10)	lure    	0.501	NR  	1   	NR      	NR      
+71  	54.5  	2   	RATTLE (repeat 9)	lure    	0.31	NR  	1   	NR      	NR      
+72  	54.9  	1   	PADDLE (repeat 11)	lure    	0.682	NR  	1   	NR      	NR      
+73  	55.6  	5   	BRUSH (repeat 7)	lure    	0.286	NR  	1   	NR      	NR      
+74  	55.9  	3   	DENT (repeat 13)	lure    	0.508	NR  	1   	NR      	NR      
+75  	56.5  	1   	PADDLE (repeat 12)	lure    	0.483	NR  	1   	NR      	NR      
+76  	57    	2   	RATTLE (repeat 10)	lure    	0.411	NR  	1   	NR      	NR      
+77  	57.5  	5   	BRUSH (repeat 8)	lure    	0.378	NR  	1   	NR      	NR      
+78  	57.9  	6   	CANDLE (repeat 12)	lure    	0.654	NR  	1   	NR      	NR      
+79  	58.6  	1   	PADDLE (repeat 13)	lure    	0.283	NR  	1   	NR      	NR      
+80  	59    	2   	RATTLE (repeat 11)	lure    	0.633	NR  	1   	NR      	NR      
+81  	59.6  	1   	PADDLE (repeat 14)	lure    	0.436	NR  	1   	NR      	NR      
+82  	60.1  	4   	NOTE (repeat 8)	lure    	0.405	NR  	1   	NR      	NR      
+83  	60.6  	6   	CANDLE (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
+84  	61.1  	5   	BRUSH (repeat 9)	lure    	0.411	NR  	1   	NR      	NR      
+85  	61.6  	3   	DENT (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+86  	62.1  	4   	NOTE (repeat 9)	lure    	0.605	NR  	1   	NR      	NR      
+87  	62.7  	5   	BRUSH (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+88  	63.2  	8   	APRON (repeat 7)	lure    	0.323	NR  	1   	NR      	NR      
+89  	63.6  	5   	BRUSH (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+90  	64.1  	2   	RATTLE (repeat 12)	lure    	0.368	NR  	1   	NR      	NR      
+91  	64.5  	4   	NOTE (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+92  	65    	2   	RATTLE (repeat 13)	lure    	0.685	NR  	1   	NR      	NR      
+93  	65.8  	4   	NOTE (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+94  	66.3  	1   	PADDLE (repeat 15)	lure    	0.367	NR  	1   	NR      	NR      
+95  	66.7  	6   	CANDLE (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+96  	67.2  	8   	APRON (repeat 8)	lure    	0.664	NR  	1   	NR      	NR      
+97  	67.9  	3   	DENT (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+98  	68.4  	4   	NOTE (repeat 12)	lure    	0.515	NR  	1   	NR      	NR      
+99  	69    	2   	RATTLE (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+100 	69.5  	11  	STRAWBERRY	fruit   	0.955	0.445	1   	target  	target  
+101 	70.5  	3   	DENT (repeat 16)	lure    	0.334	NR  	1   	NR      	NR      
+102 	70.9  	5   	BRUSH (repeat 12)	lure    	0.635	NR  	1   	NR      	NR      
+103 	71.6  	8   	APRON (repeat 9)	lure    	0.317	NR  	1   	NR      	NR      
+104 	72    	4   	NOTE (repeat 13)	lure    	0.528	NR  	1   	NR      	NR      
+105 	72.5  	3   	DENT (repeat 17)	lure    	0.569	NR  	1   	NR      	NR      
+106 	73.2  	6   	CANDLE (repeat 15)	lure    	0.425	NR  	1   	NR      	NR      
+107 	73.7  	3   	DENT (repeat 18)	lure    	0.62	NR  	1   	NR      	NR      
+108 	74.3  	8   	APRON (repeat 10)	lure    	0.401	NR  	1   	NR      	NR      
+109 	74.8  	2   	RATTLE (repeat 15)	lure    	0.673	NR  	1   	NR      	NR      
+110 	75.5  	5   	BRUSH (repeat 13)	lure    	0.484	NR  	1   	NR      	NR      
+111 	76.1  	6   	CANDLE (repeat 16)	lure    	0.557	NR  	1   	NR      	NR      
