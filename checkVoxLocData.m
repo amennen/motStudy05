@@ -5,7 +5,7 @@ p = load(fname);
 weights = p.trainedModel.ridge.betas;
 fname = findNewestFile(folder,fullfile(folder,['locpatterns'  '*.mat']));
 p = load(fname);
-sigVox = p2.patterns.sigVox;
+sigVox = p.patterns.sigVox;
 for i = 1:length(z.patterns.allLow)
     
     
