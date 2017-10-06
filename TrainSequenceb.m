@@ -2,7 +2,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 35;
+SUBJECT = 33;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
 %SVEC = [1 3:6 8:10];
