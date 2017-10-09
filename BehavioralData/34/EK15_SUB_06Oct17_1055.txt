@@ -1,0 +1,4 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	13.1  	2   	ISLAND    	5       	3.951	2.227	1   	full    	1 detail, 2+ details, full
+2   	35.1  	1   	PEBBLE    	5       	3.95	1.075	1   	full    	1 detail, 2+ details, full
+3   	57.1  	7   	RAINBOW   	5       	3.951	1.019	1   	full    	1 detail, 2+ details, full

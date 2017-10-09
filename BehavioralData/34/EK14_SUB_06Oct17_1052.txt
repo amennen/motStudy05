@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.8   	1   	PEBBLE    	targ_easy	2.063	2.059	1   	2+ details	1 detail, 2+ details, full
+2   	15.8  	1   	PEBBLE (repeat 1)	targ_easy	2.017	2.016	1   	full    	1 detail, 2+ details, full
+3   	21.8  	1   	PEBBLE (repeat 2)	targ_easy	2.017	2.015	1   	full    	1 detail, 2+ details, full
+4   	27.8  	1   	PEBBLE (repeat 3)	targ_easy	2.017	2.015	1   	full    	1 detail, 2+ details, full
+5   	51.8  	45  	MOON      	lure_hard	2.023	2.022	0   	no image	1 detail, 2+ details, full
+6   	57.8  	45  	MOON (repeat 1)	lure_hard	2.015	2.013	0   	no image	1 detail, 2+ details, full
+7   	63.8  	45  	MOON (repeat 2)	lure_hard	2.016	2.015	0   	no image	1 detail, 2+ details, full
+8   	69.8  	45  	MOON (repeat 3)	lure_hard	2.021	2.02	0   	no image	1 detail, 2+ details, full
+9   	93.8  	2   	ISLAND    	targ_hard	2.009	2.008	1   	full    	1 detail, 2+ details, full
+10  	99.8  	2   	ISLAND (repeat 1)	targ_hard	2.015	2.014	1   	2+ details	1 detail, 2+ details, full
+11  	105.8 	2   	ISLAND (repeat 2)	targ_hard	2.016	2.015	1   	full    	1 detail, 2+ details, full
+12  	111.8 	2   	ISLAND (repeat 3)	targ_hard	2.013	2.012	1   	full    	1 detail, 2+ details, full
+13  	135.8 	46  	ANCHOR    	lure_easy	2.029	2.028	0   	no image	1 detail, 2+ details, full
+14  	141.8 	46  	ANCHOR (repeat 1)	lure_easy	2.019	2.017	0   	no image	1 detail, 2+ details, full
+15  	147.8 	46  	ANCHOR (repeat 2)	lure_easy	2.013	2.011	0   	no image	1 detail, 2+ details, full
+16  	153.8 	46  	ANCHOR (repeat 3)	lure_easy	2.016	2.014	0   	no image	1 detail, 2+ details, full
