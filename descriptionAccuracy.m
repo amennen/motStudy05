@@ -38,7 +38,8 @@ SESSION = DESCRIPTION;
 
 %%
 
-subjectVec = [1 3 4 5 6 8 10 12 13 14 19 21 23 26 29 32];
+%subjectVec = [1 3 4 5 6 8 10 12 13 14 19 21 23 26 29 32];
+subjectVec = 35;
 for s = 1:length(subjectVec)
     correct = [];
     subjectNum = subjectVec(s);
@@ -68,7 +69,7 @@ end
 % count number of incorrect details--just are false in image (not vague but
 % wrong)
 %subjectVec = [1 3 4 5 6 8 10 12 13 14 19 21 23 26 29 32];
-subjectVec = [13 14 19 21 23 26 29 32];
+%subjectVec = [23 26 29 32];
 for s = 1:length(subjectVec)
     nWrong = [];
     subjectNum = subjectVec(s);
