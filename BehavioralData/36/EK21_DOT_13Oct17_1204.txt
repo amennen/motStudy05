@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	69.6  	29  	LENS      	rt-targ 	1.951	0.724	1   	target  	target  
+2   	111.6 	32  	PLUG      	rt-targ 	1.951	0.644	1   	target  	target  
+3   	153.6 	31  	MIRROR    	rt-targ 	1.95	0.716	1   	target  	target  
+4   	195.6 	34  	RULER     	rt-targ 	1.951	0.605	1   	target  	target  
+5   	237.6 	30  	PAGE      	rt-targ 	1.951	1.181	1   	non-target	non-target
+6   	279.6 	26  	DUST      	rt-targ 	1.95	0.55	1   	non-target	non-target
+7   	321.6 	33  	FOAM      	rt-targ 	1.951	0.798	1   	non-target	non-target
+8   	363.6 	25  	HOSE      	rt-targ 	1.95	0.718	1   	target  	target  
+9   	405.6 	27  	NICKEL    	rt-targ 	1.95	0.598	1   	non-target	non-target
+10  	447.6 	28  	HOOK      	rt-targ 	1.953	0.75	1   	non-target	non-target

@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	45.9  	33  	FOAM      	realtime	3.954	0.974	0   	generic 	1 detail, 2+ details, full
+2   	67.9  	38  	SPONGE    	omit    	3.951	2.638	1   	2+ details	1 detail, 2+ details, full
+3   	89.9  	34  	RULER     	realtime	3.952	1.846	1   	1 detail	1 detail, 2+ details, full
+4   	111.9 	35  	CHALK     	omit    	3.953	0.536	1   	2+ details	1 detail, 2+ details, full
+5   	133.9 	32  	PLUG      	realtime	3.95	1.463	1   	2+ details	1 detail, 2+ details, full
+6   	155.9 	37  	PURSE     	omit    	3.95	0.647	1   	1 detail	1 detail, 2+ details, full
+7   	177.9 	27  	NICKEL    	realtime	3.95	1.759	1   	1 detail	1 detail, 2+ details, full
+8   	199.9 	41  	POWDER    	omit    	3.95	0.431	1   	full    	1 detail, 2+ details, full
+9   	221.9 	31  	MIRROR    	realtime	3.953	0.335	1   	full    	1 detail, 2+ details, full
+10  	243.9 	43  	BROOM     	omit    	3.951	0.56	1   	full    	1 detail, 2+ details, full
+11  	265.9 	29  	LENS      	realtime	3.95	1.464	1   	2+ details	1 detail, 2+ details, full
+12  	287.9 	36  	DRILL     	omit    	3.95	0.56	1   	1 detail	1 detail, 2+ details, full
+13  	309.9 	28  	HOOK      	realtime	3.951	0.92	1   	full    	1 detail, 2+ details, full
+14  	331.9 	39  	PYRAMID   	omit    	3.954	0.824	1   	1 detail	1 detail, 2+ details, full
+15  	353.9 	26  	DUST      	realtime	3.951	0.584	1   	full    	1 detail, 2+ details, full
+16  	375.9 	44  	BRACELET  	omit    	3.95	0.68	1   	full    	1 detail, 2+ details, full
+17  	397.9 	40  	ROPE      	omit    	3.95	0.769	1   	full    	1 detail, 2+ details, full
+18  	419.9 	30  	PAGE      	realtime	3.95	0.462	1   	full    	1 detail, 2+ details, full
+19  	441.9 	42  	JAIL      	omit    	3.95	0.953	1   	full    	1 detail, 2+ details, full
+20  	463.9 	25  	HOSE      	realtime	3.953	1.481	1   	1 detail	1 detail, 2+ details, full
