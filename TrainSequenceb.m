@@ -42,8 +42,7 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 %% first practice set
-%mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
-mot_realtime05b(SUBJECT, FAMILIARIZE+1, [], 0, 0);
+mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
 
 %for testing
 %mot_realtime01b(SUBJECT,TOCRITERION1,[],0,0);
