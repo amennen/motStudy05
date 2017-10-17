@@ -1,0 +1,116 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9     	1   	ANCHOR    	lure    	0.67	NR  	1   	NR      	NR      
+2   	9.8   	2   	SHIRT     	lure    	0.556	NR  	1   	NR      	NR      
+3   	10.4  	3   	NOTE      	lure    	0.343	NR  	1   	NR      	NR      
+4   	10.8  	4   	DRUM      	lure    	0.403	NR  	1   	NR      	NR      
+5   	11.2  	5   	STAPLE    	lure    	0.311	NR  	1   	NR      	NR      
+6   	11.6  	3   	NOTE (repeat 1)	lure    	0.51	NR  	1   	NR      	NR      
+7   	12.2  	5   	STAPLE (repeat 1)	lure    	0.277	NR  	1   	NR      	NR      
+8   	12.5  	3   	NOTE (repeat 2)	lure    	0.683	NR  	1   	NR      	NR      
+9   	13.3  	6   	PADDLE    	lure    	0.277	NR  	1   	NR      	NR      
+10  	13.6  	7   	TICKET    	lure    	0.518	NR  	1   	NR      	NR      
+11  	14.2  	6   	PADDLE (repeat 1)	lure    	0.578	NR  	1   	NR      	NR      
+12  	14.8  	7   	TICKET (repeat 1)	lure    	0.473	NR  	1   	NR      	NR      
+13  	15.4  	5   	STAPLE (repeat 2)	lure    	0.615	NR  	1   	NR      	NR      
+14  	16    	4   	DRUM (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+15  	16.5  	3   	NOTE (repeat 3)	lure    	0.428	NR  	1   	NR      	NR      
+16  	17    	7   	TICKET (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+17  	17.6  	5   	STAPLE (repeat 3)	lure    	0.596	NR  	1   	NR      	NR      
+18  	18.2  	1   	ANCHOR (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+19  	18.7  	6   	PADDLE (repeat 2)	lure    	0.7 	NR  	1   	NR      	NR      
+20  	19.5  	7   	TICKET (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+21  	20    	1   	ANCHOR (repeat 2)	lure    	0.302	NR  	1   	NR      	NR      
+22  	20.3  	7   	TICKET (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+23  	20.8  	4   	DRUM (repeat 2)	lure    	0.295	NR  	1   	NR      	NR      
+24  	21.2  	6   	PADDLE (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+25  	21.7  	8   	LEMON     	fruit   	0.955	0.551	1   	target  	target  
+26  	22.7  	3   	NOTE (repeat 4)	lure    	0.293	NR  	1   	NR      	NR      
+27  	23.1  	2   	SHIRT (repeat 1)	lure    	0.622	NR  	1   	NR      	NR      
+28  	23.8  	7   	TICKET (repeat 5)	lure    	0.571	NR  	1   	NR      	NR      
+29  	24.4  	3   	NOTE (repeat 5)	lure    	0.297	NR  	1   	NR      	NR      
+30  	24.8  	7   	TICKET (repeat 6)	lure    	0.305	NR  	1   	NR      	NR      
+31  	25.1  	1   	ANCHOR (repeat 3)	lure    	0.29	NR  	1   	NR      	NR      
+32  	25.5  	6   	PADDLE (repeat 4)	lure    	0.535	NR  	1   	NR      	NR      
+33  	26.1  	3   	NOTE (repeat 6)	lure    	0.507	NR  	1   	NR      	NR      
+34  	26.6  	5   	STAPLE (repeat 4)	lure    	0.266	NR  	1   	NR      	NR      
+35  	27    	3   	NOTE (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+36  	27.5  	4   	DRUM (repeat 3)	lure    	0.541	NR  	1   	NR      	NR      
+37  	28.1  	3   	NOTE (repeat 8)	lure    	0.447	NR  	1   	NR      	NR      
+38  	28.6  	7   	TICKET (repeat 7)	lure    	0.683	NR  	1   	NR      	NR      
+39  	29.4  	6   	PADDLE (repeat 5)	lure    	0.37	NR  	1   	NR      	NR      
+40  	29.8  	7   	TICKET (repeat 8)	lure    	0.55	NR  	1   	NR      	NR      
+41  	30.4  	4   	DRUM (repeat 4)	lure    	0.28	NR  	1   	NR      	NR      
+42  	30.8  	6   	PADDLE (repeat 6)	lure    	0.555	NR  	1   	NR      	NR      
+43  	31.4  	1   	ANCHOR (repeat 4)	lure    	0.438	NR  	1   	NR      	NR      
+44  	31.9  	4   	DRUM (repeat 5)	lure    	0.336	NR  	1   	NR      	NR      
+45  	32.3  	1   	ANCHOR (repeat 5)	lure    	0.556	NR  	1   	NR      	NR      
+46  	32.9  	5   	STAPLE (repeat 5)	lure    	0.388	NR  	1   	NR      	NR      
+47  	33.4  	7   	TICKET (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+48  	33.9  	9   	APPLE     	fruit   	0.956	0.542	1   	target  	target  
+49  	34.9  	2   	SHIRT (repeat 2)	lure    	0.618	NR  	1   	NR      	NR      
+50  	35.6  	6   	PADDLE (repeat 7)	lure    	0.467	NR  	1   	NR      	NR      
+51  	36.1  	5   	STAPLE (repeat 6)	lure    	0.667	NR  	1   	NR      	NR      
+52  	36.8  	6   	PADDLE (repeat 8)	lure    	0.566	NR  	1   	NR      	NR      
+53  	37.5  	2   	SHIRT (repeat 3)	lure    	0.415	NR  	1   	NR      	NR      
+54  	37.9  	4   	DRUM (repeat 6)	lure    	0.434	NR  	1   	NR      	NR      
+55  	38.4  	5   	STAPLE (repeat 7)	lure    	0.307	NR  	1   	NR      	NR      
+56  	38.8  	4   	DRUM (repeat 7)	lure    	0.36	NR  	1   	NR      	NR      
+57  	39.3  	2   	SHIRT (repeat 4)	lure    	0.473	NR  	1   	NR      	NR      
+58  	39.8  	3   	NOTE (repeat 9)	lure    	0.565	NR  	1   	NR      	NR      
+59  	40.4  	6   	PADDLE (repeat 9)	lure    	0.515	NR  	1   	NR      	NR      
+60  	41    	2   	SHIRT (repeat 5)	lure    	0.49	NR  	1   	NR      	NR      
+61  	41.6  	3   	NOTE (repeat 10)	lure    	0.338	NR  	1   	NR      	NR      
+62  	42    	4   	DRUM (repeat 8)	lure    	0.644	NR  	1   	NR      	NR      
+63  	42.7  	7   	TICKET (repeat 10)	lure    	0.434	NR  	1   	NR      	NR      
+64  	43.2  	6   	PADDLE (repeat 10)	lure    	0.589	NR  	1   	NR      	NR      
+65  	43.9  	4   	DRUM (repeat 9)	lure    	0.665	NR  	1   	NR      	NR      
+66  	44.6  	3   	NOTE (repeat 11)	lure    	0.359	NR  	1   	NR      	NR      
+67  	45    	4   	DRUM (repeat 10)	lure    	0.313	NR  	1   	NR      	NR      
+68  	45.4  	5   	STAPLE (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+69  	45.9  	6   	PADDLE (repeat 11)	lure    	0.318	NR  	1   	NR      	NR      
+70  	46.3  	5   	STAPLE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+71  	46.8  	7   	TICKET (repeat 11)	lure    	0.461	NR  	1   	NR      	NR      
+72  	47.3  	5   	STAPLE (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+73  	47.8  	10  	PLUM      	fruit   	0.955	0.597	1   	target  	target  
+74  	48.8  	1   	ANCHOR (repeat 6)	lure    	0.616	NR  	1   	NR      	NR      
+75  	49.5  	3   	NOTE (repeat 12)	lure    	0.266	NR  	1   	NR      	NR      
+76  	49.8  	2   	SHIRT (repeat 6)	lure    	0.677	NR  	1   	NR      	NR      
+77  	50.6  	4   	DRUM (repeat 11)	lure    	0.535	NR  	1   	NR      	NR      
+78  	51.2  	7   	TICKET (repeat 12)	lure    	0.638	NR  	1   	NR      	NR      
+79  	51.9  	1   	ANCHOR (repeat 7)	lure    	0.319	NR  	1   	NR      	NR      
+80  	52.2  	6   	PADDLE (repeat 12)	lure    	0.44	NR  	1   	NR      	NR      
+81  	52.7  	2   	SHIRT (repeat 7)	lure    	0.612	NR  	1   	NR      	NR      
+82  	53.4  	3   	NOTE (repeat 13)	lure    	0.615	NR  	1   	NR      	NR      
+83  	54.1  	1   	ANCHOR (repeat 8)	lure    	0.318	NR  	1   	NR      	NR      
+84  	54.4  	4   	DRUM (repeat 12)	lure    	0.257	NR  	1   	NR      	NR      
+85  	54.7  	3   	NOTE (repeat 14)	lure    	0.443	NR  	1   	NR      	NR      
+86  	55.3  	7   	TICKET (repeat 13)	lure    	0.613	NR  	1   	NR      	NR      
+87  	55.9  	5   	STAPLE (repeat 11)	lure    	0.373	NR  	1   	NR      	NR      
+88  	56.4  	2   	SHIRT (repeat 8)	lure    	0.317	NR  	1   	NR      	NR      
+89  	56.7  	4   	DRUM (repeat 13)	lure    	0.379	NR  	1   	NR      	NR      
+90  	57.2  	3   	NOTE (repeat 15)	lure    	0.274	NR  	1   	NR      	NR      
+91  	57.5  	1   	ANCHOR (repeat 9)	lure    	0.472	NR  	1   	NR      	NR      
+92  	58.1  	2   	SHIRT (repeat 9)	lure    	0.594	NR  	1   	NR      	NR      
+93  	58.7  	6   	PADDLE (repeat 13)	lure    	0.571	NR  	1   	NR      	NR      
+94  	59.4  	3   	NOTE (repeat 16)	lure    	0.645	NR  	1   	NR      	NR      
+95  	60.1  	2   	SHIRT (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+96  	60.6  	1   	ANCHOR (repeat 10)	lure    	0.507	NR  	1   	NR      	NR      
+97  	61.1  	3   	NOTE (repeat 17)	lure    	0.451	NR  	1   	NR      	NR      
+98  	61.7  	4   	DRUM (repeat 14)	lure    	0.412	NR  	1   	NR      	NR      
+99  	62.1  	3   	NOTE (repeat 18)	lure    	0.451	NR  	1   	NR      	NR      
+100 	62.7  	4   	DRUM (repeat 15)	lure    	0.375	NR  	1   	NR      	NR      
+101 	63.1  	5   	STAPLE (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+102 	63.6  	1   	ANCHOR (repeat 11)	lure    	0.352	NR  	1   	NR      	NR      
+103 	64    	6   	PADDLE (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+104 	64.6  	11  	BANANA    	fruit   	0.952	0.474	1   	target  	target  
+105 	65.6  	6   	PADDLE (repeat 15)	lure    	0.378	NR  	1   	NR      	NR      
+106 	66    	4   	DRUM (repeat 16)	lure    	0.344	NR  	1   	NR      	NR      
+107 	66.4  	7   	TICKET (repeat 14)	lure    	0.49	NR  	1   	NR      	NR      
+108 	67    	3   	NOTE (repeat 19)	lure    	0.475	NR  	1   	NR      	NR      
+109 	67.5  	1   	ANCHOR (repeat 12)	lure    	0.323	NR  	1   	NR      	NR      
+110 	67.9  	3   	NOTE (repeat 20)	lure    	0.383	NR  	1   	NR      	NR      
+111 	68.4  	5   	STAPLE (repeat 13)	lure    	0.315	NR  	1   	NR      	NR      
+112 	68.8  	7   	TICKET (repeat 15)	lure    	0.267	NR  	1   	NR      	NR      
+113 	69.1  	3   	NOTE (repeat 21)	lure    	0.351	NR  	1   	NR      	NR      
+114 	69.5  	4   	DRUM (repeat 17)	lure    	0.281	NR  	1   	NR      	NR      
+115 	69.9  	7   	TICKET (repeat 16)	lure    	0.646	NR  	1   	NR      	NR      
