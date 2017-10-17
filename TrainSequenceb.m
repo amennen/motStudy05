@@ -2,10 +2,10 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 36;
+SUBJECT = 37;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
-SVEC = [4 19 23 29]; % 6 is used--should add check no used are here and 11 is yoked!
+SVEC = [19 23 29]; % 6 is used--should add check no used are here and 11 is yoked!
 
 NUM_TASK_RUNS = 3;
 % orientation session
@@ -42,7 +42,6 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 DESCRIPTION = RECALL2 + 1; %26
 ASSOCIATES = DESCRIPTION + 1; %27
 %% first practice set
-%mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
 mot_realtime05b(SUBJECT, SETUP, [], 0, 0);
 
 %for testing
