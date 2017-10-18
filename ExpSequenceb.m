@@ -3,10 +3,10 @@
 
 %first these are all the session numbers
 
-SUBJECT = 37; %experimental subject number
+SUBJECT = 39; %experimental subject number
 prev = 0; %5if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
-runNum = 1; %what number subject they are today
+runNum = 2; %what number subject they are today
 base_path = [fileparts(which('mot_realtime05.m')) filesep];
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 load([subjDir 'matchSubj.mat'])
