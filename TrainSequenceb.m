@@ -2,10 +2,10 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 cd(base_path);
 
 
-SUBJECT = 39;
+SUBJECT = 40;
 subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
 
-SVEC = [19]; % 6 is used--should add check no used are here and 11 is yoked!
+SVEC = [3]; % 6 is used--should add check no used are here and 11 is yoked!
 
 NUM_TASK_RUNS = 3;
 % orientation session
