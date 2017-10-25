@@ -10,17 +10,22 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 
 functionalFN = 'reference';
 highres2exfunc_mat = 'highres2example_func';
+roi_dir = '/jukebox/norman/amennen/motStudy05_transferred/';
 
 
-
+s
 svec = [1 3:6 8 9];
 
 for s = 1:length(svec)
     subjNum = svec(s);
     save_dir = ['/Data1/code/' projectName '/data/' num2str(subjNum) '/']; %this is where she sets the save directory!
     process_dir = [save_dir 'reg' '/'];
-    roi_dir = ['/Data1/code/' projectName '/data/'];
     cd(process_dir)
+    
+    %compute inverse transform (standard to highres)
+    unix(sprintf('%sconvert_xfm -inverse -omat standard2highres.mat highres2standard.mat', fslpath));
+    unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highresFN_RE));
+    
     unix(sprintf('%sapplywarp -i %s%s.nii.gz -r %s.nii -o %s_exfunc.nii.gz -w standard2highres_warp.nii.gz --postmat=%s.mat',fslpath,roi_dir,roi_name,functionalFN,roi_name,highres2exfunc_mat));
     
     %unzip, if necessary
@@ -31,8 +36,20 @@ for s = 1:length(svec)
     
     niftiFN = sprintf('%s_exfunc.nii',roi_name);
     maskData = readnifti(niftiFN);
-    funcData = readnifti(sprintf('%s_brain.nii',functionalFN_RE));
+    unix(sprintf('%sbet %s.nii.gz %s_brain -R',fslpath,functionalFN_RE,functionalFN_RE)); % check that this is okay!
     
+    %%
+% now unzip and convert to load into matlab
+%unzip, if necessary
+if exist(sprintf('%s.nii.gz',functionalFN_RE),'file')
+    unix(sprintf('gunzip %s.nii.gz',functionalFN_RE));
+end
+if exist(sprintf('%s_brain.nii.gz',functionalFN_RE),'file')
+    unix(sprintf('gunzip %s_brain.nii.gz',functionalFN_RE));
+end
+    
+    funcData = readnifti(sprintf('%s_brain.nii',functionalFN_RE));
+    %%
     mask = zeros(size(maskData));
     maskLogical = logical(maskData);
     brainLogical = logical(funcData);
