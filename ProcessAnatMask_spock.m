@@ -1,30 +1,31 @@
 projectName = 'motStudy05';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 %roi_name = 'paraHCG';
-roi_name = 'paraHCG.nii.gz';
 code_dir = pwd; %change to wherever code is stored
 addpath(genpath(code_dir));
 
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 %add necessary package
-
+fslpath = '/opt/pkg/FSL/fsl-5.0.9/';
 functionalFN = 'reference';
+highresFN = 'anat';
 highres2exfunc_mat = 'highres2example_func';
-roi_dir = '/jukebox/norman/amennen/motStudy05_transferred/';
+roi_name = 'paraHCG.nii.gz';
+proj_dir = '/jukebox/norman/amennen/motStudy05_transferred';
+roi_dir = proj_dir;
 
-
-s
 svec = [1 3:6 8 9];
 
 for s = 1:length(svec)
     subjNum = svec(s);
-    save_dir = ['/Data1/code/' projectName '/data/' num2str(subjNum) '/']; %this is where she sets the save directory!
-    process_dir = [save_dir 'reg' '/'];
-    cd(process_dir)
-    
+    subjectName = ['S' num2str(subjNum)];
+    subj_dir = [proj_dir '/' subjectName];
+    reg_dir = [subj_dir '/' 'analysis/firstlevel/localizer.feat/reg/'];
+    anat_dir = [subj_dir '/' 'anat/anat/nii/'];
+    func_dir = [subj_dir 
     %compute inverse transform (standard to highres)
-    unix(sprintf('%sconvert_xfm -inverse -omat standard2highres.mat highres2standard.mat', fslpath));
-    unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highresFN_RE));
+    unix(sprintf('%sconvert_xfm -inverse -omat %sstandard2highres.mat %shighres2standard.mat', fslpath,reg_dir,reg_dir));
+    unix(sprintf('%sinvwarp -w %shighres2standard_warp -o %sstandard2highres_warp -r %s%s_brain.nii.gz',fslpath,reg_dir,reg_dir,reg_dir,highresFN));
     
     unix(sprintf('%sapplywarp -i %s%s.nii.gz -r %s.nii -o %s_exfunc.nii.gz -w standard2highres_warp.nii.gz --postmat=%s.mat',fslpath,roi_dir,roi_name,functionalFN,roi_name,highres2exfunc_mat));
     
