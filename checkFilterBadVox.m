@@ -2,8 +2,8 @@
 %addpath('/Data1/code/motStudy05/code/')
 close all;
 %clear all;
-subject = 12;
-run = 2;
+subject = 24;
+run = 3;
 
 OptimalForget = 0.15;
 maxIncrement = 1.25; %will also have to check this
@@ -46,7 +46,7 @@ if ~isempty(z.patterns.allLow)
         fprintf('voxel # %i in sigVox: %i\n' , z.patterns.allLow(i),issig);
         if issig
             badsigvox = [badsigvox z.patterns.allLow(i)];
-            TRrel = find(any(z.patterns.regressor.twoCond,1)) + 2;
+            %TRrel = find(any(z.patterns.regressor.twoCond,1)) + 2;
             % now check how much weight the voxel/activity had compared to
             % others
             for t =1:length(TRrel);
@@ -117,8 +117,8 @@ if ~isempty(badsigvox)
     thisrun = findNewestFile(folder,[folder '/mot_realtime05_' num2str(subject) '_' num2str(SESSION) '*']);
     now = load(thisrun);
     stimID = now.stim.id;
-    TRrel = find(any(z.patterns.regressor.twoCond,1)) + 2;
-    TRmat = reshape(TRrel,15,10);
+    %TRrel = find(any(z.patterns.regressor.twoCond,1)) + 2;
+    %TRmat = reshape(TRrel,15,10);
     speed1 = {};
     speed2 = {};
     for trial = 1:10

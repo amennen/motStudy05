@@ -83,6 +83,47 @@ for s = 1:length(subjectVec)
     fname = findNewestFile(loc_dir, fullfile(loc_dir, ['retrieval_CORR_locpatterns' '*.mat']));
     fname = findNewestFile(loc_dir, fullfile(loc_dir, ['locpatterns' '*.mat']));
     fname = findNewestFile(loc_dir, fullfile(loc_dir, ['wholebrain_NOFM_locpatterns' '*.mat']));
-    newname = ['locpat' num2str(subjectNum) '.mat'];    
+    newname = ['locpat' num2str(subjectNum) '.mat'];
     unix(['scp ' fname ' amennen@apps.pni.princeton.edu:' folder '/' newname])
+end
+%%
+% go to each subject
+% have matrix for each sessionsubject = 20;
+ntrials = 10;
+nTRs = 12;
+nruns = 3;
+svec = [20,24,36,34,11,27,17,16,35,30,39,25,37,31,38,33];
+for i = 1:length(svec)
+    subject = svec(i);
+    
+    YOKED_EV = zeros(ntrials,nTRs,nruns);
+    RT_EV = zeros(ntrials,nTRs,nruns);
+    
+    base_path = [fileparts(which('mot_realtime05.m')) filesep];
+    subjDir = [base_path 'BehavioralData' filesep num2str(subject) filesep];
+    load([subjDir 'matchSubj.mat'])
+    s2Dir = [base_path 'BehavioralData' filesep num2str(s2) filesep];
+    for s=1:nruns
+        session = 20 + s;
+        r = dir(fullfile(subjDir, ['mot_realtime05_SIMULATED_' num2str(subject) '_' num2str(session)  '*.mat']));
+        r = load(fullfile(subjDir,r(end).name));
+        r_s2 = dir(fullfile(s2Dir, ['mot_realtime05_' num2str(s2) '_' num2str(session)  '*.mat']));
+        r_s2 = load(fullfile(s2Dir,r_s2(end).name));
+        [~,indSort] = sort(r_s2.stim.id);
+        for t = 1:10
+            trial = indSort(t);
+            RT_EV(t,:,s) = r_s2.rtData.RTVEC{trial};
+            YOKED_EV(t,:,s) = r.rtData.RTVEC{trial};
+        end
+        
+    end
+    
+    
+    folder = '/jukebox/norman/amennen/PythonMot5/Evidence';
+    fn = ['ev_' num2str(s2) '.mat'];
+    savedFile = [ '../data/' fn];
+    save(savedFile, 'RT_EV', 'YOKED_EV')
+    unix(['scp ' savedFile ' amennen@apps.pni.princeton.edu:' folder '/' fn])
+    
+    
 end

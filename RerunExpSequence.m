@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 32; %experimental subject number
+SUBJECT = 24; %experimental subject number
 prev = 1; %5if today's date (0) or previous date (1)
 scanNow = 0; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -64,19 +64,26 @@ ASSOCIATES = DESCRIPTION + 1; %27
 % 13: MOT 3
 % 14: RECALL 2
 
+%% LOCALIZER FILE PROCESS
+% number of TR's total: (should be 688 originally)
+scanNum = 9;
+crossval = 0;
+featureSelect = 1;
+OLDLocalizerNiftiFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER,runNum)
+
 %% MOT RUN 1 FILE PROCESS
 scanNum = 11;%normally 15;
 blockNum = 1;
 featureSelect = 1;
-RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
+OLDRealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
 
 %% MOT RUN 2 FILE PROCESS
 scanNum = 12;
 featureSelect = 1;
 blockNum = 2;
-RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
+OLDRealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 %% MOT RUN 3 FILE PROCESS
 scanNum = 13;
 featureSelect = 1;
 blockNum = 3;
-RealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
+OLDRealTimeNiftiFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
