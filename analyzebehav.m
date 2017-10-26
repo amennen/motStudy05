@@ -140,7 +140,7 @@ end
 subjectVec = [13 14 19 21 23];
 subjectVec = [29 32];
 subjectVec = [20,24,11,27,17,16,30,25,31];
-subjectVec = [38 39];
+subjectVec = [38 39 40];
 for s = 1:length(subjectVec)
     behavioral_dir = ['BehavioralData/' num2str(subjectVec(s)) '/'];
     r = dir(fullfile(behavioral_dir, ['_RECOG' '*.mat']));
