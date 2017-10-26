@@ -2,9 +2,9 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 32; %experimental subject number
-prev = 0; %5if today's date (0) or previous date (1)
-scanNow = 1; %if using triggers (1)
+SUBJECT = 24; %experimental subject number
+prev = 1; %5if today's date (0) or previous date (1)
+scanNow = 0; %if using triggers (1)
 runNum = 1; %what number subject they are today
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

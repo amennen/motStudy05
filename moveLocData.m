@@ -1,3 +1,4 @@
+
 function moveLocData(subjectNum)
 folder= '/jukebox/norman/amennen/PythonMot5/Loc/';
 projectName = 'motStudy05';

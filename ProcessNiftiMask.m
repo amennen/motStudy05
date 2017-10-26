@@ -29,10 +29,10 @@ setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 % inputs (eventually function)
 
 
-subjNum = 39;
-%subjDate = '4-5-17';
+subjNum = 40;
+%subjDate = '9-10-17';
 subjDate = NaN;
-runNum = 2;
+runNum = 1;
 
 
 highresScan = 5;
@@ -46,7 +46,6 @@ process_dir = [save_dir 'reg' '/'];
 roi_dir = ['/Data1/code/' projectName '/data/'];
 code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 if ~isnan(subjDate)
-    subjDate = '5-10-17';
     subjectName = [datestr(subjDate,5) datestr(subjDate,7) datestr(subjDate,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(subjDate,10) datestr(subjDate,5) datestr(subjDate,7) '.' subjectName '.' subjectName '/'];
 else
@@ -66,7 +65,7 @@ highresfiles_genstr = sprintf('%s001_0000%s_0*',dicom_dir,num2str(highresScan,'%
 unix(sprintf('%sdicom2bxh %s %s.bxh',bxhpath,highresfiles_genstr,highresFN));
 unix(sprintf('%sbxhreorient --orientation=LAS %s.bxh %s.bxh',bxhpath,highresFN,highresFN_RE));
 unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,highresFN_RE,highresFN_RE))
-unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R -m',fslpath,highresFN_RE,highresFN_RE)) 
+unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -R -m -f 0.45',fslpath,highresFN_RE,highresFN_RE)) 
 %unix(sprintf('%sbet %s.nii.gz %s_brain.nii.gz -r 90 -R',fslpath,highresFN_RE,highresFN_RE)) 
 %dcm2niix -o /Data1/code/motStudy05/data/25/reg/ -f anat /Data1/code/motStudy05/data/25/reg/ANAT/
 % for dcm2niix the command would be 'dcm2niix dicomdir -f test -o dicomdir -s y dicomdir/001_000007_000008.dcm'
