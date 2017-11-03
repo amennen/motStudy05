@@ -93,6 +93,44 @@ avgOMITsim = np.mean(OMITsim, axis=0)
 avgRTsim_diff = np.mean(RTsim_diff, axis=0)
 avgOMITsim_diff = np.mean(OMITsim_diff, axis=0)
 
+
+# first plot for RT subjects
+avgRTsimG = avgRTsim[RT_ind]
+avgOMITsimG = avgOMITsim[RT_ind]
+avgRTsim_diffG = avgRTsim_diff[RT_ind]
+avgOMITsim_diffG = avgOMITsim_diff[RT_ind]
+
+# now make plots--different subtraction look back on meeting notes!!
+# now plot conditions: realtime similar, realtime dissimilar, omit similar, omit dissimilar
+sns.set(style="whitegrid", color_codes=True)
+data = np.concatenate((np.reshape(avgRTsimG,(npairs,1)),np.reshape(avgRTsim_diffG,(npairs,1)),np.reshape(avgOMITsimG,(npairs,1)),np.reshape(avgOMITsim_diffG,(npairs,1))),axis=0)
+type = np.concatenate((0*np.ones((npairs,1)),0*np.ones((npairs,1)),np.ones((npairs,1)),np.ones((npairs,1))),axis=0) # MOT or OMIT
+simdiff = np.concatenate((0*np.ones((npairs,1)),np.ones((npairs,1)),np.zeros((npairs,1)),np.ones((npairs,1))),axis=0) # SAME vs DIFF
+data2b = np.concatenate((data,type,simdiff),axis=1)
+
+df = pd.DataFrame(data2b, columns=['data','type', 'simdiff'])
+fig, ax = plt.subplots()
+sns.violinplot(data=df,x='type', y='data', hue="simdiff")
+labels = [item.get_text() for item in ax.get_xticklabels()]
+labels[0] = "RT"
+labels[1] = "OMIT"
+# want RT same vs. RT
+#sns.swarmplot(data = df,hue='simdiff', y='data', x='type',split=True,color='k',  alpha=0.7)
+x1 = np.array([-.2,0.2])
+x2 = np.array([.8,1.2])
+for s in np.arange(npairs):
+    y1 = np.array([avgRTsimG[s],avgRTsim_diffG[s]])
+    y2= np.array([avgOMITsimG[s],avgOMITsim_diffG[s]])
+    plt.plot(x1,y1)
+    plt.plot(x2,y2)
+
+plt.title('Pattern Similarity Post vs. Pre MOT')
+ax.set_xticklabels(labels)
+plt.ylabel('Pattern Similarity')
+#plt.ylim(-.1,.25)
+plt.show()
+
+#########################################################
 # now make plots--different subtraction look back on meeting notes!!
 # now plot conditions: realtime similar, realtime dissimilar, omit similar, omit dissimilar
 sns.set(style="whitegrid", color_codes=True)
