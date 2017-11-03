@@ -2,7 +2,8 @@
 %addpath('/Data1/code/motStudy05/code/')
 close all;
 %clear all;
-yokedSubjects = [20,24,36,34,11,27,17,16,35,30,39,25,37,31,38,33];
+%yokedSubjects = [20,24,36,34,11,27,17,16,35,30,39,25,37,31,38,33];
+yokedSubjects=40;
 for s = 1:length(yokedSubjects)
     subject = yokedSubjects(s); % this is the yoked subject
     %%IMPORTANT: CHECK IF NEED TO MAKE NEW PATTERNS OR NOT!!-don't need to
