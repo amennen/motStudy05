@@ -23,6 +23,7 @@ from math import exp, sqrt
 
 # specify now which computer you're using!
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
+save_dir = '/Volumes/norman/amennen/PythonMot5/'
 RECALL = np.array([20,24])
 RECOGNITION = 26
 Z = norm.ppf
@@ -57,6 +58,32 @@ for s in np.arange(nSub):
     responses[subjName][:,2] = d['rt'][:,0]
     responses[subjName][:,3] = d['acc'][:,0]
     responses[subjName][:,4] = d['cresp'][:,0]
+lureRT = np.zeros((10,nSub))
+targRT = np.zeros((10,nSub))
+for s in np.arange(nSub):
+    data = responses['subj'+str(s)]
+    RT = data[:,2]
+    acc = data[:,3]
+    cond = data[:,1]
+    cresp = data[:,4]
+    id = data[:,0]
+    hard = np.argwhere(cond == 1)
+    target = np.argwhere(cresp == 1)
+    lure = np.argwhere(cresp == 2)
+    HL = np.intersect1d(hard,lure)
+    HT = np.intersect1d(hard,target)
+    id_HL = id[HL]
+    x_HL = np.argsort(id_HL)
+    RT_HL = RT[HL]
+    lureRT[:,s] = RT_HL[x_HL]
+    id_HT = id[HT]
+    x_HT = np.argsort(id_HT)
+    RT_HT = RT[HT]
+    targRT[:,s] = RT_HT[x_HT]
+
+
+np.save(save_dir + 'targRT',targRT)
+np.save(save_dir + 'lureRT',lureRT)
 
 ## LOOK AT RATINGS
 # LOOK AT RATINGS NOW
