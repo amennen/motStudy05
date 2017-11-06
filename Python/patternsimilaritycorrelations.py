@@ -137,31 +137,39 @@ max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
 nwin = catrange.shape[0] - 1
 TRmatrix = np.zeros((nstim,nwin,npairs*2))
+TRmatrix_consec = np.zeros((nstim,nwin,npairs*2))
+
 for s in np.arange(npairs*2):
     for st in np.arange(nstim):
         thissep = allSep[st,:,s]
         for w in np.arange(nwin):
             TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
-
+            z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 4)
+            TRmatrix_consec[st, w, s] = z[0].size
 allr = getcorr(RTsim,TRmatrix)
+allr_consec = getcorr(RTsim,TRmatrix_consec)
 
 fig, ax = plt.subplots()
+plotting_data = allr.T
+plot2 = allr_consec.T
 plt.title('Pattern Similarity Correlations')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
-sem = stats.sem(allr.T)
-yerr = sem
-y = np.mean(allr.T,axis=0)
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-sns.tsplot(data=allr.T,color=next(palette), err_style=None)
-#sns.barplot(data=allr.T,ci=0)
-#sns.stripplot(data=allr.T)
-#plt.plot(pvals)
-
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -181,29 +189,31 @@ for s in np.arange(npairs*2):
     hardR[subjName] = d['hardScores']
     diffEasy[:,s] = np.diff(easyR[subjName].astype(np.int16),axis=0)
     diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
-allr = getcorr(diffHard,TRmatrix)
-# because in this case some subjects are bad!!!
-bad = np.unique(np.where(np.isnan(allr))[1])
-mask = np.ones(32, dtype=bool)
-mask[bad] = False
-allr = allr[:,mask]
+allr_ratings = getcorr(diffHard,TRmatrix)
+allr_ratings_consec = getcorr(diffHard,TRmatrix_consec)
+
 fig, ax = plt.subplots()
+plotting_data = allr_ratings.T
+plot2 = allr_ratings_consec.T
 plt.title('Detail Difference Correlations')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
-sem = stats.sem(allr.T)
-yerr = sem
-y = np.mean(allr.T,axis=0)
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-sns.tsplot(data=allr.T,color=next(palette), err_style=None)
-#sns.barplot(data=allr.T,ci=0)
-#sns.stripplot(data=allr.T)
-#plt.plot(pvals)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -239,31 +249,158 @@ for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(15)
 
 
-allr = getcorr(simHard,TRmatrix)
+allr_sim = getcorr(simHard,TRmatrix)
+allr_sim_consec = getcorr(simHard,TRmatrix_consec)
 fig, ax = plt.subplots()
-plt.title('Mturk Sim Correlations')
+plotting_data = allr_sim.T
+plot2 = allr_sim_consec.T
+plt.title('Mturk Similarity Correlations')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
-sem = stats.sem(allr.T)
-yerr = sem
-y = np.mean(allr.T,axis=0)
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-sns.tsplot(data=allr.T,color=next(palette), err_style=None)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(15)
 
 
+allr_cordet = getcorr(corDetHard,TRmatrix)
+allr_cordet_consec = getcorr(corDetHard,TRmatrix_consec)
+fig, ax = plt.subplots()
+plotting_data = allr_cordet.T
+plot2 = allr_cordet_consec.T
+plt.title('Correct # Details Correlations')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+
+allr_INcordet = getcorr(INcorDetHard,TRmatrix)
+allr_INcordet_consec = getcorr(INcorDetHard,TRmatrix_consec)
+fig, ax = plt.subplots()
+plotting_data = allr_INcordet.T
+plot2 = allr_INcordet_consec.T
+plt.title('INCorrect # Details Correlations')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+
 fig, ax = plt.subplots()
 plt.plot(simHard,RTsim, '.')
 
+######################################################### LOAD RECOG DATA ############################################################################
+targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
 
+allr_lureRT = getcorr(lureRT,TRmatrix)
+allr_lureRT_consec = getcorr(lureRT,TRmatrix_consec)
+fig, ax = plt.subplots()
+plotting_data = allr_lureRT.T
+plot2 = allr_lureRT_consec.T
+plt.title('Lure RT Correlations')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
 
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+
+allr_targRT = getcorr(targRT,TRmatrix)
+allr_targRT_consec = getcorr(targRT,TRmatrix_consec)
+fig, ax = plt.subplots()
+plotting_data = allr_targRT.T
+plot2 = allr_targRT_consec.T
+plt.title('Target RT Correlations')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
 
 
 plt.show()

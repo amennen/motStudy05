@@ -93,6 +93,35 @@ avgOMITsim = np.mean(OMITsim, axis=0)
 avgRTsim_diff = np.mean(RTsim_diff, axis=0)
 avgOMITsim_diff = np.mean(OMITsim_diff, axis=0)
 
+MOT_sim_minus_diff = RTsim - RTsim_diff
+OMIT_sim_minus_diff = OMITsim - OMITsim_diff
+sub_MOT_sim_minus_diff = np.mean(MOT_sim_minus_diff,axis=0)
+sub_OMIT_sim_minus_diff = np.mean(OMIT_sim_minus_diff,axis=0)
+# plot subtracted values for each category by group
+data = np.concatenate((np.reshape(sub_MOT_sim_minus_diff,(nsub,1)),np.reshape(sub_OMIT_sim_minus_diff,(nsub,1))),axis=0)
+group = np.concatenate((np.reshape(subarray,(nsub,1)),np.reshape(subarray,(nsub,1))),axis=0)
+type = np.concatenate((0*np.ones((nsub,1)),np.ones((nsub,1))),axis=0)
+data2b = np.concatenate((data,group,type),axis=1)
+df = pd.DataFrame(data2b, columns=['data','group','type'])
+fig, ax = plt.subplots()
+sns.violinplot(data=df,x='type', y='data', hue="group")
+labels = [item.get_text() for item in ax.get_xticklabels()]
+labels[0] = "MOT: SAME-ALL"
+labels[1] = "OMIT: SAME-ALL"
+
+# want RT same vs. RT
+sns.swarmplot(data = df,hue='type', y='data', x='group',split=True,color='k',  alpha=0.7)
+plt.title('Pattern Similarity Post vs. Pre MOT')
+ax.set_xticklabels(labels)
+plt.ylabel('Pattern Similarity')
+#plt.ylim(-.1,.25)
+plt.show()
+
+
+
+
+
+
 
 # first plot for RT subjects
 avgRTsimG = avgRTsim[RT_ind]
@@ -125,7 +154,7 @@ for s in np.arange(npairs):
     plt.plot(x2,y2)
 
 plt.title('Pattern Similarity Post vs. Pre MOT')
-ax.set_xticklabels(labels)
+ax.set_xticklabels(labels)[]
 plt.ylabel('Pattern Similarity')
 #plt.ylim(-.1,.25)
 plt.show()

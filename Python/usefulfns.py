@@ -11,5 +11,14 @@ def getcorr(subjectMatrix,TRmatrix):
         thissim = subjectMatrix[:, s]
         for w in np.arange(nwin):
             thisTR = TRmatrix[:, w, s]
-            allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim, thisTR)
+            nas = np.logical_or(np.isnan(thissim), np.isnan(thisTR))
+            allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim[~nas],thisTR[~nas])
+
+    pvals = np.zeros((nwin))
+    for w in np.arange(nwin):
+        d = allr.T[:, w]
+        nas = np.isnan(d)
+        pvals[w] = stats.ttest_1samp(d[~nas], 0).pvalue
+    print(pvals)
+
     return allr
