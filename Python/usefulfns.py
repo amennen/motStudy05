@@ -2,7 +2,7 @@ import numpy as np
 import scipy
 from scipy import stats
 from scipy.stats import norm
-def getcorr(subjectMatrix,TRmatrix):
+def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
     nwin = np.shape(TRmatrix)[1]
     nsub = np.shape(subjectMatrix)[1]
     allr = np.zeros((nwin, nsub))
@@ -15,6 +15,7 @@ def getcorr(subjectMatrix,TRmatrix):
             allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim[~nas],thisTR[~nas])
 
     pvals = np.zeros((nwin))
+    print('pvalues for subjectmatrix: ' + subjname + 'and TR matrix: ' + TRname)
     for w in np.arange(nwin):
         d = allr.T[:, w]
         nas = np.isnan(d)
