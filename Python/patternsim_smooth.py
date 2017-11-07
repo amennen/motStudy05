@@ -82,7 +82,7 @@ allSepVec_YC = np.reshape(allSep_YC,(npairs*nTRs,1))
 
 
 # BUILD TR MATRIX FOR EVIDENCE
-windowsize = 0.1
+windowsize = 0.2
 min = -0.4
 max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
@@ -97,10 +97,10 @@ for s in np.arange(npairs*2):
         for w in np.arange(nwin):
             #TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
             TRmatrix[st, w, s] = np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w+1]))[0].shape[0]
-            z = np.where(np.diff(np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w + 1])))[0] < 4)
+            z = np.where(np.diff(np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w + 1])))[0] < 5)
             TRmatrix_smooth[st, w, s] = z[0].size
 # # plot evidence and see how spikey it is//how smoothing helps
-s = 27
+s = 28
 fig, axarr = plt.subplots(5, 2)
 for st in np.arange(nstim):
     if st < 5:
@@ -216,11 +216,11 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
@@ -259,7 +259,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
@@ -298,7 +298,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -328,7 +328,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -357,7 +357,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
@@ -386,7 +386,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
@@ -422,7 +422,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
@@ -451,7 +451,7 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
-plt.xlim(0,7)
+plt.xlim(0,len(catrange))
 plt.ylim(-.2,.2)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
