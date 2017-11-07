@@ -1,7 +1,9 @@
 import numpy as np
 import scipy
+import numpy
 from scipy import stats
 from scipy.stats import norm
+
 def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
     nwin = np.shape(TRmatrix)[1]
     nsub = np.shape(subjectMatrix)[1]
@@ -15,7 +17,7 @@ def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
             allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim[~nas],thisTR[~nas])
 
     pvals = np.zeros((nwin))
-    print('pvalues for subjectmatrix: ' + subjname + 'and TR matrix: ' + TRname)
+    print('pvalues for subjectmatrix: ' + subjname + ' and TR matrix: ' + TRname)
     for w in np.arange(nwin):
         d = allr.T[:, w]
         nas = np.isnan(d)
@@ -23,3 +25,5 @@ def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
     print(pvals)
 
     return allr
+# taken from: http://scipy-cookbook.readthedocs.io/items/SignalSmooth.html
+
