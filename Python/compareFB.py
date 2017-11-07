@@ -18,6 +18,9 @@ from scipy import stats
 import pandas as pd
 import itertools
 
+sns.set(font_scale = 2)
+custom = {'axes.linewidth':2}
+sns.set_style('white',custom)
 
 data_dir = '/Volumes/norman/amennen/PythonMot5/'
 filename = 'compareExp5.mat'
@@ -159,42 +162,44 @@ for s in np.arange(nPairs):
 
 
 # MAKE HISTOGRAM OF TOTAL EVIDENCE!!
+
+flatui = ["#DB5461", "#593C8F"]
+sns.palplot(sns.color_palette(flatui))
+
+
 nTRs = 15
 nTR_total = nTRs*3*nTrials
 data = np.concatenate((allSepVec_RT,allSepVec_YC,),axis=0)
 AB = np.concatenate((np.zeros((npairs*nTR_total,1)),np.ones((npairs*nTR_total,1))),axis=0)
 data2b = np.concatenate((data,AB),axis=1)
 df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
-fig, ax = plt.subplots(figsize=(10,7))
-#sns.barplot(data=data, palette=sns.color_palette("Set2", 10),ci=68)
+
+fig, ax = sns.plt.subplots(figsize=(10,7))
+
 labels = [item.get_text() for item in ax.get_xticklabels()]
 labels[0] = "RT"
 labels[1] = "YC"
-#sns.jointplot(data = df,x = "AB",y="Evidence",kind="kde")
-#sns.stripplot(data = df,x = "AB",y="Evidence",jitter=True,color="k",alpha=0.2)
-
-#sns.plot(data = df,x = "AB",y="Evidence",palette = itertools.cycle(sns.color_palette("husl",8)))
 min=-1.5
 max=1.5
 binw = .1
 bins = np.arange(min,max+binw,binw)
-sns.distplot(allSepVec_RT, bins=bins,color='r', label='RT',norm_hist=False,kde=False)
-sns.distplot(allSepVec_YC, bins=bins,color='b', label='YC',norm_hist=False,kde=False)
-plt.plot([0.1, .1],[0,2000], color='k', linestyle='--', linewidth=2)
-plt.plot([.2, .2],[0,2000], color='k', linestyle='--', linewidth=2)
-plt.title('Distribution of Evidence During RT')
-#ax.set_xticklabels(labels)
-plt.xlabel('MOT Evidence')
+sns.distplot(allSepVec_RT, bins=bins,color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.7})
+sns.distplot(allSepVec_YC, bins=bins,color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.7})
+sns.plt.plot([0.1, .1],[0,2000], color='k', linestyle='--', linewidth=2)
+sns.plt.plot([.2, .2],[0,2000], color='k', linestyle='--', linewidth=2)
+sns.plt.title('Distribution of Evidence During MOT')
+sns.plt.xlabel('Retrieval Evidence')
 range = np.array([0,.17])
 scale = range*len(allSepVec_RT)
-plt.ylabel('Fraction of TRs Spent')
-plt.ylim(scale)
-plt.xlim(min,max)
+sns.plt.ylabel('Fraction of TRs Spent')
+sns.plt.ylim(scale)
+sns.plt.xlim(min,max)
 labels2 = np.arange(0,0.18,0.02)
 scaled_labels = len(allSepVec_RT)*labels2
 result2 = [str(x) for x in labels2]
-plt.yticks( scaled_labels, result2 )
-plt.legend()
+sns.plt.yticks( scaled_labels, result2 )
+sns.despine()
+sns.plt.legend()
 
 
 pair = np.array([])
@@ -230,6 +235,71 @@ plt.ylim(.5,.8)
 plt.xlabel('Run Number')
 print(stats.ttest_rel(nCorrect_RT,nCorrect_YC))
 
+# plot both on the same graph, collapse across runs
+pair = np.array([])
+session = np.array([])
+group = np.array([])
+data = np.concatenate((np.reshape(nCor_Neg_RT.T,(16*3,1)),np.reshape(nCor_Neg_YC.T,(16*3,1)),np.reshape(nCor_Pos_RT.T,(16*3,1)),np.reshape(nCor_Pos_YC.T,(16*3,1))))
+sign = np.concatenate((np.zeros((16*3*2,1)),np.ones((16*3*2,1))),axis=0)
+for i in np.arange(2):
+    thispair = np.concatenate((np.reshape(np.arange(nPairs),(nPairs,1)),np.reshape(np.arange(nPairs),(nPairs,1)),np.reshape(np.arange(nPairs),(nPairs,1))),axis=0)
+    pair = np.append(pair,thispair)
+    thisgroup = i*np.ones((nPairs*3,1))
+    group = np.append(group,thisgroup)
+pair = np.append(pair,pair)
+group = np.append(group,group)
+pair = np.reshape(pair,(len(pair),1))
+group = np.reshape(group,(len(pair),1))
+data2b = np.concatenate((data,pair,group,sign),axis=1)
+df = pd.DataFrame(data2b,columns = ['Correct','Pair','Group','Sign'])
+fig, ax = plt.subplots(figsize=(10,7))
+p = sns.swarmplot(data = df,x = "Sign",y="Correct",hue="Group",split=True,palette=(['k', 'k']), alpha=0.5)
+p.legend_.remove()
+g = sns.barplot(data = df,x = "Sign",y="Correct",hue="Group",ci=68,palette =flatui )
+plt.title('Proportion Correct Changes')
+sns.despine()
+leg = g.axes.get_legend()
+handles,labels = g.axes.get_legend_handles_labels()
+handles = [handles[2], handles[3]]
+new_labels = ['RT', 'YC']
+g.legend(handles,new_labels)
+new_title = 'Group'
+leg.set_title(new_title)
+labels = [item.get_text() for item in g.get_xticklabels()]
+labels[0] = "Negative Error"
+labels[1] = "Positive Error"
+g.set_xticklabels(labels)
+plt.ylabel('Average Correct Change')
+plt.ylim(.45,1.05)
+plt.xlabel('Error Type')
+
+fakeres = np.reshape(np.array([0.6,.8,.7,.7]),(4,1))
+group = np.reshape(np.array([0,1,0,1]),(4,1))
+type = np.reshape(np.array([0,0,1,1]),(4,1))
+data2b = np.concatenate((fakeres,group,type),axis=1)
+df = pd.DataFrame(data2b,columns = ['data', 'group', 'type'])
+fig, ax = plt.subplots(figsize=(10,7))
+g = sns.barplot(data = df,x = "type",y="data",hue="group",palette =flatui )
+plt.title('Memory results by group')
+sns.despine()
+leg = g.axes.get_legend()
+handles,labels = g.axes.get_legend_handles_labels()
+new_labels = ['RT', 'YC']
+g.legend(handles,new_labels)
+new_title = 'Group'
+leg.set_title(new_title)
+labels = [item.get_text() for item in g.get_xticklabels()]
+labels[0] = "MOT"
+labels[1] = "Omit"
+g.set_xticklabels(labels)
+plt.ylabel('Memory')
+plt.ylim(.45,1.05)
+plt.xlabel('Image Type')
+
+
+
+print(stats.ttest_rel(nCor_Neg_RT,nCor_Neg_YC))
+
 # now separate when evidence is too low
 pair = np.array([])
 session = np.array([])
@@ -261,7 +331,6 @@ plt.title('Proportion Correct Changes when too low')
 plt.ylabel('Average Correct Change')
 plt.ylim(.45,1)
 plt.xlabel('Run Number')
-
 print(stats.ttest_rel(nCor_Neg_RT,nCor_Neg_YC))
 
 

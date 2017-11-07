@@ -60,8 +60,11 @@ for s in np.arange(nSub):
     responses[subjName][:,4] = d['cresp'][:,0]
 lureRT = np.zeros((10,nSub))
 targRT = np.zeros((10,nSub))
+lureAcc = np.zeros((10,nSub))
+targAcc = np.zeros((10,nSub))
 for s in np.arange(nSub):
     data = responses['subj'+str(s)]
+    name = 'subj' + str(s)
     RT = data[:,2]
     acc = data[:,3]
     cond = data[:,1]
@@ -76,15 +79,20 @@ for s in np.arange(nSub):
     x_HL = np.argsort(id_HL)
     RT_HL = RT[HL]
     lureRT[:,s] = RT_HL[x_HL]
+    acc_HL = acc[HL]
+    lureAcc[:,s] = acc_HL[x_HL]
     id_HT = id[HT]
     x_HT = np.argsort(id_HT)
     RT_HT = RT[HT]
     targRT[:,s] = RT_HT[x_HT]
+    acc_HT = acc[HT]
+    targAcc[:,s] = acc_HT[x_HT]
 
 
 np.save(save_dir + 'targRT',targRT)
 np.save(save_dir + 'lureRT',lureRT)
-
+np.save(save_dir + 'targAcc',targAcc)
+np.save(save_dir + 'lureAcc',lureAcc)
 ## LOOK AT RATINGS
 # LOOK AT RATINGS NOW
 easyR = {}

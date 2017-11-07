@@ -352,13 +352,33 @@ plt.plot(simHard,RTsim, '.')
 ######################################################### LOAD RECOG DATA ############################################################################
 targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
 lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
-
+targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
+lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
+lureAcc_bool = lureAcc==1
+targAcc_bool = targAcc==1
 allr_lureRT = getcorr(lureRT,TRmatrix, 'lureRT', 'TRmatrix')
 allr_lureRT_consec = getcorr(lureRT,TRmatrix_consec, 'lureRT', 'TRmatrix_consec')
+
+# now want to treat correct/incorrect lure trials separately
+
+lureRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_correctOnly[~lureAcc_bool] = np.nan
+lureRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_incorrectOnly[lureAcc_bool] = np.nan
+
+targRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_correctOnly[~targAcc_bool] = np.nan
+targRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_incorrectOnly[targAcc_bool] = np.nan
+
+# lure and correct
+allr_lureRT_cor = getcorr(lureRT_correctOnly,TRmatrix, 'lureRT_cor', 'TRmatrix')
+allr_lureRT_consec_cor = getcorr(lureRT_correctOnly,TRmatrix_consec, 'lureRT_cor', 'TRmatrix_consec')
+
 fig, ax = plt.subplots()
-plotting_data = allr_lureRT.T
-plot2 = allr_lureRT_consec.T
-plt.title('Lure RT Correlations')
+plotting_data = allr_lureRT_cor.T
+plot2 = allr_lureRT_consec_cor.T
+plt.title('Lure RT Correlations CORRECT')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
@@ -372,7 +392,99 @@ plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
 plt.ylim(-.2,.2)
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+#fig, ax = plt.subplots()
+#plt.plot(TRmatrix_consec[:,5,:],lureRT_correctOnly, '.')
+#plt.title("Lure RT CORRECT vs. TRbins consec")
 
+# targ and correct
+allr_targRT_cor = getcorr(targRT_correctOnly,TRmatrix, 'targRT_cor', 'TRmatrix')
+allr_targRT_consec_cor = getcorr(targRT_correctOnly,TRmatrix_consec, 'targRT_cor', 'TRmatrix_consec')
+
+fig, ax = plt.subplots()
+plotting_data = allr_targRT_cor.T
+plot2 = allr_targRT_consec_cor.T
+plt.title('Targ RT Correlations CORRECT')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+
+# targ and correct
+allr_targRT_incor = getcorr(targRT_incorrectOnly,TRmatrix, 'targRT_incor', 'TRmatrix')
+allr_targRT_consec_incor = getcorr(targRT_incorrectOnly,TRmatrix_consec, 'targRT_incor', 'TRmatrix_consec')
+
+fig, ax = plt.subplots()
+plotting_data = allr_targRT_incor.T
+plot2 = allr_targRT_consec_incor.T
+plt.title('Targ RT Correlations INCORRECT')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
+l2 = [item.get_text() for item in ax.get_xticklabels()]
+l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+ax.set_xticklabels(l2)
+plt.legend(['Time', 'Consecutive Time'])
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+    item.set_fontsize(20)
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+
+# lure and incorrect
+allr_lureRT_incor = getcorr(lureRT_incorrectOnly,TRmatrix, 'lureRT_incor', 'TRmatrix')
+allr_lureRT_consec_incor = getcorr(lureRT_incorrectOnly,TRmatrix_consec, 'lureRT_incor', 'TRmatrix_consec')
+
+fig, ax = plt.subplots()
+plotting_data = allr_lureRT_incor.T
+plot2 = allr_lureRT_consec_incor.T
+plt.title('Lure RT Correlations INCORRECT')
+plt.ylabel('Correlation')
+plt.xlabel('MOT Evidence Bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+ye2 = stats.sem(plot2, nan_policy='omit')
+y2 = np.nanmean(plot2, axis=0)
+plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
+plt.plot(y2, color='b')
+plt.xlim(0,7)
+plt.ylim(-.2,.2)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
