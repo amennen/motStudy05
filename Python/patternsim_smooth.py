@@ -18,11 +18,17 @@ import itertools
 import seaborn as sns
 from scipy import stats
 from scipy.stats import norm
+from scipy import signal
 from math import exp, sqrt
 import usefulfns
+from pandas import rolling_median
+import copy
 from usefulfns import getcorr
 from astropy.modeling.models import Lorentz1D
 from astropy.convolution import convolve, Gaussian1DKernel, Box1DKernel
+sns.set(font_scale = 2)
+custom = {'axes.linewidth':2}
+sns.set_style('white',custom)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
@@ -82,7 +88,7 @@ allSepVec_YC = np.reshape(allSep_YC,(npairs*nTRs,1))
 
 
 # BUILD TR MATRIX FOR EVIDENCE
-windowsize = 0.2
+windowsize = 0.1
 min = -0.4
 max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
@@ -92,15 +98,24 @@ TRmatrix_smooth = np.zeros((nstim,nwin,npairs*2))
 for s in np.arange(npairs*2):
     for st in np.arange(nstim):
         thissep = allSep[st,:,s]
-        box_kernel = Box1DKernel(3)
-        smoothed_data_box = convolve(thissep, box_kernel)
+        #box_kernel = Box1DKernel(3)
+        #smoothed_data_box = convolve(thissep, box_kernel)
+        threshold = .3
+        my = rolling_median(thissep, window=3, center=True)
+        my[0] = np.median([thissep[0], thissep[1]])
+        my[-1] = np.median([thissep[-2], thissep[-1]])
+        difference = np.abs(thissep - my)
+        outlier_idx = difference > threshold
+        smoothed_data_box = copy.deepcopy(allSep[st,:,s])
+        smoothed_data_box[outlier_idx] = np.nan
         for w in np.arange(nwin):
-            #TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
-            TRmatrix[st, w, s] = np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w+1]))[0].shape[0]
-            z = np.where(np.diff(np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w + 1])))[0] < 5)
-            TRmatrix_smooth[st, w, s] = z[0].size
+            TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
+            TRmatrix_smooth[st, w, s] = np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w + 1]))[0].shape[0]
+            #TRmatrix[st, w, s] = np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w+1]))[0].shape[0]
+            #z = np.where(np.diff(np.where((smoothed_data_box >= catrange[w]) & (smoothed_data_box < catrange[w + 1])))[0] < 5)
+            #TRmatrix_smooth[st, w, s] = z[0].size
 # # plot evidence and see how spikey it is//how smoothing helps
-s = 28
+s = 4
 fig, axarr = plt.subplots(5, 2)
 for st in np.arange(nstim):
     if st < 5:
@@ -117,8 +132,15 @@ for st in np.arange(nstim):
     smoothed_data_box = convolve(y, box_kernel)
     axarr[row,col].plot(smoothed_data_box, '-o', color='g', label='boxwidth3')
     gauss_kernel = Gaussian1DKernel(1)
-    smoothed_data_gauss = convolve(y, gauss_kernel)
-    axarr[row,col].plot(smoothed_data_gauss, '-o', color='b', label='gauss1')
+    #smoothed_data_gauss = convolve(y, gauss_kernel)
+    #smoothed_data_gauss = scipy.signal.medfilt(y,kernel_size=2)
+    threshold = .25
+    my = rolling_median(y, window=3, center=True)
+    my[0] = np.median([y[0],y[1]])
+    my[-1] = np.median([y[-2],y[-1]])
+    difference = np.abs(y - my)
+    outlier_idx = difference > threshold
+    axarr[row,col].plot(np.argwhere(outlier_idx),y[outlier_idx], '*', color='b', label='gauss1')
     axarr[row,col].set_ylim(-1,1)
 plt.legend()
 

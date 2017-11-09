@@ -20,11 +20,19 @@ from scipy import stats
 from scipy.stats import norm
 from math import exp, sqrt
 from usefulfns import getcorr
+#matplotlib.rcParams['font.sans-serif'] = "STHeiti"
+#matplotlib.rcParams['font.family'] = "sans-serif"
+from matplotlib import rc
+#rc('font',**{'family':'sans-serif','sans-serif':['STHeiti']})
 
+sns.set(font_scale = 3)
+custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
+sns.set_style('white',custom)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
-
+savepath = '/Users/amennen/Dropbox/sfn2017/'
+flatui = ["#DB5461", "#593C8F"]
 all_sub = np.array([1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
 nSub= np.int(len(all_sub))
 npairs = np.int(nSub/2)
@@ -35,6 +43,7 @@ YC_ind = np.searchsorted(all_sub,YC_sub)
 subarray = np.zeros(nSub)
 subarray[YC_ind] = 1
 
+allpallet = ["#DB5461", "#FFD9CE", "593C8F", "#8EF9F3", "#171738"]
 # get the recall data from RECALL patterns coming from nifti files
 # now look at the difference in PS between RT and OM
 nsub = 32
@@ -144,15 +153,17 @@ for s in np.arange(npairs*2):
         thissep = allSep[st,:,s]
         for w in np.arange(nwin):
             TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
-            z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 4)
+            z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 3)
             TRmatrix_consec[st, w, s] = z[0].size
+    print(TRmatrix_consec[:,5,s])
 allr = getcorr(RTsim,TRmatrix, 'RTsim', 'TRmatrix')
 allr_consec = getcorr(RTsim,TRmatrix_consec, 'RTsim', 'TRmatrix_consec')
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(15,10))
 plotting_data = allr.T
 plot2 = allr_consec.T
 plt.title('Pattern Similarity Correlations')
+
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
@@ -160,21 +171,25 @@ yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+sns.despine()
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4], linewidth=6)
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
-for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
-    item.set_fontsize(20)
+#plt.legend(['Time', 'Consecutive Time'])
+#for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
+#    item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
-    item.set_fontsize(15)
-
+    item.set_fontsize(30)
+fn = savepath + 'RTsim.eps'
+plt.savefig(fn)
 ######################################################### LOAD BEHAVIORAL DATA ############################################################################
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
@@ -198,22 +213,21 @@ plot2 = allr_ratings_consec.T
 plt.title('Detail Difference Correlations')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
-palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
-
+plt.ylim(-.2,.25)
+sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -242,16 +256,17 @@ yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
+sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -272,16 +287,17 @@ yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
+sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -301,17 +317,17 @@ yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
-
+plt.ylim(-.2,.25)
+sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -330,17 +346,17 @@ yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
-
+plt.ylim(-.2,.25)
+sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -381,21 +397,21 @@ plot2 = allr_lureRT_consec_cor.T
 plt.title('Lure RT Correlations CORRECT')
 plt.ylabel('Correlation')
 plt.xlabel('MOT Evidence Bin')
-palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
-plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(y, color='r')
-plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
-plt.plot(y2, color='b')
+#plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
+#plt.plot(y, color='r')
+plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-plt.legend(['Time', 'Consecutive Time'])
+sns.despine()
+#plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -424,7 +440,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -454,7 +470,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -484,7 +500,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -512,7 +528,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.2)
+plt.ylim(-.2,.25)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
