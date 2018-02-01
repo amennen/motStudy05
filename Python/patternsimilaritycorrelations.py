@@ -31,7 +31,7 @@ sns.set_style('white',custom)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
-savepath = '/Users/amennen/Dropbox/sfn2017/'
+savepath = '/Volumes/norman/amennen/PythonMot5/'
 flatui = ["#DB5461", "#593C8F"]
 all_sub = np.array([1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
 nSub= np.int(len(all_sub))
@@ -59,7 +59,8 @@ avgRTsim_diff = np.zeros(nsub)
 avgOMITsim_diff = np.zeros(nsub)
 for s in np.arange(nsub):
     subj = all_sub[s]
-    filename = 'recallPAT%i.mat' % subj
+    # 1/31 after sfn: adding z to zscore differently before taking out timepoints
+    filename = 'recallPATz%i.mat' % subj
     filepath = os.path.join(data_dir, filename)
     print(filepath)
     d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
