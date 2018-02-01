@@ -20,14 +20,11 @@ from scipy import stats
 from scipy.stats import norm
 from math import exp, sqrt
 from usefulfns import getcorr
-#matplotlib.rcParams['font.sans-serif'] = "STHeiti"
-#matplotlib.rcParams['font.family'] = "sans-serif"
-from matplotlib import rc
-#rc('font',**{'family':'sans-serif','sans-serif':['STHeiti']})
-
 sns.set(font_scale = 3)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
+
+
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
@@ -158,14 +155,13 @@ for s in np.arange(npairs*2):
     print(TRmatrix_consec[:,5,s])
 allr = getcorr(RTsim,TRmatrix, 'RTsim', 'TRmatrix')
 allr_consec = getcorr(RTsim,TRmatrix_consec, 'RTsim', 'TRmatrix_consec')
-
-fig, ax = plt.subplots(figsize=(15,10))
 plotting_data = allr.T
 plot2 = allr_consec.T
-plt.title('Pattern Similarity Correlations')
 
+fig, ax = plt.subplots(figsize=(15,10))
+plt.title('Pattern Similarity Correlations')
 plt.ylabel('Correlation')
-plt.xlabel('MOT Evidence Bin')
+plt.xlabel('Retrieval evidence bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
@@ -177,19 +173,18 @@ sns.despine()
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4], linewidth=6)
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 ax.set_yticks([-.2,-.1,0,.1,.2])
-
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-#plt.legend(['Time', 'Consecutive Time'])
-#for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
-#    item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(30)
 fn = savepath + 'RTsim.eps'
 plt.savefig(fn)
+
+
+
 ######################################################### LOAD BEHAVIORAL DATA ############################################################################
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
@@ -206,32 +201,35 @@ for s in np.arange(npairs*2):
     diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
 allr_ratings = getcorr(diffHard,TRmatrix, 'diffHard', 'TRmatrix')
 allr_ratings_consec = getcorr(diffHard,TRmatrix_consec, 'diffHard', 'TRmatrix_consec')
-
-fig, ax = plt.subplots()
 plotting_data = allr_ratings.T
 plot2 = allr_ratings_consec.T
+
+fig, ax = plt.subplots(figsize=(15,10))
 plt.title('Detail Difference Correlations')
 plt.ylabel('Correlation')
-plt.xlabel('MOT Evidence Bin')
+plt.xlabel('Retrieval evidence bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
+palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
+sns.despine()
 #plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-plt.plot(y2, color=allpallet[4])
+plt.plot(y2, color=allpallet[4], linewidth=6)
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
-sns.despine()
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-#plt.legend(['Time', 'Consecutive Time'])
-for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
-    item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
-    item.set_fontsize(15)
+    item.set_fontsize(30)
+fn = savepath + 'ratings.eps'
+plt.savefig(fn)
+
 
 ######################################################### LOAD WORD VECTOR DATA ############################################################################
 hard_sm = np.load('/Volumes/norman/amennen/wordVec/hard_smF.npy')
@@ -261,7 +259,7 @@ y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -292,7 +290,7 @@ y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -322,7 +320,7 @@ y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -351,7 +349,7 @@ y2 = np.nanmean(plot2, axis=0)
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 sns.despine()
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
@@ -391,34 +389,34 @@ targRT_incorrectOnly[targAcc_bool] = np.nan
 allr_lureRT_cor = getcorr(lureRT_correctOnly,TRmatrix, 'lureRT_cor', 'TRmatrix')
 allr_lureRT_consec_cor = getcorr(lureRT_correctOnly,TRmatrix_consec, 'lureRT_cor', 'TRmatrix_consec')
 
-fig, ax = plt.subplots()
 plotting_data = allr_lureRT_cor.T
 plot2 = allr_lureRT_consec_cor.T
-plt.title('Lure RT Correlations CORRECT')
+
+fig, ax = plt.subplots(figsize=(15,10))
+plt.title('LureRT When Correct')
 plt.ylabel('Correlation')
-plt.xlabel('MOT Evidence Bin')
+plt.xlabel('Retrieval evidence bin')
+palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
 ye2 = stats.sem(plot2, nan_policy='omit')
 y2 = np.nanmean(plot2, axis=0)
+sns.despine()
 #plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-plt.plot(y2, color=allpallet[4])
+plt.plot(y2, color=allpallet[4], linewidth=6)
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
-sns.despine()
-#plt.legend(['Time', 'Consecutive Time'])
-for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
-    item.set_fontsize(20)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
-    item.set_fontsize(15)
-#fig, ax = plt.subplots()
-#plt.plot(TRmatrix_consec[:,5,:],lureRT_correctOnly, '.')
-#plt.title("Lure RT CORRECT vs. TRbins consec")
+    item.set_fontsize(30)
+fn = savepath + 'LureRTcorrect.eps'
+plt.savefig(fn)
+
 
 # targ and correct
 allr_targRT_cor = getcorr(targRT_correctOnly,TRmatrix, 'targRT_cor', 'TRmatrix')
@@ -440,7 +438,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -470,7 +468,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -489,7 +487,7 @@ plotting_data = allr_lureRT_incor.T
 plot2 = allr_lureRT_consec_incor.T
 plt.title('Lure RT Correlations INCORRECT')
 plt.ylabel('Correlation')
-plt.xlabel('MOT Evidence Bin')
+plt.xlabel('Retrieval Evidence Bin')
 palette = itertools.cycle(sns.color_palette("husl",8))
 yerr = stats.sem(plotting_data, nan_policy='omit')
 y = np.nanmean(plotting_data,axis=0)
@@ -500,7 +498,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
 ax.set_xticklabels(l2)
@@ -528,7 +526,7 @@ plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor='b',alpha=0.3)
 plt.plot(y2, color='b')
 plt.xlim(0,7)
-plt.ylim(-.2,.25)
+plt.ylim(-.25,.3)
 
 l2 = [item.get_text() for item in ax.get_xticklabels()]
 l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]

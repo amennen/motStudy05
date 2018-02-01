@@ -20,6 +20,10 @@ from scipy import stats
 from scipy.stats import norm
 from math import exp, sqrt
 
+sns.set(font_scale = 3)
+custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
+sns.set_style('white',custom)
+savepath = '/Users/amennen/Dropbox/sfn2017/'
 
 # specify now which computer you're using!
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'

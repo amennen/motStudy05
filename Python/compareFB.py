@@ -18,9 +18,10 @@ from scipy import stats
 import pandas as pd
 import itertools
 
-sns.set(font_scale = 2)
-custom = {'axes.linewidth':2}
+sns.set(font_scale = 3)
+custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
+savepath = '/Users/amennen/Dropbox/sfn2017/'
 
 data_dir = '/Volumes/norman/amennen/PythonMot5/'
 filename = 'compareExp5.mat'
@@ -174,8 +175,7 @@ AB = np.concatenate((np.zeros((npairs*nTR_total,1)),np.ones((npairs*nTR_total,1)
 data2b = np.concatenate((data,AB),axis=1)
 df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
 
-fig, ax = sns.plt.subplots(figsize=(10,7))
-
+fig, ax = sns.plt.subplots(figsize=(15,10))
 labels = [item.get_text() for item in ax.get_xticklabels()]
 labels[0] = "RT"
 labels[1] = "YC"
@@ -183,24 +183,27 @@ min=-1.5
 max=1.5
 binw = .1
 bins = np.arange(min,max+binw,binw)
-sns.distplot(allSepVec_RT, bins=bins,color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.7})
-sns.distplot(allSepVec_YC, bins=bins,color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.7})
-sns.plt.plot([0.1, .1],[0,2000], color='k', linestyle='--', linewidth=2)
-sns.plt.plot([.2, .2],[0,2000], color='k', linestyle='--', linewidth=2)
+sns.distplot(allSepVec_RT, bins=bins,color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.8})
+sns.distplot(allSepVec_YC, bins=bins,color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.8})
+sns.plt.plot([0.1, .1],[0,2000], color='k', linestyle='--', linewidth=6)
+sns.plt.plot([.2, .2],[0,2000], color='k', linestyle='--', linewidth=6)
 sns.plt.title('Distribution of Evidence During MOT')
-sns.plt.xlabel('Retrieval Evidence')
+sns.plt.xlabel('Retrieval evidence bin')
 range = np.array([0,.17])
 scale = range*len(allSepVec_RT)
-sns.plt.ylabel('Fraction of TRs Spent')
+sns.plt.ylabel('Fraction of TRs in range')
 sns.plt.ylim(scale)
-sns.plt.xlim(min,max)
-labels2 = np.arange(0,0.18,0.02)
+sns.plt.xlim(-1,1)
+labels2 = np.arange(0,0.2,0.05)
 scaled_labels = len(allSepVec_RT)*labels2
 result2 = [str(x) for x in labels2]
 sns.plt.yticks( scaled_labels, result2 )
 sns.despine()
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(30)
 sns.plt.legend()
-
+fn = savepath + 'histevidence.pdf'
+plt.savefig(fn)
 
 pair = np.array([])
 session = np.array([])
@@ -252,10 +255,10 @@ pair = np.reshape(pair,(len(pair),1))
 group = np.reshape(group,(len(pair),1))
 data2b = np.concatenate((data,pair,group,sign),axis=1)
 df = pd.DataFrame(data2b,columns = ['Correct','Pair','Group','Sign'])
-fig, ax = plt.subplots(figsize=(10,7))
-p = sns.swarmplot(data = df,x = "Sign",y="Correct",hue="Group",split=True,palette=(['k', 'k']), alpha=0.5)
+fig, ax = plt.subplots(figsize=(15,10))
+p = sns.swarmplot(data = df,x = "Sign",y="Correct",hue="Group",split=True,palette=(['k', 'k']),size=6)
 p.legend_.remove()
-g = sns.barplot(data = df,x = "Sign",y="Correct",hue="Group",ci=68,palette =flatui )
+g = sns.barplot(data = df,x = "Sign",y="Correct",hue="Group",ci=68,palette =flatui,errwidth=6 )
 plt.title('Proportion Correct Changes')
 sns.despine()
 leg = g.axes.get_legend()
@@ -266,19 +269,24 @@ g.legend(handles,new_labels)
 new_title = 'Group'
 leg.set_title(new_title)
 labels = [item.get_text() for item in g.get_xticklabels()]
-labels[0] = "Negative Error"
-labels[1] = "Positive Error"
+labels[0] = "retrieval < target"
+labels[1] = "retrieval > target"
 g.set_xticklabels(labels)
-plt.ylabel('Average Correct Change')
+plt.ylabel('Fraction correct change')
 plt.ylim(.45,1.05)
-plt.xlabel('Error Type')
+plt.xlabel('Type of error')
+ax.set_yticks([0.5,0.75,1])
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(30)
+fn = savepath + 'correctchanges.eps'
+plt.savefig(fn)
 
 fakeres = np.reshape(np.array([0.6,.8,.7,.7]),(4,1))
 group = np.reshape(np.array([0,1,0,1]),(4,1))
 type = np.reshape(np.array([0,0,1,1]),(4,1))
 data2b = np.concatenate((fakeres,group,type),axis=1)
 df = pd.DataFrame(data2b,columns = ['data', 'group', 'type'])
-fig, ax = plt.subplots(figsize=(10,7))
+fig, ax = plt.subplots(figsize=(15,10))
 g = sns.barplot(data = df,x = "type",y="data",hue="group",palette =flatui )
 plt.title('Memory results by group')
 sns.despine()
@@ -292,10 +300,14 @@ labels = [item.get_text() for item in g.get_xticklabels()]
 labels[0] = "MOT"
 labels[1] = "Omit"
 g.set_xticklabels(labels)
-plt.ylabel('Memory')
+plt.ylabel('Memory score')
 plt.ylim(.45,1.05)
-plt.xlabel('Image Type')
-
+ax.set_yticks([0.5,0.75,1])
+plt.xlabel('Stimulus group')
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(30)
+fn = savepath + 'exdata.eps'
+plt.savefig(fn)
 
 
 print(stats.ttest_rel(nCor_Neg_RT,nCor_Neg_YC))
