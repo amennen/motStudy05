@@ -22,7 +22,6 @@ sns.set(font_scale = 3)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
 savepath = '/Users/amennen/Dropbox/sfn2017/'
-
 data_dir = '/Volumes/norman/amennen/PythonMot5/'
 filename = 'compareExp5.mat'
 filepath = os.path.join(data_dir,filename)

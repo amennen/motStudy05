@@ -26,7 +26,7 @@ custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHe
 sns.set_style('white',custom)
 
 # this is the one where we're going to take GLM classifier
-pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifieralpha3000.pickle","rb")
+pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier.pickle","rb")
 evbystim = pickle.load(pickle_in)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
@@ -34,7 +34,8 @@ behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData
 savepath = '/Volumes/norman/amennen/PythonMot5/'
 flatui = ["#DB5461", "#593C8F"]
 all_sub = np.array([1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
-subtouse =np.array([1,3,4,5,6,8,10,12,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
+subtouse = all_sub
+#subtouse =np.array([1,3,4,5,6,8,10,12,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
 nSub= np.int(len(subtouse))
 npairs = np.int(nSub/2)
 RT_sub = np.array([1, 3, 4,5,6,8,10,12,13,14,19,21,23,26,29,32])
@@ -106,45 +107,11 @@ avgOMITsim_diff = np.mean(OMITsim_diff, axis=0)
 
 
 ######################################################### LOAD EVIDENCE DATA ############################################################################
-data_dir = '/Volumes/norman/amennen/PythonMot5/'
-filename = 'compareExp5.mat'
-filepath = os.path.join(data_dir,filename)
-d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
-secondDiff = d['allSecondDiffD']
-goodRange = d['nGoodRangeD']
-nLow = d['nLowD']
-nHigh = d['nHighD']
-vectorSep = d['vectorSepD']
-lowAverage = d['avg_lowD']
-highAverage = d['avg_highD']
-nConsec = d['nConsecD']
-allSep = d['sepbystimD']
-allSpeed = d['speedbystimD']
-
-# separate by RT/YC
-sepRT = vectorSep[RT_ind,:]
-sepYC = vectorSep[YC_ind,:]
-goodRange_RT = goodRange[RT_ind]
-goodRange_YC = goodRange[YC_ind]
-lowA_RT = lowAverage[RT_ind,:]
-lowA_YC = lowAverage[YC_ind,:]
-highA_RT = highAverage[RT_ind,:]
-highA_YC = highAverage[YC_ind,:]
-nConsec_RT = nConsec[RT_ind]
-nConsec_YC = nConsec[YC_ind]
-secondDiff_RT = secondDiff[RT_ind,:]
-secondDiff_YC = secondDiff[YC_ind,:]
-allSep_RT = allSep[:,:,RT_ind]
-allSep_YC = allSep[:,:,YC_ind]
-nTRs = 450
-allSepVec_RT = np.reshape(allSep_RT,(npairs*nTRs,1))
-allSepVec_YC = np.reshape(allSep_YC,(npairs*nTRs,1))
-
 
 # BUILD TR MATRIX FOR EVIDENCE
 # changing 2/5/18: going from original classifier evidence to loaded classifier GLM evidence
 windowsize = 0.1
-min = -0.4
+min = -0.5
 max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
 nwin = catrange.shape[0] - 1
@@ -166,6 +133,7 @@ allr = getcorr(RTsim,TRmatrix, 'RTsim', 'TRmatrix')
 allr_consec = getcorr(RTsim,TRmatrix_consec, 'RTsim', 'TRmatrix_consec')
 plotting_data = allr.T
 plot2 = allr_consec.T
+
 fig, ax = plt.subplots(figsize=(15,10))
 plt.title('Pattern Similarity Correlations')
 plt.ylabel('Correlation')
@@ -180,16 +148,16 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 #plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 #plt.plot(y2, color=allpallet[4], linewidth=6)
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 ax.set_yticks([-.2,-.1,0,.1,.2])
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(30)
-fn = savepath + 'RTsim.eps'
-plt.savefig(fn)
+#fn = savepath + 'RTsim.eps'
+#plt.savefig(fn)
 
 
 
@@ -227,12 +195,12 @@ sns.despine()
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4], linewidth=6)
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 ax.set_yticks([-.2,-.1,0,.1,.2])
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(30)
 fn = savepath + 'ratings.eps'
@@ -248,9 +216,9 @@ corDetHard = corDetHard.T
 INcorDetHard = INcorDetHard.T
 hard_sm = hard_sm.T
 simHard = simHard.T
-
 allr_sim_sm = getcorr(hard_sm,TRmatrix, 'sm', 'TRmatrix')
 allr_sim_sm_consec = getcorr(hard_sm,TRmatrix_consec, 'sm', 'TRmatrix_consec')
+
 fig, ax = plt.subplots()
 plotting_data = allr_sim_sm.T
 plot2 = allr_sim_sm_consec.T
@@ -266,12 +234,12 @@ y2 = np.nanmean(plot2, axis=0)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 sns.despine()
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 #plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
@@ -282,6 +250,7 @@ for item in (ax.get_xticklabels() + ax.get_yticklabels()):
 
 allr_sim = getcorr(simHard,TRmatrix, 'simHard', 'TRmatrix')
 allr_sim_consec = getcorr(simHard,TRmatrix_consec, 'simHard', 'TRmatrix_consec')
+
 fig, ax = plt.subplots()
 plotting_data = allr_sim.T
 plot2 = allr_sim_consec.T
@@ -297,12 +266,12 @@ y2 = np.nanmean(plot2, axis=0)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 sns.despine()
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 #plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
@@ -327,12 +296,12 @@ y2 = np.nanmean(plot2, axis=0)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 sns.despine()
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 #plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
@@ -356,12 +325,12 @@ y2 = np.nanmean(plot2, axis=0)
 #plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4])
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
 sns.despine()
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 #plt.legend(['Time', 'Consecutive Time'])
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label]):
     item.set_fontsize(20)
@@ -414,16 +383,16 @@ plt.fill_between(np.arange(nwin), y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(y, color='r')
 plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
 plt.plot(y2, color=allpallet[4], linewidth=6)
-plt.xlim(0,7)
+#plt.xlim(0,7)
 plt.ylim(-.25,.3)
-ax.set_yticks([-.2,-.1,0,.1,.2])
-l2 = [item.get_text() for item in ax.get_xticklabels()]
-l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-ax.set_xticklabels(l2)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(30)
-fn = savepath + 'LureRTcorrect.eps'
-plt.savefig(fn)
+#fn = savepath + 'LureRTcorrect.eps'
+#plt.savefig(fn)
 
 
 # targ and correct

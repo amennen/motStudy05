@@ -109,7 +109,30 @@ ylim([0 1])
 
 %print(thisfig, sprintf('%sallrecogAcc.pdf', allplotDir), '-dpdf')
 
-%%
+
+%% look at descriptive ratings during localizer task
+subjectVec = [1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40];
+nresp = 32;
+allresp = zeros(10,4*3);
+for s = 1:length(subjectVec)
+    subjectNum = subjectVec(s);
+    behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
+        SESSION = MOT_LOCALIZER;
+        r = dir(fullfile(behavioral_dir, ['EK' num2str(SESSION) '_' 'SUB'  '*.mat']));
+        r = load(fullfile(behavioral_dir,r(end).name));
+        trials = table2cell(r.datastruct.trials);
+        stimID = cell2mat(trials(:,8));
+        resp = cell2mat(trials(:,12));
+
+
+        IDmat = reshape(stimID,4,length(stimID)/4)';
+        [~,indSort] = sort(IDmat(:,1));
+        IDorder = IDmat(indSort,:);
+        RESPmat = reshape(resp,4,length(resp)/4)';
+        RESPorder = RESPmat(indSort,:);
+        allresp = RESPorder;
+        save(fullfile(behavioral_dir, 'LOCresponses.mat'), 'allresp')
+end
 %% look at descriptive ratings
 subjectVec = [3];
 nresp = 3*10;
