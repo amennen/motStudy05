@@ -21,7 +21,7 @@ from scipy.stats import norm
 from math import exp, sqrt
 from usefulfns import getcorr
 import pickle
-sns.set(font_scale = 3)
+sns.set(font_scale = 1.5)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
 
@@ -64,7 +64,7 @@ for s in np.arange(npairs*2):
     diffEasy[:,s] = np.diff(easyR[subjName].astype(np.int16),axis=0)
     diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
     postHard[:,s] = hardR[subjName][1,:]
-    goodRTstim[sub] = hardR[subjName][0,:] > 3
+    goodRTstim[sub] = hardR[subjName][0,:] > 2
 # now repeat other things only considering those stimuli
 
 nsub = nSub
@@ -204,9 +204,184 @@ ax.set_yticks([-.2,-.1,0,.1,.2])
 
 #kernel=stats.gaussian_kde(thissep)
 from sklearn.neighbors import KernelDensity
-x2 = np.reshape(thissep,(len(thissep),1))
-cr2 = np.reshape(catrange,(len(catrange),1))
 
-kde = KernelDensity(kernel='gaussian').fit(x2)
-np.exp(kde.score_samples(cr2))
+# now rescore TR matrix with kernel density estimator
 # go from this to redo to make it less about the bin range
+windowsize = 0.05
+min = -1.5
+max = -1*min + windowsize # to go one over
+catrange = np.arange(min,max,windowsize)
+cr2 = np.reshape(catrange,(len(catrange),1))
+nwin = catrange.shape[0]
+TRmatrix_kde = np.zeros((nstim,nwin,npairs*2))
+
+for s in np.arange(len(subtouse)):
+    s_ind = subtouse[s]
+    sub = "Subject%01d" % s_ind
+    for st in np.arange(nstim):
+        #thissep = allSep[st,:,s]
+        thissep = evbystim[sub][:,st]
+        x2 = np.reshape(thissep, (len(thissep), 1))
+        kde = KernelDensity(kernel='gaussian').fit(x2)
+        allvals = np.exp(kde.score_samples(cr2))
+        for w in np.arange(nwin):
+            #TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
+            TRmatrix_kde[st, w, s] = allvals[w]
+            #z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 3)
+            #TRmatrix_consec[st, w, s] = z[0].size
+
+
+FILTERED_TRmatrix_kde = TRmatrix_kde
+for s in np.arange(len(subtouse)):
+    s_ind = subtouse[s]
+    sub = "Subject%01d" % s_ind
+    stimkeep = goodRTstim[sub]
+    FILTERED_TRmatrix_kde[~stimkeep,:,s] = np.nan
+
+#allr = getcorr(RTsim,TRmatrix_kde, 'RTsim', 'TRmatrix')
+allr = getcorr(FILTERED_RTsim,FILTERED_TRmatrix_kde, 'RTsim', 'TRmatrix')
+
+plotting_data = allr.T
+
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('Pattern Similarity Correlations')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+#ye2 = stats.sem(plot2, nan_policy='omit')
+#y2 = np.nanmean(plot2, axis=0)
+sns.despine()
+plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(catrange,y, color='r')
+#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+#plt.plot(y2, color=allpallet[4], linewidth=6)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
+#plt.xlim(0,7)
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
+allr_ratings = getcorr(FILTERED_diffhard,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
+plotting_data = allr_ratings.T
+
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('Ratings Diff')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+#ye2 = stats.sem(plot2, nan_policy='omit')
+#y2 = np.nanmean(plot2, axis=0)
+sns.despine()
+plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(catrange,y, color='r')
+#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+#plt.plot(y2, color=allpallet[4], linewidth=6)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
+#plt.xlim(0,7)
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
+######################################################### LOAD RECOG DATA ############################################################################
+targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
+lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
+lureAcc_bool = lureAcc==1
+targAcc_bool = targAcc==1
+#allr_lureRT = getcorr(lureRT,TRmatrix, 'lureRT', 'TRmatrix')
+#allr_lureRT_consec = getcorr(lureRT,TRmatrix_consec, 'lureRT', 'TRmatrix_consec')
+
+# now want to treat correct/incorrect lure trials separately
+
+lureRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_correctOnly[~lureAcc_bool] = np.nan
+lureRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_incorrectOnly[lureAcc_bool] = np.nan
+
+targRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_correctOnly[~targAcc_bool] = np.nan
+targRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_incorrectOnly[targAcc_bool] = np.nan
+
+######################################################### LOAD WORD VECTOR DATA ############################################################################
+hard_sm = np.load('/Volumes/norman/amennen/wordVec/hard_smF.npy')
+simHard = np.load('/Volumes/norman/amennen/wordVec/simHardF.npy')
+corDetHard = np.load('/Volumes/norman/amennen/wordVec/corDetHard.npy')
+INcorDetHard = np.load('/Volumes/norman/amennen/wordVec/INcorDetHard.npy')
+corDetHard = corDetHard.T
+INcorDetHard = INcorDetHard.T
+hard_sm = hard_sm.T # this is the soft max
+simHard = simHard.T # this is just the version of it regualr cosines
+
+
+FILTERED_lureRT_CO = lureRT_correctOnly
+FILTERED_simHard = simHard
+for s in np.arange(len(subtouse)):
+    s_ind = subtouse[s]
+    sub = "Subject%01d" % s_ind
+    stimkeep = goodRTstim[sub]
+    FILTERED_lureRT_CO[~stimkeep,s] = np.nan
+    FILTERED_simHard[~stimkeep, s] = np.nan
+
+allr_lureRT = getcorr(FILTERED_lureRT_CO,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
+plotting_data = allr_lureRT.T
+
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('LURE RT COR ONLY')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+#ye2 = stats.sem(plot2, nan_policy='omit')
+#y2 = np.nanmean(plot2, axis=0)
+sns.despine()
+plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(catrange,y, color='r')
+#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+#plt.plot(y2, color=allpallet[4], linewidth=6)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
+#plt.xlim(0,7)
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
+
+allr_simHard = getcorr(FILTERED_simHard,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
+plotting_data = allr_simHard.T
+
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('SIMHARD')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+yerr = stats.sem(plotting_data, nan_policy='omit')
+y = np.nanmean(plotting_data,axis=0)
+#ye2 = stats.sem(plot2, nan_policy='omit')
+#y2 = np.nanmean(plot2, axis=0)
+sns.despine()
+plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
+plt.plot(catrange,y, color='r')
+#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
+#plt.plot(y2, color=allpallet[4], linewidth=6)
+#l2 = [item.get_text() for item in ax.get_xticklabels()]
+#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
+#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
+#ax.set_xticklabels(l2)
+#plt.xlim(0,7)
+plt.ylim(-.25,.3)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
+
+plt.show()
