@@ -21,12 +21,14 @@ from scipy.stats import norm
 from math import exp, sqrt
 from usefulfns import getcorr
 import pickle
+from sklearn.neighbors import KernelDensity
+
 sns.set(font_scale = 1.5)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
-
+bw = 0.15
 # this is the one where we're going to take GLM classifier
-pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier.pickle","rb")
+pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept.pickle","rb")
 evbystim = pickle.load(pickle_in)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
@@ -45,7 +47,6 @@ YC_ind = np.searchsorted(all_sub,YC_sub)
 subarray = np.zeros(nSub)
 subarray[YC_ind] = 1
 allpallet = ["#DB5461", "#FFD9CE", "593C8F", "#8EF9F3", "#171738"]
-
 # we want matrix of good stimuli for each subject
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
@@ -203,7 +204,6 @@ plt.ylim(-.25,.3)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
 #kernel=stats.gaussian_kde(thissep)
-from sklearn.neighbors import KernelDensity
 
 # now rescore TR matrix with kernel density estimator
 # go from this to redo to make it less about the bin range
@@ -222,7 +222,7 @@ for s in np.arange(len(subtouse)):
         #thissep = allSep[st,:,s]
         thissep = evbystim[sub][:,st]
         x2 = np.reshape(thissep, (len(thissep), 1))
-        kde = KernelDensity(kernel='gaussian').fit(x2)
+        kde = KernelDensity(kernel='gaussian',bandwidth=bw).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
         for w in np.arange(nwin):
             #TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
