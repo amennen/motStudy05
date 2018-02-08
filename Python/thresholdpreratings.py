@@ -28,7 +28,7 @@ custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHe
 sns.set_style('white',custom)
 bw = 0.15
 # this is the one where we're going to take GLM classifier
-pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept.pickle","rb")
+pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
@@ -136,6 +136,7 @@ for s in np.arange(len(subtouse)):
     for st in np.arange(nstim):
         #thissep = allSep[st,:,s]
         thissep = evbystim[sub][:,st]
+        thissep_z = scipy.stats.zscore(thissep)
         for w in np.arange(nwin):
             TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
             z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 3)
@@ -218,9 +219,14 @@ TRmatrix_kde = np.zeros((nstim,nwin,npairs*2))
 for s in np.arange(len(subtouse)):
     s_ind = subtouse[s]
     sub = "Subject%01d" % s_ind
+    # calculate individual bw for that subject
+    allvals = evbystim[sub]
+    allvals_z = scipy.stats.zscore(allvals)
+    bw = 1.06 * np.std(allvals_z) * 120**-.2
     for st in np.arange(nstim):
         #thissep = allSep[st,:,s]
-        thissep = evbystim[sub][:,st]
+        #thissep = evbystim[sub][:,st]
+        thissep = allvals_z[:,st]
         x2 = np.reshape(thissep, (len(thissep), 1))
         kde = KernelDensity(kernel='gaussian',bandwidth=bw).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
@@ -230,7 +236,7 @@ for s in np.arange(len(subtouse)):
             #z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 3)
             #TRmatrix_consec[st, w, s] = z[0].size
 
-
+# goal: have it so it reflects how many data points are in the more recent version
 FILTERED_TRmatrix_kde = TRmatrix_kde
 for s in np.arange(len(subtouse)):
     s_ind = subtouse[s]
@@ -385,3 +391,7 @@ ax.set_yticks([-.2,-.1,0,.1,.2])
 
 
 plt.show()
+
+## maybe now just make plots of separate things?
+# now maybe plot with correlation
+# could also z score individually for each subject first

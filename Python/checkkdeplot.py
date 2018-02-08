@@ -28,7 +28,7 @@ custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHe
 sns.set_style('white',custom)
 
 # this is the one where we're going to take GLM classifier
-pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept.pickle","rb")
+pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
@@ -47,7 +47,7 @@ YC_ind = np.searchsorted(all_sub,YC_sub)
 subarray = np.zeros(nSub)
 subarray[YC_ind] = 1
 
-bw = .1
+bw = .05
 
 # load subjects data and plot each-histogram and smoothing
 windowsize = 0.05
@@ -73,3 +73,20 @@ norm_counts = z[0]/np.sum(z[0])
 plt.figure()
 plt.plot(cr2,norm_counts)
 plt.plot(cr2,allvals, 'r')
+plt.show()
+
+print(np.std(evbystim[sub]))
+print(np.shape(evbystim[sub]))
+print(1.06 * np.std(evbystim[sub]) * (np.shape(evbystim[sub])[0]*np.shape(evbystim[sub])[1])**-.2)
+largeev = np.zeros((nSub,10*12))
+for i in np.arange(nSub):
+    s_ind = subtouse[i]
+    sub = "Subject%01d" % s_ind
+    thisev = np.reshape(evbystim[sub],(1,10*12))
+    largeev[i,:] = thisev
+large_vec = np.reshape(largeev,(1,10*12*nSub))
+np.mean(largeev)
+np.std(largeev)
+formula = 1.06 * np.std(evbystim[sub]) * 120**-.2
+# but I guess the kernel should be applied to each individual thing?
+# applied on subject basis or no?
