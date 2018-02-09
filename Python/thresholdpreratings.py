@@ -123,7 +123,7 @@ for s in np.arange(nsub):
 # TR matrix: nstim x nwin x nsub
 # RTsim matrix: nstim x nsub
 windowsize = 0.2
-min = -1.5
+min = -1
 max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
 nwin = catrange.shape[0] - 1
@@ -209,7 +209,7 @@ ax.set_yticks([-.2,-.1,0,.1,.2])
 # now rescore TR matrix with kernel density estimator
 # go from this to redo to make it less about the bin range
 windowsize = 0.05
-min = -1.5
+min = -1
 max = -1*min + windowsize # to go one over
 catrange = np.arange(min,max,windowsize)
 cr2 = np.reshape(catrange,(len(catrange),1))
@@ -222,11 +222,12 @@ for s in np.arange(len(subtouse)):
     # calculate individual bw for that subject
     allvals_z = evbystim[sub]
     #allvals_z = scipy.stats.zscore(allvals)
-    bw = 1.06 * np.std(allvals_z) * 120**-.2
+    #bw = 1.06 * np.std(allvals_z) * 120**-.2
     for st in np.arange(nstim):
         #thissep = allSep[st,:,s]
         #thissep = evbystim[sub][:,st]
         thissep = allvals_z[:,st]
+        bw = 1.06 * np.std(thissep) * (12 ** -.2)
         x2 = np.reshape(thissep, (len(thissep), 1))
         kde = KernelDensity(kernel='gaussian',bandwidth=bw).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
@@ -257,13 +258,7 @@ plt.legend()
 plt.xlabel('Density in 0.5 Range')
 plt.ylabel('RT Pattern Similarity')
 
-plt.figure()
-xvals = FILTERED_TRmatrix_kde[:,20,:]
-yvals = FILTERED_lureRT_CO[:,:]
-plt.plot(xvals,yvals, '.')
-plt.legend()
-plt.xlabel('Density in 0.5 Range')
-plt.ylabel('Lure RT Similarity')
+
 
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('Pattern Similarity Correlations')
@@ -356,6 +351,15 @@ for s in np.arange(len(subtouse)):
 
 allr_lureRT = getcorr(FILTERED_lureRT_CO,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
 plotting_data = allr_lureRT.T
+
+
+plt.figure()
+xvals = FILTERED_TRmatrix_kde[:,20,:]
+yvals = FILTERED_lureRT_CO[:,:]
+plt.plot(xvals,yvals, '.')
+plt.legend()
+plt.xlabel('Density in 0.5 Range')
+plt.ylabel('Lure RT Similarity')
 
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('LURE RT COR ONLY')
