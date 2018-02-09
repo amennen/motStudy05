@@ -136,7 +136,7 @@ for s in np.arange(len(subtouse)):
     for st in np.arange(nstim):
         #thissep = allSep[st,:,s]
         thissep = evbystim[sub][:,st]
-        thissep_z = scipy.stats.zscore(thissep)
+        #thissep_z = scipy.stats.zscore(thissep)
         for w in np.arange(nwin):
             TRmatrix[st,w,s] = np.where((thissep >= catrange[w]) & (thissep < catrange[w+1]))[0].shape[0]
             z = np.where(np.diff(np.where((thissep >= catrange[w]) & (thissep < catrange[w + 1])))[0] < 3)
@@ -220,8 +220,8 @@ for s in np.arange(len(subtouse)):
     s_ind = subtouse[s]
     sub = "Subject%01d" % s_ind
     # calculate individual bw for that subject
-    allvals = evbystim[sub]
-    allvals_z = scipy.stats.zscore(allvals)
+    allvals_z = evbystim[sub]
+    #allvals_z = scipy.stats.zscore(allvals)
     bw = 1.06 * np.std(allvals_z) * 120**-.2
     for st in np.arange(nstim):
         #thissep = allSep[st,:,s]
@@ -248,6 +248,22 @@ for s in np.arange(len(subtouse)):
 allr = getcorr(FILTERED_RTsim,FILTERED_TRmatrix_kde, 'RTsim', 'TRmatrix')
 
 plotting_data = allr.T
+
+plt.figure()
+xvals = FILTERED_TRmatrix_kde[:,20,:]
+yvals = FILTERED_RTsim[:,:]
+plt.plot(xvals,yvals, '.')
+plt.legend()
+plt.xlabel('Density in 0.5 Range')
+plt.ylabel('RT Pattern Similarity')
+
+plt.figure()
+xvals = FILTERED_TRmatrix_kde[:,20,:]
+yvals = FILTERED_lureRT_CO[:,:]
+plt.plot(xvals,yvals, '.')
+plt.legend()
+plt.xlabel('Density in 0.5 Range')
+plt.ylabel('Lure RT Similarity')
 
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('Pattern Similarity Correlations')
@@ -395,3 +411,4 @@ plt.show()
 ## maybe now just make plots of separate things?
 # now maybe plot with correlation
 # could also z score individually for each subject first
+# need type of data anlysis so that
