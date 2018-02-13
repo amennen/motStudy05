@@ -19,9 +19,10 @@ import seaborn as sns
 from scipy import stats
 from scipy.stats import norm
 from math import exp, sqrt
-from usefulfns import getcorr
+from usefulfns import *
 import pickle
 from sklearn.neighbors import KernelDensity
+from sklearn import linear_model
 
 sns.set(font_scale = 1.5)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
@@ -35,6 +36,10 @@ evbystim = pickle.load(pickle_in)
 with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim.pickle", "rb") as f:  # Python 3: open(..., 'rb')
     betasbystim_RT, betasbystim_OM = pickle.load(f)
 
+
+def nanzscore(inputdata):
+    zdata = (inputdata - np.nanmean(inputdata))/np.nanstd(inputdata)
+    return zdata
 
 # specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
@@ -122,6 +127,25 @@ for s in np.arange(nsub):
             r2 = R2_OM[:, other]
             cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
         OMITsim_diff[stim, s] = np.mean(cor_dif)
+
+laptop = 0
+if laptop:
+    motpath = '/Users/amennen/motStudy05/'
+else:
+    motpath = '/Users/amennen/Documents/Norman/MOT/motStudy05/'
+bd = motpath + 'BehavioralData/'
+# get responses during MOT-detail ratings
+allsubresponse = {}
+for s in np.arange(len(all_sub)):
+    subj = all_sub[s]
+    sub = "Subject%01d" % subj
+    thisev = evbystim[sub]
+    subjPath = bd + str(subj) + '/'
+    fn = subjPath + 'RTresponses'+ '.mat'
+    d = scipy.io.loadmat(fn)
+    responses = d['allresp']
+    responses = responses.T
+    allsubresponse[sub] = responses
 # first we have to make TR matrix and filter out ones we don't want
 targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
 lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
@@ -164,6 +188,17 @@ megaTrtmatrix = np.empty((0))
 megadiffmatrix = np.empty((0))
 megasumrt = np.empty((0))
 megasm = np.empty((0))
+megadet = np.empty((0,12))
+
+# ZSCORED BY SUBJECT
+megadatamatrixZ = np.empty((0,12))
+megapsmatrixZ = np.empty((0))
+megartmatrixZ = np.empty((0))
+megaTrtmatrixZ = np.empty((0))
+megadiffmatrixZ = np.empty((0))
+megasumrtZ = np.empty((0))
+megasmZ = np.empty((0))
+megadetZ = np.empty((0,12))
 for s in np.arange(len(all_sub)):
     s_ind = all_sub[s]
     sub = "Subject%01d" % s_ind
@@ -171,6 +206,8 @@ for s in np.arange(len(all_sub)):
     allvals = evbystim[sub]
     stimkeep = goodRTstim[sub]
     allvalsbysubj = allvals[:,stimkeep].T
+    subdet = allsubresponse[sub]
+    alldetbysub = subdet[:,stimkeep].T
     allpsbysubj = RTsim[stimkeep,s]
     allrtbysubj = lureRT[stimkeep,s]
     allrtTbysubj = targRT[stimkeep, s]
@@ -185,6 +222,16 @@ for s in np.arange(len(all_sub)):
     megaTrtmatrix = np.concatenate((megaTrtmatrix,allrtTbysubj))
     megasumrt = np.concatenate((megasumrt,allrt))
     megasm = np.concatenate((megasm,allwv))
+    megadet = np.concatenate((megadet,alldetbysub),axis=0)
+
+    megadatamatrixZ = np.concatenate((megadatamatrixZ,nanzscore(allvalsbysubj)),axis=0)
+    megapsmatrixZ = np.concatenate((megapsmatrixZ,nanzscore(allpsbysubj)))
+    megartmatrixZ = np.concatenate((megartmatrixZ,nanzscore(allrtbysubj)))
+    megadiffmatrixZ = np.concatenate((megadiffmatrixZ,nanzscore(alldiffbysubj)))
+    megaTrtmatrixZ = np.concatenate((megaTrtmatrixZ,nanzscore(allrtTbysubj)))
+    megasumrtZ = np.concatenate((megasumrtZ,nanzscore(allrt)))
+    megasmZ = np.concatenate((megasmZ,nanzscore(allwv)))
+    megadetZ = np.concatenate((megadetZ,nanzscore(alldetbysub)),axis=0)
 # now can just look for correlations!
 nstimT = np.shape(megapsmatrix)[0]
 windowsize = 0.2
@@ -259,39 +306,43 @@ scipy.stats.pearsonr(megaTrtmatrix[~nas],megapsmatrix[~nas])
 # seems to be related to reaction time--stronger when combine both reaction times
 # describe: problem with averaging individual subjects is that not a lot of sample points get treated as equally as other points
 plt.figure()
-plt.plot(megasumrt,megapsmatrix, '.')
+plt.plot(megartmatrixZ,megapsmatrixZ, '.')
 plt.xlabel('Lure RT + Targ RT (all trials)')
 plt.ylabel('Pattern Similarity')
 plt.title('RT vs. PS')
 
-nas = np.logical_or(np.isnan(megasumrt), np.isnan(megapsmatrix))
-scipy.stats.pearsonr(megasumrt[~nas],megapsmatrix[~nas])
+nas = np.logical_or(np.isnan(megartmatrixZ), np.isnan(megapsmatrixZ))
+scipy.stats.pearsonr(megartmatrixZ[~nas],megapsmatrixZ[~nas])
 
 # so what do those stimuli have in common? do they have similar distributions of mot scores
 
 # check with word vector descriptions
 plt.figure()
-plt.plot(megasm,megapsmatrix, '.')
+plt.plot(megasmZ,megapsmatrixZ, '.')
 plt.xlabel('Softmax word vector correlation')
 plt.ylabel('Pattern Similarity')
 plt.title('Word vector vs. PS')
 
-nas = np.logical_or(np.isnan(megasm), np.isnan(megapsmatrix))
-scipy.stats.pearsonr(megasm[~nas],megapsmatrix[~nas])
+nas = np.logical_or(np.isnan(megasmZ), np.isnan(megapsmatrixZ))
+scipy.stats.pearsonr(megasmZ[~nas],megapsmatrixZ[~nas])
 
 
 
 # sum everything (some will be nan)
 nas = np.logical_or(np.logical_or(np.isnan(megasm), np.isnan(megapsmatrix)),np.isnan(megasumrt))
-MEMORYSCORETOTAL = scipy.stats.zscore(megapsmatrix[~nas]) - scipy.stats.zscore(megasumrt[~nas]) + scipy.stats.zscore(megasm[~nas])
+MEMORYSCORETOTAL = megapsmatrixZ[~nas] - megartmatrixZ[~nas] + megasmZ[~nas]
+#MEMORYSCORETOTAL = scipy.stats.zscore(megapsmatrix[~nas]) - scipy.stats.zscore(megasumrt[~nas]) + scipy.stats.zscore(megasm[~nas])
 
 #MEMORYSCORETOTAL = -1* scipy.stats.zscore(megasumrt[~nas])
 MEM_SORTED = np.argsort(MEMORYSCORETOTAL)
 SCORE_SORTED = MEMORYSCORETOTAL[MEM_SORTED]
 
-TOTALEV = megadatamatrix[~nas,:]
-EV_SORTED = TOTALEV[MEM_SORTED,:]
-VAR_EV_SORTED = np.mean(EV_SORTED,axis=1)
+TOTALEV1 = megadatamatrixZ[~nas,:]
+TOTALEV2 =  megadetZ[~nas, :]
+EV_SORTED = TOTALEV1[MEM_SORTED,:]
+EV_SORTED2 = TOTALEV1[MEM_SORTED,:]
+
+VAR_EV_SORTED = np.nanmean(EV_SORTED,axis=1) #+ np.nanmean(EV_SORTED2,axis=1)
 nex = len(SCORE_SORTED)
 # compare evidence distributions
 EV1 = EV_SORTED[0:np.floor(nex/3),:].flatten()
@@ -306,9 +357,76 @@ data2b = np.concatenate((np.reshape(data,(len(data),1)),np.reshape(gr,(len(gr),1
 df = pd.DataFrame(data2b, columns=['data','group'])
 fig, ax = plt.subplots()
 sns.stripplot(data=df,y='data',jitter=True,alpha=0.25,x="group",split="True" , color="k")
-sns.boxplot(data=df,y='data',x="group")
+sns.barplot(data=df,y='data',x="group")
 
 #plt.xlim([-1,1])
 plt.show()
 
 scipy.stats.ttest_ind(EV1,EV2)
+
+
+# NOW TRY WITH DETAIL RATINGS
+# zscore within subjects first????
+nas = np.logical_or(np.logical_or(np.isnan(megasm), np.isnan(megapsmatrix)),np.isnan(megasumrt))
+MEMORYSCORETOTAL = megapsmatrixZ[~nas] - megartmatrixZ[~nas] + megasmZ[~nas]
+
+#MEMORYSCORETOTAL = scipy.stats.zscore(megapsmatrix[~nas]) - scipy.stats.zscore(megasumrt[~nas]) + scipy.stats.zscore(megasm[~nas])
+IVTOTAL = scipy.stats.zscore(megadet[~nas,:])
+#MEMORYSCORETOTAL = -1* scipy.stats.zscore(megasumrt[~nas])
+MEM_SORTED = np.argsort(MEMORYSCORETOTAL)
+SCORE_SORTED = MEMORYSCORETOTAL[MEM_SORTED]
+
+TOTALEV = megadetZ[~nas,:]
+EV_SORTED = TOTALEV[MEM_SORTED,:]
+VAR_EV_SORTED = np.max(EV_SORTED,axis=1)
+nex = len(SCORE_SORTED)
+# compare evidence distributions
+EV1 = EV_SORTED[0:np.floor(nex/3),:].flatten()
+EV2 = EV_SORTED[-np.floor(nex/3):,:].flatten()
+
+#EV1 = VAR_EV_SORTED[0:np.floor(nex/3)].flatten()
+#EV2 = VAR_EV_SORTED[-np.floor(nex/3):].flatten()
+
+gr = np.concatenate((np.zeros(len(EV1)),np.ones(len(EV2))),axis=0)
+data = np.concatenate((EV1,EV2),axis=0)
+data2b = np.concatenate((np.reshape(data,(len(data),1)),np.reshape(gr,(len(gr),1))),axis=1)
+df = pd.DataFrame(data2b, columns=['data','group'])
+fig, ax = plt.subplots()
+sns.stripplot(data=df,y='data',jitter=True,alpha=0.25,x="group",split="True" , color="k")
+sns.barplot(data=df,y='data',x="group")
+
+#plt.xlim([-1,1])
+plt.show()
+
+scipy.stats.ttest_ind(EV1,EV2)
+
+xmatrix = np.concatenate(megapsmatrixZ[~nas],megasumrtZ)
+# can you make glm to predict outcome based on x's?
+regModel = linear_model.LinearRegression()
+regModel.fit
+
+# make histogram of evidence
+evRT = np.empty((0,12))
+evYC = np.empty((0,12))
+for s in np.arange(npairs):
+    s_ind = RT_sub[s]
+    sub = "Subject%01d" % s_ind
+    allvals = evbystim[sub]
+    sv = allvals[:, stimkeep].T
+    evRT = np.concatenate((evRT, sv), axis=0)
+    s_ind = YC_sub[s]
+    sub = "Subject%01d" % s_ind
+    allvals = evbystim[sub]
+    sv = allvals[:, stimkeep].T
+    evYC = np.concatenate((evYC, sv), axis=0)
+
+eRT = evRT.flatten()
+eYC = evYC.flatten()
+allev = np.concatenate((eRT,eYC),axis=0)
+groups = np.arange(2)
+groups = np.repeat(groups,120*npairs)
+data = np.concatenate((allev[:,np.newaxis],groups[:,np.newaxis]),axis=1)
+df = pd.DataFrame(data,columns=['y', 's'])
+plt.figure()
+sns.distplot(eRT, color='r')
+sns.distplot(eYC)

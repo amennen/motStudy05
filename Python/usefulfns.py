@@ -14,7 +14,12 @@ def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
         for w in np.arange(nwin):
             thisTR = TRmatrix[:, w, s]
             nas = np.logical_or(np.isnan(thissim), np.isnan(thisTR))
-            allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim[~nas],thisTR[~nas])
+            if len(np.argwhere(~nas)[:,0]) > 2:
+                allr[w, s], allp[w, s] = scipy.stats.pearsonr(thissim[~nas],thisTR[~nas])
+               # print('TEST')
+            else: # not enough samples
+                allr[w,s] = np.nan
+                allp[w,s] = np.nan
 
     pvals = np.zeros((nwin))
     print('pvalues for subjectmatrix: ' + subjname + ' and TR matrix: ' + TRname)
@@ -26,4 +31,5 @@ def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
 
     return allr
 # taken from: http://scipy-cookbook.readthedocs.io/items/SignalSmooth.html
+
 
