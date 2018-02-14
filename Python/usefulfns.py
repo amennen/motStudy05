@@ -22,12 +22,12 @@ def getcorr(subjectMatrix,TRmatrix, subjname,TRname):
                 allp[w,s] = np.nan
 
     pvals = np.zeros((nwin))
-    print('pvalues for subjectmatrix: ' + subjname + ' and TR matrix: ' + TRname)
+    #print('pvalues for subjectmatrix: ' + subjname + ' and TR matrix: ' + TRname)
     for w in np.arange(nwin):
         d = allr.T[:, w]
         nas = np.isnan(d)
         pvals[w] = stats.ttest_1samp(d[~nas], 0).pvalue
-    print(pvals)
+    #print(pvals)
 
     return allr
 # taken from: http://scipy-cookbook.readthedocs.io/items/SignalSmooth.html

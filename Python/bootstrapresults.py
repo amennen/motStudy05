@@ -1,7 +1,4 @@
-# IMPORTANT THINGS THAT YOU CAN CHANGE:
-# 1. BIN WIDTH BW OF KDE
-# 2. THRESHOLD OF STIMULI TO ACCEPT (WANT ENOUGH FOR DATA)
-# 3. USING RECALL BETAS OR RECALL VOXEL
+# purpose: bootstrap/Ghootstrap w/ replacement subject population to get estimate of uncertainty of correlations
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
@@ -27,41 +24,57 @@ from usefulfns import getcorr
 import pickle
 from sklearn.neighbors import KernelDensity
 from sklearn import linear_model
+from getcorr_allsub import getcorr_vector
+# reset random seed just in case
+import random
+from datetime import datetime
+random.seed(datetime.now())
 
-sns.set(font_scale = 1.5)
-custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
-sns.set_style('white',custom)
-# this is the one where we're going to take GLM classifier
+def mean_confidence_interval(data, confidence=0.95):
+    a = 1.0*np.array(data)
+    n = len(a)
+    #m, se = np.mean(a), scipy.stats.sem(a)
+    m,se = np.mean(a), np.std(a)
+    h = se * scipy.stats.t._ppf((1+confidence)/2., n-1)
+    return m, h
+
+nboot = 1000
+bw = 0.07 # set it here for everyone!!
+
+# LOAD ALL DATA
 pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)
-
 # now specify path for betas ps
 with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim.pickle", "rb") as f:  # Python 3: open(..., 'rb')
     betasbystim_RT, betasbystim_OM = pickle.load(f)
-
-
-sns.set(font_scale = 1.5)
-custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
-sns.set_style('white',custom)
-# this is the one where we're going to take GLM classifier
-pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
-evbystim = pickle.load(pickle_in)
-# specify now which computer you're using!
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
 savepath = '/Volumes/norman/amennen/PythonMot5/'
-flatui = ["#DB5461", "#593C8F"]
+targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
+lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
+lureAcc_bool = lureAcc==1
+targAcc_bool = targAcc==1
+lureRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_correctOnly[~lureAcc_bool] = np.nan
+lureRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_incorrectOnly[lureAcc_bool] = np.nan
+targRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_correctOnly[~targAcc_bool] = np.nan
+targRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_incorrectOnly[targAcc_bool] = np.nan
+hard_sm = np.load('/Volumes/norman/amennen/wordVec/hard_smF.npy')
+simHard = np.load('/Volumes/norman/amennen/wordVec/simHardF.npy')
+corDetHard = np.load('/Volumes/norman/amennen/wordVec/corDetHard.npy')
+INcorDetHard = np.load('/Volumes/norman/amennen/wordVec/INcorDetHard.npy')
+corDetHard = corDetHard.T
+INcorDetHard = INcorDetHard.T
+hard_sm = hard_sm.T # this is the soft max
+simHard = simHard.T # this is just the version of it regualr cosines
 all_sub = np.array([1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
 nsub= np.int(len(all_sub))
 npairs = np.int(nsub/2)
-RT_sub = np.array([1, 3, 4,5,6,8,10,12,13,14,19,21,23,26,29,32])
-YC_sub = np.array([20,40,36,34,11,27,17,16,35,30,39,25,37,31,38,33])
-RT_ind = np.searchsorted(all_sub,RT_sub)
-YC_ind = np.searchsorted(all_sub,YC_sub)
-subarray = np.zeros(nsub)
-subarray[YC_ind] = 1
-allpallet = ["#DB5461", "#FFD9CE", "593C8F", "#8EF9F3", "#171738"]
-# we want matrix of good stimuli for each subject
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
 postHard = np.zeros((10,npairs*2))
@@ -80,7 +93,6 @@ for s in np.arange(npairs*2):
     diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
     postHard[:,s] = hardR[subjName][1,:]
     goodRTstim[sub] = hardR[subjName][0,:] > 2
-# now repeat other things only considering those stimuli
 nstim = 10
 data_dir = '/Volumes/norman/amennen/PythonMot5/RecallPat/'
 RTsim = np.zeros((nstim, nsub))
@@ -173,6 +185,9 @@ else:
                 r2 = OMIT[other, :, 1]
                 cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
             OMITsim_diff[stim, s] = np.mean(cor_dif)
+# specify analyses we'll do and number of bootstrap iterations
+
+
 windowsize = 0.05
 min = -1
 max = -1*min + windowsize # to go one over
@@ -180,9 +195,6 @@ catrange = np.arange(min,max,windowsize)
 cr2 = np.reshape(catrange,(len(catrange),1))
 nwin = catrange.shape[0]
 TRmatrix_kde = np.zeros((nstim,nwin,npairs*2))
-TRmatrix_consec = np.zeros((nstim,nwin-1,npairs*2))
-TRmatrix = np.zeros((nstim,nwin-1,npairs*2))
-bw = 0.07 # set it here for everyone!!
 for s in np.arange(nsub):
     s_ind = all_sub[s]
     sub = "Subject%01d" % s_ind
@@ -193,40 +205,12 @@ for s in np.arange(nsub):
         allvals = np.exp(kde.score_samples(cr2))
         TRmatrix_kde[st, :, s] = allvals
 
-targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
-lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
-targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
-lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
-lureAcc_bool = lureAcc==1
-targAcc_bool = targAcc==1
-lureRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
-lureRT_correctOnly[~lureAcc_bool] = np.nan
-lureRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
-lureRT_incorrectOnly[lureAcc_bool] = np.nan
-targRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
-targRT_correctOnly[~targAcc_bool] = np.nan
-targRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
-targRT_incorrectOnly[targAcc_bool] = np.nan
-
-hard_sm = np.load('/Volumes/norman/amennen/wordVec/hard_smF.npy')
-simHard = np.load('/Volumes/norman/amennen/wordVec/simHardF.npy')
-corDetHard = np.load('/Volumes/norman/amennen/wordVec/corDetHard.npy')
-INcorDetHard = np.load('/Volumes/norman/amennen/wordVec/INcorDetHard.npy')
-corDetHard = corDetHard.T
-INcorDetHard = INcorDetHard.T
-hard_sm = hard_sm.T # this is the soft max
-simHard = simHard.T # this is just the version of it regualr cosines
-
-
-# now filter everything for stimuli
 FILTERED_RTsim = RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
 FILTERED_TRmatrix_kde = TRmatrix_kde
 FILTERED_lureRT_CO = lureRT_correctOnly
 FILTERED_lureRT = lureRT
 FILTERED_simHard = hard_sm
-FILTERED_cordet = corDetHard
-FILTERED_INcordet = INcorDetHard
 
 for s in np.arange(nsub):
     s_ind = all_sub[s]
@@ -238,154 +222,128 @@ for s in np.arange(nsub):
     FILTERED_lureRT_CO[~stimkeep, s] = np.nan
     FILTERED_lureRT[~stimkeep, s] = np.nan
     FILTERED_simHard[~stimkeep, s] = np.nan
-    FILTERED_cordet[~stimkeep, s] = np.nan
-    FILTERED_INcordet[~stimkeep, s] = np.nan
-allr = getcorr(FILTERED_RTsim,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
-plotting_data = allr.T
+
+
+
+# analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity
+correlations_ps = np.zeros((nboot,nwin)) # each result will be for a specific window the mean for that bootstrap run
+correlations_lureRT = np.zeros((nboot,nwin))
+correlations_lureRTCO = np.zeros((nboot,nwin))
+correlations_detaildiff = np.zeros((nboot,nwin))
+correlations_WVsoftmax = np.zeros((nboot,nwin))
+
+for b in np.arange(nboot):
+    bootsubjects = np.random.randint(0,high=nsub,size=nsub)
+    correlations_ps[b, :] = getcorr_vector(FILTERED_RTsim[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    #correlations_ps[b,:] = np.nanmean(allr,axis=1)
+    correlations_lureRT[b, :] = getcorr_vector(FILTERED_lureRT[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    #correlations_lureRT[b,:] = np.nanmean(allr,axis=1)
+    correlations_lureRTCO[b, :] = getcorr_vector(FILTERED_lureRT_CO[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    #correlations_lureRTCO[b,:] = np.nanmean(allr,axis=1)
+    correlations_detaildiff[b, :] = getcorr_vector(FILTERED_diffhard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    #correlations_detaildiff[b,:] = np.nanmean(allr,axis=1)
+    correlations_WVsoftmax[b, :] = getcorr_vector(FILTERED_simHard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    #correlations_WVsoftmax[b,:] = np.nanmean(allr,axis=1)
+
+# now analyze results of bootstrap!!
+# find the 95% confidence interval and plot that
+print("done!")
+
+# get confidence intervals
+ps_mean = np.zeros((nwin))
+ps_err = np.zeros((nwin))
+lureRT_mean = np.zeros((nwin))
+lureRT_err = np.zeros((nwin))
+lureRTCO_mean = np.zeros((nwin))
+lureRTCO_err = np.zeros((nwin))
+detaildiff_mean = np.zeros((nwin))
+detaildiff_err = np.zeros((nwin))
+WVsoftmax_mean = np.zeros((nwin))
+WVsoftmax_err = np.zeros((nwin))
+for w in np.arange(nwin):
+    ps_mean[w],ps_err[w] = mean_confidence_interval(correlations_ps[:,w])
+    lureRT_mean[w], lureRT_err[w] = mean_confidence_interval(correlations_lureRT[:, w])
+    lureRTCO_mean[w], lureRTCO_err[w] = mean_confidence_interval(correlations_lureRTCO[:, w])
+    detaildiff_mean[w], detaildiff_err[w] = mean_confidence_interval(correlations_detaildiff[:, w])
+    WVsoftmax_mean[w], WVsoftmax_err[w] = mean_confidence_interval(correlations_WVsoftmax[:, w])
+
+# now plot results!!
+yerr = ps_err
+y = ps_mean
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('PATTERN SIMILARITY')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
-yerr = stats.sem(plotting_data, nan_policy='omit')
-y = np.nanmean(plotting_data,axis=0)
-#ye2 = stats.sem(plot2, nan_policy='omit')
-#y2 = np.nanmean(plot2, axis=0)
 sns.despine()
 plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(catrange,y, color='r')
-#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-#plt.plot(y2, color=allpallet[4], linewidth=6)
-#l2 = [item.get_text() for item in ax.get_xticklabels()]
-#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
-#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-#ax.set_xticklabels(l2)
-#plt.xlim(0,7)
-plt.ylim(-.25,.3)
+plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-
-
-allr = getcorr(FILTERED_lureRT,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
-plotting_data = allr.T
+yerr = lureRTCO_err
+y = lureRTCO_mean
 fig, ax = plt.subplots(figsize=(7,5))
-plt.title('LURE CORRECT ONLY')
+plt.title('LURE RT CO')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
-yerr = stats.sem(plotting_data, nan_policy='omit')
-y = np.nanmean(plotting_data,axis=0)
-#ye2 = stats.sem(plot2, nan_policy='omit')
-#y2 = np.nanmean(plot2, axis=0)
 sns.despine()
 plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(catrange,y, color='r')
-#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-#plt.plot(y2, color=allpallet[4], linewidth=6)
-#l2 = [item.get_text() for item in ax.get_xticklabels()]
-#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
-#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-#ax.set_xticklabels(l2)
-#plt.xlim(0,7)
-plt.ylim(-.25,.3)
+plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-allr = getcorr(FILTERED_simHard,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
-plotting_data = allr.T
+yerr = WVsoftmax_err
+y = WVsoftmax_mean
 fig, ax = plt.subplots(figsize=(7,5))
-plt.title('WORD VECTOR SIM')
+plt.title('WV softmax')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
-yerr = stats.sem(plotting_data, nan_policy='omit')
-y = np.nanmean(plotting_data,axis=0)
-#ye2 = stats.sem(plot2, nan_policy='omit')
-#y2 = np.nanmean(plot2, axis=0)
 sns.despine()
 plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(catrange,y, color='r')
-#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-#plt.plot(y2, color=allpallet[4], linewidth=6)
-#l2 = [item.get_text() for item in ax.get_xticklabels()]
-#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
-#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-#ax.set_xticklabels(l2)
-#plt.xlim(0,7)
-plt.ylim(-.25,.3)
+plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-
-allr = getcorr(FILTERED_diffhard,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
-plotting_data = allr.T
+yerr = detaildiff_err
+y = detaildiff_mean
 fig, ax = plt.subplots(figsize=(7,5))
-plt.title('DIFF IN RATINGS')
+plt.title('Detail diff')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
-yerr = stats.sem(plotting_data, nan_policy='omit')
-y = np.nanmean(plotting_data,axis=0)
-#ye2 = stats.sem(plot2, nan_policy='omit')
-#y2 = np.nanmean(plot2, axis=0)
 sns.despine()
 plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
 plt.plot(catrange,y, color='r')
-#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-#plt.plot(y2, color=allpallet[4], linewidth=6)
-#l2 = [item.get_text() for item in ax.get_xticklabels()]
-#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
-#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-#ax.set_xticklabels(l2)
-#plt.xlim(0,7)
-plt.ylim(-.25,.3)
+plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-allr = getcorr(FILTERED_INcordet,FILTERED_TRmatrix_kde, 'diffHard', 'TRmatrix')
-plotting_data = allr.T
-fig, ax = plt.subplots(figsize=(7,5))
-plt.title('NUMBER INCORR DETAILS')
-plt.ylabel('Correlation')
-plt.xlabel('Retrieval evidence bin-kde')
-palette = itertools.cycle(sns.color_palette("husl",8))
-yerr = stats.sem(plotting_data, nan_policy='omit')
-y = np.nanmean(plotting_data,axis=0)
-#ye2 = stats.sem(plot2, nan_policy='omit')
-#y2 = np.nanmean(plot2, axis=0)
-sns.despine()
-plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(catrange,y, color='r')
-#plt.fill_between(np.arange(nwin), y2-ye2, y2+ye2,facecolor=allpallet[3],alpha=0.3)
-#plt.plot(y2, color=allpallet[4], linewidth=6)
-#l2 = [item.get_text() for item in ax.get_xticklabels()]
-#l2 = ["-.5,-.4","-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4",".4,.5"]
-#l2 = ["-.4,-.3","-.3,-.2" , "-.2,-.1", "-.1,0",".0,.1",".1,.2",".2,.3" , ".3,.4"]
-#ax.set_xticklabels(l2)
-#plt.xlim(0,7)
-plt.ylim(-.25,.3)
-ax.set_yticks([-.2,-.1,0,.1,.2])
-
-
-
-#   check binning results **
-min=-0.7
-max=0.96
-s = np.random.randint(0,nsub-1)
-st = np.random.randint(0,nstim)
-s_ind = all_sub[s]
-sub = "Subject%01d" % s_ind
-thissep = evbystim[sub][:,st]
-#bw = 1.06 * np.std(thissep) * (12 ** -.2)
-bw = .1
-x2 = np.reshape(thissep, (len(thissep), 1))
-kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(x2)
+# as a check, look at the kde of all subjects evidence
+megadatamatrix= np.empty((0,12))
+for s in np.arange(len(all_sub)):
+    s_ind = all_sub[s]
+    sub = "Subject%01d" % s_ind
+    # calculate individual bw for that subject
+    allvals = evbystim[sub]
+    stimkeep = goodRTstim[sub]
+    allvalsbysubj = allvals[:,stimkeep].T
+    megadatamatrix = np.concatenate((megadatamatrix,allvalsbysubj),axis=0)
+vectorevidence = megadatamatrix.flatten()
+kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(vectorevidence[:,np.newaxis])
 allvals = np.exp(kde.score_samples(cr2))
-# check distribution of the different histograms
 plt.figure()
-bins = np.arange(min, max, windowsize)
-x = plt.hist(x2, bins, normed=True)
-nx = x[0] / np.sum(x[0])
-plt.plot(catrange[0:-1], nx, 'blue')
-crb = np.arange(min,max+windowsize,.01)
-cr2b = np.reshape(crb,(len(crb),1))
-v2 = np.exp(kde.score_samples(cr2b))
-plt.plot(cr2b, v2, 'r')
+plt.plot(catrange,allvals, 'r')
+bw2=0.05
+bins = np.arange(-1,1.1,bw2)
+x = plt.hist(vectorevidence[:,np.newaxis],bins)
+nx = x[0]/np.sum(x[0])
+plt.plot(bins[0:-1]+(bw2/2),nx, 'b.')
 plt.show()
+ev_mean = np.mean(vectorevidence)
+ev_std = np.std(vectorevidence)/np.sqrt(len(vectorevidence)-1)
+ev_mean + 3*ev_std
+plt.xlabel('Evidence')
+plt.ylabel('Proportion in that range')
+plt.title('Normalized counts: all classifier evidence')
