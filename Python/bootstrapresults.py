@@ -342,7 +342,7 @@ nx = x[0]/np.sum(x[0])
 plt.plot(bins[0:-1]+(bw2/2),nx, 'b.')
 plt.show()
 ev_mean = np.mean(vectorevidence)
-ev_std = np.std(vectorevidence)/np.sqrt(len(vectorevidence)-1)
+ev_std = np.std(vectorevidence)
 ev_mean + 3*ev_std
 plt.xlabel('Evidence')
 plt.ylabel('Proportion in that range')
