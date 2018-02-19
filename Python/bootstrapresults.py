@@ -1,12 +1,12 @@
 # purpose: bootstrap/Ghootstrap w/ replacement subject population to get estimate of uncertainty of correlations
 import numpy as np
 import matplotlib.pyplot as plt
+import sklearn
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
 from sklearn.metrics import r2_score
 import pickle
 import pdb
-import sklearn
 import scipy
 import scipy.io
 from sklearn import metrics
@@ -31,15 +31,33 @@ from datetime import datetime
 random.seed(datetime.now())
 
 def mean_confidence_interval(data, confidence=0.95):
-    a = 1.0*np.array(data)
-    n = len(a)
-    #m, se = np.mean(a), scipy.stats.sem(a)
-    m,se = np.mean(a), np.std(a)
-    h = se * scipy.stats.t._ppf((1+confidence)/2., n-1)
-    return m, h
+    d_sorted = np.sort(data)
+    n = len(data)
+    n_in_middle = confidence*n
+    first_index = (n-n_in_middle)/2 - 1
+    m = np.mean(data)
+    low_val = d_sorted[np.int(first_index)]
+    high_val = d_sorted[np.int(first_index+n_in_middle)]
+    return m, low_val, high_val
 
+def nanzscore(inputdata):
+    if len(np.shape(inputdata)) == 2:
+        nsub = np.shape(inputdata)[1]
+        nstim = np.shape(inputdata)[0]
+        zdata = np.zeros((nstim,nsub))
+        for s in np.arange(nsub):
+            zdata[:,s] = (inputdata[:,s] - np.nanmean(inputdata[:,s]))/np.nanstd(inputdata[:,s])
+    return zdata
+
+
+# using the original patterns the effect is worse than using the betas
 nboot = 1000
-bw = 0.07 # set it here for everyone!!
+bw = 0.1 # set it here for everyone!!
+detailthreshold = 2
+usebetas = 1
+zscoreDV = 1 # if true zscore all DV
+zscoreIV = 0 # if you should zscore all classifier values
+
 
 # LOAD ALL DATA
 pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
@@ -92,7 +110,7 @@ for s in np.arange(npairs*2):
     diffEasy[:,s] = np.diff(easyR[subjName].astype(np.int16),axis=0)
     diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
     postHard[:,s] = hardR[subjName][1,:]
-    goodRTstim[sub] = hardR[subjName][0,:] > 2
+    goodRTstim[sub] = hardR[subjName][0,:] > detailthreshold
 nstim = 10
 data_dir = '/Volumes/norman/amennen/PythonMot5/RecallPat/'
 RTsim = np.zeros((nstim, nsub))
@@ -103,7 +121,6 @@ avgRTsim = np.zeros(nsub)
 avgOMITsim = np.zeros(nsub)
 avgRTsim_diff = np.zeros(nsub)
 avgOMITsim_diff = np.zeros(nsub)
-usebetas = 1
 if usebetas:
     for s in np.arange(nsub):
         subj = all_sub[s]
@@ -189,17 +206,26 @@ else:
 
 
 windowsize = 0.05
-min = -1
-max = -1*min + windowsize # to go one over
-catrange = np.arange(min,max,windowsize)
+#min = -1
+#max = -1*min + windowsize # to go one over
+min=-0.8
+max=0.9
+if zscoreIV:
+    windowsize = 0.1
+    min=-1.5
+    max=-1*min
+catrange = np.arange(min,max+windowsize,windowsize)
 cr2 = np.reshape(catrange,(len(catrange),1))
 nwin = catrange.shape[0]
 TRmatrix_kde = np.zeros((nstim,nwin,npairs*2))
 for s in np.arange(nsub):
     s_ind = all_sub[s]
     sub = "Subject%01d" % s_ind
+    subvals_z = stats.zscore(evbystim[sub])
     for st in np.arange(nstim):
         thissep = evbystim[sub][:,st]
+        if zscoreIV:
+            thissep = subvals_z[:,st]
         x2 = np.reshape(thissep, (len(thissep), 1))
         kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
@@ -208,9 +234,11 @@ for s in np.arange(nsub):
 FILTERED_RTsim = RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
 FILTERED_TRmatrix_kde = TRmatrix_kde
-FILTERED_lureRT_CO = lureRT_correctOnly
-FILTERED_lureRT = lureRT
-FILTERED_simHard = hard_sm
+FILTERED_lureRT_CO = np.log(lureRT_correctOnly) #lureAcc + targAcc
+FILTERED_lureRT = np.log(lureRT)
+#FILTERED_lureRT_CO = lureRT_correctOnly
+#FILTERED_lureRT = lureRT
+FILTERED_simHard = simHard
 
 for s in np.arange(nsub):
     s_ind = all_sub[s]
@@ -223,7 +251,13 @@ for s in np.arange(nsub):
     FILTERED_lureRT[~stimkeep, s] = np.nan
     FILTERED_simHard[~stimkeep, s] = np.nan
 
-
+if zscoreDV:
+    FILTERED_diffhard = nanzscore(FILTERED_diffhard) # zscore over subjects
+    #FILTERED_TRmatrix_kde[~stimkeep,:,s] = np.nan
+    FILTERED_RTsim = nanzscore(FILTERED_RTsim)
+    FILTERED_lureRT_CO = nanzscore(FILTERED_lureRT_CO)
+    FILTERED_lureRT = nanzscore(FILTERED_lureRT)
+    FILTERED_simHard = nanzscore(FILTERED_simHard)
 
 # analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity
 correlations_ps = np.zeros((nboot,nwin)) # each result will be for a specific window the mean for that bootstrap run
@@ -251,72 +285,90 @@ print("done!")
 
 # get confidence intervals
 ps_mean = np.zeros((nwin))
-ps_err = np.zeros((nwin))
+ps_errL = np.zeros((nwin))
+ps_errH = np.zeros((nwin))
+
 lureRT_mean = np.zeros((nwin))
-lureRT_err = np.zeros((nwin))
+lureRT_errL = np.zeros((nwin))
+lureRT_errH = np.zeros((nwin))
+
 lureRTCO_mean = np.zeros((nwin))
-lureRTCO_err = np.zeros((nwin))
+lureRTCO_errL = np.zeros((nwin))
+lureRTCO_errH = np.zeros((nwin))
+
 detaildiff_mean = np.zeros((nwin))
-detaildiff_err = np.zeros((nwin))
+detaildiff_errL = np.zeros((nwin))
+detaildiff_errH = np.zeros((nwin))
+
 WVsoftmax_mean = np.zeros((nwin))
-WVsoftmax_err = np.zeros((nwin))
+WVsoftmax_errL = np.zeros((nwin))
+WVsoftmax_errH = np.zeros((nwin))
+
 for w in np.arange(nwin):
-    ps_mean[w],ps_err[w] = mean_confidence_interval(correlations_ps[:,w])
-    lureRT_mean[w], lureRT_err[w] = mean_confidence_interval(correlations_lureRT[:, w])
-    lureRTCO_mean[w], lureRTCO_err[w] = mean_confidence_interval(correlations_lureRTCO[:, w])
-    detaildiff_mean[w], detaildiff_err[w] = mean_confidence_interval(correlations_detaildiff[:, w])
-    WVsoftmax_mean[w], WVsoftmax_err[w] = mean_confidence_interval(correlations_WVsoftmax[:, w])
+    ps_mean[w],ps_errL[w],ps_errH[w] = mean_confidence_interval(correlations_ps[:,w])
+    lureRT_mean[w], lureRT_errL[w], lureRT_errH[w] = mean_confidence_interval(correlations_lureRT[:, w])
+    lureRTCO_mean[w], lureRTCO_errL[w],lureRTCO_errH[w],  = mean_confidence_interval(correlations_lureRTCO[:, w])
+    detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w])
+    WVsoftmax_mean[w], WVsoftmax_errL[w],WVsoftmax_errH[w] = mean_confidence_interval(correlations_WVsoftmax[:, w])
+
+# now calculate pvalues!
+
 
 # now plot results!!
-yerr = ps_err
-y = ps_mean
+
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('PATTERN SIMILARITY')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
-plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(catrange,y, color='r')
+plt.fill_between(catrange, ps_errL, ps_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,ps_mean, color='r')
 plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-yerr = lureRTCO_err
-y = lureRTCO_mean
+
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('LURE RT CO')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
-plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(catrange,y, color='r')
+plt.fill_between(catrange, lureRTCO_errL, lureRTCO_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,lureRTCO_mean, color='r')
 plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-yerr = WVsoftmax_err
-y = WVsoftmax_mean
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('LURE RT ALL')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+sns.despine()
+plt.fill_between(catrange, lureRT_errL, lureRT_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,lureRT_mean, color='r')
+plt.ylim(-.25,.25)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('WV softmax')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
-plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(catrange,y, color='r')
+plt.fill_between(catrange, WVsoftmax_errL, WVsoftmax_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,WVsoftmax_mean, color='r')
 plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
-yerr = detaildiff_err
-y = detaildiff_mean
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('Detail diff')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
-plt.fill_between(catrange, y-yerr, y+yerr,facecolor='r',alpha=0.3)
-plt.plot(catrange,y, color='r')
+plt.fill_between(catrange, detaildiff_errL, detaildiff_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,detaildiff_mean, color='r')
 plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
