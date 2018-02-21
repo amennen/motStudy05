@@ -54,8 +54,8 @@ def nanzscore(inputdata):
 nboot = 1000
 bw = 0.1 # set it here for everyone!!
 detailthreshold = 2
-usebetas = 1
-zscoreDV = 1 # if true zscore all DV
+usebetas = 0
+zscoreDV = 0 # if true zscore all DV
 zscoreIV = 0 # if you should zscore all classifier values
 
 
@@ -210,6 +210,8 @@ windowsize = 0.05
 #max = -1*min + windowsize # to go one over
 min=-0.8
 max=0.9
+#min=-1.5
+#max = -1*min + windowsize # to go one over
 if zscoreIV:
     windowsize = 0.1
     min=-1.5
@@ -234,8 +236,8 @@ for s in np.arange(nsub):
 FILTERED_RTsim = RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
 FILTERED_TRmatrix_kde = TRmatrix_kde
-FILTERED_lureRT_CO = np.log(lureRT_correctOnly) #lureAcc + targAcc
-FILTERED_lureRT = np.log(lureRT)
+FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
+FILTERED_lureRT = lureRT
 #FILTERED_lureRT_CO = lureRT_correctOnly
 #FILTERED_lureRT = lureRT
 FILTERED_simHard = simHard

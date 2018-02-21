@@ -97,8 +97,8 @@ for s in np.arange(npairs*2):
 windowsize = 0.05
 #min = -1
 #max = -1*min + windowsize # to go one over
-min=-0.7
-max=0.9
+min=-1.5
+max=1.5
 if zscoreIV:
     windowsize = 0.1
     min=-1.5
@@ -117,17 +117,15 @@ for s in np.arange(len(all_sub)):
 vectorevidence = megadatamatrix.flatten()
 kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(vectorevidence[:,np.newaxis])
 allvals = np.exp(kde.score_samples(cr2))
+
 plt.figure()
 bw2=0.05
-bins = np.arange(-1,1.1,bw2)
+bins = np.arange(min,max+bw2,bw2)
 x = plt.hist(vectorevidence[:,np.newaxis],bins)
-
-
-
 plt.figure()
-plt.plot(catrange,allvals, 'r')
+#plt.plot(catrange,allvals, 'r')
 nx = x[0]/np.sum(x[0])
-plt.plot(bins[0:-1]+(bw2/2),nx*10, 'b.')
+plt.plot(bins[0:-1]+(bw2/2),nx, 'b.')
 plt.show()
 ev_mean = np.mean(vectorevidence)
 ev_std = np.std(vectorevidence)
@@ -144,6 +142,7 @@ s = np.random.randint(0,high=nsub,size=1)
 st = np.random.randint(0,nstim,size=1)
 s_ind = all_sub[s]
 sub = "Subject%01d" % s_ind
+
 bw = 0.1
 thissep = evbystim[sub][:,st]
 x2 = np.reshape(thissep, (len(thissep), 1))
@@ -157,4 +156,5 @@ plt.plot(catrange,allvals, 'r')
 plt.legend(['normalized counts', 'kde'])
 plt.xlabel('Classifier evidence')
 plt.ylabel('Frequency')
+plt.ylim([0,1.5])
 plt.title('KDE vs. HISTOGRAM')
