@@ -220,7 +220,7 @@ for s in np.arange(nsub):
         allvals = np.exp(kde.score_samples(cr2))
         TRmatrix_kde[st, :, s] = allvals
 
-sumforkde = np.sum(TRmatrix_kde[:,20:24,:],axis=1).flatten()
+sumforkde = np.sum(TRmatrix_kde[:,21:25,:],axis=1).flatten()
 stim_ordered = np.argsort(sumforkde) # not sure if it's okay to combine separate kde's like this--otherwise could zscore first
 # goes from low to high most time spent in that range
 low_stim = stim_ordered[0:len(stim_ordered)/2]
@@ -252,16 +252,18 @@ lr_vector = FILTERED_lureRT_CO.flatten()
 
 allstim = np.zeros((len(stim_ordered)))
 allstim[high_stim] = 1
-alldata = np.concatenate((ps_vector[:,np.newaxis],wv_vector[:,np.newaxis],lr_vector[:,np.newaxis],allstim[:,np.newaxis]),axis=1)
+nas = np.logical_or(np.logical_or(np.isnan(wv_vector), np.isnan(ps_vector)),np.isnan(lr_vector))
+alldata = np.concatenate((ps_vector[~nas,np.newaxis],wv_vector[~nas,np.newaxis],lr_vector[~nas,np.newaxis],allstim[~nas,np.newaxis]),axis=1)
 df = pd.DataFrame(alldata,columns=['ps','wv','lr','ord'])
 
 plt.figure()
 #sns.stripplot(data=df,x='ord',y='ps', color='black',alpha=0.5)
 sns.barplot(data=df,x='ord',y='ps',ci=68)
-
+scipy.stats.ttest_ind(ps_vector[~nas])
 plt.figure()
 #sns.stripplot(data=df,x='ord',y='ps', color='black',alpha=0.5)
 sns.barplot(data=df,x='ord',y='wv',ci=68)
+plt.ylim([0.7,1])
 
 plt.figure()
 #sns.stripplot(data=df,x='ord',y='ps', color='black',alpha=0.5)
