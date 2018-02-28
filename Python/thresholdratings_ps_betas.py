@@ -27,7 +27,7 @@ from sklearn import linear_model
 sns.set(font_scale = 1.5)
 custom = {'axes.linewidth':5,'font.family':'sans-serif','font.sans-serif':['STHeiti']}
 sns.set_style('white',custom)
-bw = 0.15
+bw = 0.1
 # this is the one where we're going to take GLM classifier
 pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)

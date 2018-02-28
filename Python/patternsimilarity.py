@@ -154,7 +154,7 @@ for s in np.arange(npairs):
     plt.plot(x2,y2)
 
 plt.title('Pattern Similarity Post vs. Pre MOT')
-ax.set_xticklabels(labels)[]
+ax.set_xticklabels(labels)
 plt.ylabel('Pattern Similarity')
 #plt.ylim(-.1,.25)
 plt.show()

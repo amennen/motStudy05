@@ -143,7 +143,7 @@ for s in np.arange(len(subtouse)):
     for st in np.arange(nstim):
         thissep = allSep[st,:,s]
         x2 = np.reshape(thissep, (len(thissep), 1))
-        kde = KernelDensity(kernel='gaussian').fit(x2)
+        kde = KernelDensity(kernel='gaussian',bandwidth=0.1).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
         for w in np.arange(nwin):
             # this counts the number of time points within each range

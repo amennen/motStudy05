@@ -241,7 +241,7 @@ for s in np.arange(nsub):
 FILTERED_diffhard_z = nanzscore(FILTERED_diffhard) # zscore over subjects
 FILTERED_RTsim_z = nanzscore(FILTERED_RTsim)
 FILTERED_lureRT_CO_z = nanzscore(FILTERED_lureRT_CO)
-FILTERED_lureRT_z = nanzscore(np.log(FILTERED_lureRT))
+FILTERED_lureRT_z = nanzscore(FILTERED_lureRT)
 FILTERED_simHard_z = nanzscore(FILTERED_simHard)
 
 # correlate EACH subjects on their own and get all correlations
@@ -282,6 +282,7 @@ plt.title('PS vs. WV')
 #plt.ylim([-.8,.8])
 nas = np.logical_or(np.isnan(psz_vector), np.isnan(wvz_vector))
 scipy.stats.pearsonr(psz_vector[~nas],wvz_vector[~nas])
+
 
 # want to correlate pattern similarity and lureRT correct only
 plt.figure()

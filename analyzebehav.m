@@ -41,7 +41,7 @@ base_path = [fileparts(which('mot_realtime05.m')) filesep];
 %subjectVec = [29 32];
 %subjectVec = [20,24,11,27,17,16,30,25,31];
 %subjectVec = [38 39] ;
-subjectVec = 40;
+subjectVec = [1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40];
 for s = 1:length(subjectVec)
     subjectNum = subjectVec(s);
     behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
@@ -123,15 +123,22 @@ for s = 1:length(subjectVec)
         trials = table2cell(r.datastruct.trials);
         stimID = cell2mat(trials(:,8));
         resp = cell2mat(trials(:,12));
-
-
+        cond = cell2mat(trials(:,9));
+        
         IDmat = reshape(stimID,4,length(stimID)/4)';
         [~,indSort] = sort(IDmat(:,1));
         IDorder = IDmat(indSort,:);
         RESPmat = reshape(resp,4,length(resp)/4)';
         RESPorder = RESPmat(indSort,:);
+        ratingOrdered = resp(indSort);
+        CONDmat = reshape(cond,4,length(cond)/4)';
+        condOrdered = CONDmat(indSort,:);
+        easy = find(condOrdered(:,1)==2);
+        hard = find(condOrdered(:,1)==1);
         allresp = RESPorder;
-        save(fullfile(behavioral_dir, 'LOCresponses.mat'), 'allresp')
+        resp_hard = RESPorder(hard,:);
+        resp_easy = RESPorder(easy,:);
+        save(fullfile(behavioral_dir, 'LOCresponses.mat'), 'allresp', 'resp_hard', 'resp_easy')
 end
 %% look at descriptive ratings
 subjectVec = [1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40];
