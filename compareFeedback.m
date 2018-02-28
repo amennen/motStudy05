@@ -2,7 +2,7 @@
 
 %close all;
 clear all;
-projectName = 'motStudy02';
+projectName = 'motStudy05';
 allspeeds = [];
 allsep = [];
 nstim = 10;
@@ -54,10 +54,10 @@ for s = 1:nsub
         blockNum = iblock;
         SESSION = 19 + blockNum;
         
-        behavioral_dir = [fileparts(which('mot_realtime01.m')) '/BehavioralData/' num2str(subjectNum) '/'];
+        behavioral_dir = [fileparts(which('mot_realtime05.m')) '/BehavioralData/' num2str(subjectNum) '/'];
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
-        fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime05_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
         names = {fileSpeed.name};
         dates = [fileSpeed.datenum];
         [~,newest] = max(dates);

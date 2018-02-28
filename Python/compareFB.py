@@ -160,6 +160,39 @@ for s in np.arange(nPairs):
         nCor_Pos_YC[s, session] = nCor_Pos_YC[s, session] / pos_error_YC
         nCor_Neg_YC[s, session] = nCor_Neg_YC[s, session] / neg_error_YC
 
+# average over subjects
+pos_rt_sessavg = np.mean(nCor_Pos_RT, axis=1)
+pos_yc_sessavg = np.mean(nCor_Pos_YC, axis=1)
+neg_rt_sessavg = np.mean(nCor_Neg_RT, axis=1)
+neg_yc_sessavg = np.mean(nCor_Neg_YC, axis=1)
+data = np.concatenate((neg_rt_sessavg,neg_yc_sessavg,pos_rt_sessavg,pos_yc_sessavg),axis=0)
+sign = np.concatenate((np.zeros((16*2,1)),np.ones((16*2,1))),axis=0)
+group = np.concatenate((np.zeros((16)),np.ones((16)),np.zeros((16)),np.ones((16))),axis=0)
+data2b = np.concatenate((data[:,np.newaxis],group[:,np.newaxis],sign[:,np.newaxis]),axis=1)
+df = pd.DataFrame(data2b,columns = ['Correct','Pair','Group','Sign'])
+fig, ax = plt.subplots(figsize=(15,10))
+p = sns.swarmplot(data = df,x = "Sign",y="Correct",hue="Group",split=True,palette=(['k', 'k']),size=6)
+p.legend_.remove()
+g = sns.barplot(data = df,x = "Sign",y="Correct",hue="Group",ci=68,palette =flatui,errwidth=6 )
+plt.title('Proportion Correct Changes')
+sns.despine()
+leg = g.axes.get_legend()
+handles,labels = g.axes.get_legend_handles_labels()
+handles = [handles[2], handles[3]]
+new_labels = ['RT', 'YC']
+g.legend(handles,new_labels)
+new_title = 'Group'
+leg.set_title(new_title)
+labels = [item.get_text() for item in g.get_xticklabels()]
+labels[0] = "retrieval < target"
+labels[1] = "retrieval > target"
+g.set_xticklabels(labels)
+plt.ylabel('Fraction correct change')
+plt.ylim(.45,1.05)
+plt.xlabel('Type of error')
+ax.set_yticks([0.5,0.75,1])
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(30)
 
 # MAKE HISTOGRAM OF TOTAL EVIDENCE!!
 
