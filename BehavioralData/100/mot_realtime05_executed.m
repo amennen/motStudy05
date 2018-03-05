@@ -1,3 +1,4 @@
+
 % syntax: mot_realtime05(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
 %
 % This is an implementation of a MOT memory experiment designed to
@@ -351,12 +352,6 @@ switch SESSION
     %% 0. SETUP
     case SETUP
         
-        %check to see if this was a previous yoked subject!!!!
-        previousYC = ~isempty(dir(fullfile(ppt_dir, ['EK5_DOT' '*.mat'])));
-        %if this is true, then they've already done this--if they've
-        %already been a yoked control subject and have done the training
-        % then don't set anything up--but if now using as own data?
-        
         % goal: create all stimuli for subject
         % ordered training pics and training word pairs
         % ordered localizer pics and word pairs
@@ -475,11 +470,8 @@ switch SESSION
         system(['cp ' base_path 'mot_realtime05.m ' ppt_dir 'mot_realtime05_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','stimmap', 'trainWords', 'trainPics');
         
-        if previousYC
-            mot_realtime05(SUBJECT,FAMILIARIZE2,SET_SPEED,scanNum,scanNow);
-        else
-            mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
-        end
+        
+        mot_realtime05(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         
         
         %% 1. FAMILIARIZATION
@@ -975,7 +967,7 @@ switch SESSION
             condmap = makeMap({'PRACTICE'});
             stim.condString = {CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}};
             displayText(mainWindow,['MENTAL PICTURES TASK - PRACTICE\n\nThis is a memory test with some differences ' ...
-                'from earlier: you will get only one try per item and there is no feedback. Instead, you will be visualizing the scenes.' ...
+                'from earlier: you will get only one try per item and there is no feedback. Instead, you will be alizing the scenes.' ...
                 'Please carefully review today''s instructions, since many things have ' ...
                 'changed and it is important you follow them exactly.\n\n' ...
                 '-- Please press ' PROGRESS_TEXT ' to briefly review the instructions --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -1766,7 +1758,7 @@ switch SESSION
         stim.fMRI_refresher = ['MULTI-TASKING-- fMRI PRACTICE\n\nDot tracking today will be similar to last time, with two ' ...
             'changes. Firstly, dots in half of trials will be moving slow, while dots in the other half will be moving faster.\n\n' ...
             'Secondly, some of the trials will involve familiar words that are not scene names. On these trials, ' ...
-            'because the word is not the name of a scene, there is nothing for you to visualize.\n\nWe will now review the ' ...
+            'because the word is not the name of a scene, there is nothing for you to visualize, so press to indicate low visualization.\n\nWe will now review the ' ...
             'instructions for the task (with which you are already familiar).' instruct_continue];
         stim.fMRI_instruct = ['MULTI-TASKING-- fMRI, Stage 1 \n\nDot tracking today will involve two changes from yesterday. ' ...
             'Firstly, dots in half of trials will be moving faster, while dots in the other half will be moving slower. Additionally, the dots that are not the target '...
@@ -1820,7 +1812,7 @@ switch SESSION
                 lastRun = load(matlabOpenFile);
                 
             catch
-                warning(['Could not find a prior run file. Using speed = 15.']);
+                fprintf(['Could not find a prior run file. Using speed = 15.']);
                 pause(1);
                 lastRun.stim.tGuess = 15;
             end
@@ -2242,7 +2234,7 @@ switch SESSION
                 
               
    
-                waitFrames = 5; % looking at half second rate--start to begin % ACM changed this from 15 to 2 after subject 2
+                waitFrames = 15; % looking at half second rate--start to begin % ACM changed this from 15 to 2 after subject 2
                 % but we don't want this to look for the same file more
                 % than once or go through the same loop
                 if realtime
@@ -2732,7 +2724,7 @@ switch SESSION
             runStart = GetSecs;
         end
        % runStart = timing.trig.wait;
-        config.wait = 180; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
+        config.wait = 150; % we want this to be up for 8 seconds to collect sample TR's - this will run for 5 minutes so just stop whenever it's done!
         config.TR = 2;
         timing.plannedOnsets.offEx = runStart + config.wait;
         DrawFormattedText(mainWindow,'Done!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);

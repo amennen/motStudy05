@@ -125,6 +125,8 @@ for s in np.arange(npairs*2):
 nruns=3
 nstim = 10
 all_correlations = np.zeros((nstim,nruns,npairs))
+# make vector to normalize correlations
+all_other_correlations = np.zeros((nstim,nruns,npairs))
 for p in np.arange(npairs):
     s1 = RT_sub[p]
     s2 = YC_sub[p]
@@ -134,9 +136,24 @@ for p in np.arange(npairs):
         all_correlations[st,0,p] = scipy.stats.pearsonr(timecourse1[0:15],timecourse2[0:15])[0]
         all_correlations[st,1,p] = scipy.stats.pearsonr(timecourse1[15:30],timecourse2[15:30])[0]
         all_correlations[st,2,p] = scipy.stats.pearsonr(timecourse1[30:45],timecourse2[30:45])[0]
-
+        # do for each stimuli
+        othermatches = np.delete(np.arange(npairs), p)
+        othercor = np.zeros((nruns,npairs-1))
+        for j in np.arange(npairs-1):
+            # wiat shouldn't be done by stimulus because not other see same stimulus there
+            # now match the yoked to another RT person
+            timecourse1 = allSep[st, :, RT_ind[othermatches[j]]]
+            othercor[0,j] = scipy.stats.pearsonr(timecourse1[0:15],timecourse2[0:15])[0]
+            othercor[1,j] = scipy.stats.pearsonr(timecourse1[15:30],timecourse2[15:30])[0]
+            othercor[2,j] = scipy.stats.pearsonr(timecourse1[30:45],timecourse2[30:45])[0]
+        all_other_correlations[st,0,p] = np.mean(othercor[0,:])
+        all_other_correlations[st, 1, p] = np.mean(othercor[1 :])
+        all_other_correlations[st, 2, p] = np.mean(othercor[2, :])
 # now each pair gets average over stimulus per time block
-pair_avg = np.mean(all_correlations,axis=0)
+# average all_other_correlations becuase stimuli don't matter
+normalized_correlations = all_correlations/np.mean(all_other_correlations,axis=0)
+pair_avg = np.mean(normalized_correlations,axis=0)
+pair_total_score = np.mean(pair_avg,axis=0)
 # plot data
 scores = pair_avg.flatten()
 runs = np.concatenate((np.zeros((npairs)),np.ones((npairs)),2*np.ones((npairs))),axis=0)
@@ -147,6 +164,7 @@ fig, ax = plt.subplots(figsize=(7,5))
 sns.pointplot(data=df,x='runs', y='scores', hue='pairs')
 
 # see stimulus average
+# maybe just look at are correlations higher/lower than baseline?
 stim_avg = np.mean(all_correlations,axis=1)
 RTsim_RT = RTsim[:,RT_ind]
 RTsim_YC = RTsim[:,YC_ind]
@@ -192,3 +210,5 @@ scipy.stats.pearsonr(stim_avg.flatten()[~nas],diff_combined.flatten()[~nas])
 plt.figure()
 plt.plot(RTsim,preHard, '.')
 plt.ylim([0, 6])
+
+plt.show()

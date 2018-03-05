@@ -112,7 +112,7 @@ for s in np.arange(nPairs):
         pos_error_YC = 0
         neg_error_YC = 0
 
-        for row in np.arange(nTrials):
+        for row in np.arange(nTrials): # iterate over all stimuli
             for col in np.arange(nTRs - 2):
                 # RT_thisdiff = RT_diff[row,col+1]
                 RT_thisdiff = thisSession_RT[row, col + 2] - thisSession_RT[row, col]
@@ -166,11 +166,13 @@ pos_yc_sessavg = np.mean(nCor_Pos_YC, axis=1)
 neg_rt_sessavg = np.mean(nCor_Neg_RT, axis=1)
 neg_yc_sessavg = np.mean(nCor_Neg_YC, axis=1)
 data = np.concatenate((neg_rt_sessavg,neg_yc_sessavg,pos_rt_sessavg,pos_yc_sessavg),axis=0)
-sign = np.concatenate((np.zeros((16*2,1)),np.ones((16*2,1))),axis=0)
+sign = np.concatenate((np.zeros((16*2)),np.ones((16*2))),axis=0)
 group = np.concatenate((np.zeros((16)),np.ones((16)),np.zeros((16)),np.ones((16))),axis=0)
 data2b = np.concatenate((data[:,np.newaxis],group[:,np.newaxis],sign[:,np.newaxis]),axis=1)
-df = pd.DataFrame(data2b,columns = ['Correct','Pair','Group','Sign'])
-fig, ax = plt.subplots(figsize=(15,10))
+df = pd.DataFrame(data2b,columns = ['Correct','Group','Sign'])
+flatui = ["#DB5461", "#593C8F"]
+
+fig, ax = plt.subplots(figsize=(11,9))
 p = sns.swarmplot(data = df,x = "Sign",y="Correct",hue="Group",split=True,palette=(['k', 'k']),size=6)
 p.legend_.remove()
 g = sns.barplot(data = df,x = "Sign",y="Correct",hue="Group",ci=68,palette =flatui,errwidth=6 )
@@ -192,11 +194,11 @@ plt.ylim(.45,1.05)
 plt.xlabel('Type of error')
 ax.set_yticks([0.5,0.75,1])
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
-    item.set_fontsize(30)
-
+    item.set_fontsize(27)
+fn = savepath + 'correctchanges_avgsess.pdf'
+plt.savefig(fn)
 # MAKE HISTOGRAM OF TOTAL EVIDENCE!!
 
-flatui = ["#DB5461", "#593C8F"]
 sns.palplot(sns.color_palette(flatui))
 
 

@@ -138,7 +138,7 @@ else
     KEYDEVICES = DEVICE;
 end
 
-TIMEOUT = 0.050; %always wait 50 ms for trigger
+TIMEOUT = 0.050; %always wait 50 ms for 
 % find base directory
 SUBJ_NAME = num2str(SUBJECT);
 documents_path = WORKING_DIR;
