@@ -140,12 +140,12 @@ prev = 1; %5if today's date (0) or previous date (1)
 makeFile = 1;
 featureSelect = 1;
 %%%%%%%CHECK THIS
-SUBJECT = 40; %experimental subject number
-runNum = 1; %what number subject they are today
+SUBJECT = 39; %experimental subject number
+runNum = 2; %what number subject they are today
 scanNum1 = 10;
 scanNum2 = 14;
 if prev
-   date = '10-26-17';
+   date = '10-18-17';
 end
 %%%%%%%s
 RecallNiftiFileProcess(SUBJECT,runNum,scanNum1,RECALL1,date,featureSelect,makeFile,1);

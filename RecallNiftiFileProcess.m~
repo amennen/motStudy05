@@ -203,16 +203,12 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
             unix(sprintf('%sdcm2niix %s -f %s -o %s -s y %s%s',dcm2path,dicom_dir,niftiname,runHeader,dicom_dir,patterns.newFile{iTrial}))
             t1 = GetSecs;
             unix(sprintf('%smcflirt -in %s.nii -reffile %sexfunc_re.nii',fslpath,niftiname,process_dir))
-            t2 = GetSecs;
+            t2 = GetSecs;s
             moco = t2-t1;
         end
         % now check if we should read the gz or the .niis
-        basename = sprintf('nifti%3.3i_mcf', thisTR);
-        if exist([basename '.nii.gz'])
-            niftiname = sprintf('nifti%3.3i_mcf.nii.gz', thisTR);
-        else
-             niftiname = sprintf('nifti%3.3i_mcf.nii', thisTR);
-        end
+        basename = 
+        niftiname = sprintf('nifti%3.3i_mcf.nii.gz', thisTR);
         niftidata = readnifti(niftiname);
         newVol = niftidata(roi);
         patterns.raw(iTrial,:) = newVol;  % keep patterns for later training
