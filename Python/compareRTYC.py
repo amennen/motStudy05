@@ -152,7 +152,8 @@ for p in np.arange(npairs):
 # now each pair gets average over stimulus per time block
 # average all_other_correlations becuase stimuli don't matter
 normalized_correlations = all_correlations/np.mean(all_other_correlations,axis=0)
-pair_avg = np.mean(normalized_correlations,axis=0)
+#pair_avg = np.mean(normalized_correlations,axis=0)
+pair_avg = np.mean(all_correlations,axis=0)
 pair_total_score = np.mean(pair_avg,axis=0)
 # plot data
 scores = pair_avg.flatten()
@@ -162,6 +163,7 @@ data = np.concatenate((scores[:,np.newaxis],runs[:,np.newaxis],pairs[:,np.newaxi
 df = pd.DataFrame(data=data, columns=['scores', 'runs', 'pairs'])
 fig, ax = plt.subplots(figsize=(7,5))
 sns.pointplot(data=df,x='runs', y='scores', hue='pairs')
+
 
 # see stimulus average
 # maybe just look at are correlations higher/lower than baseline?
@@ -211,4 +213,71 @@ plt.figure()
 plt.plot(RTsim,preHard, '.')
 plt.ylim([0, 6])
 
-plt.show()
+
+# load in into matricies the different actiavtions?
+# maybe first just plot time course
+easyAct = np.zeros((nstim,4,2,nsub))
+hardAct = np.zeros((nstim,4,2,nsub))
+inteldir = '/Volumes/norman/amennen/motStudy05_transferred/datafromintelrt/data/'
+for s in np.arange(npairs*2):
+    subjPath = inteldir + str(subtouse[s]) + '/'
+    subjName = 'subj' + str(s)
+    sub = "Subject%01d" % subtouse[s]
+    fn = glob.glob(subjPath + 'recallactivations'+ '.mat')
+    d = scipy.io.loadmat(fn[0])
+    easyAct[:,:,:,s] = d['easy_activation']
+    hardAct[:,:,:,s] = d['hard_activation']
+
+avg_easyAct = np.mean(easyAct,axis=0)
+avg_hardAct = np.mean(hardAct,axis=0)
+
+# now make labels to plot
+easy1 = avg_easyAct[:,0,:].flatten() # goes through each person's first
+sublabels = np.tile(np.arange(nsub),4)
+TR = np.arange(4)
+easy2 = avg_easyAct[:,1,:].flatten()
+hard1 = avg_hardAct[:,0,:].flatten()
+hard2 = avg_hardAct[:,1,:].flatten()
+data = np.concatenate((easy1[:,np.newaxis],easy2[:,np.newaxis],hard1[:,np.newaxis],hard2[:,np.newaxis]),axis=0)
+pair = np.concatenate((sublabels[:,np.newaxis],sublabels[:,np.newaxis],sublabels[:,np.newaxis],sublabels[:,np.newaxis]),axis=0)
+allTR = np.tile(TR,(nsub*4))
+easyhard = np.concatenate((np.ones((nsub*4,1)),np.ones((nsub*4,1)),np.zeros((nsub*4,1)),np.zeros((nsub*4,1))),axis=0)
+run1run2 = np.concatenate((np.zeros((nsub*4,1)),np.ones((nsub*4,1)),np.zeros((nsub*4,1)),np.ones((nsub*4,1))),axis=0)
+subarray_t = np.tile(subarray,4)
+rtyc = np.concatenate((subarray_t[:,np.newaxis],subarray_t[:,np.newaxis],subarray_t[:,np.newaxis],subarray_t[:,np.newaxis]),axis=0)
+largedata = np.concatenate((data,pair,allTR[:,np.newaxis],easyhard,run1run2,rtyc),axis=1)
+df = pd.DataFrame(data=largedata,columns=['data','pair','tr', 'EH', 'R1R2', 'RTYC'])
+
+
+plt.showplt.figure()
+sns.pointplot(data=df,x='tr', y='data', hue="R1R2")
+sns.factorplot(data=df,x='tr',y='data', hue='R1R2', col='RTYC',row='EH')
+
+# now can correlate for each pair--average MOT evidence and average Recall evidence afterwards?
+# or it can be just difference before/afterwards like with recall ratings
+
+# can also correlate recall ratings and average recall evidence
+avgbystim_easyAct = np.mean(easyAct,axis=1)
+diff_easyAct = np.diff(avgbystim_easyAct,axis=1).squeeze() # it's two minus one
+avgbystim_hardAct = np.mean(hardAct,axis=1)
+diff_hardAct = np.diff(avgbystim_hardAct,axis=1).squeeze() # it's two minus one
+
+diffhardAct_RT = diff_hardAct[:,RT_ind]
+diffhardAct_YC = diff_hardAct[:,YC_ind]
+recallactdiff = np.abs(diffhardAct_RT - diffhardAct_YC)
+
+plt.figure()
+plt.plot(ratingdiff,recallactdiff, '.')
+
+plt.figure()
+plt.plot(stim_avg,recallactdiff, '.')
+plt.ylim([-1 ,6])
+scipy.stats.pearsonr(stim_avg.flatten(),recallactdiff.flatten())
+
+# in general is there a correlation between stimuli activation and ratings?
+allhard_act = diff_hardAct.flatten()
+allhard_ratings = diffHard.flatten()
+
+plt.figure()
+plt.plot(allhard_act,allhard_ratings, '.')
+scipy.stats.pearsonr(allhard_act,allhard_ratings)

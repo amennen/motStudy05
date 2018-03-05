@@ -416,3 +416,5 @@ plt.show()
 # now maybe plot with correlation
 # could also z score individually for each subject first
 # need type of data anlysis so that
+
+# now get the data about recall with the classifier!
