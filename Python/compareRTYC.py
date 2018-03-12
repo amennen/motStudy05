@@ -1,3 +1,8 @@
+# what this code does:
+
+# - plots factor plot of recall activation by group (RT/YC,H/E)
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
@@ -50,6 +55,7 @@ subarray = np.zeros(nSub)
 subarray[YC_ind] = 1
 allpallet = ["#DB5461", "#FFD9CE", "593C8F", "#8EF9F3", "#171738"]
 
+flatui = ["#DB5461", "#593C8F"]
 
 nsub = nSub
 nstim = 10
@@ -228,7 +234,7 @@ plt.plot(RTsim,preHard, '.')
 plt.ylim([0, 6])
 
 
-# load in into matricies the different actiavtions?
+# load in into matrices the different actiavtions?
 # maybe first just plot time course
 easyAct = np.zeros((nstim,4,2,nsub))
 hardAct = np.zeros((nstim,4,2,nsub))
@@ -258,7 +264,8 @@ hard1 = avg_hardAct[:,0,:].flatten()
 hard2 = avg_hardAct[:,1,:].flatten()
 data = np.concatenate((easy1[:,np.newaxis],easy2[:,np.newaxis],hard1[:,np.newaxis],hard2[:,np.newaxis]),axis=0)
 pair = np.concatenate((sublabels[:,np.newaxis],sublabels[:,np.newaxis],sublabels[:,np.newaxis],sublabels[:,np.newaxis]),axis=0)
-allTR = np.tile(TR,(nsub*4))
+#allTR = np.tile(TR,(nsub*4))
+allTR = np.concatenate((np.repeat(TR,nsub),np.repeat(TR,nsub),np.repeat(TR,nsub),np.repeat(TR,nsub)),axis=0)
 easyhard = np.concatenate((np.ones((nsub*4,1)),np.ones((nsub*4,1)),np.zeros((nsub*4,1)),np.zeros((nsub*4,1))),axis=0)
 run1run2 = np.concatenate((np.zeros((nsub*4,1)),np.ones((nsub*4,1)),np.zeros((nsub*4,1)),np.ones((nsub*4,1))),axis=0)
 subarray_t = np.tile(subarray,4)
@@ -273,7 +280,9 @@ data = np.concatenate((easy[:,np.newaxis],hard[:,np.newaxis]),axis=0) # cycles t
 pair = np.concatenate((sublabels[:,np.newaxis],sublabels[:,np.newaxis]),axis=0)
 easyhard = np.concatenate((np.ones((nsub*4,1)),np.zeros((nsub*4,1))),axis=0)
 rtyc = np.concatenate((subarray_t[:,np.newaxis],subarray_t[:,np.newaxis]),axis=0)
-allTR = np.tile(TR,(nsub*2))
+# TR isn't right!! it goes all 0's all 1's all 2's all 3's
+#allTR = np.tile(TR,(nsub*2))
+allTR = np.concatenate((np.repeat(TR,nsub),np.repeat(TR,nsub)),axis=0)
 largedata2 = np.concatenate((data,pair,allTR[:,np.newaxis],easyhard,rtyc),axis=1)
 df = pd.DataFrame(data=largedata2,columns=['data','pair','tr', 'EH', 'RTYC'])
 sns.factorplot(data=df,x='tr',y='data', col='RTYC',row='EH', ci=68)

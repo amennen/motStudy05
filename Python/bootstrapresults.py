@@ -1,15 +1,13 @@
 # purpose: bootstrap/Ghootstrap w/ replacement subject population to get estimate of uncertainty of correlations
+
+# let's just make this script ONLY bootstrapping results
+
+# calculates bootstrap correlations of mot5 based on input parameters (zscore/betas)
 import numpy as np
 import matplotlib.pyplot as plt
-import sklearn
-from sklearn.linear_model import LogisticRegression
-from sklearn import svm
-from sklearn.metrics import r2_score
 import pickle
-import pdb
 import scipy
 import scipy.io
-from sklearn import metrics
 import os,glob
 from matplotlib.pyplot import cm
 import matplotlib
@@ -25,19 +23,38 @@ import pickle
 from sklearn.neighbors import KernelDensity
 from sklearn import linear_model
 from getcorr_allsub import getcorr_vector
+from getcorr_individsub import getcorr_matrix
 # reset random seed just in case
 import random
 from datetime import datetime
 random.seed(datetime.now())
+flatui = ["#DB5461", "#593C8F"]
+
+# using the original patterns the effect is worse than using the betas
+nboot = 1 # put nboot as == 1 to say only run once
+bw = 0.1 # set it here for everyone!!
+detailthreshold = 0
+usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
+usebetas_mot = 0# whether or not to use betas for classifier evidence for MOT
+zscoreDV = 0 # if true zscore all DV
+zscoreIV = 0 # if you should zscore all classifier values
 
 def mean_confidence_interval(data, confidence=0.95):
-    d_sorted = np.sort(data)
-    n = len(data)
-    n_in_middle = confidence*n
-    first_index = (n-n_in_middle)/2 - 1
-    m = np.mean(data)
-    low_val = d_sorted[np.int(first_index)]
-    high_val = d_sorted[np.int(first_index+n_in_middle)]
+    if confidence == 0.95:
+        d_sorted = np.sort(data)
+        d_nonnan = d_sorted[np.argwhere(~np.isnan(d_sorted))]
+        n = len(d_nonnan)
+        n_in_middle = np.int(np.round(confidence*n))
+        first_index = (n-n_in_middle)/2 - 1
+        m = np.nanmean(data)
+        low_val = d_sorted[np.int(first_index)]
+        high_val = d_sorted[np.int(first_index+n_in_middle)]
+    elif confidence == 0.68:
+        # use scipy.stats.sem
+        m = np.nanmean(data)
+        d_sem = scipy.stats.sem(data,nan_policy='omit')
+        low_val = m - d_sem
+        high_val = m + d_sem
     return m, low_val, high_val
 
 def nanzscore(inputdata):
@@ -49,17 +66,7 @@ def nanzscore(inputdata):
             zdata[:,s] = (inputdata[:,s] - np.nanmean(inputdata[:,s]))/np.nanstd(inputdata[:,s])
     return zdata
 
-
-# using the original patterns the effect is worse than using the betas
-nboot = 1000
-bw = 0.1 # set it here for everyone!!
-detailthreshold = 2
-usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
-usebetas_mot = 0 # whether or not to use betas for classifier evidence for MOT
-zscoreDV = 0 # if true zscore all DV
-zscoreIV = 0 # if you should zscore all classifier values
-
-
+#%%
 # LOAD ALL DATA
 pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)
@@ -101,6 +108,14 @@ simHard = simHard.T # this is just the version of it regualr cosines
 all_sub = np.array([1,3,4,5,6,8,10,11,12,13,14,16,17,19,20,21,23,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40])
 nsub= np.int(len(all_sub))
 npairs = np.int(nsub/2)
+nSub= np.int(len(all_sub))
+npairs = np.int(nSub/2)
+RT_sub = np.array([1, 3, 4,5,6,8,10,12,13,14,19,21,23,26,29,32])
+YC_sub = np.array([20,40,36,34,11,27,17,16,35,30,39,25,37,31,38,33])
+RT_ind = np.searchsorted(all_sub,RT_sub)
+YC_ind = np.searchsorted(all_sub,YC_sub)
+subarray = np.zeros(nSub)
+subarray[YC_ind] = 1
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
 postHard = np.zeros((10,npairs*2))
@@ -129,95 +144,40 @@ for s in np.arange(npairs*2):
     goodRTstim[sub] = hardR[subjName][0,:] > detailthreshold
 nstim = 10
 data_dir = '/Volumes/norman/amennen/PythonMot5/RecallPat/'
-RTsim = np.zeros((nstim, nsub))
-OMITsim = np.zeros((nstim, nsub))
-OMITsim_diff = np.zeros((nstim, nsub))
-RTsim_diff = np.zeros((nstim, nsub))
-avgRTsim = np.zeros(nsub)
-avgOMITsim = np.zeros(nsub)
-avgRTsim_diff = np.zeros(nsub)
-avgOMITsim_diff = np.zeros(nsub)
-if usebetas_ps:
-    for s in np.arange(nsub):
-        subj = all_sub[s]
-        sub = "Subject%01d" % subj
-        OMIT = betasbystim_OM[sub]
-        RT = betasbystim_RT[sub]
-        R1_RT = np.mean(RT[0:4, :, :], axis=0)
-        R1_OM = np.mean(OMIT[0:4, :, :], axis=0)
-        R2_RT = np.mean(RT[4:8, :, :], axis=0)
-        R2_OM = np.mean(OMIT[4:8, :, :], axis=0)
-        nstim = RT.shape[2]
-        nvox = RT.shape[1]
+BOLD_RTsim = np.zeros((nstim, nsub))
+BOLD_avgRTsim = np.zeros(nsub)
+BETA_RTsim = np.zeros((nstim, nsub))
+BETA_avgRTsim = np.zeros(nsub)
+#if usebetas_ps:
+for s in np.arange(nsub):
+    subj = all_sub[s]
+    sub = "Subject%01d" % subj
+    RT = betasbystim_RT[sub]
+    R1_RT = np.mean(RT[0:4, :, :], axis=0)
+    R2_RT = np.mean(RT[4:8, :, :], axis=0)
+    nstim = RT.shape[2]
+    nvox = RT.shape[1]
+    for stim in np.arange(nstim):
+        r1 = R1_RT[:, stim]
+        r2 = R2_RT[:, stim]
+        BETA_RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
 
-        for stim in np.arange(nstim):
-            r1 = R1_RT[:, stim]
-            r2 = R2_RT[:, stim]
-            RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
-            r1 = R1_OM[:, stim]
-            r2 = R2_OM[:, stim]
-            OMITsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
+#else:
+for s in np.arange(nsub):
+    subj = all_sub[s]
+    # 1/31 after sfn: adding z to zscore differently before taking out timepoints
+    filename = 'recallPATz%i.mat' % subj
+    filepath = os.path.join(data_dir, filename)
+    #print(filepath)
+    d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
+    RT = d['RTPAT']
+    nstim = RT.shape[0]
+    nvox = RT.shape[1]
+    for stim in np.arange(nstim):
+        r1 = RT[stim, :, 0]
+        r2 = RT[stim, :, 1]
+        BOLD_RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
 
-        # now look at how different they are to others
-        for stim in np.arange(nstim):
-            r1 = R1_RT[:, stim]
-            cor_dif = np.zeros(nstim - 1)
-            otherstim = np.delete(np.arange(nstim), stim)
-            for j in np.arange(nstim - 1):
-                other = otherstim[j]
-                r2 = R2_RT[:, other]
-                cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
-            RTsim_diff[stim, s] = np.mean(cor_dif)
-
-        for stim in np.arange(nstim):
-            r1 = R1_OM[:, stim]
-            cor_dif = np.zeros(nstim - 1)
-            otherstim = np.delete(np.arange(nstim), stim)
-            for j in np.arange(nstim - 1):
-                other = otherstim[j]
-                r2 = R2_OM[:, other]
-                cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
-            OMITsim_diff[stim, s] = np.mean(cor_dif)
-else:
-    for s in np.arange(nsub):
-        subj = all_sub[s]
-        # 1/31 after sfn: adding z to zscore differently before taking out timepoints
-        filename = 'recallPATz%i.mat' % subj
-        filepath = os.path.join(data_dir, filename)
-        print(filepath)
-        d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
-        OMIT = d['OMITPAT']
-        RT = d['RTPAT']
-        nstim = RT.shape[0]
-        nvox = RT.shape[1]
-
-        for stim in np.arange(nstim):
-            r1 = RT[stim, :, 0]
-            r2 = RT[stim, :, 1]
-            RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
-            r1 = OMIT[stim, :, 0]
-            r2 = OMIT[stim, :, 1]
-            OMITsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
-        # now look at how different they are to others
-        for stim in np.arange(nstim):
-            r1 = RT[stim, :, 0]
-            cor_dif = np.zeros(nstim - 1)
-            otherstim = np.delete(np.arange(nstim), stim)
-            for j in np.arange(nstim - 1):
-                other = otherstim[j]
-                r2 = RT[other, :, 1]
-                cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
-            RTsim_diff[stim, s] = np.mean(cor_dif)
-
-        for stim in np.arange(nstim):
-            r1 = OMIT[stim, :, 0]
-            cor_dif = np.zeros(nstim - 1)
-            otherstim = np.delete(np.arange(nstim), stim)
-            for j in np.arange(nstim - 1):
-                other = otherstim[j]
-                r2 = OMIT[other, :, 1]
-                cor_dif[j] = np.corrcoef(r1, r2)[1, 0]
-            OMITsim_diff[stim, s] = np.mean(cor_dif)
 # specify analyses we'll do and number of bootstrap iterations
 
 # now load activation score differences: recall retrieval
@@ -276,15 +236,14 @@ for s in np.arange(nsub):
         maxbins[st,s] = cr2[np.argmax(allvals)]
         TRmatrix_kde[st, :, s] = allvals
 
-FILTERED_RTsim = RTsim
+FILTERED_BOLD_RTsim = BOLD_RTsim
+FILTERED_BETA_RTsim = BETA_RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
 FILTERED_TRmatrix_kde = TRmatrix_kde
 FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
 FILTERED_lureRT = lureRT
 FILTERED_targRT = targRT
 FILTERED_recallact = avg_hardAct_diff
-#FILTERED_lureRT_CO = lureRT_correctOnly
-#FILTERED_lureRT = lureRT
 FILTERED_simHard = simHard
 
 for s in np.arange(nsub):
@@ -292,7 +251,8 @@ for s in np.arange(nsub):
     sub = "Subject%01d" % s_ind
     stimkeep = goodRTstim[sub]
     FILTERED_TRmatrix_kde[~stimkeep,:,s] = np.nan
-    FILTERED_RTsim[~stimkeep,s] = np.nan
+    FILTERED_BOLD_RTsim[~stimkeep,s] = np.nan
+    FILTERED_BETA_RTsim[~stimkeep,s] = np.nan
     FILTERED_diffhard[~stimkeep,s] = np.nan
     FILTERED_lureRT_CO[~stimkeep, s] = np.nan
     FILTERED_lureRT[~stimkeep, s] = np.nan
@@ -303,43 +263,83 @@ for s in np.arange(nsub):
 if zscoreDV:
     FILTERED_diffhard = nanzscore(FILTERED_diffhard) # zscore over subjects
     #FILTERED_TRmatrix_kde[~stimkeep,:,s] = np.nan
-    FILTERED_RTsim = nanzscore(FILTERED_RTsim)
+    FILTERED_BOLD_RTsim = nanzscore(FILTERED_BOLD_RTsim)
+    FILTERED_BETA_RTsim = nanzscore(FILTERED_BETA_RTsim)
     FILTERED_lureRT_CO = nanzscore(FILTERED_lureRT_CO)
     FILTERED_lureRT = nanzscore(FILTERED_lureRT)
     FILTERED_simHard = nanzscore(FILTERED_simHard)
     FILTERED_recallact = nanzscore(FILTERED_recallact)
-
+#%% check that BOLD and BETA are related
+allcorr = np.zeros((nsub))
+allp = np.zeros((nsub))
+for s in np.arange(nsub):
+    #plt.figure()    
+    x = FILTERED_BETA_RTsim[:,s]
+    y = FILTERED_BOLD_RTsim[:,s]
+    allcorr[s],allp[s] = scipy.stats.pearsonr(x,y)
+    #plt.plot(x,y, '.')
+plt.hist(allcorr)
+# find subjects where relationship is less than .5
+badsubj = (allcorr<.5)
+#%% now run bootstrap
 # analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity
-correlations_ps = np.zeros((nboot,nwin)) # each result will be for a specific window the mean for that bootstrap run
-correlations_lureRT = np.zeros((nboot,nwin))
-correlations_lureRTCO = np.zeros((nboot,nwin))
-correlations_detaildiff = np.zeros((nboot,nwin))
-correlations_WVsoftmax = np.zeros((nboot,nwin))
-correlations_recallact = np.zeros((nboot,nwin))
-
-for b in np.arange(nboot):
-    bootsubjects = np.random.randint(0,high=nsub,size=nsub)
-    correlations_ps[b, :] = getcorr_vector(FILTERED_RTsim[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
-    #correlations_ps[b,:] = np.nanmean(allr,axis=1)
-    correlations_lureRT[b, :] = getcorr_vector(FILTERED_lureRT[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
-    #correlations_lureRT[b,:] = np.nanmean(allr,axis=1)
-    correlations_lureRTCO[b, :] = getcorr_vector(FILTERED_lureRT_CO[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
-    #correlations_lureRTCO[b,:] = np.nanmean(allr,axis=1)
-    correlations_detaildiff[b, :] = getcorr_vector(FILTERED_diffhard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
-    #correlations_detaildiff[b,:] = np.nanmean(allr,axis=1)
-    correlations_WVsoftmax[b, :] = getcorr_vector(FILTERED_simHard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
-    correlations_recallact[b, :] = getcorr_vector(FILTERED_recallact[:, bootsubjects],FILTERED_TRmatrix_kde[:, :, bootsubjects])
-    #correlations_WVsoftmax[b,:] = np.nanmean(allr,axis=1)
-
-# now analyze results of bootstrap!!
-# find the 95% confidence interval and plot that
-print("done!")
-
-# get confidence intervals
-ps_mean = np.zeros((nwin))
-ps_errL = np.zeros((nwin))
-ps_errH = np.zeros((nwin))
-
+if nboot > 1:
+    correlations_BOLDps = np.zeros((nboot,nwin)) # each result will be for a specific window the mean for that bootstrap run
+    correlations_BETAps = np.zeros((nboot,nwin)) 
+    correlations_lureRT = np.zeros((nboot,nwin))
+    correlations_lureRTCO = np.zeros((nboot,nwin))
+    correlations_detaildiff = np.zeros((nboot,nwin))
+    correlations_WVsoftmax = np.zeros((nboot,nwin))
+    correlations_recallact = np.zeros((nboot,nwin))
+    
+    for b in np.arange(nboot):
+    
+        bootsubjects = np.random.randint(0,high=nsub,size=nsub)
+        correlations_BOLDps[b, :] = getcorr_vector(FILTERED_BOLD_RTsim[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_BETAps[b, :] = getcorr_vector(FILTERED_BETA_RTsim[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_lureRT[b, :] = getcorr_vector(FILTERED_lureRT[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_lureRTCO[b, :] = getcorr_vector(FILTERED_lureRT_CO[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_detaildiff[b, :] = getcorr_vector(FILTERED_diffhard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_WVsoftmax[b, :] = getcorr_vector(FILTERED_simHard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+        correlations_recallact[b, :] = getcorr_vector(FILTERED_recallact[:, bootsubjects],FILTERED_TRmatrix_kde[:, :, bootsubjects])
+else:
+    correlations_BOLDps = np.zeros((nsub,nwin)) # each result will be for a specific window the mean for that bootstrap run
+    correlations_BETAps = np.zeros((nsub,nwin)) # each result will be for a specific window the mean for that bootstrap run
+    correlations_lureRT = np.zeros((nsub,nwin))
+    correlations_lureRTCO = np.zeros((nsub,nwin))
+    correlations_detaildiff = np.zeros((nsub,nwin))
+    correlations_WVsoftmax = np.zeros((nsub,nwin))
+    correlations_recallact = np.zeros((nsub,nwin))
+    correlations_BOLDps = getcorr_matrix(FILTERED_BOLD_RTsim,FILTERED_TRmatrix_kde)
+    correlations_BETAps = getcorr_matrix(FILTERED_BETA_RTsim,FILTERED_TRmatrix_kde)
+    correlations_lureRT = getcorr_matrix(FILTERED_lureRT,FILTERED_TRmatrix_kde)
+    correlations_lureRTCO = getcorr_matrix(FILTERED_lureRT_CO,FILTERED_TRmatrix_kde)
+    correlations_detaildiff = getcorr_matrix(FILTERED_diffhard,FILTERED_TRmatrix_kde)
+    correlations_WVsoftmax= getcorr_matrix(FILTERED_simHard,FILTERED_TRmatrix_kde)
+    correlations_recallact = getcorr_matrix(FILTERED_recallact,FILTERED_TRmatrix_kde)  
+#%% check that the correlations are correlated
+x = correlations_BETAps.flatten()
+y = correlations_BOLDps.flatten()
+plt.figure()
+plt.plot(x,y, '.')
+scipy.stats.pearsonr(x,y)
+allcorr = np.zeros((nsub))
+# these are also strongy correlated can check per subj
+for s in np.arange(nsub):
+    x = correlations_BETAps[s,:]
+    y = correlations_BOLDps[s,:]
+    allcorr[s],p = scipy.stats.pearsonr(x,y,)
+plt.figure()
+plt.hist(allcorr)
+# now define bad subj on this this relationship
+badsubj = allcorr< 0.5
+#%% get confidence intervals
+BOLDps_mean = np.zeros((nwin))
+BOLDps_errL = np.zeros((nwin))
+BOLDps_errH = np.zeros((nwin))
+BETAps_mean = np.zeros((nwin))
+BETAps_errL = np.zeros((nwin))
+BETAps_errH = np.zeros((nwin))
 lureRT_mean = np.zeros((nwin))
 lureRT_errL = np.zeros((nwin))
 lureRT_errH = np.zeros((nwin))
@@ -359,31 +359,48 @@ WVsoftmax_errH = np.zeros((nwin))
 recallact_mean = np.zeros((nwin))
 recallact_errL = np.zeros((nwin))
 recallact_errH = np.zeros((nwin))
+if nboot == 1: #just get 68% confidence interval
+    CI = 0.68
+else:
+    CI = 0.95
 
 for w in np.arange(nwin):
-    ps_mean[w],ps_errL[w],ps_errH[w] = mean_confidence_interval(correlations_ps[:,w])
-    lureRT_mean[w], lureRT_errL[w], lureRT_errH[w] = mean_confidence_interval(correlations_lureRT[:, w])
-    lureRTCO_mean[w], lureRTCO_errL[w],lureRTCO_errH[w],  = mean_confidence_interval(correlations_lureRTCO[:, w])
-    detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w])
-    WVsoftmax_mean[w], WVsoftmax_errL[w],WVsoftmax_errH[w] = mean_confidence_interval(correlations_WVsoftmax[:, w])
-    recallact_mean[w], recallact_errL[w],recallact_errH[w] = mean_confidence_interval(correlations_recallact[:, w])
+    BOLDps_mean[w],BOLDps_errL[w],BOLDps_errH[w] = mean_confidence_interval(correlations_BOLDps[~badsubj,w],CI)
+    BETAps_mean[w],BETAps_errL[w],BETAps_errH[w] = mean_confidence_interval(correlations_BETAps[~badsubj,w],CI)
+    lureRT_mean[w], lureRT_errL[w], lureRT_errH[w] = mean_confidence_interval(correlations_lureRT[:, w],CI)
+    lureRTCO_mean[w], lureRTCO_errL[w],lureRTCO_errH[w],  = mean_confidence_interval(correlations_lureRTCO[:, w],CI)
+    detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w],CI)
+    WVsoftmax_mean[w], WVsoftmax_errL[w],WVsoftmax_errH[w] = mean_confidence_interval(correlations_WVsoftmax[:, w],CI)
+    recallact_mean[w], recallact_errL[w],recallact_errH[w] = mean_confidence_interval(correlations_recallact[:, w],CI)
 # now calculate pvalues!
 
 
-# now plot results!!
+#%% now plot results!! pattern similarity first!
 
 fig, ax = plt.subplots(figsize=(7,5))
-plt.title('PATTERN SIMILARITY')
+plt.title('BOLD PATTERN SIMILARITY')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
-plt.fill_between(catrange, ps_errL, ps_errH,facecolor='r',alpha=0.3)
-plt.plot(catrange,ps_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
+plt.fill_between(catrange, BOLDps_errL, BOLDps_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,BOLDps_mean, color='r')
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
 
 
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('BETA PATTERN SIMILARITY')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+sns.despine()
+plt.fill_between(catrange, BETAps_errL, BETAps_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,BETAps_mean, color='r')
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
+
+#%%
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('LURE RT CO')
 plt.ylabel('Correlation')
@@ -392,19 +409,8 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, lureRTCO_errL, lureRTCO_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,lureRTCO_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
-
-fig, ax = plt.subplots(figsize=(7,5))
-plt.title('LURE RT ALL')
-plt.ylabel('Correlation')
-plt.xlabel('Retrieval evidence bin-kde')
-palette = itertools.cycle(sns.color_palette("husl",8))
-sns.despine()
-plt.fill_between(catrange, lureRT_errL, lureRT_errH,facecolor='r',alpha=0.3)
-plt.plot(catrange,lureRT_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
 
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('WV softmax')
@@ -414,8 +420,8 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, WVsoftmax_errL, WVsoftmax_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,WVsoftmax_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
 
 fig, ax = plt.subplots(figsize=(7,5))
 plt.title('Recall Act')
@@ -425,250 +431,16 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, recallact_errL, recallact_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,recallact_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
 
-fig, ax = plt.subplots(figsize=(7,5))
-plt.title('Detail diff')
-plt.ylabel('Correlation')
-plt.xlabel('Retrieval evidence bin-kde')
-palette = itertools.cycle(sns.color_palette("husl",8))
-sns.despine()
-plt.fill_between(catrange, detaildiff_errL, detaildiff_errH,facecolor='r',alpha=0.3)
-plt.plot(catrange,detaildiff_mean, color='r')
-plt.ylim(-.25,.25)
-ax.set_yticks([-.2,-.1,0,.1,.2])
-
-# as a check, look at the kde of all subjects evidence
-megadatamatrix= np.empty((0,12))
-for s in np.arange(len(all_sub)):
-    s_ind = all_sub[s]
-    sub = "Subject%01d" % s_ind
-    # calculate individual bw for that subject
-    allvals = evbystim[sub]
-    stimkeep = goodRTstim[sub]
-    allvalsbysubj = allvals[:,stimkeep].T
-    megadatamatrix = np.concatenate((megadatamatrix,allvalsbysubj),axis=0)
-vectorevidence = megadatamatrix.flatten()
-kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(vectorevidence[:,np.newaxis])
-allvals = np.exp(kde.score_samples(cr2))
-
-plt.figure()
-plt.plot(catrange,allvals, 'r')
-bw2=0.05
-bins = np.arange(-1.5,1.6,bw2)
-x = plt.hist(vectorevidence[:,np.newaxis],bins)
-nx = x[0]/np.sum(x[0])
-plt.plot(bins[0:-1]+(bw2/2),nx, 'b.')
-plt.show()
-ev_mean = np.mean(vectorevidence)
-ev_std = np.std(vectorevidence)
-ev_mean + 3*ev_std
-plt.xlabel('Evidence')
-plt.ylabel('Proportion in that range')
-plt.title('Normalized counts: all classifier evidence')
-
-# PLOT DOR RANGE OF VALUES--TAKE THE SUM AND THEN PLOT CORRELATION
-b1 = 20
-b2 = 25
-
-sum_filt = np.sum(FILTERED_TRmatrix_kde[:,b1:b2,:],axis=1)
-vec_ev = sum_filt.flatten()
-vec_rt = FILTERED_RTsim.flatten()
-nas = np.logical_or(np.isnan(vec_ev), np.isnan(vec_rt))
-m, b = np.polyfit(vec_ev[~nas], vec_rt[~nas], 1)
-plt.figure()
-plt.plot(vec_ev[~nas],vec_rt[~nas], 'k.')
-x = np.arange(9)
-plt.plot(x,x*m+b, 'r',linewidth=3, alpha=0.5)
-ms = np.zeros(nsub)
-for s in np.arange(nsub):
-    thisev = sum_filt[:,s]
-    thisrt = FILTERED_RTsim[:,s]
-    nas = np.logical_or(np.isnan(thisev), np.isnan(thisrt))
-    x2 = np.arange(9)
-    ms[s],bs = np.polyfit(thisev[~nas],thisrt[~nas],1)
-    #plt.plot(x2,x2*ms[s]+bs, 'r', alpha=0.25)
-plt.show()
-m_c,p = scipy.stats.pearsonr(vec_ev[~nas],vec_rt[~nas])
-plt.xlabel('Probability density in range')
-plt.ylabel('Pattern similarity pre:post')
-plt.title('Pattern similarity vs. time spent in range')
-
-plt.plot()
-#xh = plt.hist(ms)
-#bww=0.01
-#bins = np.arange(-.11,.1,bww)
-#xvals = plt.hist(ms,bins)
-#nx = 100*x[0]/np.sum(x[0])
-#plt.plot(bins[0:-1]+(bw2/2),nx, '.')
-sns.stripplot(ms,orient="v",color='k')
-sns.barplot(ms,orient="v",ci=68)
-plt.title('Slopes for individual subjects')
-
-# now what if we do that with word vector similarity? might be too hard to explain
-vec_dt = FILTERED_diffhard.flatten()
-nas = np.logical_or(np.isnan(vec_ev), np.isnan(vec_dt))
-m, b = np.polyfit(vec_ev[~nas], vec_dt[~nas], 1)
-plt.figure()
-plt.plot(vec_ev[~nas],vec_dt[~nas], 'k.')
-x = np.arange(9)
-plt.plot(x,x*m+b, 'r',linewidth=3, alpha=0.5)
-ms = np.zeros(nsub)
-for s in np.arange(nsub):
-    thisev = sum_filt[:,s]
-    thisrt = FILTERED_diffhard[:,s]
-    nas = np.logical_or(np.isnan(thisev), np.isnan(thisrt))
-    x2 = np.arange(9)
-    ms[s],bs = np.polyfit(thisev[~nas],thisrt[~nas],1)
-plt.show()
-m_c,p = scipy.stats.pearsonr(vec_ev[~nas],vec_dt[~nas])
-plt.xlabel('Probability density in range')
-plt.ylabel('Pattern similarity pre:post')
-plt.title('Pattern similarity vs. time spent in range')
-
-# what can subtract to get this value?
-# can subtract from subject's mean reaction time for everything?
-# calculate subject reaction times
-tmeans = np.nanmean(FILTERED_targRT,axis=0)
-lmeans = np.nanmean(FILTERED_lureRT,axis=0)
-allmeans = (tmeans + lmeans)/2
-sub_rt = FILTERED_lureRT_CO - allmeans
-vec_RT = np.log(FILTERED_lureRT_CO.flatten())
-vec_subrt = sub_rt.flatten()
-
-nas = np.logical_or(np.isnan(vec_ev), np.isnan(vec_subrt))
-m, b = np.polyfit(vec_ev[~nas], vec_subrt[~nas], 1)
-plt.figure()
-plt.plot(vec_ev[~nas],vec_subrt[~nas], 'k.')
-x = np.arange(9)
-plt.plot(x,x*m+b, 'r',linewidth=3, alpha=0.5)
-ms = np.zeros(nsub)
-for s in np.arange(nsub):
-    thisev = sum_filt[:,s]
-    thisrt = sub_rt[:,s]
-    nas = np.logical_or(np.isnan(thisev), np.isnan(thisrt))
-    x2 = np.arange(9)
-    ms[s],bs = np.polyfit(thisev[~nas],thisrt[~nas],1)
-plt.show()
-m_c,p = scipy.stats.pearsonr(vec_ev[~nas],vec_subrt[~nas])
-plt.xlabel('Probability density in range')
-plt.ylabel('Reaction time for lure image')
-plt.title('RT vs. time spent in range')
-
-plt.figure()
-sns.stripplot(ms,orient="v",color='k')
-sns.barplot(ms,orient="v",ci=68)
-plt.title('Slopes for individual subjects')
-
-
-vec_wv= FILTERED_simHard.flatten()
-nas = np.logical_or(np.isnan(vec_ev), np.isnan(vec_wv))
-m, b = np.polyfit(vec_ev[~nas], vec_wv[~nas], 1)
-plt.figure()
-plt.plot(vec_ev[~nas],vec_wv[~nas], '.')
-x = np.arange(9)
-plt.plot(x,x*m+b, 'k')
-plt.show()
-m_c,p = scipy.stats.pearsonr(vec_ev[~nas],vec_wv[~nas])
-plt.xlabel('Probability density in range')
-plt.ylabel('Pattern similarity pre:post')
-plt.title('Pattern similarity vs. time spent in range')
-
-# look for relationship with activations
-avgsep = np.median(allSep,axis=1)
-avg_hardAct_diff = np.median(hardAct_diff,axis=1)
-plt.figure()
-plt.plot(avgsep,avg_hardAct_diff, '.')
-scipy.stats.pearsonr(avgsep.flatten(),avg_hardAct_diff.flatten())
-# you get positive correlation: more higher their region is during MOT, the more likely positive increase afterwards?
-# could also see instead of a difference just post scores- relationship a lot oworse if jus tlooking at post only
-
-# look at the max bins
-avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
-plt.figure()
-plt.plot(maxbins,avg_hardAct_diff, '.')
-scipy.stats.pearsonr(maxbins.flatten(),avg_hardAct_diff.flatten())
-# stronger effect with larger bandwith
-
-# similar relationship with pattern similarity?
-plt.figure()
-plt.plot(maxbins,RTsim, '.')
-scipy.stats.pearsonr(maxbins.flatten(),RTsim.flatten())
-
-
-plt.figure()
-x = maxbins.flatten()
-y = lureRT_correctOnly.flatten()
-plt.plot(x,y, '.')
-nas = np.logical_or(np.isnan(x),np.isnan(y))
-scipy.stats.pearsonr(x[~nas],y[~nas])
-
-# is it because YC have higher classifier evidence mean?
-nTRs = 15
-nTR_total = nTRs*3*nstim
-allSepVec_RT = allSep[:,:,RT_ind].flatten()
-allSepVec_YC = allSep[:,:,YC_ind].flatten()
-data = np.concatenate((allSepVec_RT[:,np.newaxis],allSepVec_YC[:,np.newaxis]),axis=0)
-AB = np.concatenate((np.zeros((npairs*nTR_total,1)),np.ones((npairs*nTR_total,1))),axis=0)
-data2b = np.concatenate((data,AB),axis=1)
-df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
-fig, ax = sns.plt.subplots(figsize=(10,7))
-labels = [item.get_text() for item in ax.get_xticklabels()]
-labels[0] = "RT"
-labels[1] = "YC"
-min=-1.5
-max=1.5
-binw = .1
-bins = np.arange(min,max+binw,binw)
-#sns.distplot(allSepVec_YC, bins=bins,color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
-#sns.distplot(allSepVec_RT, bins=bins,color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
-sns.pointplot(all)
-# plot mean instead of ideal range
-sns.plt.plot([np.median(allSepVec_YC), np.median(allSepVec_YC)],[0,2000], color=flatui[1], linestyle='--', linewidth=3)
-sns.plt.plot([np.median(allSepVec_RT), np.median(allSepVec_RT)],[0,2000], color=flatui[0], linestyle='--', linewidth=3)
-sns.plt.title('Distribution of Evidence During MOT')
-sns.plt.xlabel('Retrieval evidence bin')
-range = np.array([0,.17])
-scale = range*len(allSepVec_RT)
-sns.plt.ylabel('Fraction of TRs in range')
-sns.plt.ylim(scale)
-sns.plt.xlim(-.8,.8)
-labels2 = np.arange(0,0.2,0.05)
-scaled_labels = len(allSepVec_RT)*labels2
-result2 = [str(x) for x in labels2]
-sns.plt.yticks( scaled_labels, result2 )
-sns.despine()
-for item in (ax.get_xticklabels() + ax.get_yticklabels()):
-    item.set_fontsize(30)
-sns.plt.legend()
-
-# instead maybe go through each trial and say each trial's most common point
-maxbins_RT = maxbins[:,RT_ind].flatten()
-maxbins_YC = maxbins[:,YC_ind].flatten()
-data = np.concatenate((maxbins_RT[:,np.newaxis],maxbins_YC[:,np.newaxis]),axis=0)
-AB = np.concatenate((np.zeros((npairs*nstim,1)),np.ones((npairs*nstim,1))),axis=0)
-data2b = np.concatenate((data,AB),axis=1)
-df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
-fig, ax = sns.plt.subplots(figsize=(10,7))
-#plt.hist(maxbins_YC)
-#plt.hist(maxbins_RT)
-sns.distplot(maxbins_YC, bins=bins, color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
-sns.distplot(maxbins_RT, bins=bins, color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
-sns.plt.plot([np.mean(maxbins_YC), np.mean(maxbins_YC)],[0,2000], color=flatui[1], linestyle='--', linewidth=3)
-sns.plt.plot([np.mean(maxbins_RT), np.mean(maxbins_RT)],[0,2000], color=flatui[0], linestyle='--', linewidth=3)
-sns.plt.legend()
-range = np.array([0,.5])
-scale = range*len(maxbins_YC)
-sns.plt.ylabel('Fraction of TRs in range')
-sns.plt.ylim(scale)
-labels2 = np.arange(0,0.5,0.05)
-scaled_labels = len(maxbins_YC)*labels2
-result2 = [str(x) for x in labels2]
-sns.plt.yticks( scaled_labels, result2 )
-plt.xlim(-.65,.65)
-res = stats.ttest_rel(maxbins_YC,maxbins_RT)
-# for the question is YC greater than RT we take the pvalue over 2
-#real pvalue
-res.pvalue/2 # almost significantly greater!
-# in
+#fig, ax = plt.subplots(figsize=(7,5))
+#plt.title('Detail diff')
+#plt.ylabel('Correlation')
+#plt.xlabel('Retrieval evidence bin-kde')
+#palette = itertools.cycle(sns.color_palette("husl",8))
+#sns.despine()
+#plt.fill_between(catrange, detaildiff_errL, detaildiff_errH,facecolor='r',alpha=0.3)
+#plt.plot(catrange,detaildiff_mean, color='r')
+#plt.ylim(-.25,.25)
+#ax.set_yticks([-.2,-.1,0,.1,.2])
