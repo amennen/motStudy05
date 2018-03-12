@@ -54,7 +54,8 @@ def nanzscore(inputdata):
 nboot = 1000
 bw = 0.1 # set it here for everyone!!
 detailthreshold = 2
-usebetas = 0
+usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
+usebetas_mot = 0 # whether or not to use betas for classifier evidence for MOT
 zscoreDV = 0 # if true zscore all DV
 zscoreIV = 0 # if you should zscore all classifier values
 
@@ -62,6 +63,13 @@ zscoreIV = 0 # if you should zscore all classifier values
 # LOAD ALL DATA
 pickle_in = open("/Volumes/norman/amennen/PythonMot5/evidencebystim_glmclassifier_alpha100_intercept_motion.pickle","rb")
 evbystim = pickle.load(pickle_in)
+
+data_dir = '/Volumes/norman/amennen/PythonMot5/'
+filename = 'compareExp5.mat'
+filepath = os.path.join(data_dir,filename)
+d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
+allSep = d['sepbystimD']
+
 # now specify path for betas ps
 with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim.pickle", "rb") as f:  # Python 3: open(..., 'rb')
     betasbystim_RT, betasbystim_OM = pickle.load(f)
@@ -106,9 +114,17 @@ for s in np.arange(npairs*2):
     fn = glob.glob(subjPath + 'ratings'+ '.mat')
     d = scipy.io.loadmat(fn[0])
     easyR[subjName] = d['easyScores']
+    # find any nans
+    nas = np.isnan(easyR[subjName])
+    easyR[subjName] = easyR[subjName].astype(np.float16)
+    easyR[subjName][nas] = np.nan
     hardR[subjName] = d['hardScores']
-    diffEasy[:,s] = np.diff(easyR[subjName].astype(np.int16),axis=0)
-    diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
+    nas = np.isnan(hardR[subjName])
+    hardR[subjName] = hardR[subjName].astype(np.float16)
+    hardR[subjName][nas] = np.nan
+    # int 16 converts the scores to integers, but the problem is that nan's become zeros (when they should stay as nan's)
+    diffEasy[:,s] = np.diff(easyR[subjName],axis=0)
+    diffHard[:,s] = np.diff(hardR[subjName],axis=0)
     postHard[:,s] = hardR[subjName][1,:]
     goodRTstim[sub] = hardR[subjName][0,:] > detailthreshold
 nstim = 10
@@ -121,7 +137,7 @@ avgRTsim = np.zeros(nsub)
 avgOMITsim = np.zeros(nsub)
 avgRTsim_diff = np.zeros(nsub)
 avgOMITsim_diff = np.zeros(nsub)
-if usebetas:
+if usebetas_ps:
     for s in np.arange(nsub):
         subj = all_sub[s]
         sub = "Subject%01d" % subj
@@ -204,7 +220,23 @@ else:
             OMITsim_diff[stim, s] = np.mean(cor_dif)
 # specify analyses we'll do and number of bootstrap iterations
 
-
+# now load activation score differences: recall retrieval
+easyAct = np.zeros((nstim,4,2,nsub))
+hardAct = np.zeros((nstim,4,2,nsub))
+inteldir = '/Volumes/norman/amennen/motStudy05_transferred/datafromintelrt/data/'
+for s in np.arange(npairs*2):
+    subjPath = inteldir + str(all_sub[s]) + '/'
+    subjName = 'subj' + str(s)
+    sub = "Subject%01d" % all_sub[s]
+    fn = glob.glob(subjPath + 'recallactivations'+ '.mat')
+    d = scipy.io.loadmat(fn[0])
+    hardAct[:,:,:,s] = d['hard_activation']
+avg_hardAct = np.mean(hardAct,axis=0)
+hardAct_diff = np.diff(hardAct,axis=2).squeeze()
+# now average over the four TR's to get one number
+avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
+postAct = hardAct[:,:,1,:]
+avg_hardAct_post = np.mean(postAct,axis=1)
 windowsize = 0.05
 #min = -1
 #max = -1*min + windowsize # to go one over
@@ -220,17 +252,28 @@ catrange = np.arange(min,max+windowsize,windowsize)
 cr2 = np.reshape(catrange,(len(catrange),1))
 nwin = catrange.shape[0]
 TRmatrix_kde = np.zeros((nstim,nwin,npairs*2))
+maxbins = np.zeros((nstim,nsub))
 for s in np.arange(nsub):
     s_ind = all_sub[s]
     sub = "Subject%01d" % s_ind
-    subvals_z = stats.zscore(evbystim[sub])
+    if usebetas_mot:
+        subvals_z = stats.zscore(evbystim[sub])
+    else:
+        subvals_z = stats.zscore(allSep[:,:,s])
     for st in np.arange(nstim):
-        thissep = evbystim[sub][:,st]
+        if usebetas_mot:
+            thissep = evbystim[sub][:,st]
+        else:
+            thissep = allSep[st,:,s]
         if zscoreIV:
-            thissep = subvals_z[:,st]
+            if usebetas_mot:
+                thissep = subvals_z[:,st]
+            else:
+                thissep = subvals_z[st,:]
         x2 = np.reshape(thissep, (len(thissep), 1))
         kde = KernelDensity(kernel='gaussian', bandwidth=bw).fit(x2)
         allvals = np.exp(kde.score_samples(cr2))
+        maxbins[st,s] = cr2[np.argmax(allvals)]
         TRmatrix_kde[st, :, s] = allvals
 
 FILTERED_RTsim = RTsim
@@ -239,7 +282,7 @@ FILTERED_TRmatrix_kde = TRmatrix_kde
 FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
 FILTERED_lureRT = lureRT
 FILTERED_targRT = targRT
-
+FILTERED_recallact = avg_hardAct_diff
 #FILTERED_lureRT_CO = lureRT_correctOnly
 #FILTERED_lureRT = lureRT
 FILTERED_simHard = simHard
@@ -255,6 +298,7 @@ for s in np.arange(nsub):
     FILTERED_lureRT[~stimkeep, s] = np.nan
     FILTERED_targRT[~stimkeep, s] = np.nan
     FILTERED_simHard[~stimkeep, s] = np.nan
+    FILTERED_recallact[~stimkeep,s] = np.nan
 
 if zscoreDV:
     FILTERED_diffhard = nanzscore(FILTERED_diffhard) # zscore over subjects
@@ -263,6 +307,7 @@ if zscoreDV:
     FILTERED_lureRT_CO = nanzscore(FILTERED_lureRT_CO)
     FILTERED_lureRT = nanzscore(FILTERED_lureRT)
     FILTERED_simHard = nanzscore(FILTERED_simHard)
+    FILTERED_recallact = nanzscore(FILTERED_recallact)
 
 # analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity
 correlations_ps = np.zeros((nboot,nwin)) # each result will be for a specific window the mean for that bootstrap run
@@ -270,6 +315,7 @@ correlations_lureRT = np.zeros((nboot,nwin))
 correlations_lureRTCO = np.zeros((nboot,nwin))
 correlations_detaildiff = np.zeros((nboot,nwin))
 correlations_WVsoftmax = np.zeros((nboot,nwin))
+correlations_recallact = np.zeros((nboot,nwin))
 
 for b in np.arange(nboot):
     bootsubjects = np.random.randint(0,high=nsub,size=nsub)
@@ -282,6 +328,7 @@ for b in np.arange(nboot):
     correlations_detaildiff[b, :] = getcorr_vector(FILTERED_diffhard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
     #correlations_detaildiff[b,:] = np.nanmean(allr,axis=1)
     correlations_WVsoftmax[b, :] = getcorr_vector(FILTERED_simHard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
+    correlations_recallact[b, :] = getcorr_vector(FILTERED_recallact[:, bootsubjects],FILTERED_TRmatrix_kde[:, :, bootsubjects])
     #correlations_WVsoftmax[b,:] = np.nanmean(allr,axis=1)
 
 # now analyze results of bootstrap!!
@@ -309,13 +356,17 @@ WVsoftmax_mean = np.zeros((nwin))
 WVsoftmax_errL = np.zeros((nwin))
 WVsoftmax_errH = np.zeros((nwin))
 
+recallact_mean = np.zeros((nwin))
+recallact_errL = np.zeros((nwin))
+recallact_errH = np.zeros((nwin))
+
 for w in np.arange(nwin):
     ps_mean[w],ps_errL[w],ps_errH[w] = mean_confidence_interval(correlations_ps[:,w])
     lureRT_mean[w], lureRT_errL[w], lureRT_errH[w] = mean_confidence_interval(correlations_lureRT[:, w])
     lureRTCO_mean[w], lureRTCO_errL[w],lureRTCO_errH[w],  = mean_confidence_interval(correlations_lureRTCO[:, w])
     detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w])
     WVsoftmax_mean[w], WVsoftmax_errL[w],WVsoftmax_errH[w] = mean_confidence_interval(correlations_WVsoftmax[:, w])
-
+    recallact_mean[w], recallact_errL[w],recallact_errH[w] = mean_confidence_interval(correlations_recallact[:, w])
 # now calculate pvalues!
 
 
@@ -363,6 +414,17 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, WVsoftmax_errL, WVsoftmax_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,WVsoftmax_mean, color='r')
+plt.ylim(-.25,.25)
+ax.set_yticks([-.2,-.1,0,.1,.2])
+
+fig, ax = plt.subplots(figsize=(7,5))
+plt.title('Recall Act')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+sns.despine()
+plt.fill_between(catrange, recallact_errL, recallact_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,recallact_mean, color='r')
 plt.ylim(-.25,.25)
 ax.set_yticks([-.2,-.1,0,.1,.2])
 
@@ -512,3 +574,101 @@ m_c,p = scipy.stats.pearsonr(vec_ev[~nas],vec_wv[~nas])
 plt.xlabel('Probability density in range')
 plt.ylabel('Pattern similarity pre:post')
 plt.title('Pattern similarity vs. time spent in range')
+
+# look for relationship with activations
+avgsep = np.median(allSep,axis=1)
+avg_hardAct_diff = np.median(hardAct_diff,axis=1)
+plt.figure()
+plt.plot(avgsep,avg_hardAct_diff, '.')
+scipy.stats.pearsonr(avgsep.flatten(),avg_hardAct_diff.flatten())
+# you get positive correlation: more higher their region is during MOT, the more likely positive increase afterwards?
+# could also see instead of a difference just post scores- relationship a lot oworse if jus tlooking at post only
+
+# look at the max bins
+avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
+plt.figure()
+plt.plot(maxbins,avg_hardAct_diff, '.')
+scipy.stats.pearsonr(maxbins.flatten(),avg_hardAct_diff.flatten())
+# stronger effect with larger bandwith
+
+# similar relationship with pattern similarity?
+plt.figure()
+plt.plot(maxbins,RTsim, '.')
+scipy.stats.pearsonr(maxbins.flatten(),RTsim.flatten())
+
+
+plt.figure()
+x = maxbins.flatten()
+y = lureRT_correctOnly.flatten()
+plt.plot(x,y, '.')
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+scipy.stats.pearsonr(x[~nas],y[~nas])
+
+# is it because YC have higher classifier evidence mean?
+nTRs = 15
+nTR_total = nTRs*3*nstim
+allSepVec_RT = allSep[:,:,RT_ind].flatten()
+allSepVec_YC = allSep[:,:,YC_ind].flatten()
+data = np.concatenate((allSepVec_RT[:,np.newaxis],allSepVec_YC[:,np.newaxis]),axis=0)
+AB = np.concatenate((np.zeros((npairs*nTR_total,1)),np.ones((npairs*nTR_total,1))),axis=0)
+data2b = np.concatenate((data,AB),axis=1)
+df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
+fig, ax = sns.plt.subplots(figsize=(10,7))
+labels = [item.get_text() for item in ax.get_xticklabels()]
+labels[0] = "RT"
+labels[1] = "YC"
+min=-1.5
+max=1.5
+binw = .1
+bins = np.arange(min,max+binw,binw)
+#sns.distplot(allSepVec_YC, bins=bins,color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
+#sns.distplot(allSepVec_RT, bins=bins,color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
+sns.pointplot(all)
+# plot mean instead of ideal range
+sns.plt.plot([np.median(allSepVec_YC), np.median(allSepVec_YC)],[0,2000], color=flatui[1], linestyle='--', linewidth=3)
+sns.plt.plot([np.median(allSepVec_RT), np.median(allSepVec_RT)],[0,2000], color=flatui[0], linestyle='--', linewidth=3)
+sns.plt.title('Distribution of Evidence During MOT')
+sns.plt.xlabel('Retrieval evidence bin')
+range = np.array([0,.17])
+scale = range*len(allSepVec_RT)
+sns.plt.ylabel('Fraction of TRs in range')
+sns.plt.ylim(scale)
+sns.plt.xlim(-.8,.8)
+labels2 = np.arange(0,0.2,0.05)
+scaled_labels = len(allSepVec_RT)*labels2
+result2 = [str(x) for x in labels2]
+sns.plt.yticks( scaled_labels, result2 )
+sns.despine()
+for item in (ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(30)
+sns.plt.legend()
+
+# instead maybe go through each trial and say each trial's most common point
+maxbins_RT = maxbins[:,RT_ind].flatten()
+maxbins_YC = maxbins[:,YC_ind].flatten()
+data = np.concatenate((maxbins_RT[:,np.newaxis],maxbins_YC[:,np.newaxis]),axis=0)
+AB = np.concatenate((np.zeros((npairs*nstim,1)),np.ones((npairs*nstim,1))),axis=0)
+data2b = np.concatenate((data,AB),axis=1)
+df = pd.DataFrame(data2b,columns = ['Evidence','AB'])
+fig, ax = sns.plt.subplots(figsize=(10,7))
+#plt.hist(maxbins_YC)
+#plt.hist(maxbins_RT)
+sns.distplot(maxbins_YC, bins=bins, color=flatui[1], label='YC',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
+sns.distplot(maxbins_RT, bins=bins, color=flatui[0], label='RT',norm_hist=False,kde=False,hist_kws={'alpha':0.6})
+sns.plt.plot([np.mean(maxbins_YC), np.mean(maxbins_YC)],[0,2000], color=flatui[1], linestyle='--', linewidth=3)
+sns.plt.plot([np.mean(maxbins_RT), np.mean(maxbins_RT)],[0,2000], color=flatui[0], linestyle='--', linewidth=3)
+sns.plt.legend()
+range = np.array([0,.5])
+scale = range*len(maxbins_YC)
+sns.plt.ylabel('Fraction of TRs in range')
+sns.plt.ylim(scale)
+labels2 = np.arange(0,0.5,0.05)
+scaled_labels = len(maxbins_YC)*labels2
+result2 = [str(x) for x in labels2]
+sns.plt.yticks( scaled_labels, result2 )
+plt.xlim(-.65,.65)
+res = stats.ttest_rel(maxbins_YC,maxbins_RT)
+# for the question is YC greater than RT we take the pvalue over 2
+#real pvalue
+res.pvalue/2 # almost significantly greater!
+# in

@@ -117,9 +117,17 @@ for s in np.arange(npairs*2):
     fn = glob.glob(subjPath + 'ratings'+ '.mat')
     d = scipy.io.loadmat(fn[0])
     easyR[subjName] = d['easyScores']
+    # find any nans
+    nas = np.isnan(easyR[subjName])
+    easyR[subjName] = easyR[subjName].astype(np.float16)
+    easyR[subjName][nas] = np.nan
     hardR[subjName] = d['hardScores']
-    diffEasy[:,s] = np.diff(easyR[subjName].astype(np.int16),axis=0)
-    diffHard[:,s] = np.diff(hardR[subjName].astype(np.int16),axis=0)
+    nas = np.isnan(hardR[subjName])
+    hardR[subjName] = hardR[subjName].astype(np.float16)
+    hardR[subjName][nas] = np.nan
+    # int 16 converts the scores to integers, but the problem is that nan's become zeros (when they should stay as nan's)
+    diffEasy[:, s] = np.diff(easyR[subjName], axis=0)
+    diffHard[:, s] = np.diff(hardR[subjName], axis=0)
     postHard[:, s] = hardR[subjName][1, :]
     preHard[:, s] = hardR[subjName][0, :]
 nruns=3
@@ -184,7 +192,7 @@ avgscores = (preHard + postHard)/2
 avgdiff = np.abs(avgscores[:,RT_ind] - avgscores[:,YC_ind])
 
 plt.figure()
-plt.plot(stim_avg, prediff, '.')
+plt.plot(stim_avg, postdiff, '.')
 plt.ylim([-1 ,6])
 scipy.stats.pearsonr(stim_avg.flatten(),prediff.flatten())
 rv= np.zeros((npairs))
@@ -194,7 +202,13 @@ for p in np.arange(npairs):
 
 
 plt.figure()
-plt.plot(stim_avg, postdiff, '.')
+y = prediff.flatten()
+x = stim_avg.flatten()
+keep = np.argwhere(y<10)
+plt.plot(x[keep], y[keep], '.')
+plt.xlabel('Average correlation during RT MOT')
+plt.ylabel('Difference in pre MOT ratings abs(RT-YC)')
+plt.title('Difference in behavioral ratings pre MOT vs. similarity during RT')
 scipy.stats.pearsonr(stim_avg.flatten(),postdiff.flatten())
 
 plt.figure()
@@ -230,6 +244,10 @@ for s in np.arange(npairs*2):
 
 avg_easyAct = np.mean(easyAct,axis=0)
 avg_hardAct = np.mean(hardAct,axis=0)
+easyAct_diff = np.diff(easyAct,axis=2).squeeze()
+hardAct_diff = np.diff(hardAct,axis=2).squeeze()
+avg_hardAct_diff = np.mean(hardAct_diff,axis=0)
+avg_easyAct_diff = np.mean(easyAct_diff,axis=0)
 
 # now make labels to plot
 easy1 = avg_easyAct[:,0,:].flatten() # goes through each person's first
@@ -247,11 +265,28 @@ subarray_t = np.tile(subarray,4)
 rtyc = np.concatenate((subarray_t[:,np.newaxis],subarray_t[:,np.newaxis],subarray_t[:,np.newaxis],subarray_t[:,np.newaxis]),axis=0)
 largedata = np.concatenate((data,pair,allTR[:,np.newaxis],easyhard,run1run2,rtyc),axis=1)
 df = pd.DataFrame(data=largedata,columns=['data','pair','tr', 'EH', 'R1R2', 'RTYC'])
-
-
-plt.showplt.figure()
-sns.pointplot(data=df,x='tr', y='data', hue="R1R2")
 sns.factorplot(data=df,x='tr',y='data', hue='R1R2', col='RTYC',row='EH')
+
+easy = avg_easyAct_diff.flatten() # cycles over subjects first
+hard = avg_hardAct_diff.flatten()
+data = np.concatenate((easy[:,np.newaxis],hard[:,np.newaxis]),axis=0) # cycles through all subjects 4 x  EACH
+pair = np.concatenate((sublabels[:,np.newaxis],sublabels[:,np.newaxis]),axis=0)
+easyhard = np.concatenate((np.ones((nsub*4,1)),np.zeros((nsub*4,1))),axis=0)
+rtyc = np.concatenate((subarray_t[:,np.newaxis],subarray_t[:,np.newaxis]),axis=0)
+allTR = np.tile(TR,(nsub*2))
+largedata2 = np.concatenate((data,pair,allTR[:,np.newaxis],easyhard,rtyc),axis=1)
+df = pd.DataFrame(data=largedata2,columns=['data','pair','tr', 'EH', 'RTYC'])
+sns.factorplot(data=df,x='tr',y='data', col='RTYC',row='EH', ci=68)
+
+# is there a significant differnece?
+subjavg_easy_diff = np.mean(avg_easyAct_diff,axis=0)
+subjavg_hard_diff = np.mean(avg_hardAct_diff,axis=0)
+
+stats.ttest_rel(subjavg_hard_diff[RT_ind], subjavg_hard_diff[YC_ind])
+stats.ttest_rel(subjavg_easy_diff[RT_ind], subjavg_easy_diff[YC_ind])
+
+plt.figure()
+sns.pointplot(data=df,x='tr', y='data', hue="R1R2")
 
 # now can correlate for each pair--average MOT evidence and average Recall evidence afterwards?
 # or it can be just difference before/afterwards like with recall ratings
