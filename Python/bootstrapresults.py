@@ -33,9 +33,9 @@ flatui = ["#DB5461", "#593C8F"]
 # using the original patterns the effect is worse than using the betas
 nboot = 1 # put nboot as == 1 to say only run once
 bw = 0.1 # set it here for everyone!!
-detailthreshold = 0
+detailthreshold = 2
 usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
-usebetas_mot = 0# whether or not to use betas for classifier evidence for MOT
+usebetas_mot = 1# whether or not to use betas for classifier evidence for MOT
 zscoreDV = 0 # if true zscore all DV
 zscoreIV = 0 # if you should zscore all classifier values
 
@@ -78,7 +78,7 @@ d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
 allSep = d['sepbystimD']
 
 # now specify path for betas ps
-with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim.pickle", "rb") as f:  # Python 3: open(..., 'rb')
+with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim_PHG2.pickle", "rb") as f:  # Python 3: open(..., 'rb')
     betasbystim_RT, betasbystim_OM = pickle.load(f)
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
@@ -166,7 +166,8 @@ for s in np.arange(nsub):
 for s in np.arange(nsub):
     subj = all_sub[s]
     # 1/31 after sfn: adding z to zscore differently before taking out timepoints
-    filename = 'recallPATz%i.mat' % subj
+    # 3/13: using more strict mask
+    filename = 'recallPATz_PHG2_%i.mat' % subj
     filepath = os.path.join(data_dir, filename)
     #print(filepath)
     d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
@@ -272,13 +273,21 @@ if zscoreDV:
 #%% check that BOLD and BETA are related
 allcorr = np.zeros((nsub))
 allp = np.zeros((nsub))
+plt.figure(figsize=(10,7))    
 for s in np.arange(nsub):
-    #plt.figure()    
     x = FILTERED_BETA_RTsim[:,s]
     y = FILTERED_BOLD_RTsim[:,s]
     allcorr[s],allp[s] = scipy.stats.pearsonr(x,y)
-    #plt.plot(x,y, '.')
+    plt.plot(x,y, '.')
+plt.xlabel('beta PS')
+plt.ylabel('BOLD PS')
+plt.title('BOLD vs. beta PS')
+plt.figure(figsize=(10,7))    
 plt.hist(allcorr)
+plt.xlabel('Correlation')
+plt.yticks([0,8,16], ['0', '.25', '.5'])
+plt.ylabel('Frequency')
+plt.title('Histogram of PS correlations')
 # find subjects where relationship is less than .5
 badsubj = (allcorr<.5)
 #%% now run bootstrap
@@ -325,12 +334,26 @@ plt.plot(x,y, '.')
 scipy.stats.pearsonr(x,y)
 allcorr = np.zeros((nsub))
 # these are also strongy correlated can check per subj
+plt.figure(figsize=(10,7))
 for s in np.arange(nsub):
     x = correlations_BETAps[s,:]
     y = correlations_BOLDps[s,:]
+    plt.plot(x,y,'.')
     allcorr[s],p = scipy.stats.pearsonr(x,y,)
+plt.xlabel('beta correlations')
+plt.ylabel('BOLD correlations')
+plt.title('BOLD vs. beta PS correlations')
+
 plt.figure()
 plt.hist(allcorr)
+
+x = np.mean(correlations_BETAps,axis=0)
+y = np.mean(correlations_BOLDps,axis=0)
+alldifferences = x-y
+plt.figure()
+plt.plot(catrange,alldifferences, '.')
+plt.figure()
+plt.plot(x,y, '.')
 # now define bad subj on this this relationship
 badsubj = allcorr< 0.5
 #%% get confidence intervals
@@ -365,8 +388,8 @@ else:
     CI = 0.95
 
 for w in np.arange(nwin):
-    BOLDps_mean[w],BOLDps_errL[w],BOLDps_errH[w] = mean_confidence_interval(correlations_BOLDps[~badsubj,w],CI)
-    BETAps_mean[w],BETAps_errL[w],BETAps_errH[w] = mean_confidence_interval(correlations_BETAps[~badsubj,w],CI)
+    BOLDps_mean[w],BOLDps_errL[w],BOLDps_errH[w] = mean_confidence_interval(correlations_BOLDps[:,w],CI)
+    BETAps_mean[w],BETAps_errL[w],BETAps_errH[w] = mean_confidence_interval(correlations_BETAps[:,w],CI)
     lureRT_mean[w], lureRT_errL[w], lureRT_errH[w] = mean_confidence_interval(correlations_lureRT[:, w],CI)
     lureRTCO_mean[w], lureRTCO_errL[w],lureRTCO_errH[w],  = mean_confidence_interval(correlations_lureRTCO[:, w],CI)
     detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w],CI)
@@ -377,7 +400,7 @@ for w in np.arange(nwin):
 
 #%% now plot results!! pattern similarity first!
 
-fig, ax = plt.subplots(figsize=(7,5))
+fig, ax = plt.subplots(figsize=(12,7))
 plt.title('BOLD PATTERN SIMILARITY')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
@@ -389,7 +412,7 @@ plt.plot(catrange,BOLDps_mean, color='r')
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
 
-fig, ax = plt.subplots(figsize=(7,5))
+fig, ax = plt.subplots(figsize=(12,7))
 plt.title('BETA PATTERN SIMILARITY')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
@@ -401,7 +424,7 @@ plt.plot(catrange,BETAps_mean, color='r')
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
 #%%
-fig, ax = plt.subplots(figsize=(7,5))
+fig, ax = plt.subplots(figsize=(12,7))
 plt.title('LURE RT CO')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
@@ -412,8 +435,8 @@ plt.plot(catrange,lureRTCO_mean, color='r')
 #plt.ylim(-.25,.25)
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
-fig, ax = plt.subplots(figsize=(7,5))
-plt.title('WV softmax')
+fig, ax = plt.subplots(figsize=(12,7))
+plt.title('WV correlations')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
 palette = itertools.cycle(sns.color_palette("husl",8))
@@ -423,7 +446,7 @@ plt.plot(catrange,WVsoftmax_mean, color='r')
 #plt.ylim(-.25,.25)
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
-fig, ax = plt.subplots(figsize=(7,5))
+fig, ax = plt.subplots(figsize=(12,7))
 plt.title('Recall Act')
 plt.ylabel('Correlation')
 plt.xlabel('Retrieval evidence bin-kde')
