@@ -31,7 +31,7 @@ random.seed(datetime.now())
 flatui = ["#DB5461", "#593C8F"]
 
 # using the original patterns the effect is worse than using the betas
-nboot = 1 # put nboot as == 1 to say only run once
+nboot = 1000 # put nboot as == 1 to say only run once
 bw = 0.1 # set it here for everyone!!
 detailthreshold = 2
 usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
@@ -83,8 +83,9 @@ with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim_PHG2.pick
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
 savepath = '/Volumes/norman/amennen/PythonMot5/'
-targRT = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
-lureRT = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+# new: make logs so that RT is normally distributed**
+targRT = np.log(np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy'))
+lureRT = np.log(np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')) 
 targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
 lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
 lureAcc_bool = lureAcc==1
@@ -119,6 +120,7 @@ subarray[YC_ind] = 1
 diffEasy = np.zeros((10,npairs*2))
 diffHard = np.zeros((10,npairs*2))
 postHard = np.zeros((10,npairs*2))
+#%%
 goodRTstim = {}
 easyR = {}
 hardR = {}

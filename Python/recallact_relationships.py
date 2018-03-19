@@ -3,16 +3,28 @@
 """
 Created on Mon Mar 12 12:08:53 2018
 
+Purpose: compare recall activations and memory results
+Measurements of memory:
+    Neural:
+        - Recall activation (post - pre)
+        - Pattern similarity (post-pre) (raw/GLM)
+    Behavioral:
+        - Lure RT post only-->(regular/LOG) choosing log
+        - Ratings (post - pre)
+        - Word vector cosine similarity (cosine/softmax)
+
+Things this script does:
+    1. loads all the data
+    2. plots histograms between RT and YC evidence distribution
+    3. calculates the maximum bin for that stimulus and replots distirbution
+    4. calculates correlations & plots relationship between DV and maxbins
+    5. NEW: will plot and caculate correlations between different DV's (maybe average by subject first?)
+    
+
 @author: amennen
 """
 
-# purpose: compare recall activations and memory results
 
-# purpose: bootstrap/Ghootstrap w/ replacement subject population to get estimate of uncertainty of correlations
-
-# let's just make this script ONLY bootstrapping results
-
-# calculates bootstrap correlations of mot5 based on input parameters (zscore/betas)
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
@@ -34,6 +46,7 @@ from sklearn import linear_model
 # reset random seed just in case
 import random
 from datetime import datetime
+import statsmodels.api as sm # import statsmodels 
 random.seed(datetime.now())
 flatui = ["#DB5461", "#593C8F"]
 
@@ -69,8 +82,8 @@ YC_ind = np.searchsorted(all_sub,YC_sub)
 subarray = np.zeros(nSub)
 subarray[YC_ind] = 1
 nstim = 10
-# variables
-detailthreshold = 2
+# variablesll
+detailthreshold = 1
 zscoreIV = 0
 bw = 0.1
 #%% LOAD ALL DATA
@@ -95,13 +108,13 @@ targAcc = np.load('/Volumes/norman/amennen/PythonMot5/targAcc.npy')
 lureAcc = np.load('/Volumes/norman/amennen/PythonMot5/lureAcc.npy')
 lureAcc_bool = lureAcc==1
 targAcc_bool = targAcc==1
-lureRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_correctOnly = np.log(np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy'))
 lureRT_correctOnly[~lureAcc_bool] = np.nan
-lureRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy')
+lureRT_incorrectOnly = np.log(np.load('/Volumes/norman/amennen/PythonMot5/lureRT.npy'))
 lureRT_incorrectOnly[lureAcc_bool] = np.nan
-targRT_correctOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_correctOnly = np.log(np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy'))
 targRT_correctOnly[~targAcc_bool] = np.nan
-targRT_incorrectOnly = np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy')
+targRT_incorrectOnly = np.log(np.load('/Volumes/norman/amennen/PythonMot5/targRT.npy'))
 targRT_incorrectOnly[targAcc_bool] = np.nan
 hard_sm = np.load('/Volumes/norman/amennen/wordVec/hard_smF.npy')
 simHard = np.load('/Volumes/norman/amennen/wordVec/simHardF.npy')
@@ -180,7 +193,29 @@ avg_hardAct = np.mean(hardAct,axis=0)
 hardAct_diff = np.diff(hardAct,axis=2).squeeze()
 avg_preAct = np.mean(hardAct[:,:,0,:],axis=1)
 avg_postAct = np.mean(hardAct[:,:,1,:],axis=1)
+avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
 
+#%% filter by first rating
+FILTERED_BOLD_RTsim = RTsim
+FILTERED_diffhard = diffHard # behavioral ratings difference
+FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
+FILTERED_lureRT = lureRT
+FILTERED_targRT = targRT
+FILTERED_recallact = avg_hardAct_diff
+FILTERED_simHard = simHard
+FILTERED_lureRT_CO_Z  = nanzscore(lureRT_correctOnly)
+for s in np.arange(nsub):
+    s_ind = all_sub[s]
+    sub = "Subject%01d" % s_ind
+    stimkeep = goodRTstim[sub]
+    FILTERED_BOLD_RTsim[~stimkeep,s] = np.nan
+    FILTERED_diffhard[~stimkeep,s] = np.nan
+    FILTERED_lureRT_CO[~stimkeep, s] = np.nan
+    FILTERED_lureRT[~stimkeep, s] = np.nan
+    FILTERED_targRT[~stimkeep, s] = np.nan
+    FILTERED_simHard[~stimkeep, s] = np.nan
+    FILTERED_recallact[~stimkeep,s] = np.nan
+    FILTERED_lureRT_CO_Z[~stimkeep,s] = np.nan
 #%% calculate maxbins per stimulus per subject
 windowsize = 0.05
 
@@ -235,7 +270,7 @@ plt.ylim(scale)
 plt.xlim(-.8,.8)
 labels2 = np.arange(0,0.2,0.05)
 scaled_labels = len(allSepVec_RT)*labels2
-result2 = [str(x) for x in labels2]
+result2 = ["{:.2f}".format(x) for x in labels2]
 plt.yticks( scaled_labels, result2 )
 sns.despine()
 for item in (ax.get_xticklabels() + ax.get_yticklabels()):
@@ -265,7 +300,8 @@ plt.ylabel('Fraction of TRs in range')
 plt.ylim(scale)
 labels2 = np.arange(0,0.5,0.05)
 scaled_labels = len(maxbins_YC)*labels2
-result2 = [str(x) for x in labels2]
+# gets rid of probelm too many floating points
+result2 = ["{:.2f}".format(x) for x in labels2]
 plt.yticks( scaled_labels, result2 )
 plt.xlim(-.65,.65)
 res = stats.ttest_rel(maxbins_YC,maxbins_RT)
@@ -274,7 +310,6 @@ res = stats.ttest_rel(maxbins_YC,maxbins_RT)
 res.pvalue/2 # almost significantly greater!
 
 #%% plot: for stimulus: max bin & (1) recall activation difference
-avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
 plt.figure()
 plt.plot(maxbins,avg_hardAct_diff, '.')
 plt.xlabel('Most often classifier bin during RT')
@@ -296,8 +331,11 @@ scipy.stats.pearsonr(maxbins.flatten(),avg_postAct.flatten())
 #%% plot: maxbin and pattern similarty
 # similar relationship with pattern similarity?
 plt.figure()
-plt.plot(maxbins,RTsim, '.')
-scipy.stats.pearsonr(maxbins.flatten(),RTsim.flatten())
+x = maxbins.flatten()
+y = RTsim.flatten()
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.plot(x,y, '.')
+scipy.stats.pearsonr(x[~nas],y[~nas])
 
 #%% lure RT correct only?
 plt.figure()
@@ -305,8 +343,16 @@ x = maxbins.flatten()
 y = lureRT_correctOnly.flatten()
 plt.plot(x,y, '.')
 nas = np.logical_or(np.isnan(x),np.isnan(y))
-scipy.stats.pearsonr(x[~nas],y[~nas])
 plt.show()
+scipy.stats.pearsonr(x[~nas],y[~nas])
+#%% lure RT correct only?-zscored
+plt.figure()
+x = maxbins.flatten()
+y = FILTERED_lureRT_CO_Z.flatten()
+plt.plot(x,y, '.')
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.show()
+scipy.stats.pearsonr(x[~nas],y[~nas])
 #%% plot: maxbin and rating difference
 plt.figure()
 plt.plot(maxbins,diffHard, '.')
@@ -315,3 +361,126 @@ y = diffHard.flatten()
 nas = np.logical_or(np.isnan(x),np.isnan(y))
 scipy.stats.pearsonr(x[~nas],y[~nas])
 
+#%% now: relate recall to different DV's:
+# recall act (post-pre) vs. RT sim(post:pre)
+x = FILTERED_recallact.flatten()
+y = FILTERED_BOLD_RTsim.flatten()
+plt.figure()
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.plot(x,y, '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    x = FILTERED_BOLD_RTsim[:,s]
+    y = FILTERED_recallact[:,s]
+    nas = np.logical_or(np.isnan(x),np.isnan(y))
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+    
+#%% now: recall vs. reaction time  
+x = FILTERED_recallact.flatten()
+y = FILTERED_lureRT_CO.flatten()
+plt.figure()
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.plot(x,y, '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_lureRT_CO[:,s]
+    x = FILTERED_recallact[:,s]
+    nas = np.logical_or(np.isnan(x),np.isnan(y))
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+#%% now: recall vs. word vector 
+x = FILTERED_recallact.flatten()
+y = FILTERED_simHard.flatten()
+plt.figure()
+nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+plt.plot(x[~nas],y[~nas], '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_simHard[:,s]
+    x = FILTERED_recallact[:,s]
+    nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+      
+#%% now: reaction time vs. word vector
+x = FILTERED_lureRT_CO.flatten()
+y = FILTERED_simHard.flatten()
+plt.figure()
+nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+plt.plot(x[~nas],y[~nas], '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_simHard[:,s]
+    x = FILTERED_lureRT_CO[:,s]
+    nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+
+#%% now: recall activity vs. ratings
+x = FILTERED_recallact.flatten()
+y = FILTERED_diffhard.flatten()
+plt.figure()
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.plot(x[~nas],y[~nas], '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_recallact[:,s]
+    x = FILTERED_diffhard[:,s]
+    nas = np.logical_or(np.isnan(x),np.isnan(y))
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.nanmean(corrbysubj),scipy.stats.sem(corrbysubj)))
+
+#%% maybe do multiple linear regression?      
+# build data frame--first nothing zscored
+nas = np.isnan(FILTERED_lureRT_CO.flatten())
+datamatrix = np.concatenate((FILTERED_lureRT_CO.flatten()[~nas,np.newaxis],FILTERED_BOLD_RTsim.flatten()[~nas,np.newaxis],FILTERED_recallact.flatten()[~nas,np.newaxis],FILTERED_simHard.flatten()[~nas,np.newaxis]),axis=1)
+maxbins_vector = maxbins.flatten()
+df = pd.DataFrame(datamatrix,columns = ['RT','PS', 'recallact', 'wv'])
+X = df
+X = sm.add_constant(X)
+# Note the difference in argument order
+model = sm.OLS(maxbins_vector[~nas], X).fit() ## sm.OLS(output, input)
+predictions = model.predict(X)
+
+# Print out the statistics
+model.summary()
+
+#%% do with non filtered data
+nas = np.isnan(FILTERED_lureRT_CO.flatten())
+datamatrix = np.concatenate((FILTERED_lureRT_CO.flatten()[~nas,np.newaxis],FILTERED_BOLD_RTsim.flatten()[~nas,np.newaxis],FILTERED_recallact.flatten()[~nas,np.newaxis],FILTERED_simHard.flatten()[~nas,np.newaxis]),axis=1)
+maxbins_vector = maxbins.flatten()
+df = pd.DataFrame(datamatrix,columns = ['RT','PS', 'recallact', 'wv'])
+X = df
+X = sm.add_constant(X)
+# Note the difference in argument order
+model = sm.OLS(maxbins_vector[~nas], X).fit() ## sm.OLS(output, input)
+predictions = model.predict(X)
+
+# Print out the statistics
+model.summary()
