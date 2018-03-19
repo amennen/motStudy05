@@ -31,13 +31,17 @@ random.seed(datetime.now())
 flatui = ["#DB5461", "#593C8F"]
 
 # using the original patterns the effect is worse than using the betas
-nboot = 1000 # put nboot as == 1 to say only run once
+nboot = 1 # put nboot as == 1 to say only run once
 bw = 0.1 # set it here for everyone!!
 detailthreshold = 2
 usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
-usebetas_mot = 1# whether or not to use betas for classifier evidence for MOT
+usebetas_mot = 0# whether or not to use betas for classifier evidence for MOT
 zscoreDV = 0 # if true zscore all DV
 zscoreIV = 0 # if you should zscore all classifier values
+# specify type of recall evidence to do
+DIFF = 1
+POST = 2
+recalltype = POST
 
 def mean_confidence_interval(data, confidence=0.95):
     if confidence == 0.95:
@@ -246,7 +250,10 @@ FILTERED_TRmatrix_kde = TRmatrix_kde
 FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
 FILTERED_lureRT = lureRT
 FILTERED_targRT = targRT
-FILTERED_recallact = avg_hardAct_diff
+if recalltype == POST:
+    FILTERED_recallact = avg_hardAct_post
+else:
+    FILTERED_recallact = avg_hardAct_diff
 FILTERED_simHard = simHard
 
 for s in np.arange(nsub):
@@ -285,12 +292,12 @@ plt.xlabel('beta PS')
 plt.ylabel('BOLD PS')
 plt.title('BOLD vs. beta PS')
 plt.figure(figsize=(10,7))    
-plt.hist(allcorr)
-plt.xlabel('Correlation')
-plt.yticks([0,8,16], ['0', '.25', '.5'])
-plt.ylabel('Frequency')
-plt.title('Histogram of PS correlations')
-# find subjects where relationship is less than .5
+#plt.hist(allcorr)
+#plt.xlabel('Correlation')
+#plt.yticks([0,8,16], ['0', '.25', '.5'])
+#plt.ylabel('Frequency')
+#plt.title('Histogram of PS correlations')
+## find subjects where relationship is less than .5
 badsubj = (allcorr<.5)
 #%% now run bootstrap
 # analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity

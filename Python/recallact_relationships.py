@@ -6,7 +6,7 @@ Created on Mon Mar 12 12:08:53 2018
 Purpose: compare recall activations and memory results
 Measurements of memory:
     Neural:
-        - Recall activation (post - pre)
+        - Recall activation (post - pre) (or just post)
         - Pattern similarity (post-pre) (raw/GLM)
     Behavioral:
         - Lure RT post only-->(regular/LOG) choosing log
@@ -19,6 +19,7 @@ Things this script does:
     3. calculates the maximum bin for that stimulus and replots distirbution
     4. calculates correlations & plots relationship between DV and maxbins
     5. NEW: will plot and caculate correlations between different DV's (maybe average by subject first?)
+    6. Will make a large matrix to show all the correlations
     
 
 @author: amennen
@@ -97,8 +98,6 @@ d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
 allSep = d['sepbystimD']
 
 # now specify path for betas ps
-with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim.pickle", "rb") as f:  # Python 3: open(..., 'rb')
-    betasbystim_RT, betasbystim_OM = pickle.load(f)
 motpath = '/Volumes/norman/amennen/motStudy05_transferred/'
 behavioral_data = '/Volumes/norman/amennen/motStudy05_transferred/BehavioralData/'
 savepath = '/Volumes/norman/amennen/PythonMot5/'
@@ -126,6 +125,24 @@ hard_sm = hard_sm.T # this is the soft max
 simHard = simHard.T # this is just the version of it regualr cosines
 
 # load PS
+with open("/Volumes/norman/amennen/PythonMot5/betas_recall_orderedstim_PHG2.pickle", "rb") as f:  # Python 3: open(..., 'rb')
+    betasbystim_RT, betasbystim_OM = pickle.load(f)
+BETA_RTsim = np.zeros((nstim, nsub))
+BETA_avgRTsim = np.zeros(nsub)
+#if usebetas_ps:
+for s in np.arange(nsub):
+    subj = all_sub[s]
+    sub = "Subject%01d" % subj
+    RT = betasbystim_RT[sub]
+    R1_RT = np.mean(RT[0:4, :, :], axis=0)
+    R2_RT = np.mean(RT[4:8, :, :], axis=0)
+    nstim = RT.shape[2]
+    nvox = RT.shape[1]
+    for stim in np.arange(nstim):
+        r1 = R1_RT[:, stim]
+        r2 = R2_RT[:, stim]
+        BETA_RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
+
 rdata_dir = '/Volumes/norman/amennen/PythonMot5/RecallPat/'
 RTsim = np.zeros((nstim, nsub))
 OMITsim = np.zeros((nstim, nsub))
@@ -134,7 +151,7 @@ avgOMITsim = np.zeros(nsub)
 for s in np.arange(nsub):
     subj = all_sub[s]
     # 1/31 after sfn: adding z to zscore differently before taking out timepoints
-    filename = 'recallPATz%i.mat' % subj
+    filename = 'recallPATz_PHG2_%i.mat' % subj
     filepath = os.path.join(rdata_dir, filename)
     print(filepath)
     d = scipy.io.loadmat(filepath, squeeze_me=True, struct_as_record=False)
@@ -147,9 +164,7 @@ for s in np.arange(nsub):
         r1 = RT[stim, :, 0]
         r2 = RT[stim, :, 1]
         RTsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
-        r1 = OMIT[stim, :, 0]
-        r2 = OMIT[stim, :, 1]
-        OMITsim[stim, s] = np.corrcoef(r1, r2)[1, 0]
+
 
 # load detail ratings
 diffEasy = np.zeros((10,npairs*2))
@@ -202,7 +217,11 @@ FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
 FILTERED_lureRT = lureRT
 FILTERED_targRT = targRT
 FILTERED_recallact = avg_hardAct_diff
-FILTERED_simHard = simHard
+FILTERED_postrecallact = avg_postAct
+FILTERED_BETA_RTsim = BETA_RTsim
+## CHANGE HERE WHAT KIND OF SIM YOU WANT
+FILTERED_wv_sm = hard_sm
+FILTERED_wv_cos = simHard
 FILTERED_lureRT_CO_Z  = nanzscore(lureRT_correctOnly)
 for s in np.arange(nsub):
     s_ind = all_sub[s]
@@ -213,9 +232,11 @@ for s in np.arange(nsub):
     FILTERED_lureRT_CO[~stimkeep, s] = np.nan
     FILTERED_lureRT[~stimkeep, s] = np.nan
     FILTERED_targRT[~stimkeep, s] = np.nan
-    FILTERED_simHard[~stimkeep, s] = np.nan
+    FILTERED_wv_cos[~stimkeep, s] = np.nan
+    FILTERED_wv_sm[~stimkeep, s] = np.nan
     FILTERED_recallact[~stimkeep,s] = np.nan
-    FILTERED_lureRT_CO_Z[~stimkeep,s] = np.nan
+    FILTERED_postrecallact[~stimkeep,s] = np.nan
+    FILTERED_BETA_RTsim[~stimkeep,s] = np.nan
 #%% calculate maxbins per stimulus per subject
 windowsize = 0.05
 
@@ -400,7 +421,7 @@ for s in np.arange(nsub):
 print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
 print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
 #%% now: recall vs. word vector 
-x = FILTERED_recallact.flatten()
+x = FILTERED_postrecallact.flatten()
 y = FILTERED_simHard.flatten()
 plt.figure()
 nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
@@ -414,6 +435,42 @@ for s in np.arange(nsub):
     y = FILTERED_simHard[:,s]
     x = FILTERED_recallact[:,s]
     nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+#%% now: reaction time vs. word vector
+x = FILTERED_BOLD_RTsim.flatten()
+y = FILTERED_simHard.flatten()
+plt.figure()
+nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+plt.plot(x[~nas],y[~nas], '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_simHard[:,s]
+    x = FILTERED_BOLD_RTsim[:,s]
+    nas = np.logical_or(np.logical_or(np.isnan(x),np.isnan(y)),y==0)
+    corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
+print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
+print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
+#%% now: reaction time vs. word vector
+x = FILTERED_lureRT_CO.flatten()
+y = FILTERED_BOLD_RTsim.flatten()
+plt.figure()
+nas = np.logical_or(np.isnan(x),np.isnan(y))
+plt.plot(x[~nas],y[~nas], '.')
+plt.show()
+z = scipy.stats.pearsonr(x[~nas],y[~nas])
+# take correlation by subject
+corrbysubj = np.zeros((nsub))
+for s in np.arange(nsub):
+    # compute average correlation
+    y = FILTERED_BOLD_RTsim[:,s]
+    x = FILTERED_lureRT_CO[:,s]
+    nas = np.logical_or(np.isnan(x),np.isnan(y))
     corrbysubj[s] = scipy.stats.pearsonr(x[~nas],y[~nas])[0]
 print('total correlation is %.2f, p val: %.2f' % (z[0],z[1]))
 print('average correlation is %.2f +/- %.2f' % (np.mean(corrbysubj),scipy.stats.sem(corrbysubj)))
@@ -471,16 +528,6 @@ predictions = model.predict(X)
 # Print out the statistics
 model.summary()
 
-#%% do with non filtered data
-nas = np.isnan(FILTERED_lureRT_CO.flatten())
-datamatrix = np.concatenate((FILTERED_lureRT_CO.flatten()[~nas,np.newaxis],FILTERED_BOLD_RTsim.flatten()[~nas,np.newaxis],FILTERED_recallact.flatten()[~nas,np.newaxis],FILTERED_simHard.flatten()[~nas,np.newaxis]),axis=1)
-maxbins_vector = maxbins.flatten()
-df = pd.DataFrame(datamatrix,columns = ['RT','PS', 'recallact', 'wv'])
-X = df
-X = sm.add_constant(X)
-# Note the difference in argument order
-model = sm.OLS(maxbins_vector[~nas], X).fit() ## sm.OLS(output, input)
-predictions = model.predict(X)
-
-# Print out the statistics
-model.summary()
+#%% now calculate all correlations
+ncat = 7
+FIL
