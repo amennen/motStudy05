@@ -31,9 +31,9 @@ random.seed(datetime.now())
 flatui = ["#DB5461", "#593C8F"]
 
 # using the original patterns the effect is worse than using the betas
-nboot = 1 # put nboot as == 1 to say only run once
+nboot = 1000 # put nboot as == 1 to say only run once
 bw = 0.1 # set it here for everyone!!
-detailthreshold = 2
+detailthreshold = 1
 usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
 usebetas_mot = 0# whether or not to use betas for classifier evidence for MOT
 zscoreDV = 0 # if true zscore all DV
@@ -41,7 +41,7 @@ zscoreIV = 0 # if you should zscore all classifier values
 # specify type of recall evidence to do
 DIFF = 1
 POST = 2
-recalltype = POST
+recalltype = DIFF
 
 def mean_confidence_interval(data, confidence=0.95):
     if confidence == 0.95:
@@ -242,7 +242,7 @@ for s in np.arange(nsub):
         allvals = np.exp(kde.score_samples(cr2))
         maxbins[st,s] = cr2[np.argmax(allvals)]
         TRmatrix_kde[st, :, s] = allvals
-
+#%%
 FILTERED_BOLD_RTsim = BOLD_RTsim
 FILTERED_BETA_RTsim = BETA_RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
@@ -250,10 +250,8 @@ FILTERED_TRmatrix_kde = TRmatrix_kde
 FILTERED_lureRT_CO = lureRT_correctOnly #lureAcc + targAcc
 FILTERED_lureRT = lureRT
 FILTERED_targRT = targRT
-if recalltype == POST:
-    FILTERED_recallact = avg_hardAct_post
-else:
-    FILTERED_recallact = avg_hardAct_diff
+
+FILTERED_recallact = avg_hardAct_diff
 FILTERED_simHard = simHard
 
 for s in np.arange(nsub):
@@ -280,25 +278,25 @@ if zscoreDV:
     FILTERED_simHard = nanzscore(FILTERED_simHard)
     FILTERED_recallact = nanzscore(FILTERED_recallact)
 #%% check that BOLD and BETA are related
-allcorr = np.zeros((nsub))
-allp = np.zeros((nsub))
-plt.figure(figsize=(10,7))    
-for s in np.arange(nsub):
-    x = FILTERED_BETA_RTsim[:,s]
-    y = FILTERED_BOLD_RTsim[:,s]
-    allcorr[s],allp[s] = scipy.stats.pearsonr(x,y)
-    plt.plot(x,y, '.')
-plt.xlabel('beta PS')
-plt.ylabel('BOLD PS')
-plt.title('BOLD vs. beta PS')
-plt.figure(figsize=(10,7))    
-#plt.hist(allcorr)
-#plt.xlabel('Correlation')
-#plt.yticks([0,8,16], ['0', '.25', '.5'])
-#plt.ylabel('Frequency')
-#plt.title('Histogram of PS correlations')
-## find subjects where relationship is less than .5
-badsubj = (allcorr<.5)
+#allcorr = np.zeros((nsub))
+#allp = np.zeros((nsub))
+#plt.figure(figsize=(10,7))    
+#for s in np.arange(nsub):
+#    x = FILTERED_BETA_RTsim[:,s]
+#    y = FILTERED_BOLD_RTsim[:,s]
+#    allcorr[s],allp[s] = scipy.stats.pearsonr(x,y)
+#    plt.plot(x,y, '.')
+#plt.xlabel('beta PS')
+#plt.ylabel('BOLD PS')
+#plt.title('BOLD vs. beta PS')
+#plt.figure(figsize=(10,7))    
+##plt.hist(allcorr)
+##plt.xlabel('Correlation')
+##plt.yticks([0,8,16], ['0', '.25', '.5'])
+##plt.ylabel('Frequency')
+##plt.title('Histogram of PS correlations')
+### find subjects where relationship is less than .5
+#badsubj = (allcorr<.5)
 #%% now run bootstrap
 # analysis: Evidence w/ (1) pattern similarity (2) lure RT (3) detail difference (4) word vector similarity
 if nboot > 1:
@@ -336,35 +334,35 @@ else:
     correlations_WVsoftmax= getcorr_matrix(FILTERED_simHard,FILTERED_TRmatrix_kde)
     correlations_recallact = getcorr_matrix(FILTERED_recallact,FILTERED_TRmatrix_kde)  
 #%% check that the correlations are correlated
-x = correlations_BETAps.flatten()
-y = correlations_BOLDps.flatten()
-plt.figure()
-plt.plot(x,y, '.')
-scipy.stats.pearsonr(x,y)
-allcorr = np.zeros((nsub))
-# these are also strongy correlated can check per subj
-plt.figure(figsize=(10,7))
-for s in np.arange(nsub):
-    x = correlations_BETAps[s,:]
-    y = correlations_BOLDps[s,:]
-    plt.plot(x,y,'.')
-    allcorr[s],p = scipy.stats.pearsonr(x,y,)
-plt.xlabel('beta correlations')
-plt.ylabel('BOLD correlations')
-plt.title('BOLD vs. beta PS correlations')
-
-plt.figure()
-plt.hist(allcorr)
-
-x = np.mean(correlations_BETAps,axis=0)
-y = np.mean(correlations_BOLDps,axis=0)
-alldifferences = x-y
-plt.figure()
-plt.plot(catrange,alldifferences, '.')
-plt.figure()
-plt.plot(x,y, '.')
-# now define bad subj on this this relationship
-badsubj = allcorr< 0.5
+#x = correlations_BETAps.flatten()
+#y = correlations_BOLDps.flatten()
+#plt.figure()
+#plt.plot(x,y, '.')
+#scipy.stats.pearsonr(x,y)
+#allcorr = np.zeros((nsub))
+## these are also strongy correlated can check per subj
+#plt.figure(figsize=(10,7))
+#for s in np.arange(nsub):
+#    x = correlations_BETAps[s,:]
+#    y = correlations_BOLDps[s,:]
+#    plt.plot(x,y,'.')
+#    allcorr[s],p = scipy.stats.pearsonr(x,y,)
+#plt.xlabel('beta correlations')
+#plt.ylabel('BOLD correlations')
+#plt.title('BOLD vs. beta PS correlations')
+#
+#plt.figure()
+#plt.hist(allcorr)
+#
+#x = np.mean(correlations_BETAps,axis=0)
+#y = np.mean(correlations_BOLDps,axis=0)
+#alldifferences = x-y
+#plt.figure()
+#plt.plot(catrange,alldifferences, '.')
+#plt.figure()
+#plt.plot(x,y, '.')
+## now define bad subj on this this relationship
+#badsubj = allcorr< 0.5
 #%% get confidence intervals
 BOLDps_mean = np.zeros((nwin))
 BOLDps_errL = np.zeros((nwin))
@@ -441,7 +439,7 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, lureRTCO_errL, lureRTCO_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,lureRTCO_mean, color='r')
-#plt.ylim(-.25,.25)
+plt.ylim(-.25,.25)
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
 fig, ax = plt.subplots(figsize=(12,7))
@@ -452,7 +450,7 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, WVsoftmax_errL, WVsoftmax_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,WVsoftmax_mean, color='r')
-#plt.ylim(-.25,.25)
+plt.ylim(-.25,.25)
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
 fig, ax = plt.subplots(figsize=(12,7))

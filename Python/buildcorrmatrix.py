@@ -212,6 +212,8 @@ avg_preAct = np.mean(hardAct[:,:,0,:],axis=1)
 avg_postAct = np.mean(hardAct[:,:,1,:],axis=1)
 avg_hardAct_diff = np.mean(hardAct_diff,axis=1)
 
+
+
 #%% filter by first rating
 FILTERED_BOLD_RTsim = RTsim
 FILTERED_diffhard = diffHard # behavioral ratings difference
@@ -235,7 +237,7 @@ for s in np.arange(nsub):
     FILTERED_BETA_RTsim[~stimkeep,s] = np.nan
     
 #%% 
-matplotlib.rcParams.update({'font.size': 18})
+matplotlib.rcParams.update({'font.size': 10})
 ncategories = 7
 subjcorrelations = np.zeros((ncategories,ncategories,nsub))
 for s in np.arange(nsub):
@@ -265,9 +267,9 @@ plt.show()
 #plt.xticks(np.arange(ncategories),('boldPS', 'betaPS', 'RTCO', 'pra', 'dra', 'wvsm', 'wvcos'))
 #plt.yticks(np.arange(ncategories),('boldPS', 'betaPS', 'RTCO', 'pra', 'dra', 'wvsm', 'wvcos'))
 #plt.show()
-
+z= scipy.stats.ttest_1samp(subjcorrelations,0,axis=2)
 plt.figure()
-plt.imshow(z.pvalue,cmap='coolwarm',vmin=0,vmax=0.3)s
+plt.imshow(z.pvalue,cmap='coolwarm',vmin=0,vmax=0.3)
 plt.colorbar()
 plt.xticks(np.arange(ncategories),('boldPS', 'betaPS', 'RTCO', 'pra', 'dra', 'wvsm', 'wvcos'))
 plt.yticks(np.arange(ncategories),('boldPS', 'betaPS', 'RTCO', 'post_rec_act', 'diff_rec_act', 'wvsm', 'wvcos'))
