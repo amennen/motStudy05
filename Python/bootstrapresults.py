@@ -35,7 +35,7 @@ nboot = 1000 # put nboot as == 1 to say only run once
 bw = 0.1 # set it here for everyone!!
 detailthreshold = 1
 usebetas_ps = 0 # whether or not to use the betas for the "Y" PS
-usebetas_mot = 0# whether or not to use betas for classifier evidence for MOT
+usebetas_mot = 1# whether or not to use betas for classifier evidence for MOT
 zscoreDV = 0 # if true zscore all DV
 zscoreIV = 0 # if you should zscore all classifier values
 # specify type of recall evidence to do
@@ -253,6 +253,7 @@ FILTERED_targRT = targRT
 
 FILTERED_recallact = avg_hardAct_diff
 FILTERED_simHard = simHard
+FILTERED_recallact_post= avg_hardAct_post
 
 for s in np.arange(nsub):
     s_ind = all_sub[s]
@@ -267,6 +268,7 @@ for s in np.arange(nsub):
     FILTERED_targRT[~stimkeep, s] = np.nan
     FILTERED_simHard[~stimkeep, s] = np.nan
     FILTERED_recallact[~stimkeep,s] = np.nan
+    FILTERED_recallact_post[~stimkeep,s] = np.nan
 
 if zscoreDV:
     FILTERED_diffhard = nanzscore(FILTERED_diffhard) # zscore over subjects
@@ -277,6 +279,7 @@ if zscoreDV:
     FILTERED_lureRT = nanzscore(FILTERED_lureRT)
     FILTERED_simHard = nanzscore(FILTERED_simHard)
     FILTERED_recallact = nanzscore(FILTERED_recallact)
+    FILTERED_recallact_post = nanzscore(FILTERED_recallact_post)
 #%% check that BOLD and BETA are related
 #allcorr = np.zeros((nsub))
 #allp = np.zeros((nsub))
@@ -307,6 +310,7 @@ if nboot > 1:
     correlations_detaildiff = np.zeros((nboot,nwin))
     correlations_WVsoftmax = np.zeros((nboot,nwin))
     correlations_recallact = np.zeros((nboot,nwin))
+    correlations_recallact_post = np.zeros((nboot,nwin))
     
     for b in np.arange(nboot):
     
@@ -318,6 +322,8 @@ if nboot > 1:
         correlations_detaildiff[b, :] = getcorr_vector(FILTERED_diffhard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
         correlations_WVsoftmax[b, :] = getcorr_vector(FILTERED_simHard[:,bootsubjects],FILTERED_TRmatrix_kde[:,:,bootsubjects])
         correlations_recallact[b, :] = getcorr_vector(FILTERED_recallact[:, bootsubjects],FILTERED_TRmatrix_kde[:, :, bootsubjects])
+        correlations_recallact_post[b, :] = getcorr_vector(FILTERED_recallact_post[:, bootsubjects],FILTERED_TRmatrix_kde[:, :, bootsubjects])
+
 else:
     correlations_BOLDps = np.zeros((nsub,nwin)) # each result will be for a specific window the mean for that bootstrap run
     correlations_BETAps = np.zeros((nsub,nwin)) # each result will be for a specific window the mean for that bootstrap run
@@ -389,6 +395,10 @@ WVsoftmax_errH = np.zeros((nwin))
 recallact_mean = np.zeros((nwin))
 recallact_errL = np.zeros((nwin))
 recallact_errH = np.zeros((nwin))
+
+recallact_post_mean = np.zeros((nwin))
+recallact_post_errL = np.zeros((nwin))
+recallact_post_errH = np.zeros((nwin))
 if nboot == 1: #just get 68% confidence interval
     CI = 0.68
 else:
@@ -402,6 +412,8 @@ for w in np.arange(nwin):
     detaildiff_mean[w], detaildiff_errL[w], detaildiff_errH[w] = mean_confidence_interval(correlations_detaildiff[:, w],CI)
     WVsoftmax_mean[w], WVsoftmax_errL[w],WVsoftmax_errH[w] = mean_confidence_interval(correlations_WVsoftmax[:, w],CI)
     recallact_mean[w], recallact_errL[w],recallact_errH[w] = mean_confidence_interval(correlations_recallact[:, w],CI)
+    recallact_post_mean[w], recallact_post_errL[w],recallact_post_errH[w] = mean_confidence_interval(correlations_recallact_post[:, w],CI)
+
 # now calculate pvalues!
 
 
@@ -461,6 +473,15 @@ palette = itertools.cycle(sns.color_palette("husl",8))
 sns.despine()
 plt.fill_between(catrange, recallact_errL, recallact_errH,facecolor='r',alpha=0.3)
 plt.plot(catrange,recallact_mean, color='r')
+
+fig, ax = plt.subplots(figsize=(12,7))
+plt.title('Recall Post Act')
+plt.ylabel('Correlation')
+plt.xlabel('Retrieval evidence bin-kde')
+palette = itertools.cycle(sns.color_palette("husl",8))
+sns.despine()
+plt.fill_between(catrange, recallact_post_errL, recallact_post_errH,facecolor='r',alpha=0.3)
+plt.plot(catrange,recallact_post_mean, color='r')
 #plt.ylim(-.25,.25)
 #ax.set_yticks([-.2,-.1,0,.1,.2])
 
