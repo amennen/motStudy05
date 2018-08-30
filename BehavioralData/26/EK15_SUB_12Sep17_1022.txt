@@ -1,4 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	13.2  	1   	CURTAIN   	5       	3.951	1.543	0   	no image	1 detail, 2+ details, full
-2   	35.2  	2   	PIN       	5       	3.95	1.262	1   	1 detail	1 detail, 2+ details, full
-3   	57.2  	3   	PUZZLE    	5       	3.951	2.015	1   	1 detail	1 detail, 2+ details, full

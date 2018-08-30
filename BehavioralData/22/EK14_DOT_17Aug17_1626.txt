@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	36.1  	45  	RATTLE    	lure_easy	1.951	1.434	1   	non-target	non-target
-2   	78.1  	46  	APRON     	lure_hard	1.951	0.699	1   	target  	target  
-3   	120.1 	8   	BELL      	targ_easy	1.95	1.331	1   	non-target	non-target
-4   	162.1 	1   	HAMMER    	targ_hard	1.95	1.003	1   	non-target	non-target

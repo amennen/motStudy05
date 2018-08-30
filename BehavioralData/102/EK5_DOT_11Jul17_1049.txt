@@ -1,6 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	37.7  	8   	PUZZLE    	target  	1.952	NR  	0   	NR      	non-target
-2   	79.7  	8   	PUZZLE (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
-3   	121.7 	2   	HAMMER    	target  	1.951	NR  	0   	NR      	target  
-4   	163.7 	7   	PIN       	target  	1.951	NR  	0   	NR      	non-target
-5   	205.7 	7   	PIN (repeat 1)	target  	1.951	NR  	0   	NR      	non-target

@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	37.1  	45  	BASKET    	lure_hard	1.95	1.375	0   	non-target	target  
-2   	79.1  	46  	BUBBLE    	lure_easy	1.95	0.992	1   	target  	target  
-3   	121.1 	6   	RAINBOW   	targ_hard	1.951	0.984	1   	non-target	non-target
-4   	163.1 	8   	ISLAND    	targ_easy	1.95	0.896	0   	target  	non-target

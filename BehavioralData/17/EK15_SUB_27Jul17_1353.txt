@@ -1,4 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	13.1  	7   	BELL      	5       	3.951	2.789	0   	no image	1 detail, 2+ details, full
-2   	35.1  	4   	HAMMER    	5       	3.951	1.269	1   	full    	1 detail, 2+ details, full
-3   	57.1  	5   	PIN       	5       	3.952	1.421	1   	1 detail	1 detail, 2+ details, full

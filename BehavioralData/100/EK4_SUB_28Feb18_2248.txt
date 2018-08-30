@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	12.4  	5   	BELL      	target  	2.034	NR  	0   	NR      	1 detail, 2+ details, full
-2   	18.4  	5   	BELL (repeat 1)	target  	1.98	NR  	0   	NR      	1 detail, 2+ details, full
-3   	24.3  	5   	BELL (repeat 2)	target  	1.989	NR  	0   	NR      	1 detail, 2+ details, full
-4   	30.3  	5   	BELL (repeat 3)	target  	2   	NR  	0   	NR      	1 detail, 2+ details, full

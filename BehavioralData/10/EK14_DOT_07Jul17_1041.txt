@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	37.1  	1   	BELL      	targ_hard	1.951	0.743	0   	non-target	target  
-2   	79.1  	2   	HAMMER    	targ_easy	1.95	0.723	1   	non-target	non-target
-3   	121.1 	45  	PAINT     	lure_hard	1.951	0.732	0   	non-target	target  
-4   	163.1 	46  	SHIRT     	lure_easy	1.95	0.46	1   	target  	target  

@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	36    	4   	PIN       	targ_easy	1.952	1.794	1   	non-target	non-target
-2   	78    	45  	PADDLE    	lure_hard	1.95	1.026	1   	non-target	non-target
-3   	120   	46  	STAPLE    	lure_easy	1.951	1.266	1   	non-target	non-target
-4   	162   	8   	HAMMER    	targ_hard	1.951	1.027	1   	target  	target  

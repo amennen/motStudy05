@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	36    	45  	POLE      	lure_hard	1.951	1.903	1   	non-target	non-target
-2   	78    	1   	PUZZLE    	targ_hard	1.951	1.216	0   	non-target	target  
-3   	120   	46  	ANCHOR    	lure_easy	1.95	1.496	1   	target  	target  
-4   	162   	2   	CURTAIN   	targ_easy	1.95	0.792	1   	non-target	non-target

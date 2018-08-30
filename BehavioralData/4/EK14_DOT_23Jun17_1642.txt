@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	36.1  	1   	PUZZLE    	targ_hard	1.951	0.996	1   	target  	target  
-2   	78.1  	2   	BELL      	targ_easy	1.95	1.085	1   	non-target	non-target
-3   	120.1 	45  	PUDDLE    	lure_hard	1.95	0.885	1   	non-target	non-target
-4   	162.1 	46  	BRUSH     	lure_easy	1.951	0.949	1   	target  	target  
